@@ -61,16 +61,18 @@ public class NewsApplication extends Html5Application {
 
     private void loadMainScreen(Screen s) {
         s.setRole("main");
-        loadContent(s, "video");
+        loadContent(s, "ngproxy");
 
-        this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
-        this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
+        // TODO what's the difference between this put and putMsg below?
+//        this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
+//        this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
+
+        s.putMsg("ngproxy", "", choosenEpisode.getStreamUri());
     }
 
     private void loadSecondScreen(Screen s) {
         s.setRole("secondary");
-
-        loadContent(s, "rawdata");
+        loadContent(s, "ngproxy");
 //
 //        String allContent = "[{chapter: 'politics', annotations: [{start: 34, end: 234, label: 'snowden', thumb: 'image url' }] }]";
 //        s.putMsg("rawdata", "", allContent);
