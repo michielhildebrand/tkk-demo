@@ -67,7 +67,8 @@ public class NewsApplication extends Html5Application {
 //        this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
 //        this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
-        s.putMsg("ngproxy", "", choosenEpisode.getStreamUri());
+        String msg = "{\"target\": \"screen\", \"data\": \""+ choosenEpisode.getStreamUri() +"\"}";
+        s.putMsg("ngproxy", "", msg);
     }
 
     private void loadSecondScreen(Screen s) {

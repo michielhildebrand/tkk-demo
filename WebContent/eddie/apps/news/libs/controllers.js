@@ -2,14 +2,20 @@
 
 var tkkControllers = angular.module('tkkControllers', []);
 
-tkkControllers.controller('MediaResourceCtrl', ['$scope', 'mediaResourceService',
-  function ($scope, mediaResourceService) {
+tkkControllers.controller('MediaResourceCtrl', ['$scope', 'mediaResource', 'eventsBus',
+  function ($scope, mediaResource, eventsBus) {
     $scope.items = [];
     $scope.currentResourcePage = 0;
     $scope.currentFragmentPage = 0;
     $scope.fragmentsVisible = false;
 
     fetchMediaResources(0);
+
+    eventsBus.subscribe($scope, 'screen', processMsg);
+
+    function processMsg(msg) {
+      console.log('----> ' + msg)
+    }
 
     $scope.nextPage = function() {
       $scope.currentResourcePage++;
@@ -30,7 +36,7 @@ tkkControllers.controller('MediaResourceCtrl', ['$scope', 'mediaResourceService'
 
     function fetchMediaResources(page) {
       console.log('fetching mediaresources (page '+page+')');
-      mediaResourceService.get({_page: page}, function (r) {
+      mediaResource.get({_page: page}, function (r) {
         $scope.items = r.result.items;
         console.log($scope.items.length);
       });
@@ -38,7 +44,7 @@ tkkControllers.controller('MediaResourceCtrl', ['$scope', 'mediaResourceService'
 
     function fetchMediaFragments(id, page) {
       console.log('fetching mediafragments for ' + id + ' (page '+page+')');
-      mediaResourceService.mediafragments({id: id, _page: page}, function (r) {
+      mediaResource.mediafragments({id: id, _page: page}, function (r) {
         $scope.fragments = r.result.items;
         console.log($scope.fragments.length);
         $scope.fragmentsVisible = true;
