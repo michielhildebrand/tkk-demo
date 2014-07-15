@@ -1,8 +1,5 @@
 
 var Ngproxy = function(options) {
-  var self = {};
-  var settings = {};
-  $.extend(settings, options);
 
   self.putMsg = function(string) {
     console.log(string);

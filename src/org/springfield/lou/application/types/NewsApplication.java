@@ -1,8 +1,14 @@
 package org.springfield.lou.application.types;
 
+import org.springfield.fs.FSList;
+import org.springfield.fs.FsNode;
 import org.springfield.lou.application.Html5Application;
 import org.springfield.lou.screen.Screen;
 import org.springfield.mojo.linkedtv.Episode;
+
+import org.springfield.mojo.linkedtv.Channel;
+
+import java.util.List;
 
 public class NewsApplication extends Html5Application {
 
@@ -26,27 +32,42 @@ public class NewsApplication extends Html5Application {
 
         if (fixedrole.equals("main")) {
             String id = s.getParameter("id");
-            System.out.println("id = " + id);
+            if (id == null) {
+                Channel ch = new Channel("linkedtv", "rbb"/*"S%26V"*/);
+                List<Episode> curatedEpisodes = ch.getEpisodes(); //Returns a list containing all episodes for the domain/channel with the status CURATED
+                choosenEpisode = ch.getLatestEpisode();
+            } else {
+                System.out.println("id = " + id);
+                choosenEpisode = new Episode(id);
+            }
+            System.out.println("Id: " + choosenEpisode.getMediaResourceId());
+            System.out.println("Title: "+choosenEpisode.getTitle());
+            System.out.println("Duration: "+choosenEpisode.getDuration());
+            System.out.println("Stills uri: "+choosenEpisode.getStillsUri());
+            System.out.println("Stream uri: "+choosenEpisode.getStreamUri());
 
-            choosenEpisode = new Episode(id);
-            System.out.println("e = " + choosenEpisode.getTitle());
+            FSList annotations = choosenEpisode.getAnnotations();
+            List<FsNode> nodes = annotations.getNodes();
+            if (nodes != null) {
+                for (FsNode node : nodes) {
+                    System.out.println("annotation " + node.getId() + ", start " + node.getProperty("starttime") + ", title " + node.getProperty("title"));
+                }
+            }
 
-            //fetch episode chapters, fetch episode annotations
-            // link annotations and chapters based on start-end time
 
-
-
-//            FSList annotations = e.getAnnotations();
-//            System.out.println("path = " + annotations.getPath());
-//
-//            List<FsNode> nodes = annotations.getNodes();
-//
-//            String allContent = "fake";
-//
-//            for (int i = 0; i < nodes.size(); i++) {
-//                FsNode node = nodes.get(i);
-//
-//            }
+            FSList chapters = choosenEpisode.getChapters();
+            List<FsNode> chaptersNode = chapters.getNodes();
+            if (chaptersNode != null) {
+                for (FsNode node : chaptersNode) {
+                    System.out.println("chapter " + node.getId() + ", start " + node.getProperty("starttime") + ", title " + node.getProperty("title"));
+                }
+                List<FsNode> locations = chapters.getNodesByName("location");
+                if (locations != null) {
+                    for (FsNode location : locations) {
+                        System.out.println("location : " + location.getProperty("name") + "(start: " + location.getProperty("starttime") + " duration: " + location.getProperty("duration") + ")");
+                    }
+                }
+            }
 
             loadMainScreen(s);
         } else {
@@ -67,8 +88,23 @@ public class NewsApplication extends Html5Application {
 //        this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
 //        this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
-        String msg = "{\"target\": \"screen\", \"data\": \""+ choosenEpisode.getStreamUri() +"\"}";
-        s.putMsg("ngproxy", "", msg);
+        StringBuilder msg = new StringBuilder("{");
+        msg.append("\"target\":\"video\",");
+        msg.append("\"data\":{");
+        msg.append("  \"episode\":{");
+        msg.append("    \"id\": \"").append(choosenEpisode.getMediaResourceId()).append("\",");
+        msg.append("    \"title\": \"").append(choosenEpisode.getTitle()).append("\",");
+        msg.append("    \"duration\": \"").append(choosenEpisode.getDuration()).append("\",");
+        msg.append("    \"stream\": \"").append(choosenEpisode.getStreamUri()).append("\",");
+        msg.append("    \"poster\": \"").append(choosenEpisode.getStillsUri()).append("/h/0/m/0/sec1.jpg\"");
+        msg.append("   }");
+        msg.append(" }");
+        msg.append("}");
+
+        //fetch episode chapters, fetch episode annotations
+        // link annotations and chapters based on start-end time
+
+        s.putMsg("ngproxy", "", msg.toString());
     }
 
     private void loadSecondScreen(Screen s) {
