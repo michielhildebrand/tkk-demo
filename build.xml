@@ -104,7 +104,7 @@
 
 
   <!-- Copile source code -->
-  <target name="compile-src" depends="init-src, init-deps">
+  <target name="compile-src-only">
     <javac srcdir="${sources.dir}" destdir="${classes.dir}" debug="on">
       <classpath>
         <path refid="compile.deps"/>
@@ -113,9 +113,10 @@
       </classpath>
     </javac>
   </target>
+  <target name="compile-src" depends="init-src, init-deps, compile-src-only"/>
 
   <!-- Copile test code -->
-  <target name="compile-test" depends="init-test, init-deps">
+  <target name="compile-test-only">
     <javac srcdir="${test.sources.dir}" destdir="${test.build.dir}" debug="on">
       <classpath>
         <path refid="compile.deps"/>
@@ -125,6 +126,7 @@
       </classpath>
     </javac>
   </target>
+  <target name="compile-test" depends="init-test, init-deps, compile-test-only"/>
 
   <!-- Jar package build -->
   <target name="build-src" depends="compile-src">
@@ -166,7 +168,7 @@
   </target>
 
 
-  <target name="test-only" depends="init-deps">
+  <target name="run-test-only">
     <junit dir="${test.build.dir}" printsummary="yes" haltonfailure="yes" >
       <classpath >
         <path location="${test.build.dir}"/>
@@ -184,7 +186,10 @@
       </batchtest>
     </junit>
   </target>
+  <target name="run-test" depends="init-deps, run-test-only"/>
 
-  <target name="test" depends="compile-src, compile-test, test-only"/>
+  <target name="test" depends="compile-src, compile-test, run-test"/>
+
+  <target name="dev" depends="init-deps, compile-src-only, compile-test-only, run-test-only"/>
 
 </project>

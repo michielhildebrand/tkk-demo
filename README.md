@@ -30,3 +30,7 @@ The script assumes the Springfield toolkit is located in the parent directory _.
 To check your tests simply run:
 
     $ ant test
+
+If you are developing and cleaning is not needed every time you run a test, you can save some time if you run:
+
+    $ ant dev
