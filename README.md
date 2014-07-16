@@ -24,3 +24,9 @@ To deploy a new version of the application you need to create a new war and uplo
     $ ant
 
 The script assumes the Springfield toolkit is located in the parent directory _../sprinfield_. 
+
+## Test
+
+To check your tests simply run:
+
+    $ ant test
