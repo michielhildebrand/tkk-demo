@@ -9,8 +9,8 @@
   <property name="build.dir" value="${root.dir}/build" />
   <property name="classes.dir" value="${build.dir}/classes" />
   <property name="lib.dir" value="${root.dir}/libs" />
-  <property name="test.sources.dir" value="${root.dir}/test-src" />
-  <property name="test.build.dir" value="${root.dir}/test-build" />
+  <property name="test.sources.dir" value="${root.dir}/test" />
+  <property name="test.build.dir" value="${root.dir}/build-test" />
   <property name="tools.dir" value="${root.dir}/tools" />
   <property name="webcontent.dir" value="${root.dir}/WebContent" />
   <property name="webcontent.lib.dir" value="${webcontent.dir}/WEB-INF/lib" />
