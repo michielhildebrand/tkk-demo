@@ -78,9 +78,6 @@ public class NewsApplication extends Html5Application {
         msg.append(" }");
         msg.append("}");
 
-        //TODO
-        //fetch episode chapters, fetch episode annotations
-        // link annotations and chapters based on start-end time
 
         s.putMsg("ngproxy", "", msg.toString());
     }

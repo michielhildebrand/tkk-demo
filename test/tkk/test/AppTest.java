@@ -13,6 +13,7 @@ public class AppTest {
         Episode e = new Episode("8a8187f2-3fc8-cb54-0140-7dccd76f0001");
 
         DomainUtil.printEpisodeAnnotations(e);
+        DomainUtil.printEpisodeChapters(e);
 
         assertTrue(true);
     }

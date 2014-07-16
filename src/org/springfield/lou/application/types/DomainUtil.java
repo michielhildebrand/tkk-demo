@@ -19,9 +19,9 @@ public class DomainUtil {
 
     public static void printEpisodeAnnotations(Episode e) {
         FSList annotations = e.getAnnotations();
-        List<FsNode> nodes = annotations.getNodes();
-        if (nodes != null) {
-            for (FsNode node : nodes) {
+        List<FsNode> annotationNodes = annotations.getNodes();
+        if (annotationNodes != null) {
+            for (FsNode node : annotationNodes) {
                 System.out.println("node.asXML() = " + node.asXML());
                 System.out.println("annotation " + node.getId() + ", start " + node.getProperty("starttime") + ", title " + node.getProperty("title"));
             }
