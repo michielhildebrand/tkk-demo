@@ -32,7 +32,6 @@
     <delete dir="${dist.dir}" />
     <delete dir="${build.dir}" />
     <delete dir="${classes.dir}" />
-    <delete dir="${webcontent.lib.dir}" />
   </target>
 
   <!-- Removes all test directories -->
@@ -46,7 +45,6 @@
     <mkdir dir="${dist.dir}" />
     <mkdir dir="${build.dir}" />
     <mkdir dir="${classes.dir}" />
-    <mkdir dir="${webcontent.lib.dir}" />
   </target>
 
   <!-- Creates all necessary directories -->
@@ -90,17 +88,6 @@
   <path id="extra-lib.deps">
     <fileset id="lib.fileset" dir="${lib.dir}" includes="*.jar"/>
   </path>
-
-
-  <!-- copy our dependencies from maven's struture into our lib directory -->
-  <target name="copy-dependencies" depends="init-deps">
-    <copy todir="${webcontent.lib.dir}">
-      <fileset refid="compile.fileset" />
-      <fileset refid="lib.fileset" />
-      <fileset refid="test.fileset" />
-      <mapper type="flatten" />
-    </copy>
-  </target>
 
 
   <!-- Copile source code -->
@@ -193,5 +180,15 @@
   <target name="test" depends="compile-src, compile-test, run-test"/>
 
   <target name="dev" depends="init-deps, compile-src-only, compile-test-only, run-test-only"/>
+
+  <!-- fetch and update the maven dependencies living in our WebContent directory -->
+  <target name="update-deps" depends="init-deps">
+    <copy todir="${webcontent.lib.dir}">
+      <fileset refid="compile.fileset" />
+      <fileset refid="lib.fileset" />
+      <fileset refid="test.fileset" />
+      <mapper type="flatten" />
+    </copy>
+  </target>
 
 </project>
