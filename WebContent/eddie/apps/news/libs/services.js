@@ -29,11 +29,11 @@ tkkServices.factory('eventsBus', ['$rootScope', eventsBusService]);
 function eventsBusService($rootScope) {
   return {
     publish: function (channel, data) {
-      console.log('publishing on \'' + channel + '\'');
+      //console.log('publishing on \'' + channel + '\'');
       $rootScope.$broadcast(channel, data);
     },
     subscribe: function ($scope, channel, handler) {
-      console.log('subscribing to \'' + channel + '\'');
+      //console.log('subscribing to \'' + channel + '\'');
       $scope.$on(channel, function (event, data) {
         handler(data);
       })

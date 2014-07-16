@@ -2,53 +2,65 @@
 
 var tkkControllers = angular.module('tkkControllers', []);
 
-tkkControllers.controller('MediaResourceCtrl', ['$scope', 'mediaResource', 'eventsBus',
-  function ($scope, mediaResource, eventsBus) {
-    $scope.items = [];
-    $scope.currentResourcePage = 0;
+tkkControllers.controller('MediaResourceCtrl', ['$scope', 'mediaResource', mediaResourceCtrl]);
+
+tkkControllers.controller('VideoCtrl', ['$scope', 'eventsBus', videoCtrl]);
+
+function videoCtrl($scope, eventsBus) {
+
+  var showVideo = function(msg) {
+    console.log(msg);
+
+    $scope.streamUrl = msg.episode.stream;
+    $scope.posterUrl = msg.episode.poster;
+    $scope.title = msg.episode.title;
+
+    $scope.$digest();
+  };
+
+  eventsBus.subscribe($scope, 'video', showVideo);
+}
+
+function mediaResourceCtrl($scope, mediaResource) {
+  $scope.items = [];
+  $scope.currentResourcePage = 0;
+  $scope.currentFragmentPage = 0;
+  $scope.fragmentsVisible = false;
+
+  fetchMediaResources(0);
+
+  $scope.nextPage = function() {
+    $scope.currentResourcePage++;
+    fetchMediaResources($scope.currentResourcePage)
+  };
+
+  $scope.previousPage = function() {
+    $scope.currentResourcePage--;
+    fetchMediaResources($scope.currentResourcePage)
+  };
+
+  $scope.fetchFragments = function(aboutUrl) {
+    var n = aboutUrl.lastIndexOf('/');
+    var id = aboutUrl.substring(n + 1);
     $scope.currentFragmentPage = 0;
-    $scope.fragmentsVisible = false;
+    fetchMediaFragments(id, $scope.currentFragmentPage);
+  };
 
-    fetchMediaResources(0);
+  function fetchMediaResources(page) {
+    console.log('fetching mediaresources (page '+page+')');
+    mediaResource.get({_page: page}, function (r) {
+      $scope.items = r.result.items;
+      console.log($scope.items.length);
+    });
+  }
 
-    eventsBus.subscribe($scope, 'screen', processMsg);
+  function fetchMediaFragments(id, page) {
+    console.log('fetching mediafragments for ' + id + ' (page '+page+')');
+    mediaResource.mediafragments({id: id, _page: page}, function (r) {
+      $scope.fragments = r.result.items;
+      console.log($scope.fragments.length);
+      $scope.fragmentsVisible = true;
+    });
+  }
+}
 
-    function processMsg(msg) {
-      console.log('----> ' + msg)
-    }
-
-    $scope.nextPage = function() {
-      $scope.currentResourcePage++;
-      fetchMediaResources($scope.currentResourcePage)
-    };
-
-    $scope.previousPage = function() {
-      $scope.currentResourcePage--;
-      fetchMediaResources($scope.currentResourcePage)
-    };
-
-    $scope.fetchFragments = function(aboutUrl) {
-      var n = aboutUrl.lastIndexOf('/');
-      var id = aboutUrl.substring(n + 1);
-      $scope.currentFragmentPage = 0;
-      fetchMediaFragments(id, $scope.currentFragmentPage);
-    };
-
-    function fetchMediaResources(page) {
-      console.log('fetching mediaresources (page '+page+')');
-      mediaResource.get({_page: page}, function (r) {
-        $scope.items = r.result.items;
-        console.log($scope.items.length);
-      });
-    }
-
-    function fetchMediaFragments(id, page) {
-      console.log('fetching mediafragments for ' + id + ' (page '+page+')');
-      mediaResource.mediafragments({id: id, _page: page}, function (r) {
-        $scope.fragments = r.result.items;
-        console.log($scope.fragments.length);
-        $scope.fragmentsVisible = true;
-      });
-    }
-  }]
-);

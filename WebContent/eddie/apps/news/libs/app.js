@@ -10,8 +10,8 @@ tkkDemoApp.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: '/eddie/apps/news/libs/ng/partials/mediaresource.html',
-        controller: 'MediaResourceCtrl'
+        templateUrl: '/eddie/apps/news/libs/ng/partials/video.html',
+        controller: 'VideoCtrl'
       }).
       otherwise({
         redirectTo: '/'
