@@ -119,6 +119,7 @@
   <target name="compile-test-only">
     <javac srcdir="${test.sources.dir}" destdir="${test.build.dir}" debug="on">
       <classpath>
+        <path location="${classes.dir}"/>
         <path refid="compile.deps"/>
         <path refid="provided.deps"/>
         <path refid="extra-lib.deps"/>
@@ -171,6 +172,7 @@
   <target name="run-test-only">
     <junit dir="${test.build.dir}" printsummary="yes" haltonfailure="yes" >
       <classpath >
+        <path location="${classes.dir}"/>
         <path location="${test.build.dir}"/>
         <path refid="compile.deps"/>
         <path refid="extra-lib.deps"/>

@@ -1,5 +1,6 @@
 .idea
 *.iml
 build
+test-build
 dist
 WebContent/WEB-INF/lib

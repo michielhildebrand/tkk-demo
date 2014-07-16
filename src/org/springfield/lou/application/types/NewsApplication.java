@@ -40,40 +40,17 @@ public class NewsApplication extends Html5Application {
                 System.out.println("id = " + id);
                 choosenEpisode = new Episode(id);
             }
-            System.out.println("Id: " + choosenEpisode.getMediaResourceId());
-            System.out.println("Title: "+choosenEpisode.getTitle());
-            System.out.println("Duration: "+choosenEpisode.getDuration());
-            System.out.println("Stills uri: "+choosenEpisode.getStillsUri());
-            System.out.println("Stream uri: "+choosenEpisode.getStreamUri());
-
-            FSList annotations = choosenEpisode.getAnnotations();
-            List<FsNode> nodes = annotations.getNodes();
-            if (nodes != null) {
-                for (FsNode node : nodes) {
-                    System.out.println("annotation " + node.getId() + ", start " + node.getProperty("starttime") + ", title " + node.getProperty("title"));
-                }
-            }
 
 
-            FSList chapters = choosenEpisode.getChapters();
-            List<FsNode> chaptersNode = chapters.getNodes();
-            if (chaptersNode != null) {
-                for (FsNode node : chaptersNode) {
-                    System.out.println("chapter " + node.getId() + ", start " + node.getProperty("starttime") + ", title " + node.getProperty("title"));
-                }
-                List<FsNode> locations = chapters.getNodesByName("location");
-                if (locations != null) {
-                    for (FsNode location : locations) {
-                        System.out.println("location : " + location.getProperty("name") + "(start: " + location.getProperty("starttime") + " duration: " + location.getProperty("duration") + ")");
-                    }
-                }
-            }
+
+
 
             loadMainScreen(s);
         } else {
             loadSecondScreen(s);
         }
     }
+
 
     @Override
     public void putOnScreen(Screen s, String from, String content) {
@@ -101,6 +78,7 @@ public class NewsApplication extends Html5Application {
         msg.append(" }");
         msg.append("}");
 
+        //TODO
         //fetch episode chapters, fetch episode annotations
         // link annotations and chapters based on start-end time
 
