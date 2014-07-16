@@ -19,8 +19,8 @@ http://\<springfield_ip\>:8080/lou/domain/linkedtv/html5application/dashboard an
 
 ## Deploy
 
-To deploy a new version of the application you need to create a new war and supply the file to Lou:
+To deploy a new version of the application you need to create a new war and upload the file in Lou, that can be done just running:
 
-    $ ./deploy.sh
+    $ ant
 
-The script assumes the Springfield toolkit is located in _../sprinfield_. 
+The script assumes the Springfield toolkit is located in the parent directory _../sprinfield_. 
