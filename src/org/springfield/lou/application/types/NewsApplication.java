@@ -1,8 +1,7 @@
 package org.springfield.lou.application.types;
 
-import org.springfield.fs.FSList;
-import org.springfield.fs.FsNode;
 import org.springfield.lou.application.Html5Application;
+import org.springfield.lou.application.types.domain.Video;
 import org.springfield.lou.screen.Screen;
 import org.springfield.mojo.linkedtv.Episode;
 
@@ -41,10 +40,6 @@ public class NewsApplication extends Html5Application {
                 choosenEpisode = new Episode(id);
             }
 
-
-
-
-
             loadMainScreen(s);
         } else {
             loadSecondScreen(s);
@@ -65,28 +60,15 @@ public class NewsApplication extends Html5Application {
 //        this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
 //        this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
-        StringBuilder msg = new StringBuilder("{");
-        msg.append("\"target\":\"video\",");
-        msg.append("\"data\":{");
-        msg.append("  \"episode\":{");
-        msg.append("    \"id\": \"").append(choosenEpisode.getMediaResourceId()).append("\",");
-        msg.append("    \"title\": \"").append(choosenEpisode.getTitle()).append("\",");
-        msg.append("    \"duration\": \"").append(choosenEpisode.getDuration()).append("\",");
-        msg.append("    \"stream\": \"").append(choosenEpisode.getStreamUri()).append("\",");
-        msg.append("    \"poster\": \"").append(choosenEpisode.getStillsUri()).append("/h/0/m/0/sec1.jpg\"");
-        msg.append("   }");
-        msg.append(" }");
-        msg.append("}");
+        Message msg = new Message("video", Video.load(choosenEpisode));
+        String json = msg.toJson();
 
-
-        s.putMsg("ngproxy", "", msg.toString());
+        System.out.println("json = " + json);
+        s.putMsg("ngproxy", "", json);
     }
 
     private void loadSecondScreen(Screen s) {
         s.setRole("secondary");
         loadContent(s, "ngproxy");
-//
-//        String allContent = "[{chapter: 'politics', annotations: [{start: 34, end: 234, label: 'snowden', thumb: 'image url' }] }]";
-//        s.putMsg("rawdata", "", allContent);
     }
 }

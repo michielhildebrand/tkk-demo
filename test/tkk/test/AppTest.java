@@ -1,7 +1,6 @@
 package tkk.test;
 
 import org.junit.Test;
-import org.springfield.lou.application.types.DomainUtil;
 import org.springfield.lou.application.types.domain.Video;
 import org.springfield.mojo.linkedtv.Episode;
 

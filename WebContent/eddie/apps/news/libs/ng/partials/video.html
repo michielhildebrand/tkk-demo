@@ -1,8 +1,11 @@
 <div id="screen"></div>
 
-<h1>Title: <b>{{title}}</b></h1>
+Title: <b>{{title}}</b>
 <br>
 
-<video controls width="60%" height="60%" poster="{{posterUrl}}" class="video-js vjs-default-skin" data-setup="{}">
-  <source type='video/mp4' src="{{streamUrl}}" />
-</video>
+<div ng-if="videoAvailable">
+  <video controls autoplay width="60%" height="60%" poster="{{posterUrl}}">
+    <source type='video/mp4' ng-src="{{streamUrl | trusted}}">
+    Your browser does not support the video tag.
+  </video>
+</div>

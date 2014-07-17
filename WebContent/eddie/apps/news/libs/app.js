@@ -19,4 +19,10 @@ tkkDemoApp.config(['$routeProvider',
   }
 ]).constant('CONFIG', {
   API_ROOT: 'http://data.linkedtv.eu'
-});
+}).filter('trusted', ['$sce',
+  function ($sce) {
+    return function(url) {
+      return $sce.trustAsResourceUrl(url);
+    };
+  }]
+);

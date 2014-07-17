@@ -1,4 +1,4 @@
-package org.springfield.lou.application.types;
+package org.springfield.lou.application.types.domain;
 
 import org.springfield.fs.FSList;
 import org.springfield.fs.FsNode;
@@ -6,7 +6,7 @@ import org.springfield.mojo.linkedtv.Episode;
 
 import java.util.List;
 
-public class DomainUtil {
+public class Utils {
 
     public static void printEpisodeInfo(Episode e) {
         System.out.println("Episode(id: " + e.getMediaResourceId());

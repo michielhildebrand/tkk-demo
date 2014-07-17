@@ -68,8 +68,11 @@ public class Video {
         String id = e.getMediaResourceId();
         String t = e.getTitle();
         Integer d = e.getDuration();
-        String p = e.getStillsUri();
-        String s = e.getStreamUri();
+
+        //TODO the multiscreen toolkit should fix this
+        String p = e.getStillsUri() + "/h/0/m/0/sec10.jpg";
+        String s = e.getStreamUri().replace("/raw/", "/rawvideo/");
+
         return new Video(id, t, d, p, s, loadChapters(e));
     }
 

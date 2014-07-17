@@ -7,15 +7,18 @@ tkkControllers.controller('MediaResourceCtrl', ['$scope', 'mediaResource', media
 tkkControllers.controller('VideoCtrl', ['$scope', 'eventsBus', videoCtrl]);
 
 function videoCtrl($scope, eventsBus) {
+  $scope.videoAvailable = false;
 
-  var showVideo = function(msg) {
-    console.log(msg);
+  var showVideo = function(video) {
+    console.log(video);
 
-    $scope.streamUrl = msg.episode.stream;
-    $scope.posterUrl = msg.episode.poster;
-    $scope.title = msg.episode.title;
+    $scope.streamUrl = video.src;
+    $scope.posterUrl = video.poster;
+    $scope.title = video.title;
 
-    $scope.$digest();
+    $scope.videoAvailable = true;
+
+    $scope.$apply();
   };
 
   eventsBus.subscribe($scope, 'video', showVideo);
