@@ -9,30 +9,56 @@ public class Chapter {
 
     List<Fragment> fragments = new ArrayList<Fragment>();
 
+    List<String> relatedContent = new ArrayList<String>();
+
     public void addFragment(Fragment f) {
         fragments.add(f);
     }
 
-    String id, duration, title, starttime;
+    private String id, duration, title;
+    private Integer startTime;
 
     private Chapter(String id, String d, String t, String s) {
         this.id = id;
         this.duration = d;
         this.title = t;
-        this.starttime = s;
+        this.startTime = new Double(s).intValue();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Integer getStartTime() {
+        return startTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Chapter{" +
+                "fragments=" + fragments +
+                ", relatedContent=" + relatedContent +
+                ", id='" + id + '\'' +
+                ", duration='" + duration + '\'' +
+                ", title='" + title + '\'' +
+                ", startTime=" + startTime +
+                '}';
     }
 
     public static Chapter load(FsNode chapter) {
         String id = chapter.getId();
-        String l = chapter.getProperty("locator");
         String d = chapter.getProperty("duration");
         String t = chapter.getProperty("title");
         String s = chapter.getProperty("starttime");
-        String tp = chapter.getProperty("type");
-        Chapter c = new Chapter(id, d, t, s);
-
-
-        return c;
+        return new Chapter(id, d, t, s);
     }
 
 

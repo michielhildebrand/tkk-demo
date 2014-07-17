@@ -22,7 +22,7 @@ public class DomainUtil {
         List<FsNode> annotationNodes = annotations.getNodes();
         if (annotationNodes != null) {
             for (FsNode node : annotationNodes) {
-                System.out.println("node.asXML() = " + node.asXML());
+//                System.out.println("node.asXML() = " + node.asXML());
                 System.out.println("annotation " + node.getId() + ", start " + node.getProperty("starttime") + ", title " + node.getProperty("title"));
             }
         }
@@ -33,7 +33,7 @@ public class DomainUtil {
         List<FsNode> chaptersNode = chapters.getNodes();
         if (chaptersNode != null) {
             for (FsNode node : chaptersNode) {
-                System.out.println("node.asXML() = " + node.asXML());
+//                System.out.println("node.asXML() = " + node.asXML());
                 System.out.println("chapter " + node.getId() + ", start " + node.getProperty("starttime") + ", title " + node.getProperty("title"));
             }
 

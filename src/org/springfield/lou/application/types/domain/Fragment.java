@@ -4,17 +4,54 @@ package org.springfield.lou.application.types.domain;
 import org.springfield.fs.FsNode;
 
 public class Fragment {
-    String id, locator, duration, title, starttime, type;
+    private String id, locator, duration, title, type;
+    private Integer startTime;
 
     private Fragment(String id, String l, String d, String t, String s, String tp) {
         this.id = id;
         this.locator = l;
         this.duration = d;
         this.title = t;
-        this.starttime = s;
+        this.startTime = new Double(s).intValue();
         this.type = tp;
     }
-    
+
+    public String getId() {
+        return id;
+    }
+
+    public String getLocator() {
+        return locator;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Integer getStartTime() {
+        return startTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Fragment{" +
+                "id='" + id + '\'' +
+                ", locator='" + locator + '\'' +
+                ", duration='" + duration + '\'' +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", startTime=" + startTime +
+                '}';
+    }
+
     public static Fragment load(FsNode annotation) {
         String id = annotation.getId();
         String l = annotation.getProperty("locator");
