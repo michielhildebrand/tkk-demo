@@ -14,7 +14,7 @@ public class AppTest {
         Episode e = new Episode("8a8187f2-3fc8-cb54-0140-7dccd76f0001");
 
         Video v = Video.load(e);
-        System.out.println("v = " + v);
+        System.out.println("v = " + v.toJson());
 
 //        DomainUtil.printEpisodeInfo(e);
 //        DomainUtil.printEpisodeAnnotations(e);

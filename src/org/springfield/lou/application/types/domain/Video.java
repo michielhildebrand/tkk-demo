@@ -1,5 +1,6 @@
 package org.springfield.lou.application.types.domain;
 
+import com.google.gson.Gson;
 import org.springfield.fs.FSList;
 import org.springfield.fs.FsNode;
 import org.springfield.mojo.linkedtv.Episode;
@@ -57,6 +58,10 @@ public class Video {
                 ", duration=" + duration +
                 ", chapters=" + chapters +
                 '}';
+    }
+
+    public String toJson() {
+        return new Gson().toJson(this);
     }
 
     public static Video load(Episode e) {

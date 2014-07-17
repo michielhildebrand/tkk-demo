@@ -64,6 +64,8 @@
 
     <artifact:dependencies pathId="compile.deps" filesetId="compile.fileset" useScope="compile">
       <remoteRepository id="restlet" url="http://maven.restlet.org" />
+      <remoteRepository id="gson" url="https://oss.sonatype.org" />
+
       <dependency groupId="log4j" artifactId="log4j" version="1.2.16"/>
       <dependency groupId="dom4j" artifactId="dom4j" version="1.6.1"/>
       <dependency groupId="commons-net" artifactId="commons-net" version="2.0"/>
@@ -72,6 +74,7 @@
       <dependency groupId="org.restlet.jee" artifactId="org.restlet" version="2.0.10"/>
       <dependency groupId="org.restlet.jee" artifactId="org.restlet.ext.xml" version="2.0.10"/>
       <dependency groupId="org.restlet.jee" artifactId="org.restlet.ext.servlet" version="2.0.10"/>
+      <dependency groupId="com.google.code.gson" artifactId="gson" version="2.2.4" />
     </artifact:dependencies>
     <artifact:dependencies pathId="test.deps" filesetId="test.fileset" useScope="test">
       <dependency groupId="junit" artifactId="junit" version="4.11"/>
