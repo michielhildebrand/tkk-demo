@@ -16,10 +16,6 @@ public class AppTest {
         Video v = Video.load(e);
         System.out.println("v = " + Serializer.toJson(v, true));
 
-//        DomainUtil.printEpisodeInfo(e);
-//        DomainUtil.printEpisodeAnnotations(e);
-//        DomainUtil.printEpisodeChapters(e);
-
         assertTrue(true);
     }
 
