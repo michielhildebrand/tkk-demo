@@ -6,23 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Chapter {
-
-    List<Fragment> fragments = new ArrayList<Fragment>();
-
-    List<String> relatedContent = new ArrayList<String>();
-
-    public void addFragment(Fragment f) {
-        fragments.add(f);
-    }
+    private transient FsNode originalChapter;
 
     private String id, duration, title;
     private Integer startTime;
 
-    private Chapter(String id, String d, String t, String s) {
-        this.id = id;
-        this.duration = d;
-        this.title = t;
-        this.startTime = new Double(s).intValue();
+    private List<Fragment> fragments = new ArrayList<Fragment>();
+
+    public Chapter(FsNode chapter) {
+        this.originalChapter = chapter;
+        this.id = chapter.getId();
+        this.duration = chapter.getProperty("duration");
+        this.title = chapter.getProperty("title");
+        this.startTime = new Double(chapter.getProperty("starttime")).intValue();
+    }
+
+    public FsNode getOriginalChapter() {
+        return originalChapter;
     }
 
     public String getId() {
@@ -41,25 +41,18 @@ public class Chapter {
         return startTime;
     }
 
+    public void addFragment(Fragment f) {
+        fragments.add(f);
+    }
+
     @Override
     public String toString() {
         return "Chapter{" +
                 "fragments=" + fragments +
-                ", relatedContent=" + relatedContent +
                 ", id='" + id + '\'' +
                 ", duration='" + duration + '\'' +
                 ", title='" + title + '\'' +
                 ", startTime=" + startTime +
                 '}';
     }
-
-    public static Chapter load(FsNode chapter) {
-        String id = chapter.getId();
-        String d = chapter.getProperty("duration");
-        String t = chapter.getProperty("title");
-        String s = chapter.getProperty("starttime");
-        return new Chapter(id, d, t, s);
-    }
-
-
 }

@@ -10,17 +10,24 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Video {
+    private transient Episode originalEpisode;
+
     private String id, title, poster, src;
     private Integer duration;
     private Set<Chapter> chapters;
 
-    private Video(String id, String t, Integer d, String p, String s, Set<Chapter> c) {
-        this.id = id;
-        this.title = t;
-        this.duration = d;
-        this.poster = p;
-        this.src = s;
-        this.chapters = c;
+    public Video(Episode e) {
+        this.originalEpisode = e;
+        this.id = e.getMediaResourceId();
+        this.title = e.getTitle();
+        this.duration = e.getDuration();
+        this.poster = e.getStillsUri() + "/h/0/m/0/sec10.jpg";
+        this.src = e.getStreamUri();
+        this.chapters = loadChapters(e);
+    }
+
+    public Episode getOriginalEpisode() {
+        return originalEpisode;
     }
 
     public String getId() {
@@ -59,19 +66,7 @@ public class Video {
                 '}';
     }
 
-    public static Video load(Episode e) {
-        String id = e.getMediaResourceId();
-        String t = e.getTitle();
-        Integer d = e.getDuration();
-
-        //TODO the multiscreen toolkit should fix this
-        String p = e.getStillsUri() + "/h/0/m/0/sec10.jpg";
-        String s = e.getStreamUri().replace("/raw/", "/rawvideo/");
-
-        return new Video(id, t, d, p, s, loadChapters(e));
-    }
-
-    private static Set<Chapter> loadChapters(Episode e) {
+    private Set<Chapter> loadChapters(Episode e) {
         TreeSet<Chapter> chs = new TreeSet<Chapter>(new Comparator<Chapter>() {
             @Override
             public int compare(Chapter o1, Chapter o2) {
@@ -88,12 +83,12 @@ public class Video {
         FSList chapters = e.getChapters();
         List<FsNode> chaptersNode = chapters.getNodes();
         for (FsNode node : chaptersNode) {
-            chs.add(Chapter.load(node));
+            chs.add(new Chapter(node));
         }
         FSList annotations = e.getAnnotations();
         List<FsNode> annotationsNodes = annotations.getNodes();
         for (FsNode node : annotationsNodes) {
-            fgs.add(Fragment.load(node));
+            fgs.add(new Fragment(node));
         }
 
         // Starting from the last chapter
@@ -102,6 +97,13 @@ public class Video {
             for (Fragment fg : fgs) {
                 if (fg.getStartTime() >= ch.getStartTime()) {
                     ch.addFragment(fg);
+
+                    FSList enrichments = e.getEnrichmentsFromAnnotation(fg.getOriginalAnnotation());
+                    List<FsNode> enrichmentsNode = enrichments.getNodes();
+                    for (FsNode node : enrichmentsNode) {
+                        //TODO add this to fragment
+                        String locator = node.getProperty("locator");
+                    }
                 }
             }
         }

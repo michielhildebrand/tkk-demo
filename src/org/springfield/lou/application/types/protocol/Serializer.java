@@ -8,6 +8,9 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 public class Serializer {
+    private static Gson plainGson = new Gson();
+    private static Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+
     public static String toJson(Object o) {
         return toJson(o, false);
     }
@@ -16,13 +19,11 @@ public class Serializer {
         ByteArrayOutputStream bo = new ByteArrayOutputStream();
         try {
             Writer stringWriter = new OutputStreamWriter(bo, "UTF-8");
-            Gson g;
             if (pretty) {
-                g = new GsonBuilder().setPrettyPrinting().create();
+                prettyGson.toJson(o, stringWriter);
             } else {
-                g = new Gson();
+                plainGson.toJson(o, stringWriter);
             }
-            g.toJson(o, stringWriter);
             stringWriter.close();
         } catch (Exception e) {
             e.printStackTrace();

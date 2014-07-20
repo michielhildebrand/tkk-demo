@@ -61,7 +61,7 @@ public class NewsApplication extends Html5Application {
 //        this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
 //        this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
-        Message msg = new Message("video", Video.load(choosenEpisode));
+        Message msg = new Message("video", new Video(choosenEpisode));
         String json = Serializer.toJson(msg);
 
         System.out.println("json = " + json);

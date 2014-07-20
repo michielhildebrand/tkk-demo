@@ -4,16 +4,23 @@ package org.springfield.lou.application.types.domain;
 import org.springfield.fs.FsNode;
 
 public class Fragment {
+    private transient FsNode originalAnnotation;
+
     private String id, locator, duration, title, type;
     private Integer startTime;
 
-    private Fragment(String id, String l, String d, String t, String s, String tp) {
-        this.id = id;
-        this.locator = l;
-        this.duration = d;
-        this.title = t;
-        this.startTime = new Double(s).intValue();
-        this.type = tp;
+    public Fragment(FsNode annotation) {
+        this.originalAnnotation = annotation;
+        this.id = annotation.getId();
+        this.locator = annotation.getProperty("locator");
+        this.duration = annotation.getProperty("duration");
+        this.title = annotation.getProperty("title");
+        this.startTime = new Double(annotation.getProperty("starttime")).intValue();
+        this.type = annotation.getProperty("type");
+    }
+
+    public FsNode getOriginalAnnotation() {
+        return originalAnnotation;
     }
 
     public String getId() {
@@ -50,15 +57,5 @@ public class Fragment {
                 ", type='" + type + '\'' +
                 ", startTime=" + startTime +
                 '}';
-    }
-
-    public static Fragment load(FsNode annotation) {
-        String id = annotation.getId();
-        String l = annotation.getProperty("locator");
-        String d = annotation.getProperty("duration");
-        String t = annotation.getProperty("title");
-        String s = annotation.getProperty("starttime");
-        String tp = annotation.getProperty("type");
-        return new Fragment(id, l, d, t, s, tp);
     }
 }
