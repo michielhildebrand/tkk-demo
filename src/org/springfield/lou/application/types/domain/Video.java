@@ -12,7 +12,7 @@ import java.util.TreeSet;
 public class Video {
     private transient Episode originalEpisode;
 
-    private String id, title, poster, src;
+    private String id, title, shots, poster, src;
     private Integer duration;
     private Set<Chapter> chapters;
 
@@ -21,6 +21,7 @@ public class Video {
         this.id = e.getMediaResourceId();
         this.title = e.getTitle();
         this.duration = e.getDuration();
+        this.shots = e.getStillsUri();
         this.poster = e.getStillsUri() + "/h/0/m/0/sec10.jpg";
         this.src = e.getStreamUri();
         this.chapters = loadChapters(e);

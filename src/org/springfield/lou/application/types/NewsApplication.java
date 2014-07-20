@@ -40,7 +40,7 @@ public class NewsApplication extends Html5Application {
                 System.out.println("id = " + id);
                 choosenEpisode = new Episode(id);
             }
-
+            loadStyleSheet(s, "bootstrap-min");
             loadMainScreen(s);
         } else {
             loadSecondScreen(s);
@@ -55,6 +55,7 @@ public class NewsApplication extends Html5Application {
 
     private void loadMainScreen(Screen s) {
         s.setRole("main");
+        loadStyleSheet(s, "main");
         loadContent(s, "ngproxy");
 
         // TODO what's the difference between this put and putMsg below?
