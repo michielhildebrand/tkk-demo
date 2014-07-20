@@ -1,6 +1,5 @@
 package org.springfield.lou.application.types.domain;
 
-import com.google.gson.Gson;
 import org.springfield.fs.FSList;
 import org.springfield.fs.FsNode;
 import org.springfield.mojo.linkedtv.Episode;
@@ -60,10 +59,6 @@ public class Video {
                 '}';
     }
 
-    public String toJson() {
-        return new Gson().toJson(this);
-    }
-
     public static Video load(Episode e) {
         String id = e.getMediaResourceId();
         String t = e.getTitle();
@@ -102,7 +97,7 @@ public class Video {
         }
 
         // Starting from the last chapter
-        // add fragments with startime greater then ch.startTime
+        // add to the chapter fragments wich startime is greater then chapter.startTime
         for (Chapter ch : chs.descendingSet()) {
             for (Fragment fg : fgs) {
                 if (fg.getStartTime() >= ch.getStartTime()) {
