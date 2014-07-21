@@ -5,20 +5,8 @@ html, body {
 	font-weight: normal;
 	font-size: 12px;
 }
-body {
-    
-}
 
-.container {
-	width:1024px;
-	margin: auto;
-	background-color: rgb(45,57,64);
-}
-
-/* controls 
-    
-    at the top
-*/
+/* controls at the top */
 
 .controls {
 	height: 44px;
