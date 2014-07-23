@@ -3,6 +3,8 @@
 var tkkServices = angular.module('tkkServices', ['ngResource']);
 
 tkkServices.factory('mediaResource', ['$resource', 'CONFIG', mediaResourceService]);
+tkkServices.factory('eventsBus', ['$rootScope', eventsBusService]);
+tkkServices.factory('Data', dao);
 
 function mediaResourceService($resource, CONFIG) {
   return $resource(CONFIG.API_ROOT + '/mediaresource/:id/:path', { id: '@id', _page: 0 },
@@ -22,9 +24,6 @@ function mediaResourceService($resource, CONFIG) {
   );
 }
 
-
-tkkServices.factory('eventsBus', ['$rootScope', eventsBusService]);
-
 /** Used to broadcast and listen for global events */
 function eventsBusService($rootScope) {
   return {
@@ -39,4 +38,17 @@ function eventsBusService($rootScope) {
       })
     }
   }
+}
+
+function dao() {
+  var data = {};
+
+  return {
+    getVideo: function () {
+      return data.video;
+    },
+    setVideo: function (video) {
+      data.video = video;
+    }
+  };
 }

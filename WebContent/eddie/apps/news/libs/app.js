@@ -13,9 +13,9 @@ tkkDemoApp.config(['$routeProvider',
         templateUrl: '/eddie/apps/news/libs/ng/partials/main.html',
         controller: 'MainCtrl'
       }).
-      when('/video', {
-        templateUrl: '/eddie/apps/news/libs/ng/partials/video.html',
-        controller: 'VideoCtrl'
+      when('/video/:startTime', {
+        templateUrl: '/eddie/apps/news/libs/ng/partials/player.html',
+        controller: 'PlayerCtrl'
       }).
       otherwise({
         redirectTo: '/'

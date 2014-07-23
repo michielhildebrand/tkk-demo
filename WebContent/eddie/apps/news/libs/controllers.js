@@ -2,17 +2,20 @@
 
 var tkkControllers = angular.module('tkkControllers', []);
 
-tkkControllers.controller('MediaResourceCtrl', ['$scope', 'mediaResource', mediaResourceCtrl]);
-tkkControllers.controller('VideoCtrl', ['$scope', 'eventsBus', videoCtrl]);
-tkkControllers.controller('MainCtrl', ['$scope', 'eventsBus', mainCtrl]);
+tkkControllers.controller('MainCtrl', ['$scope', '$location', 'eventsBus', 'Data', mainCtrl]);
+tkkControllers.controller('PlayerCtrl', ['$scope', '$routeParams', '$location' , 'eventsBus', 'Data', playerCtrl]);
 
-function mainCtrl($scope, eventsBus) {
+function mainCtrl($scope, $location, eventsBus, Data) {
+  console.log('Main ctrl loaded');
 
-  $scope.titleFragment = function (fg) {
-    return "Fragment: " + fg.title +" @ " + fg.startTime + "s";
+  if (Data.getVideo()) initialize(Data.getVideo());
+
+
+  $scope.fragmentTitle = function (fg) {
+    return "Fragment: " + fg.title + " @ " + (fg.startTime / 1000) + "s";
   };
 
-  $scope.shotFromFragment = function (fg) {
+  $scope.fragmentShot = function (fg) {
     var d = new Date(fg.startTime);
     var h = d.getHours() - 1;
     var m = d.getMinutes();
@@ -20,73 +23,57 @@ function mainCtrl($scope, eventsBus) {
     return $scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
   };
 
-  var initialize = function (video) {
+  $scope.playFragment = function (fg) {
+    $location.path('/video/' + fg.startTime);
+  };
+
+  function initialize(video) {
     console.log(video);
+
     $scope.video = video;
-    $scope.$apply();
+    $scope.$$phase || $scope.$apply();
+  }
+
+  var processVideo = function (video) {
+    Data.setVideo(video);
+    initialize(video);
   };
 
-  eventsBus.subscribe($scope, 'video', initialize);
+  eventsBus.subscribe($scope, 'video', processVideo);
 }
 
-function videoCtrl($scope, eventsBus) {
-  $scope.videoAvailable = false;
+function playerCtrl($scope, $routeParams, $location, eventsBus, Data) {
+  $scope.startTime = $routeParams.startTime / 1000; //in seconds
 
-  var showVideo = function (video) {
+  console.log('Player ctrl loaded @ ' + $scope.startTime);
+
+  if (Data.getVideo()) showVideo(Data.getVideo());
+
+  $scope.goToMain = function () {
+    $location.path('/');
+  };
+
+  function showVideo(video) {
     console.log(video);
 
-    $scope.streamUrl = video.src;
-    $scope.posterUrl = video.poster;
     $scope.title = video.title;
+    $scope.$$phase || $scope.$apply();
 
-    $scope.videoAvailable = true;
+    var player = $('#player')[0];
+    var source = $('#source')[0];
+    player.poster = video.poster;
+    source.src = video.src;
+    player.load();
 
-    $scope.$apply();
-  };
-
-  eventsBus.subscribe($scope, 'video', showVideo);
-}
-
-function mediaResourceCtrl($scope, mediaResource) {
-  $scope.items = [];
-  $scope.currentResourcePage = 0;
-  $scope.currentFragmentPage = 0;
-  $scope.fragmentsVisible = false;
-
-  fetchMediaResources(0);
-
-  $scope.nextPage = function () {
-    $scope.currentResourcePage++;
-    fetchMediaResources($scope.currentResourcePage)
-  };
-
-  $scope.previousPage = function () {
-    $scope.currentResourcePage--;
-    fetchMediaResources($scope.currentResourcePage)
-  };
-
-  $scope.fetchFragments = function (aboutUrl) {
-    var n = aboutUrl.lastIndexOf('/');
-    var id = aboutUrl.substring(n + 1);
-    $scope.currentFragmentPage = 0;
-    fetchMediaFragments(id, $scope.currentFragmentPage);
-  };
-
-  function fetchMediaResources(page) {
-    console.log('fetching mediaresources (page ' + page + ')');
-    mediaResource.get({_page: page}, function (r) {
-      $scope.items = r.result.items;
-      console.log($scope.items.length);
+    $(player).on('loadedmetadata', function () {
+      player.currentTime = $scope.startTime;
     });
   }
 
-  function fetchMediaFragments(id, page) {
-    console.log('fetching mediafragments for ' + id + ' (page ' + page + ')');
-    mediaResource.mediafragments({id: id, _page: page}, function (r) {
-      $scope.fragments = r.result.items;
-      console.log($scope.fragments.length);
-      $scope.fragmentsVisible = true;
-    });
-  }
-}
+  var processVideo = function (video) {
+    Data.setVideo(video);
+    showVideo(video);
+  };
 
+  eventsBus.subscribe($scope, 'video', processVideo);
+}

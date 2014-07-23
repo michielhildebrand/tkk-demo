@@ -1,12 +1,12 @@
 <div id="screen"></div>
 
-<div ng-if="video" class="container-fluid">
+<div ng-if="video" class="container">
   Video -> {{video.title}}
   <div ng-repeat="ch in video.chapters" class="row">
     <div class="col-xs-2">Chapter {{$index}}: {{ch.title}}</div>
 
     <div ng-repeat="fg in ch.fragments" class="col-xs-1">
-      <img ng-src="{{shotFromFragment(fg)}}" width="50px" height="50px" title="{{titleFragment(fg)}}"/>
+      <img ng-src="{{fragmentShot(fg)}}" width="50px" height="50px" title="{{fragmentTitle(fg)}}" ng-click="playFragment(fg)"/>
     </div>
   </div>
 </div>
