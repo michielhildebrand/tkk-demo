@@ -34,3 +34,22 @@ To check your tests simply run:
 If you are developing and cleaning is not needed every time you run a test, you can save some time if you run:
 
     $ ant dev
+
+## Developing
+
+To be able to develop the frontend (the actual AngularJS app) you need few things.
+I'm assuming you have the springfield toolkit running with the application deployed.
+
+Add a new entry to the file `/etc/hosts` that looks like:
+
+    127.0.0.1 tkk.dev
+    
+I prefer using nginx to serve the static files so I've included an `nginx.conf.example` in the project that can be used 
+to setup an nginx site. If you like apache you can contribute to the project and create another example :)
+
+    $ cp nginx.conf.example nginx.conf
+    $ sed -i "s/%ABSOLUTE_PATH_TO_PROJECT_SOURCE%/`pwd`/g" nginx.conf
+    
+Include the new nginx.conf to your nginx global config.     
+
+Now you can access the website [here](http://tkk.dev).

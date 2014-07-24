@@ -1,0 +1,39 @@
+server {
+  listen 80;
+  server_name tkk.dev;
+
+  charset utf-8;
+
+  # @FIXME update this path with yours
+  set $host_path "%ABSOLUTE_PATH_TO_PROJECT_SOURCE%";
+
+  # in case you're debugging nginx setup
+  # error_log %ABSOLUTE_PATH_TO_PROJECT_SOURCE%/nginx.error.log  info;
+
+  # Path for static files
+  root $host_path/html;
+
+  expires -1;
+
+  # opt-in to the future
+  add_header "X-UA-Compatible" "IE=Edge,chrome=1";
+
+  location / {
+    index index.html;
+  }
+
+  # for toolkit js
+  location /libs/ {
+    root /Users/tiziano/Development/Work-CWI/LinkedTV/tkk_demo/WebContent/eddie/apps/news/;
+  }
+
+  # for eddie_worker.js
+  location /eddie/js/ {
+    alias /Users/tiziano/Development/Work-CWI/LinkedTV/tkk_demo/WebContent/eddie/apps/news/html/;
+  }
+
+  # for partials
+  location /eddie/ {
+    root /Users/tiziano/Development/Work-CWI/LinkedTV/tkk_demo/WebContent/;
+  }
+}
