@@ -13,7 +13,7 @@ tkkDemoApp.config(['$routeProvider',
         templateUrl: '/eddie/apps/news/libs/ng/partials/main.html',
         controller: 'MainCtrl'
       }).
-      when('/video/:startTime', {
+      when('/video/:chapterIndex/:fragmentIndex', {
         templateUrl: '/eddie/apps/news/libs/ng/partials/player.html',
         controller: 'PlayerCtrl'
       }).

@@ -23,8 +23,8 @@ function mainCtrl($scope, $location, eventsBus, Data) {
     return $scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
   };
 
-  $scope.playFragment = function (fg) {
-    $location.path('/video/' + fg.startTime);
+  $scope.playFragment = function (chIndex, fgIndex) {
+    $location.path('/video/' + chIndex + '/' + fgIndex);
   };
 
   function initialize(video) {
@@ -43,11 +43,13 @@ function mainCtrl($scope, $location, eventsBus, Data) {
 }
 
 function playerCtrl($scope, $routeParams, $location, eventsBus, Data) {
-  $scope.startTime = $routeParams.startTime / 1000; //in seconds
+  $scope.chapterIndex = $routeParams.chapterIndex;
+  $scope.fragmentIndex = $routeParams.fragmentIndex;
 
-  console.log('Player ctrl loaded @ ' + $scope.startTime);
+  console.log('Player ctrl loaded @ ' + $scope.chapterIndex + ' - ' + $scope.fragmentIndex);
 
   if (Data.getVideo()) showVideo(Data.getVideo());
+
 
   $scope.goToMain = function () {
     $location.path('/');
@@ -56,7 +58,8 @@ function playerCtrl($scope, $routeParams, $location, eventsBus, Data) {
   function showVideo(video) {
     console.log(video);
 
-    $scope.title = video.title;
+    $scope.chapter = video.chapters[$scope.chapterIndex];
+    $scope.fragment = $scope.chapter.fragments[$scope.fragmentIndex];
     $scope.$$phase || $scope.$apply();
 
     var player = $('#player')[0];
@@ -66,7 +69,7 @@ function playerCtrl($scope, $routeParams, $location, eventsBus, Data) {
     player.load();
 
     $(player).on('loadedmetadata', function () {
-      player.currentTime = $scope.startTime;
+      player.currentTime = $scope.fragment.startTime / 1000; //in seconds
     });
   }
 

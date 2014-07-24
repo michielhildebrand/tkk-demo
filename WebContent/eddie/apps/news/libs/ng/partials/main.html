@@ -1,12 +1,15 @@
 <div id="screen"></div>
 
 <div ng-if="video" class="container">
-  Video -> {{video.title}}
+  <div class="center-block">
+    <h2>Video title: <b>{{video.title}}</b></h2>
+    <img ng-src="{{video.poster}}"/>
+  </div>
   <div ng-repeat="ch in video.chapters" class="row">
-    <div class="col-xs-2">Chapter {{$index}}: {{ch.title}}</div>
+    <div class="col-xs-2">Chapter {{$index}}: <b>{{ch.title}}</b></div>
 
     <div ng-repeat="fg in ch.fragments" class="col-xs-1">
-      <img ng-src="{{fragmentShot(fg)}}" width="50px" height="50px" title="{{fragmentTitle(fg)}}" ng-click="playFragment(fg)"/>
+      <img ng-src="{{fragmentShot(fg)}}" width="50px" height="50px" title="{{fragmentTitle(fg)}}" ng-click="playFragment($parent.$index, $index)"/>
     </div>
   </div>
 </div>
