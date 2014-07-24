@@ -28,18 +28,18 @@ function mainCtrl($scope, $location, eventsBus, Data) {
   };
 
   function initialize(video) {
-    console.log(video);
+    //console.log(video);
 
     $scope.video = video;
     $scope.$$phase || $scope.$apply();
   }
 
-  var processVideo = function (video) {
+  var processMsg = function (video) {
     Data.setVideo(video);
     initialize(video);
   };
 
-  eventsBus.subscribe($scope, 'video', processVideo);
+  eventsBus.subscribe($scope, 'video', processMsg);
 }
 
 function playerCtrl($scope, $routeParams, $location, eventsBus, Data) {
@@ -55,8 +55,21 @@ function playerCtrl($scope, $routeParams, $location, eventsBus, Data) {
     $location.path('/');
   };
 
+  $scope.beamIt = function () {
+    var v = Data.getVideo();
+    var msg = JSON.stringify({
+      target: 'tv',
+      data: {
+        src: v.src,
+        poster: v.poster,
+        currentTime: fragmentTime()
+      }
+    });
+    eddie.putLou('ngproxy', msg);
+  };
+
   function showVideo(video) {
-    console.log(video);
+    //console.log(video);
 
     $scope.chapter = video.chapters[$scope.chapterIndex];
     $scope.fragment = $scope.chapter.fragments[$scope.fragmentIndex];
@@ -69,14 +82,18 @@ function playerCtrl($scope, $routeParams, $location, eventsBus, Data) {
     player.load();
 
     $(player).on('loadedmetadata', function () {
-      player.currentTime = $scope.fragment.startTime / 1000; //in seconds
+      player.currentTime = fragmentTime();
     });
   }
 
-  var processVideo = function (video) {
+  function fragmentTime() {
+    return $scope.fragment.startTime / 1000; //in seconds
+  }
+
+  var processMsg = function (video) {
     Data.setVideo(video);
     showVideo(video);
   };
 
-  eventsBus.subscribe($scope, 'video', processVideo);
+  eventsBus.subscribe($scope, 'video', processMsg);
 }

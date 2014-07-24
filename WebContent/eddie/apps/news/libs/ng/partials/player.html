@@ -1,14 +1,17 @@
 <div id="screen"></div>
 
-Fragment title: <b>{{fragment.title}}</b>
+<div class="clearfix">
+  Fragment title: <b>{{fragment.title}}</b>
 
-<br>
+  <br>
 
-<video id="player" controls autoplay width="60%" height="60%">
-  <source id="source" type='video/mp4'>
-  Your browser does not support the video tag.
-</video>
+  <video id="player" controls autoplay width="60%" height="60%">
+    <source id="source" type='video/mp4'>
+    Your browser does not support the video tag.
+  </video>
 
-<br>
+  <br>
 
-<button ng-click="goToMain()">Go to main</button>
+  <button type="button" ng-click="goToMain()" class="btn btn-primary">Go to main</button>
+  <button type="button" ng-click="beamIt()" class="btn btn-primary pull-right">Beam to TV</button>
+</div>
