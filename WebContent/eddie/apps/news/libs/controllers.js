@@ -60,6 +60,7 @@ function playerCtrl($scope, $routeParams, $location, eventsBus, Data) {
     var msg = JSON.stringify({
       target: 'tv',
       data: {
+        action: 'play',
         src: v.src,
         poster: v.poster,
         currentTime: fragmentTime()

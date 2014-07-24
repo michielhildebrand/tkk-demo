@@ -1,10 +1,13 @@
-<div id="screen"></div>
+<div id="screen" class="hide"></div>
 
 <div ng-if="video" class="container">
-  <div class="center-block">
-    <h2>Video title: <b>{{video.title}}</b></h2>
-    <img ng-src="{{video.poster}}"/>
+  <div>
+    <h3 class="text-center">Title: <b>{{video.title}}</b></h3>
+    <img ng-src="{{video.poster}}" class="center-block"/>
   </div>
+
+  <br>
+
   <div ng-repeat="ch in video.chapters" class="row">
     <div class="col-xs-2">Chapter {{$index}}: <b>{{ch.title}}</b></div>
 
