@@ -10,8 +10,8 @@ tkkDemoApp.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: '/eddie/apps/news/libs/ng/partials/main.html',
-        controller: 'MainCtrl'
+        templateUrl: '/eddie/apps/news/libs/ng/partials/landing.html',
+        controller: 'LandingCtrl'
       }).
       when('/video/:chapterIndex/:fragmentIndex', {
         templateUrl: '/eddie/apps/news/libs/ng/partials/player.html',

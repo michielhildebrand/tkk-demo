@@ -2,11 +2,11 @@
 
 var tkkControllers = angular.module('tkkControllers', []);
 
-tkkControllers.controller('MainCtrl', ['$scope', '$location', 'eventsBus', 'Data', mainCtrl]);
+tkkControllers.controller('LandingCtrl', ['$scope', '$location', 'eventsBus', 'Data', landingCtrl]);
 tkkControllers.controller('PlayerCtrl', ['$scope', '$routeParams', '$location' , 'eventsBus', 'Data', playerCtrl]);
 
-function mainCtrl($scope, $location, eventsBus, Data) {
-  console.log('Main ctrl loaded');
+function landingCtrl($scope, $location, eventsBus, Data) {
+  console.log('Landing ctrl loaded');
 
   if (Data.getVideo()) initialize(Data.getVideo());
 
