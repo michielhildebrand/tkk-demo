@@ -3,7 +3,8 @@
 var tkkDemoApp = angular.module('tkkDemoApp', [
   'ngRoute',
   'tkkControllers',
-  'tkkServices'
+  'tkkServices',
+  'tkkDirectives'
 ]);
 
 tkkDemoApp.config(['$routeProvider',
