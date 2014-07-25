@@ -48,7 +48,7 @@ I prefer using nginx to serve the static files so I've included an `nginx.conf.e
 to setup an nginx site. If you like apache you can contribute to the project and create another example :)
 
     $ cp nginx.conf.example nginx.conf
-    $ sed -i "s/%ABSOLUTE_PATH_TO_PROJECT_SOURCE%/`pwd`/g" nginx.conf
+    $ sed -i "s/%ABSOLUTE_PATH_TO_CLIENT_DIR%/`pwd`/g" nginx.conf
     
 Include the new nginx.conf to your nginx global config.     
 
