@@ -5,13 +5,13 @@ server {
   charset utf-8;
 
   # @FIXME update this path with yours
-  set $host_path "%ABSOLUTE_PATH_TO_PROJECT_SOURCE%";
+  set $host_path "%ABSOLUTE_PATH_TO_CLIENT_DIR%";
 
   # in case you're debugging nginx setup
-  # error_log %ABSOLUTE_PATH_TO_PROJECT_SOURCE%/nginx.error.log  info;
+  # error_log "%ABSOLUTE_PATH_TO_CLIENT_DIR%/nginx.error.log"  info;
 
   # Path for static files
-  root $host_path/html;
+  root $host_path;
 
   expires -1;
 
@@ -19,22 +19,30 @@ server {
   add_header "X-UA-Compatible" "IE=Edge,chrome=1";
   add_header "Access-Control-Allow-Origin" "*";
 
+
   location / {
     index index.html;
   }
+  location /tv {
+    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/;
+    index tv.html;
+  }
+
 
   # for toolkit js
   location /libs/ {
-    root /Users/tiziano/Development/Work-CWI/LinkedTV/tkk_demo/WebContent/eddie/apps/news/;
+    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
   }
+  location /tv/libs/ {
+    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
+  }
+
 
   # for eddie_worker.js
   location /eddie/js/ {
-    alias /Users/tiziano/Development/Work-CWI/LinkedTV/tkk_demo/WebContent/eddie/apps/news/html/;
+    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
   }
-
-  # for partials
-  location /eddie/ {
-    root /Users/tiziano/Development/Work-CWI/LinkedTV/tkk_demo/WebContent/;
+  location /tv/eddie/js/ {
+    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
   }
 }

@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="tkkDemoApp">
+<head>
+  <title>Tkk Demo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable = no,initial-scale=1.0; maximum-scale=1.0;">
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-min.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  <script language="javascript" type="text/javascript" src="js/ng/angular.js"></script>
+  <script language="javascript" type="text/javascript" src="js/ng/angular-route.js"></script>
+  <script language="javascript" type="text/javascript" src="js/ng/angular-resource.js"></script>
+
+  <script language="javascript" type="text/javascript" src="js/app.js"></script>
+  <script language="javascript" type="text/javascript" src="js/controllers.js"></script>
+  <script language="javascript" type="text/javascript" src="js/services.js"></script>
+  <script language="javascript" type="text/javascript" src="js/directives.js"></script>
+
+  <script language="javascript" type="text/javascript" src="js/underscore.js"></script>
+
+  <script language="javascript" type="text/javascript">
+    var LouSettings = {
+      "lou_ip": "10.20.30.53",
+      "lou_port": "8080",
+      "user": "null",
+      "app": "news",
+      "fullapp": "/domain/linkedtv/html5application/news",
+      "appparams": "id=8a8187f2-3fc8-cb54-0140-7dccd76f0001"
+    }
+  </script>
+  <script language="javascript" type="text/javascript" src="js/toolkit/eddie.js"></script>
+  <script language="javascript" type="text/javascript" src="js/toolkit/jquery-1.8.0.js"></script>
+  <script language="javascript" type="text/javascript" src="js/toolkit/eddie_worker.js"></script>
+  <script language="javascript" type="text/javascript" src="js/toolkit/stacktrace.js"></script>
+  <script language="javascript" type="text/javascript" src="js/toolkit/main.js"></script>
+</head>
+<body>
+<ng-view></ng-view>
+<div id="screen" class="hide"/>
+</body>
+</html>
