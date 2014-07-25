@@ -101,8 +101,7 @@ public class Video {
                     FSList enrichments = e.getEnrichmentsFromAnnotation(fg.getOriginalAnnotation());
                     List<FsNode> enrichmentsNode = enrichments.getNodes();
                     for (FsNode node : enrichmentsNode) {
-                        //TODO add this to fragment
-                        String locator = node.getProperty("locator");
+                        fg.addEnrichment(node.getProperty("locator"));
                     }
                 }
             }

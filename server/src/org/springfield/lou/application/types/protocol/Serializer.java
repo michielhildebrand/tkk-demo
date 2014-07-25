@@ -8,8 +8,8 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 public class Serializer {
-    private static Gson plainGson = new Gson();
-    private static Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+    private static Gson plainGson = new GsonBuilder().disableHtmlEscaping().create();
+    private static Gson prettyGson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
     public static String toJson(Object o) {
         return toJson(o, false);

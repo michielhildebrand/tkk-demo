@@ -3,11 +3,16 @@ package org.springfield.lou.application.types.domain;
 
 import org.springfield.fs.FsNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Fragment {
     private transient FsNode originalAnnotation;
 
     private String id, locator, duration, title, type;
     private Integer startTime;
+
+    private List<String> enrichments = new ArrayList<String>();
 
     public Fragment(FsNode annotation) {
         this.originalAnnotation = annotation;
@@ -45,6 +50,10 @@ public class Fragment {
 
     public Integer getStartTime() {
         return startTime;
+    }
+
+    public void addEnrichment(String e) {
+        enrichments.add(e);
     }
 
     @Override
