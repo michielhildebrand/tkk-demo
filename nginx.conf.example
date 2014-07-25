@@ -23,26 +23,18 @@ server {
   location / {
     index index.html;
   }
-  location /tv {
-    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/;
-    index tv.html;
+  location ~ ^/(tv)/? {
+    set $path $1;
+    rewrite ^ /#/$path permanent;
+    break;
   }
-
 
   # for toolkit js
   location /libs/ {
     alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
   }
-  location /tv/libs/ {
-    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
-  }
-
-
   # for eddie_worker.js
   location /eddie/js/ {
-    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
-  }
-  location /tv/eddie/js/ {
     alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
   }
 }

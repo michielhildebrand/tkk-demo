@@ -18,6 +18,10 @@ tkkDemoApp.config(['$routeProvider',
         templateUrl: 'partials/player.html',
         controller: 'PlayerCtrl'
       }).
+      when('/tv', {
+        templateUrl: 'partials/landing.html',
+        controller: 'LandingCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });
