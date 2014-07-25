@@ -24,9 +24,7 @@ public class NewsApplication extends Html5Application {
 
     @Override
     public void onNewScreen(Screen s) {
-        s.loadStyleSheet("apps/news/css/bootstrap-min.css", this);
         loadContent(s, "ngproxy");
-
 
         String fixedrole = s.getParameter("role");
         if (fixedrole == null) {
@@ -58,9 +56,6 @@ public class NewsApplication extends Html5Application {
 
     private void loadMainScreen(Screen s) {
         s.setRole("main");
-        s.loadStyleSheet("apps/news/css/main.css", this);
-
-
 
         // TODO what's the difference between this put and putMsg below?
 //        this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");

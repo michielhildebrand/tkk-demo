@@ -1,8 +1,9 @@
 .idea
 *.iml
-build
-build-test
-dist
-WebContent/WEB-INF/lib
+server/out
+server/build
+server/build-test
+server/dist
+server/WebContent/WEB-INF/lib
 nginx.conf
 nginx.error.log

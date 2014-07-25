@@ -4,10 +4,7 @@ import org.springfield.fs.FSList;
 import org.springfield.fs.FsNode;
 import org.springfield.mojo.linkedtv.Episode;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Video {
     private transient Episode originalEpisode;
@@ -80,6 +77,7 @@ public class Video {
                 return o1.getStartTime() - o2.getStartTime();
             }
         });
+        List<Fragment> fgsToRemove = new ArrayList<Fragment>(fgs.size());
 
         FSList chapters = e.getChapters();
         List<FsNode> chaptersNode = chapters.getNodes();
@@ -93,11 +91,12 @@ public class Video {
         }
 
         // Starting from the last chapter
-        // add to the chapter fragments wich startime is greater then chapter.startTime
+        // add to the chapter fragments which starTime is greater then chapter.startTime
         for (Chapter ch : chs.descendingSet()) {
             for (Fragment fg : fgs) {
-                if (fg.getStartTime() >= ch.getStartTime()) {
+                if (fg.getStartTime() > ch.getStartTime()) {
                     ch.addFragment(fg);
+                    fgsToRemove.add(fg);
 
                     FSList enrichments = e.getEnrichmentsFromAnnotation(fg.getOriginalAnnotation());
                     List<FsNode> enrichmentsNode = enrichments.getNodes();
@@ -107,6 +106,10 @@ public class Video {
                     }
                 }
             }
+
+            //Take out fragment associated to the last chapter
+            fgs.removeAll(fgsToRemove);
+            fgsToRemove.clear();
         }
 
         return chs;

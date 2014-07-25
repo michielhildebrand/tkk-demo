@@ -151,7 +151,7 @@
 
 
   <target name="provision-copy" depends="create-war">
-    <copy file="${package.location.war}" todir="${root.dir}/../springfield/lou/uploaddir" />
+    <copy file="${package.location.war}" todir="${root.dir}/../../springfield/lou/uploaddir" />
   </target>
 
   <target name="provision-ssh" depends="create-war">
