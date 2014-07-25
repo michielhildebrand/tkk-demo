@@ -70,6 +70,6 @@ public class NewsApplication extends Html5Application {
 
     private void loadSecondScreen(Screen s) {
         s.setRole("secondary");
-        loadContent(s, "ngproxy");
+
     }
 }
