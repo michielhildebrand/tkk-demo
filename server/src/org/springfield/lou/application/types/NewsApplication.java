@@ -8,8 +8,6 @@ import org.springfield.lou.screen.Screen;
 import org.springfield.mojo.linkedtv.Channel;
 import org.springfield.mojo.linkedtv.Episode;
 
-import java.util.List;
-
 public class NewsApplication extends Html5Application {
 
     public NewsApplication(String id, String remoteReciever) {
@@ -36,8 +34,10 @@ public class NewsApplication extends Html5Application {
             String id = s.getParameter("id");
             if (id == null) {
                 Channel ch = new Channel("linkedtv", "rbb"/*"S%26V"*/);
-                List<Episode> curatedEpisodes = ch.getEpisodes(); //Returns a list containing all episodes for the domain/channel with the status CURATED
                 choosenEpisode = ch.getLatestEpisode();
+
+                //Returns a list containing all episodes for the domain/channel with the status CURATED
+                //List<Episode> curatedEpisodes = ch.getEpisodes();
             } else {
                 System.out.println("id = " + id);
                 choosenEpisode = new Episode(id);
@@ -53,6 +53,7 @@ public class NewsApplication extends Html5Application {
     public void putOnScreen(Screen s, String from, String content) {
         super.putOnScreen(s, from, content);
     }
+
 
     private void loadMainScreen(Screen s) {
         s.setRole("main");

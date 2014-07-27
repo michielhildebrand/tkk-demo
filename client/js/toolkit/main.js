@@ -10,4 +10,4 @@ $(document).ready(function(){
 	eddie.init();
 	
 	$('body').attr('onunload', 'eddie.destroy()');
-})
+});

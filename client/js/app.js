@@ -2,9 +2,15 @@
 
 var tkkDemoApp = angular.module('tkkDemoApp', [
   'ngRoute',
-  'tkkControllers',
-  'tkkServices',
-  'tkkDirectives'
+
+  'LandingCtrl',
+  'PlayerCtrl',
+
+  'tkkDirectives',
+
+  'Data',
+  'EventsBus',
+  'MediaResource'
 ]);
 
 tkkDemoApp.config(['$routeProvider',
