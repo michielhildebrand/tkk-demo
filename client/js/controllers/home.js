@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('LandingCtrl', []).controller('LandingCtrl', ['$scope', '$location', 'eventsBus', 'Data', landingCtrl]);
+angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'eventsBus', 'Data', homeCtrl]);
 
-function landingCtrl($scope, $location, eventsBus, Data) {
+function homeCtrl($scope, $location, eventsBus, Data) {
   console.log('Landing ctrl loaded');
 
   if (Data.getVideo()) initialize(Data.getVideo());

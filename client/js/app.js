@@ -3,10 +3,11 @@
 var tkkDemoApp = angular.module('tkkDemoApp', [
   'ngRoute',
 
-  'LandingCtrl',
-  'PlayerCtrl',
+  'HomeCtrl',
+  'PlayCtrl',
+  'TvCtrl',
 
-  'tkkDirectives',
+  'app.player',
 
   'Data',
   'EventsBus',
@@ -17,16 +18,16 @@ tkkDemoApp.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'partials/landing.html',
-        controller: 'LandingCtrl'
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
       }).
       when('/video/:chapterIndex/:fragmentIndex', {
-        templateUrl: 'partials/player.html',
-        controller: 'PlayerCtrl'
+        templateUrl: 'partials/play.html',
+        controller: 'PlayCtrl'
       }).
       when('/tv', {
-        templateUrl: 'partials/landing.html',
-        controller: 'LandingCtrl'
+        templateUrl: 'partials/tv.html',
+        controller: 'TvCtrl'
       }).
       otherwise({
         redirectTo: '/'

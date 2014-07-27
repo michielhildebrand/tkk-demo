@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , 'eventsBus', 'Data', playCtrl]);
+angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', '$routeParams', '$location' , 'eventsBus', 'Data', tvCtrl]);
 
-function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
+function tvCtrl($scope, $routeParams, $location, eventsBus, Data) {
   $scope.chapterIndex = $routeParams.chapterIndex;
   $scope.fragmentIndex = $routeParams.fragmentIndex;
 
@@ -34,14 +34,17 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
 
     $scope.chapter = video.chapters[$scope.chapterIndex];
     $scope.fragment = $scope.chapter.fragments[$scope.fragmentIndex];
-
-    $scope.video = {
-      poster: video.poster,
-      src: video.src,
-      currentTime: fragmentTime()
-    };
-
     $scope.$$phase || $scope.$apply();
+
+    var player = $('#player')[0];
+    var source = $('#source')[0];
+    player.poster = video.poster;
+    source.src = video.src;
+    player.load();
+
+    $(player).on('loadedmetadata', function () {
+      player.currentTime = fragmentTime();
+    });
   }
 
   function fragmentTime() {
