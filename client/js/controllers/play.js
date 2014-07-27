@@ -17,7 +17,7 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
 
   $scope.beamIt = function () {
     var v = Data.getVideo();
-    var msg = JSON.stringify({
+    var tvMsg = JSON.stringify({
       target: 'tv',
       data: {
         action: 'play',
@@ -26,7 +26,7 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
         currentTime: fragmentTime()
       }
     });
-    eddie.putLou('ngproxy', msg);
+    eddie.putLou('ngproxy', tvMsg);
   };
 
   function showVideo(video) {

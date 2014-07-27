@@ -7,7 +7,6 @@ function playerDirective() {
     restrict: 'A',
     replace: false,
     link: function (scope, element, attrs) {
-
       var updatePlayer = function(newVideo) {
         var player = element.children('video')[0];
         var source = element.children('source')[0];
@@ -22,13 +21,9 @@ function playerDirective() {
       };
 
       scope.$watch(attrs.video, function(video) {
-        if (video) {
-          updatePlayer(video);
-        }
+        if (video) updatePlayer(video);
       });
-
     },
     templateUrl: 'partials/player.html'
-  };
+  }
 }
-
