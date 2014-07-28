@@ -8,6 +8,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'TvCtrl',
 
   'app.player',
+  'app.player-controls',
 
   'Data',
   'EventsBus',

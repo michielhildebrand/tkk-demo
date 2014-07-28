@@ -3,8 +3,6 @@
 angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'eventsBus', 'Data', homeCtrl]);
 
 function homeCtrl($scope, $location, eventsBus, Data) {
-  console.log('Landing ctrl loaded');
-
   if (Data.getVideo()) initialize(Data.getVideo());
 
 

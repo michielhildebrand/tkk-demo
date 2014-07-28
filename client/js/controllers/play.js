@@ -6,7 +6,7 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
   $scope.chapterIndex = $routeParams.chapterIndex;
   $scope.fragmentIndex = $routeParams.fragmentIndex;
 
-  console.log('Player ctrl loaded @ ' + $scope.chapterIndex + ' - ' + $scope.fragmentIndex);
+  console.log('Play ctrl loaded @ ' + $scope.chapterIndex + ' - ' + $scope.fragmentIndex);
 
   if (Data.getVideo()) showVideo(Data.getVideo());
 
