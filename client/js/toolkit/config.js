@@ -1,5 +1,6 @@
 var LouSettings = {
   "lou_ip": "tkk.dev",
+//  "lou_ip": "192.168.2.2",
   "lou_port": "80",
   "user": "null",
   "app": "news",

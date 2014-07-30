@@ -6,14 +6,21 @@ function playerDirective(eventsBus) {
   return {
     restrict: 'A',
     scope: {
-      video : '=',
+      video: '=',
       second: '='
     },
     replace: false,
     link: function (scope, element, attrs) {
       scope.paused = false;
 
-      var updatePlayer = function(newVideo) {
+      angular.element(element).on("click", function () {
+        // To make fullscreen work the request has to sent from inside a short running user-generated event handler.
+        if (screenfull.enabled) {
+          screenfull.request();
+        }
+      });
+
+      var updatePlayer = function (newVideo) {
         var player = element.children('video')[0];
         var source = element.children('source')[0];
 
@@ -29,18 +36,18 @@ function playerDirective(eventsBus) {
         });
       };
 
-      scope.$watch('video', function(video) {
+      scope.$parent.$watch('video', function (video) {
         if (video) updatePlayer(video);
       });
     },
-    controller: function($scope, $element) {
+    controller: function ($scope, $element) {
       var executeAction = function (msg) {
         var player = $element.children('player')[0];
         var source = $element.children('source')[0];
         var a = msg.action;
         if (a) {
           console.log('action ' + a);
-          switch(a) {
+          switch (a) {
             case 'play':
               player.play();
               $scope.paused = false;
@@ -59,11 +66,9 @@ function playerDirective(eventsBus) {
               player.volume = msg.value;
               break;
             case 'fullscreen':
+              //TODO this is not a user-generated event
               if ($scope.$parent.second) {
-                console.log('act as second');
-                if (screenfull.enabled) {
-                  screenfull.request();
-                }
+                $element.triggerHandler("click");
               }
               break;
             default:

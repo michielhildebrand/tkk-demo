@@ -4,6 +4,7 @@ angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', tvCtrl
 
 function tvCtrl($scope, eventsBus) {
   $scope.second = true;
+  $scope.video = null;
 
   var processMsg = function (tvMsg) {
     $scope.video = {

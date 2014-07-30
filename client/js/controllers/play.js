@@ -4,6 +4,7 @@ angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams',
 
 function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
   $scope.second = false;
+  $scope.video = null;
 
   $scope.chapterIndex = $routeParams.chapterIndex;
   $scope.fragmentIndex = $routeParams.fragmentIndex;
