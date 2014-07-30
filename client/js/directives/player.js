@@ -13,12 +13,14 @@ function playerDirective(eventsBus) {
     link: function (scope, element, attrs) {
       scope.paused = false;
 
-      angular.element(element).on("click", function () {
-        // To make fullscreen work the request has to sent from inside a short running user-generated event handler.
-        if (screenfull.enabled) {
-          screenfull.request();
-        }
-      });
+      if (scope.$parent.second) {
+        angular.element(element).on("click", function () {
+          // To make fullscreen work the request has to sent from inside a short running user-generated event handler.
+          if (screenfull.enabled) {
+            screenfull.request();
+          }
+        });
+      }
 
       var updatePlayer = function (newVideo) {
         var player = element.children('video')[0];
@@ -64,12 +66,6 @@ function playerDirective(eventsBus) {
               break;
             case 'volume':
               player.volume = msg.value;
-              break;
-            case 'fullscreen':
-              //TODO this is not a user-generated event
-              if ($scope.$parent.second) {
-                $element.triggerHandler("click");
-              }
               break;
             default:
               console.log('Unknown action: ' + a);

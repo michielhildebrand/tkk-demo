@@ -6,6 +6,10 @@ html, body {
 	font-size: 12px;
 }
 
+.red {
+    color: #d14;
+}
+
 /* controls at the top */
 
 .controls {

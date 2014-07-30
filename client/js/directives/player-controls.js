@@ -45,10 +45,6 @@ function playerControlsDirective(eventsBus) {
         send({action: 'volume', value: value});
       };
 
-      $scope.fullScreen = function () {
-        send({action: 'fullscreen'});
-      };
-
       function send(action) {
         var playerMsg = JSON.stringify({target: 'player', data: action});
         eddie.putLou('ngproxy', playerMsg);
