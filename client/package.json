@@ -1,0 +1,12 @@
+{
+  "name": "TkkDemo",
+  "version": "0.1.0",
+  "engineStrict": true,
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "screenfull": "=1.2.1",
+    "underscore": "=1.6.0"
+  }
+}

@@ -1,6 +1,6 @@
 var LouSettings = {
-  "lou_ip": "10.20.30.53",
-  "lou_port": "8080",
+  "lou_ip": "tkk.dev",
+  "lou_port": "80",
   "user": "null",
   "app": "news",
   "fullapp": "/domain/linkedtv/html5application/news",

@@ -37,4 +37,9 @@ server {
   location /eddie/js/ {
     alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
   }
+
+  location /lou {
+    proxy_pass http://%SPRINGFIELD_URL%;
+    proxy_set_header Host $host;
+  }
 }

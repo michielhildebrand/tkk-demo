@@ -50,6 +50,13 @@ to setup an nginx site. If you like apache you can contribute to the project and
     $ cp nginx.conf.example nginx.conf
     $ sed -i "s/%ABSOLUTE_PATH_TO_CLIENT_DIR%/`pwd`/g" nginx.conf
     
-Include the new nginx.conf to your nginx global config.     
+Include the new nginx.conf to your nginx global config.
+     
+### Install client dependencies
+
+Most probably you will have node.js and the package manager installed so just execute:
+
+    $ npm install
+
 
 Now you can access the website [here](http://tkk.dev).
