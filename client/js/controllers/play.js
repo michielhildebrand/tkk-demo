@@ -3,6 +3,8 @@
 angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , 'eventsBus', 'Data', playCtrl]);
 
 function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
+  $scope.second = false;
+
   $scope.chapterIndex = $routeParams.chapterIndex;
   $scope.fragmentIndex = $routeParams.fragmentIndex;
 

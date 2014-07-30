@@ -1,2 +1,9 @@
-<button class="btn" ng-click="play()">Play</button>
-<button class="btn" ng-click="pause()">Pause</button>
+<div>
+  <button type="button" ng-click="togglePlay()">{{playLabel()}}</button>
+  <!--TODO seek: we don't want it right? -->
+  <!-- http://blog.teamtreehouse.com/building-custom-controls-for-html5-videos -->
+  <!--<input type="range" ng-click="" value="0">-->
+  <button type="button" ng-click="toggleMute()">{{muteLabel()}}</button>
+  <input type="range" ng-click="setVolume($event)" min="0" max="1" step="0.1" value="1">
+  <button type="button" ng-click="fullScreen()">Full Screen</button>
+</div>
