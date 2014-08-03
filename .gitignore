@@ -6,5 +6,6 @@ server/build-test
 server/dist
 server/WebContent/WEB-INF/lib
 client/node_modules
+client/video
 nginx.conf
 nginx.error.log
