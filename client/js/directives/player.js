@@ -13,7 +13,7 @@ function playerDirective(eventsBus) {
     link: function (scope, element, attrs) {
       scope.paused = false;
 
-      if (scope.$parent.second) {
+      if (scope.second) {
         angular.element(element).on("click", function () {
           // To make fullscreen work the request has to sent from inside a short running user-generated event handler.
           if (screenfull.enabled) {
@@ -38,8 +38,8 @@ function playerDirective(eventsBus) {
         });
       };
 
-      scope.$parent.$watch('video', function (video) {
-        if (video) updatePlayer(video);
+      scope.$watch('video', function (video) {
+        if (video != null) updatePlayer(video);
       });
     },
     controller: function ($scope, $element) {
