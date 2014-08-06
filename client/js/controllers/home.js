@@ -19,12 +19,11 @@ function homeCtrl($scope, $location, eventsBus, Data) {
   };
 
   $scope.playFragment = function (chIndex, fgIndex) {
-    $location.path('/video/' + chIndex + '/' + fgIndex);
+    $location.path('/play/' + chIndex + '/' + fgIndex);
   };
 
   function initialize(video) {
     //console.log(video);
-
     $scope.video = video;
     $scope.$$phase || $scope.$apply();
   }
