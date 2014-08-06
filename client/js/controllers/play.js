@@ -11,7 +11,7 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
 
   console.log('Play ctrl loaded @ ' + $scope.chapterIndex + ' - ' + $scope.fragmentIndex);
 
-  if (Data.getVideo()) showVideo(Data.getVideo());
+  if (Data.video != null) showVideo(Data.video);
 
 
   $scope.goToMain = function () {
@@ -19,7 +19,7 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
   };
 
   $scope.beamIt = function () {
-    var v = Data.getVideo();
+    var v = Data.video;
     var tvMsg = JSON.stringify({
       target: 'tv',
       data: {
@@ -52,7 +52,7 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
   }
 
   var processMsg = function (video) {
-    Data.setVideo(video);
+    Data.video = video;
     showVideo(video);
   };
 
