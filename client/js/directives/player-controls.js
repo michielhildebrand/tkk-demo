@@ -1,13 +1,12 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['eventsBus', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['Data', playerControlsDirective]);
 
-function playerControlsDirective(eventsBus) {
+function playerControlsDirective(Data) {
   return {
     restrict: 'A',
     replace: false,
     link: function (scope, element, attrs) {
-
 
     },
     controller: function ($scope, $element) {
@@ -17,9 +16,9 @@ function playerControlsDirective(eventsBus) {
       $scope.togglePlay = function () {
         $scope.play = !$scope.play;
         if ($scope.play) {
-          send({action: 'play'});
+          sendToPlayer({action: 'play'});
         } else {
-          send({action: 'pause'});
+          sendToPlayer({action: 'pause'});
         }
       };
 
@@ -30,9 +29,9 @@ function playerControlsDirective(eventsBus) {
       $scope.toggleMute = function () {
         $scope.mute = !$scope.mute;
         if ($scope.mute) {
-          send({action: 'mute'});
+          sendToPlayer({action: 'mute'});
         } else {
-          send({action: 'unmute'});
+          sendToPlayer({action: 'unmute'});
         }
       };
 
@@ -42,12 +41,21 @@ function playerControlsDirective(eventsBus) {
 
       $scope.setVolume = function($event) {
         var value = $event.target.value;
-        send({action: 'volume', value: value});
+        sendToPlayer({action: 'volume', value: value});
       };
 
-      function send(action) {
-        var playerMsg = JSON.stringify({target: 'player', data: action});
-        eddie.putLou('ngproxy', playerMsg);
+      $scope.beamIt = function () {
+        sendToTv({action: 'play', video: Data.getVideo(), chapter: Data.getChapter()});
+      };
+
+      function sendToPlayer(action) {
+        send({target: 'player', data: action});
+      }
+      function sendToTv(action) {
+        send({target: 'tv', data: action});
+      }
+      function send(msg) {
+        eddie.putLou('ngproxy', JSON.stringify(msg));
       }
     },
     templateUrl: 'partials/player-controls.html'

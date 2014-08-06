@@ -1,12 +1,11 @@
 'use strict';
 
-angular.module('app.player', []).directive('player', ['eventsBus', playerDirective]);
+angular.module('app.player', []).directive('player', ['eventsBus', 'Data', playerDirective]);
 
-function playerDirective(eventsBus) {
+function playerDirective(eventsBus, Data) {
   return {
     restrict: 'A',
     scope: {
-      video: '=',
       second: '='
     },
     replace: false,
@@ -22,9 +21,9 @@ function playerDirective(eventsBus) {
         });
       }
 
-      var updatePlayer = function (newVideo) {
-        var player = element.children('video')[0];
-        var source = element.children('source')[0];
+      var updatePlayer = function (newVideo, time) {
+        var player = element[0].children.player;
+        var source = player.children.source;
 
         player.poster = newVideo.poster;
         source.src = newVideo.src;
@@ -34,18 +33,22 @@ function playerDirective(eventsBus) {
         }
 
         $(player).on('loadedmetadata', function () {
-          player.currentTime = newVideo.currentTime;
+          player.currentTime = time;
         });
       };
 
-      scope.$watch('video', function (video) {
-        if (video != null) updatePlayer(video);
-      });
+      scope.$watch(
+        function () {
+          return Data.getVideo();
+        },
+        function (newVideo) {
+          if (newVideo != null) updatePlayer(newVideo, Data.getTime());
+        }
+      );
     },
     controller: function ($scope, $element) {
       var executeAction = function (msg) {
-        var player = $element.children('player')[0];
-        var source = $element.children('source')[0];
+        var player = $element[0].children.player;
         var a = msg.action;
         if (a) {
           console.log('action ' + a);

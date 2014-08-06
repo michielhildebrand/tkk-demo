@@ -1,20 +1,15 @@
 'use strict';
 
-angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', tvCtrl]);
+angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', 'Data', tvCtrl]);
 
-function tvCtrl($scope, eventsBus) {
+function tvCtrl($scope, eventsBus, Data) {
   $scope.second = true;
-  $scope.video = null;
 
-  var processMsg = function (tvMsg) {
-    $scope.video = {
-      poster: tvMsg.poster,
-      src: tvMsg.src,
-      currentTime: tvMsg.currentTime
-    };
+  var playVideo = function (msg) {
+    Data.play(msg.video, msg.chapter);
 
     $scope.$$phase || $scope.$apply();
   };
 
-  eventsBus.subscribe($scope, 'tv', processMsg);
+  eventsBus.subscribe($scope, 'tv', playVideo);
 }

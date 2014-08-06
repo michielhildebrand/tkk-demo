@@ -3,7 +3,7 @@
 angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'eventsBus', 'Data', homeCtrl]);
 
 function homeCtrl($scope, $location, eventsBus, Data) {
-  if (Data.video != null) initialize(Data.video);
+  if (Data.getVideo() != null) initialize(Data.getVideo());
 
 
   $scope.fragmentTitle = function (fg) {
@@ -24,14 +24,12 @@ function homeCtrl($scope, $location, eventsBus, Data) {
 
   function initialize(video) {
     //console.log(video);
+
+    Data.setVideo(video);
     $scope.video = video;
+
     $scope.$$phase || $scope.$apply();
   }
 
-  var processMsg = function (video) {
-    Data.video = video;
-    initialize(video);
-  };
-
-  eventsBus.subscribe($scope, 'video', processMsg);
+  eventsBus.subscribe($scope, 'video', initialize);
 }

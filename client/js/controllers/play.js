@@ -4,57 +4,27 @@ angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams',
 
 function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
   $scope.second = false;
-  $scope.video = null;
 
   $scope.chapterIndex = $routeParams.chapterIndex;
   $scope.fragmentIndex = $routeParams.fragmentIndex;
 
   console.log('Play ctrl loaded @ ' + $scope.chapterIndex + ' - ' + $scope.fragmentIndex);
 
-  if (Data.video != null) showVideo(Data.video);
+  if (Data.getVideo() != null) showVideo(Data.getVideo());
 
 
   $scope.goToMain = function () {
     $location.path('/');
   };
 
-  $scope.beamIt = function () {
-    var v = Data.video;
-    var tvMsg = JSON.stringify({
-      target: 'tv',
-      data: {
-        action: 'play',
-        src: v.src,
-        poster: v.poster,
-        currentTime: fragmentTime()
-      }
-    });
-    eddie.putLou('ngproxy', tvMsg);
-  };
-
   function showVideo(video) {
     //console.log(video);
 
+    Data.play(video, $scope.chapterIndex);
     $scope.chapter = video.chapters[$scope.chapterIndex];
-    $scope.fragment = $scope.chapter.fragments[$scope.fragmentIndex];
-
-    $scope.video = {
-      poster: video.poster,
-      src: video.src,
-      currentTime: fragmentTime()
-    };
 
     $scope.$$phase || $scope.$apply();
   }
 
-  function fragmentTime() {
-    return $scope.fragment.startTime / 1000; //in seconds
-  }
-
-  var processMsg = function (video) {
-    Data.video = video;
-    showVideo(video);
-  };
-
-  eventsBus.subscribe($scope, 'video', processMsg);
+  eventsBus.subscribe($scope, 'video', showVideo);
 }
