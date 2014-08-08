@@ -18,6 +18,10 @@ public class NewsApplication extends Html5Application {
         super(id);
     }
 
+
+    private static boolean WORK_OFFLINE = true;
+
+
     private Episode choosenEpisode;
 
     @Override
@@ -40,7 +44,9 @@ public class NewsApplication extends Html5Application {
                 //List<Episode> curatedEpisodes = ch.getEpisodes();
             } else {
                 System.out.println("id = " + id);
-                //choosenEpisode = new Episode(id);
+                if (!WORK_OFFLINE) {
+                    choosenEpisode = new Episode(id);
+                }
             }
             loadMainScreen(s);
         } else {
@@ -63,13 +69,14 @@ public class NewsApplication extends Html5Application {
 //        this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
 
-//        Message msg = new Message("video", new Video(choosenEpisode));
-//        String json = Serializer.toJson(msg);
-//        System.out.println("json = " + json);
-//        s.putMsg("ngproxy", "", json);
-
-
-        s.putMsg("ngproxy", "", getTestVideo());
+        if (!WORK_OFFLINE) {
+            Message msg = new Message("video", new Video(choosenEpisode));
+            String json = Serializer.toJson(msg);
+            System.out.println("json = " + json);
+            s.putMsg("ngproxy", "", json);
+        } else {
+            s.putMsg("ngproxy", "", getTestVideo());
+        }
     }
 
 
