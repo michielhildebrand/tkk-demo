@@ -8,7 +8,7 @@ server {
   set $host_path "%ABSOLUTE_PATH_TO_CLIENT_DIR%";
 
   # in case you're debugging nginx setup
-  # error_log "%ABSOLUTE_PATH_TO_CLIENT_DIR%/nginx.error.log"  info;
+  # error_log "%ABSOLUTE_PATH_TO_CLIENT_DIR%/nginx.error.log" info;
 
   # Path for static files
   root $host_path;
@@ -23,7 +23,7 @@ server {
   location / {
     index index.html;
   }
-  location ~ ^/(tv)/? {
+  location ~ ^/(tv)/?$ {
     set $path $1;
     rewrite ^ /#/$path permanent;
     break;
