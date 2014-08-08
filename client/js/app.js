@@ -9,6 +9,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
 
   'app.player',
   'app.player-controls',
+  'app.chapter-timeline',
 
   'Data',
   'EventsBus',
@@ -23,13 +24,13 @@ tkkDemoApp.config(['$routeProvider',
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
       }).
-      when('/play/:chapterIndex/:fragmentIndex', {
+      when('/play/:chapterIndex', {
         title: 'TKK Demo - Chapter',
         templateUrl: 'partials/play.html',
         controller: 'PlayCtrl'
       }).
       when('/tv', {
-        title: 'TKK Demo TV',
+        title: 'TKK Demo - TV',
         templateUrl: 'partials/tv.html',
         controller: 'TvCtrl'
       }).

@@ -4,7 +4,7 @@ angular.module('app.player', []).directive('player', ['eventsBus', 'Data', playe
 
 function playerDirective(eventsBus, Data) {
   return {
-    restrict: 'A',
+    restrict: 'E',
     scope: {
       second: '='
     },

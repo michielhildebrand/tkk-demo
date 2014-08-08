@@ -1,5 +1,10 @@
-<!-- chapter and entity scroller -->
-<div class="entities" id="entities">
-  <ul class="chapters" id="scroller">
-  </ul>
+<div class="row">
+  <div class="col-xs-4" ng-repeat="ch in chapters">
+    <div class="thumbnail">
+      <img ng-src="{{getShot(ch)}}" width="50px" height="50px" title="{{getTitle(ch)}}" ng-click="play($index)" alt="{{ch.title}}"/>
+      <div class="caption text-center">
+        <h4>{{ch.title}}</h4>
+      </div>
+    </div>
+  </div>
 </div>

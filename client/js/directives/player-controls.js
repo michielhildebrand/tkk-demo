@@ -4,7 +4,7 @@ angular.module('app.player-controls', []).directive('playerControls', ['Data', p
 
 function playerControlsDirective(Data) {
   return {
-    restrict: 'A',
+    restrict: 'E',
     replace: false,
     link: function (scope, element, attrs) {
 
