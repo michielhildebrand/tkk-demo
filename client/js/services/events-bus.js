@@ -7,11 +7,11 @@ function eventsBusService($rootScope) {
   return {
     publish: function (channel, data) {
       //console.log('publishing on \'' + channel + '\'');
-      $rootScope.$broadcast(channel, data);
+      $rootScope.$emit(channel, data);
     },
-    subscribe: function ($scope, channel, handler) {
+    subscribe: function (channel, handler) {
       //console.log('subscribing to \'' + channel + '\'');
-      $scope.$on(channel, function (event, data) {
+      $rootScope.$on(channel, function (event, data) {
         handler(data);
       })
     }

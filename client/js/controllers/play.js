@@ -26,5 +26,5 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
     $scope.$$phase || $scope.$apply();
   }
 
-  eventsBus.subscribe($scope, 'video', showVideo);
+  eventsBus.subscribe('video', showVideo);
 }

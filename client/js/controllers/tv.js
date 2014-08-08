@@ -11,5 +11,5 @@ function tvCtrl($scope, eventsBus, Data) {
     $scope.$$phase || $scope.$apply();
   };
 
-  eventsBus.subscribe($scope, 'tv', playVideo);
+  eventsBus.subscribe('tv', playVideo);
 }

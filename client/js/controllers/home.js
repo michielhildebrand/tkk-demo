@@ -14,5 +14,5 @@ function homeCtrl($scope, eventsBus, Data) {
     $scope.$$phase || $scope.$apply();
   }
 
-  eventsBus.subscribe($scope, 'video', initialize);
+  eventsBus.subscribe('video', initialize);
 }

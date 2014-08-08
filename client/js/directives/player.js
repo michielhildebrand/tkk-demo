@@ -77,7 +77,7 @@ function playerDirective(eventsBus, Data) {
           console.log('Unknown message: ' + msg);
         }
       };
-      eventsBus.subscribe($scope, 'player', executeAction);
+      eventsBus.subscribe('player', executeAction);
     },
     templateUrl: 'partials/player.html'
   }
