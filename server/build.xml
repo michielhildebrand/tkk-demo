@@ -16,6 +16,11 @@
   <property name="webcontent.lib.dir" value="${webcontent.dir}/WEB-INF/lib"/>
   <property name="doc.dir" value="${root.dir}/doc"/>
 
+  <!-- Remote deployment -->
+  <property name="deploy.user" value="tiziano"/>
+  <property name="deploy.host" value="178.62.185.178"/>
+  <property name="deploy.lou.uploaddir" value="/opt/springfield/lou/uploaddir"/>
+
   <!-- Define maven-ant-tasks location -->
   <property name="maven.ant.tasks.jar" value="${tools.dir}/maven-ant-tasks-2.1.3.jar"/>
   <property name="maven.ant.tasks.bootstrap.location"
@@ -158,8 +163,7 @@
   </target>
 
   <target name="provision-ssh" depends="create-war">
-    <scp file="${package.location.war}" todir="${deploy.user}@${deploy.host}:${lou.uploaddir}"
-         password="${deploy.password}"/>
+    <scp file="${package.location.war}" todir="${deploy.user}@${deploy.host}:${deploy.lou.uploaddir}"/>
   </target>
 
 
