@@ -1,0 +1,29 @@
+---
+  - include: "{{prudentia_dir}}/tasks/timezone.yml tz=Europe/Amsterdam"
+    tags: base
+
+  - name: Base | Dump mounts
+    command: /bin/mount
+    register: machine_mounts
+    tags:
+      - base
+      - update
+
+  - name: Base | Create directory
+    file: dest={{install_dir}} owner={{ansible_user_id}} group={{ansible_user_id}} mode=755 state=directory
+    when: "install_dir not in machine_mounts.stdout"
+    sudo: yes
+    tags:
+      - base
+      - update
+
+  - include: "{{prudentia_dir}}/tasks/github.yml ssh_dir=/home/{{ansible_user_id}}"
+    tags: base
+
+  - name: Base | Checkout git repository
+    git: repo={{git_repository}} dest={{install_dir}} version=master
+    when: "install_dir not in machine_mounts.stdout"
+    tags:
+      - base
+      - update
+      - client

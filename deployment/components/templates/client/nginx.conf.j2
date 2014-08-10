@@ -1,0 +1,45 @@
+server {
+  listen 80;
+  server_name tkk.dev;
+
+  charset utf-8;
+
+  # @FIXME update this path with yours
+  set $host_path "{{install_dir_client}}";
+
+  # in case you're debugging nginx setup
+  # error_log "{{install_dir_client}}/nginx.error.log" info;
+
+  # Path for static files
+  root $host_path;
+
+  expires -1;
+
+  # opt-in to the future
+  add_header "X-UA-Compatible" "IE=Edge,chrome=1";
+  add_header "Access-Control-Allow-Origin" "*";
+
+
+  location / {
+    index index.html;
+  }
+  location ~ ^/(tv)/?$ {
+    set $path $1;
+    rewrite ^ /#/$path permanent;
+    break;
+  }
+
+  # for toolkit js
+  location /libs/ {
+    alias {{install_dir_client}}/js/toolkit/;
+  }
+  # for eddie_worker.js
+  location /eddie/js/ {
+    alias {{install_dir_client}}/js/toolkit/;
+  }
+
+  location /lou {
+    proxy_pass http://{{springfield_ip}}:8080;
+    proxy_set_header Host $host;
+  }
+}

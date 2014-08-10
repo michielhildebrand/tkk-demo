@@ -1,0 +1,26 @@
+---
+- hosts: linkedtv-dev
+
+  vars_files:
+    - "{{prudentia_dir}}/vars/global.yml"
+
+  vars:
+    - root_dir: ..
+
+    - install_dir: /opt/tkk
+    - install_dir_client: "{{install_dir}}/client"
+    - install_dir_springfield: /opt/springfield
+
+    - git_repository: https://github.com/TizianoPerrucci/tkk-demo.git
+
+    - mysql_root_password: nDN8Dtp
+    - springfield_ip: 178.62.185.165
+
+  tasks:
+    - include: "{{prudentia_dir}}/tasks/common-setup.yml"
+
+    - include: "{{root_dir}}/components/base.yml"
+
+    - include: "{{root_dir}}/components/springfield.yml"
+
+    - include: "{{root_dir}}/components/client.yml"

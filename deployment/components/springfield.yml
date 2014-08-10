@@ -1,0 +1,39 @@
+---
+  - include: "{{prudentia_dir}}/tasks/mysql_5.5.yml"
+    tags: springfield
+
+  - include: "{{prudentia_dir}}/tasks/java7.yml"
+    tags: springfield
+
+  - name: Springfield | Create directory
+    file: dest={{install_dir_springfield}} owner={{ansible_user_id}} group={{ansible_user_id}} mode=755 state=directory
+    sudo: yes
+    tags: springfield
+
+  - name: Springfield | Extract it
+    command: chdir=/opt tar -zxvf springfield.tar.gz
+    tags: springfield
+
+  - name: Springfield | Copy sql init script
+    template: src={{root_dir}}/components/templates/springfield/init.sql.j2 dest={{install_dir_springfield}}/smithers_db.sql mode=644 backup=yes
+    tags: springfield
+
+  - name: Springfield | Execute sql script
+    shell: chdir={{install_dir_springfield}} mysql -uroot -p{{mysql_root_password}} < smithers_db.sql
+    tags: springfield
+
+  - name: Springfield | Configure Homer
+    lineinfile: dest={{install_dir_springfield}}/homer/config.xml regexp='^(.*external-ipnumber">)(.*)(</entry>)$' line='\1{{springfield_ip}}\3' backrefs=yes
+    tags:
+      - springfield
+      - thisone
+
+  - name: Springfield | Configure Lazy Homer
+    lineinfile: dest={{install_dir_springfield}}/tomcat/webapps/ROOT/springfield/Scripts/lazyHomer.js regexp='^(.*//)(.*)(:.*)$' line='\1{{springfield_ip}}\3' backrefs=yes
+    tags:
+      - springfield
+
+  - name: Springfield | Link dir
+    command: ln -s {{install_dir_springfield}} /springfield
+    sudo: true
+    tags: springfield
