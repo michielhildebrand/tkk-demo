@@ -10,6 +10,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.player',
   'app.player-controls',
   'app.chapter-timeline',
+  'app.bookmarking',
 
   'Data',
   'EventsBus',

@@ -5,7 +5,8 @@ angular.module('Data', ['ngResource']).factory('Data', data);
 function data() {
   var data = {
     video: null,
-    chapterIndex: null
+    chapterIndex: null,
+    bookmarks: []
   };
 
   return {
@@ -24,6 +25,17 @@ function data() {
     },
     getTime: function() {
       return data.video.chapters[data.chapterIndex].startTime / 1000; //in seconds
+    },
+    getBookmarks: function() {
+      return data.bookmarks;
+    },
+    bookmark: function(chapterId) {
+      data.bookmarks = _.union(data.bookmarks, [chapterId]);
+      return data.bookmarks;
+    },
+    unbookmark: function(chapterId) {
+      data.bookmarks = _.difference(data.bookmarks, [chapterId]);
+      return data.bookmarks;
     }
   };
 }

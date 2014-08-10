@@ -1,14 +1,19 @@
 <div class="container">
   <h3 class="text-center">Chapter: <b>{{chapter.title}}</b></h3>
+
   <br>
 
   <player second="second"></player>
+
   <br>
 
   <div class="row">
     <button type="button" ng-click="goToMain()" class="btn btn-primary">Go to main</button>
+    <bookmarking chapter="chapter"></bookmarking>
     <player-controls class="pull-right"></player-controls>
   </div>
+
+  <br>
 
   <chapter-timeline chapters="video.chapters"></chapter-timeline>
 </div>
