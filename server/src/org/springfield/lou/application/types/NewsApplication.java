@@ -5,24 +5,24 @@ import org.springfield.lou.application.types.domain.Video;
 import org.springfield.lou.application.types.protocol.Message;
 import org.springfield.lou.application.types.protocol.Serializer;
 import org.springfield.lou.screen.Screen;
+import org.springfield.lou.user.User;
 import org.springfield.mojo.linkedtv.Channel;
 import org.springfield.mojo.linkedtv.Episode;
 
 public class NewsApplication extends Html5Application {
 
-    public NewsApplication(String id, String remoteReciever) {
-        super(id, remoteReciever);
-    }
+    private static boolean WORK_OFFLINE = true;
+
+    private User testUser = new User("Test User");
+    private Episode choosenEpisode;
 
     public NewsApplication(String id) {
         super(id);
     }
 
-
-    private static boolean WORK_OFFLINE = true;
-
-
-    private Episode choosenEpisode;
+    public NewsApplication(String id, String remoteReceiver) {
+        super(id, remoteReceiver);
+    }
 
     @Override
     public void onNewScreen(Screen s) {
@@ -54,20 +54,40 @@ public class NewsApplication extends Html5Application {
         }
     }
 
+    @Override
+    public void putData(String data) {
+        int pos = data.indexOf("=");
+        String put = data.substring(0, pos);
+        String msgString = data.substring(pos + 1, data.length());
+
+        Message msg = Serializer.fromJson(msgString);
+        if (msg.getTarget().equals("bookmark")) {
+            System.out.println("received bookmark message");
+        } else {
+            super.putData(data);
+        }
+    }
+
+    @Override
+    public void put(String from, String content) {
+        //TODO when is this put used ???
+        System.out.println("put");
+        super.put(from, content);
+    }
 
     @Override
     public void putOnScreen(Screen s, String from, String content) {
+        //TODO when is this putOnScreen used ???
+        System.out.println("putOnScreen");
         super.putOnScreen(s, from, content);
     }
-
 
     private void loadMainScreen(Screen s) {
         s.setRole("main");
 
         // TODO what's the difference between this put and putMsg below?
-//        this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
-//        this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
-
+        //this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
+        //this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
         if (!WORK_OFFLINE) {
             Message msg = new Message("video", new Video(choosenEpisode));
@@ -75,7 +95,7 @@ public class NewsApplication extends Html5Application {
             System.out.println("json = " + json);
             s.putMsg("ngproxy", "", json);
         } else {
-            s.putMsg("ngproxy", "", getTestVideo());
+            s.putMsg("ngproxy", "", getOfflineVideo());
         }
     }
 
@@ -85,7 +105,7 @@ public class NewsApplication extends Html5Application {
     }
 
 
-    private String getTestVideo() {
+    private String getOfflineVideo() {
         return "{\n" +
                 "  \"target\": \"video\",\n" +
                 "  \"data\": {\n" +

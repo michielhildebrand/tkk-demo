@@ -8,4 +8,12 @@ public class Message {
         this.target = target;
         this.data = data;
     }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public Object getData() {
+        return data;
+    }
 }
