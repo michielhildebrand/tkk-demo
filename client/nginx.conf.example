@@ -39,7 +39,7 @@ server {
   }
 
   location /lou {
-    proxy_pass http://%SPRINGFIELD_URL%;
+    proxy_pass http://%SPRINGFIELD_IP%:8080;
     proxy_set_header Host $host;
   }
 }
