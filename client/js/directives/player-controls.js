@@ -44,15 +44,8 @@ function playerControlsDirective(Data) {
         sendToPlayer({action: 'volume', value: value});
       };
 
-      $scope.beamIt = function () {
-        sendToTv({action: 'play', video: Data.getVideo(), chapter: Data.getChapter()});
-      };
-
       function sendToPlayer(action) {
         send({target: 'player', data: action});
-      }
-      function sendToTv(action) {
-        send({target: 'tv', data: action});
       }
       function send(msg) {
         eddie.putLou('ngproxy', JSON.stringify(msg));

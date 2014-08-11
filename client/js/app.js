@@ -2,10 +2,12 @@
 
 var tkkDemoApp = angular.module('tkkDemoApp', [
   'ngRoute',
+  'ui.bootstrap',
 
   'HomeCtrl',
   'PlayCtrl',
   'TvCtrl',
+  'InformationCardCtrl',
 
   'app.player',
   'app.player-controls',

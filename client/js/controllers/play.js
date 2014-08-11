@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , 'eventsBus', 'Data', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , '$modal', 'eventsBus', 'Data', playCtrl]);
 
-function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
+function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
   $scope.second = false;
 
   $scope.chapterIndex = $routeParams.chapterIndex;
@@ -27,4 +27,30 @@ function playCtrl($scope, $routeParams, $location, eventsBus, Data) {
   }
 
   eventsBus.subscribe('video', showVideo);
+
+  $scope.beamIt = function () {
+    sendToTv({action: 'play', video: Data.getVideo(), chapter: Data.getChapter()});
+    openCard();
+  };
+
+  function sendToTv(action) {
+    send({target: 'tv', data: action});
+  }
+  function send(msg) {
+    eddie.putLou('ngproxy', JSON.stringify(msg));
+  }
+
+  function openCard() {
+    var modalInstance = $modal.open({
+      templateUrl: 'partials/information-card.html',
+      controller: 'InformationCardCtrl',
+      size: 'lg'
+    });
+
+    modalInstance.result.then(function () {
+      console.log('Modal accepted at: ' + new Date());
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
+  }
 }
