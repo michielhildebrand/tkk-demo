@@ -2,6 +2,9 @@
   - include: "{{prudentia_dir}}/tasks/timezone.yml tz=Europe/Amsterdam"
     tags: base
 
+  - include: "{{prudentia_dir}}/tasks/github.yml ssh_dir=/home/{{ansible_user_id}}"
+    tags: base
+
   - name: Base | Dump mounts
     command: /bin/mount
     register: machine_mounts
@@ -17,9 +20,6 @@
       - base
       - update
 
-  - include: "{{prudentia_dir}}/tasks/github.yml ssh_dir=/home/{{ansible_user_id}}"
-    tags: base
-
   - name: Base | Checkout git repository
     git: repo={{git_repository}} dest={{install_dir}} version=master
     when: "install_dir not in machine_mounts.stdout"
@@ -27,3 +27,4 @@
       - base
       - update
       - client
+      - checkout

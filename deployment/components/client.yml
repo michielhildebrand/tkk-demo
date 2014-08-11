@@ -14,11 +14,6 @@
       - client
       - update
 
-  - name: Client | Creating Nginx Log Dir
-    command: mkdir -p /etc/nginx/logs
-    sudo: yes
-    tags: client
-
   - include: "{{prudentia_dir}}/tasks/nodejs.yml"
     tags: client
 
@@ -33,7 +28,6 @@
     sudo: yes
     tags:
       - client
-      - update
 
   - name: Client | Restart Nginx
     command: /etc/init.d/nginx restart
