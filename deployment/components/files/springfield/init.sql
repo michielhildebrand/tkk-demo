@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.0.4.1
--- http://www.phpmyadmin.net
---
--- Machine: localhost
--- Genereertijd: 17 jun 2014 om 13:50
--- Serverversie: 5.6.12
--- PHP-versie: 5.5.1
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -19,7 +10,9 @@ SET time_zone = "+00:00";
 --
 -- Databank: `smithers_db`
 --
-CREATE DATABASE IF NOT EXISTS `smithers_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+DROP DATABASE `smithers_db`;
+
+CREATE DATABASE `smithers_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `smithers_db`;
 
 -- --------------------------------------------------------
@@ -48,7 +41,7 @@ TRUNCATE TABLE `children`;
 
 INSERT INTO `children` (`c_uri`, `c_id`, `c_type`, `c_refer_uri`) VALUES
 ('/domain/internal', 'bart', 'service', '/domain/internal/service/bart'),
-('/domain/internal/service/bart', '{{springfield_ip}}', 'nodes', '/domain/internal/service/bart/nodes/{{springfield_ip}}'),
+('/domain/internal/service/bart', '127.0.0.1', 'nodes', '/domain/internal/service/bart/nodes/127.0.0.1'),
 ('/domain/internal', 'homer', 'service', '/domain/internal/service/homer'),
 ('/domain/internal', 'lou', 'service', '/domain/internal/service/lou'),
 ('/domain/internal/service/lou', 'demolinkedtv', 'apps', '/domain/internal/service/lou/apps/demolinkedtv'),
@@ -59,9 +52,9 @@ INSERT INTO `children` (`c_uri`, `c_id`, `c_type`, `c_refer_uri`) VALUES
 ('/domain/internal/service/lou/apps/trafficlightone', '17-jun-2014-13:45', 'development', '/domain/internal/service/lou/apps/trafficlightone/development/17-jun-2014-13:45'),
 ('/domain/internal/service/lou/apps/trafficlightone', '17-jun-2014-13:45', 'production', '/domain/internal/service/lou/apps/trafficlightone/production/17-jun-2014-13:45'),
 ('/domain/internal/service/lou/apps/trafficlightone', '17-jun-2014-13:45', 'versions', '/domain/internal/service/lou/apps/trafficlightone/versions/17-jun-2014-13:45'),
-('/domain/internal/service/lou', '{{springfield_ip}}', 'nodes', '/domain/internal/service/lou/nodes/{{springfield_ip}}'),
+('/domain/internal/service/lou', '127.0.0.1', 'nodes', '/domain/internal/service/lou/nodes/127.0.0.1'),
 ('/domain/internal', 'smithers', 'service', '/domain/internal/service/smithers'),
-('/domain/internal/service/smithers', '{{springfield_ip}}', 'nodes', '/domain/internal/service/smithers/nodes/{{springfield_ip}}'),
+('/domain/internal/service/smithers', '127.0.0.1', 'nodes', '/domain/internal/service/smithers/nodes/127.0.0.1'),
 ('/domain/internal', 'admin', 'user', '/domain/internal/user/admin'),
 ('/domain/linkedtv', 'avro', 'user', '/domain/linkedtv/user/avro'),
 ('/domain/linkedtv/user/avro', '7', 'collection', '/domain/linkedtv/user/avro/collection/7'),
@@ -317,7 +310,7 @@ TRUNCATE TABLE `properties`;
 INSERT INTO `properties` (`p_uri`, `p_type`, `p_xml`, `p_mimetype`, `p_refer_uri`) VALUES
 ('/domain/internal', 'domain', '<fsxml mimetype=''text/fsxml''><properties/></fsxml>', 'text/fsxml', NULL),
 ('/domain/internal/service/bart', 'service', '<fsxml mimetype=''text/fsxml''><properties>	<info>Proxy http access nodes</info></properties></fsxml>', 'text/fsxml', NULL),
-('/domain/internal/service/bart/nodes/{{springfield_ip}}', 'nodes', '<fsxml><properties><name>bart_test</name><status>on</status><lastseen>1403005818644</lastseen><preferedsmithers>{{springfield_ip}}</preferedsmithers><activesmithers>{{springfield_ip}}</activesmithers><defaultloglevel>info</defaultloglevel><defaultloglevel>info</defaultloglevel></properties></fsxml>', 'text/fsxml', NULL),
+('/domain/internal/service/bart/nodes/127.0.0.1', 'nodes', '<fsxml><properties><name>bart_test</name><status>on</status><lastseen>1403005818644</lastseen><preferedsmithers>127.0.0.1</preferedsmithers><activesmithers>127.0.0.1</activesmithers><defaultloglevel>info</defaultloglevel><defaultloglevel>info</defaultloglevel></properties></fsxml>', 'text/fsxml', NULL),
 ('/domain/internal/service/homer', 'service', '<fsxml mimetype=''text/fsxml''><properties>	<info>Cluster information layer</info></properties></fsxml>', 'text/fsxml', NULL),
 ('/domain/internal/service/lou', 'service', '<fsxml><properties><querytime>1357563501167</querytime><info>Traffic Cop Nodes</info></properties></fsxml>', 'text/fsxml', NULL),
 ('/domain/internal/service/lou/apps/demolinkedtv', 'apps', '<fsxml><properties><autodeploy>development/production</autodeploy></properties></fsxml>', 'text/fsxml', NULL),
@@ -328,9 +321,9 @@ INSERT INTO `properties` (`p_uri`, `p_type`, `p_xml`, `p_mimetype`, `p_refer_uri
 ('/domain/internal/service/lou/apps/trafficlightone/development/17-jun-2014-13:45', 'development', '<fsxml><properties></properties></fsxml>', 'text/fsxml', '/domain/internal/service/lou/apps/trafficlightone/versions/17-jun-2014-13:45'),
 ('/domain/internal/service/lou/apps/trafficlightone/production/17-jun-2014-13:45', 'production', '<fsxml><properties></properties></fsxml>', 'text/fsxml', '/domain/internal/service/lou/apps/trafficlightone/versions/17-jun-2014-13:45'),
 ('/domain/internal/service/lou/apps/trafficlightone/versions/17-jun-2014-13:45', 'versions', '<fsxml><properties/></fsxml>', 'text/fsxml', NULL),
-('/domain/internal/service/lou/nodes/{{springfield_ip}}', 'nodes', '<fsxml><properties><name>lou_test</name><status>on</status><lastseen>1403005819185</lastseen><preferedsmithers>{{springfield_ip}}</preferedsmithers><activesmithers>{{springfield_ip}}</activesmithers><defaultloglevel>info</defaultloglevel><defaultloglevel>info</defaultloglevel></properties></fsxml>', 'text/fsxml', NULL),
+('/domain/internal/service/lou/nodes/127.0.0.1', 'nodes', '<fsxml><properties><name>lou_test</name><status>on</status><lastseen>1403005819185</lastseen><preferedsmithers>127.0.0.1</preferedsmithers><activesmithers>127.0.0.1</activesmithers><defaultloglevel>info</defaultloglevel><defaultloglevel>info</defaultloglevel></properties></fsxml>', 'text/fsxml', NULL),
 ('/domain/internal/service/smithers', 'service', '<fsxml mimetype=''text/fsxml''><properties>	<info>Shared xml storage nodes</info></properties></fsxml>', 'text/fsxml', NULL),
-('/domain/internal/service/smithers/nodes/{{springfield_ip}}', 'nodes', '<fsxml><properties><name>master</name><status>on</status><lastseen>1403005820621</lastseen><preferedsmithers>{{springfield_ip}}</preferedsmithers><activesmithers>{{springfield_ip}}</activesmithers><defaultloglevel>info</defaultloglevel><defaultloglevel>info</defaultloglevel></properties></fsxml>', 'text/fsxml', NULL),
+('/domain/internal/service/smithers/nodes/127.0.0.1', 'nodes', '<fsxml><properties><name>master</name><status>on</status><lastseen>1403005820621</lastseen><preferedsmithers>127.0.0.1</preferedsmithers><activesmithers>127.0.0.1</activesmithers><defaultloglevel>info</defaultloglevel><defaultloglevel>info</defaultloglevel></properties></fsxml>', 'text/fsxml', NULL),
 ('/domain/internal/user/admin', 'user', '<fsxml mimetype=''text/fsxml''><properties>	<firstname>Admin</firstname>	<surname>Admin</surname>	<password>$internal.account.password</password></properties></fsxml>', 'text/fsxml', NULL),
 ('/domain/linkedtv', 'domain', '<fsxml><properties/></fsxml>', 'text/fsxml', NULL),
 ('/domain/linkedtv/user/avro', 'user', '<fsxml><properties/></fsxml>', 'text/fsxml', NULL),

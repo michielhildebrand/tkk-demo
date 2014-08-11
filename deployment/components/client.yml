@@ -8,7 +8,7 @@
     tags: client
 
   - name: Client | Copy Nginx configuration
-    template: src={{root_dir}}/components/templates/client/nginx.conf.j2 dest=/etc/nginx/sites-available/tkk.com backup=yes
+    template: src={{root_dir}}/components/templates/client/nginx.conf dest=/etc/nginx/sites-available/tkk.com backup=yes
     sudo: yes
     tags:
       - client

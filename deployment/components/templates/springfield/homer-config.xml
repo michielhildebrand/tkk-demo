@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Config file for Springfield</comment>
+
+  <!-- Marge communcation port, only value used unless a smithers -->
+  <entry key="marge-port">5049</entry>
+  <entry key="default-bart-port">8080</entry>
+  <entry key="default-smithers-port">8080</entry>
+  <entry key="external-ipnumber">{{springfield_ip}}</entry>
+
+  <!-- DATABASE & LOG SETTINGS -->
+  <entry key="db-host">127.0.0.1</entry>
+  <entry key="db-password">FTHmc8e4</entry>
+  <entry key="db-user">smithers</entry>
+  <entry key="db-name">smithers_db</entry>
+
+  <!-- CONNECTION HANDLER -->
+  <entry key="connection-handler-type">C3PO</entry>
+  <entry key="max-num-db-connections">15</entry>
+
+  <!-- THREADS (FOR SCRIPTING) -->
+  <entry key="threaded-script-exec">false</entry>
+  <entry key="use-queue-recovery">false</entry>
+  <entry key="GET-max-num-threads">10</entry>
+  <entry key="PUT-max-num-threads">10</entry>
+  <entry key="POST-max-num-threads">10</entry>
+  <entry key="DELETE-max-num-threads">10</entry>
+
+  <!-- SEARCH SETTINGS-->
+  <entry key="search-engine">lisa</entry>
+
+  <!-- Ingest/FTP settings -->
+  <entry key="temp-dir">/home/webtv2/temp</entry>
+  <entry key="ingest-base-dir">/usr/local/data/va-data1</entry>
+  <entry key="server-range-offset">4</entry>
+  <entry key="number-of-servers">12</entry>
+  <entry key="ftp-server-prefix">stream</entry>
+  <entry key="ftp-server-suffix">.noterik.com</entry>
+  <entry key="mount-prefix">stream</entry>
+  <entry key="ftp-image">images1.noterik.com</entry>
+  <entry key="ftp-image-user">images1</entry>
+  <entry key="ftp-image-pass">images1</entry>
+  <entry key="ftp-image-path">images1</entry>
+  <entry key="thumb-width">90</entry>
+  <entry key="thumb-height">50</entry>
+
+  <!-- DISPATCHER SETTINGS -->
+  <entry key="message-dispatcher-group">225.4.42.42</entry>
+</properties>

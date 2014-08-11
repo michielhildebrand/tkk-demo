@@ -15,23 +15,24 @@
     tags: springfield
 
   - name: Springfield | Copy sql init script
-    template: src={{root_dir}}/components/templates/springfield/init.sql.j2 dest={{install_dir_springfield}}/smithers_db.sql mode=644 backup=yes
-    tags: springfield
+    copy: src={{root_dir}}/components/files/springfield/init.sql dest={{install_dir_springfield}}/smithers_db.sql mode=644 backup=yes
+    tags:
+      - springfield
+      - initdb
 
   - name: Springfield | Execute sql script
     shell: chdir={{install_dir_springfield}} mysql -uroot -p{{mysql_root_password}} < smithers_db.sql
-    tags: springfield
+    tags:
+      - springfield
+      - initdb
 
   - name: Springfield | Configure Homer
-    lineinfile: dest={{install_dir_springfield}}/homer/config.xml regexp='^(.*external-ipnumber">)(.*)(</entry>)$' line='\1{{springfield_ip}}\3' backrefs=yes
-    tags:
-      - springfield
-      - thisone
+    template: src={{root_dir}}/components/templates/springfield/homer-config.xml dest={{install_dir_springfield}}/homer/config.xml mode=644 backup=yes
+    tags: springfield
 
   - name: Springfield | Configure Lazy Homer
-    lineinfile: dest={{install_dir_springfield}}/tomcat/webapps/ROOT/springfield/Scripts/lazyHomer.js regexp='^(.*//)(.*)(:.*)$' line='\1{{springfield_ip}}\3' backrefs=yes
-    tags:
-      - springfield
+    template: src={{root_dir}}/components/templates/springfield/lazy-homer.js dest={{install_dir_springfield}}/tomcat/webapps/ROOT/springfield/Scripts/lazyHomer.js mode=644 backup=yes
+    tags: springfield
 
   - name: Springfield | Link dir
     command: ln -s {{install_dir_springfield}} /springfield
