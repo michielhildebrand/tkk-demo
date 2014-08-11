@@ -17,7 +17,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
 
   'Data',
   'EventsBus',
-  'MediaResource'
+  'EntityProxy'
 ]);
 
 tkkDemoApp.config(['$routeProvider',
@@ -43,7 +43,7 @@ tkkDemoApp.config(['$routeProvider',
       });
   }
 ]).constant('CONFIG', {
-  API_ROOT: 'http://data.linkedtv.eu'
+  ENTITY_PROXY: 'http://linkedtv.project.cwi.nl/explore/entity_proxy'
 }).filter('trusted', [
     '$sce',
     function ($sce) {

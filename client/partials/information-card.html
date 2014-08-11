@@ -1,10 +1,17 @@
 <div class="modal-header">
-  <h3 class="modal-title">I'm a modal!</h3>
+  <h3 class="modal-title">{{chapter.title}}</h3>
 </div>
 <div class="modal-body">
-  Body
+  <ul>
+    <li ng-repeat="loc in locators">
+      <a ng-click="proxy(loc)">{{loc}}</a>
+    </li>
+  </ul>
+  --> <b>{{selectedLoc}}</b>
+  <div ng-repeat="prop in proxyAnswer">
+    <span>{{prop}}</span>
+  </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="ok()">OK</button>
-  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>

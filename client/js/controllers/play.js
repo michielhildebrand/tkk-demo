@@ -44,7 +44,12 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
     var modalInstance = $modal.open({
       templateUrl: 'partials/information-card.html',
       controller: 'InformationCardCtrl',
-      size: 'lg'
+      size: 'lg',
+      resolve: {
+        chapter: function () {
+          return $scope.chapter;
+        }
+      }
     });
 
     modalInstance.result.then(function () {
