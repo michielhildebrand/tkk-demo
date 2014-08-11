@@ -21,7 +21,7 @@ function playerDirective(eventsBus, Data) {
         });
       }
 
-      var updatePlayer = function (newVideo, time) {
+      function updatePlayer(newVideo, time) {
         var player = element[0].children.player;
         var source = player.children.source;
 
@@ -35,7 +35,7 @@ function playerDirective(eventsBus, Data) {
         $(player).on('loadedmetadata', function () {
           player.currentTime = time;
         });
-      };
+      }
 
       scope.$watch(
         function () {
