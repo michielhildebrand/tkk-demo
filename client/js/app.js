@@ -9,8 +9,9 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
 
   'app.player',
   'app.player-controls',
-  'app.chapter-timeline',
+  'app.chapter-list',
   'app.bookmarking',
+  'app.bookmarks',
 
   'Data',
   'EventsBus',

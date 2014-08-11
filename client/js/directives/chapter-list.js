@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.chapter-timeline', []).directive('chapterTimeline', ['$location', 'Data', playerControlsDirective]);
+angular.module('app.chapter-list', []).directive('chapterList', ['$location', 'Data', playerControlsDirective]);
 
 function playerControlsDirective($location, Data) {
   return {
@@ -29,6 +29,6 @@ function playerControlsDirective($location, Data) {
         $location.path('/play/' + chIndex);
       };
     },
-    templateUrl: 'partials/chapter-timeline.html'
+    templateUrl: 'partials/chapter-list.html'
   }
 }
