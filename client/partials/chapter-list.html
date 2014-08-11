@@ -1,7 +1,8 @@
+<h5>Chapters:</h5>
 <div class="row">
   <div class="col-xs-4" ng-repeat="ch in chapters">
-    <div class="thumbnail">
-      <img ng-src="{{getShot(ch)}}" width="50px" height="50px" title="{{getTitle(ch)}}" ng-click="play($index)" alt="{{ch.title}}"/>
+    <div class="thumbnail" ng-click="play($index)">
+      <img ng-src="{{getShot(ch)}}" width="50px" height="50px" title="{{getTitle(ch)}}" alt="{{ch.title}}"/>
       <div class="caption text-center">
         <h4>{{ch.title}}</h4>
       </div>
