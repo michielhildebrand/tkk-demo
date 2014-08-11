@@ -15,8 +15,8 @@ function bookmarkingDirective(Data) {
     controller: function ($scope, $element) {
       $scope.bookmark = function () {
         var chId = $scope.chapter.id;
-        var bookmarks = !isBookmarked() ? Data.bookmark(chId) : Data.unbookmark(chId);
-        sendToBookmark(bookmarks);
+        var currentBookmarks = isBookmarked() ? Data.unbookmark(chId) : Data.bookmark(chId);
+        sendToBookmark(currentBookmarks);
       };
 
       $scope.bookmarkStatus = function () {
@@ -31,10 +31,9 @@ function bookmarkingDirective(Data) {
         }
       }
 
-      function sendToBookmark(action) {
-        send({target: 'bookmark', data: action});
+      function sendToBookmark(b) {
+        send({target: 'bookmark', data: b});
       }
-
       function send(msg) {
         eddie.putLou('ngproxy', JSON.stringify(msg));
       }

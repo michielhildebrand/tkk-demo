@@ -9,6 +9,8 @@ import org.springfield.lou.user.User;
 import org.springfield.mojo.linkedtv.Channel;
 import org.springfield.mojo.linkedtv.Episode;
 
+import java.util.List;
+
 public class NewsApplication extends Html5Application {
 
     private static boolean WORK_OFFLINE = true;
@@ -62,7 +64,10 @@ public class NewsApplication extends Html5Application {
 
         Message msg = Serializer.fromJson(msgString);
         if (msg.getTarget().equals("bookmark")) {
-            System.out.println("received bookmark message");
+            List<String> bookmarks = (List<String>) msg.getData();
+            //the client sends all the bookmarks every time, that is to avoid inconsistencies
+            testUser.getBookmarks().clear();
+            testUser.getBookmarks().addAll(bookmarks);
         } else {
             super.putData(data);
         }
@@ -90,20 +95,27 @@ public class NewsApplication extends Html5Application {
         //this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
         if (!WORK_OFFLINE) {
-            Message msg = new Message("video", new Video(choosenEpisode));
-            String json = Serializer.toJson(msg);
-            System.out.println("json = " + json);
-            s.putMsg("ngproxy", "", json);
+            sendMsg(s, "video", new Video(choosenEpisode));
         } else {
-            s.putMsg("ngproxy", "", getOfflineVideo());
+            send(s, getOfflineVideo());
         }
-    }
 
+        sendMsg(s, "bookmark", testUser.getBookmarks());
+    }
 
     private void loadSecondScreen(Screen s) {
         s.setRole("secondary");
     }
 
+
+    private void sendMsg(Screen s, String target, Object data){
+        Message msg = new Message(target, data);
+        send(s, Serializer.toJson(msg));
+    }
+
+    private void send(Screen s, String m) {
+        s.putMsg("ngproxy", "", m);
+    }
 
     private String getOfflineVideo() {
         return "{\n" +
