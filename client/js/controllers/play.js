@@ -4,6 +4,7 @@ angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams',
 
 function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
   $scope.second = false;
+  $scope.beaming = false;
 
   $scope.chapterIndex = $routeParams.chapterIndex;
 
@@ -28,9 +29,18 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
 
   eventsBus.subscribe('video', showVideo);
 
-  $scope.beamIt = function () {
-    sendToTv({action: 'play', video: Data.getVideo(), chapter: Data.getChapter()});
-    openCard();
+  $scope.toggleBeam = function () {
+    $scope.beaming = !$scope.beaming;
+    if ($scope.beaming) {
+      sendToTv({action: 'play', video: Data.getVideo(), chapter: Data.getChapter()});
+      openCard();
+    } else {
+      //TODO what should happen here?
+    }
+  };
+
+  $scope.beamStatus = function() {
+    return (!$scope.beaming) ? "Beam to TV" : "Stop beaming";
   };
 
   function sendToTv(action) {

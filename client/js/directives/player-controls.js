@@ -22,7 +22,7 @@ function playerControlsDirective(Data) {
         }
       };
 
-      $scope.playLabel = function () {
+      $scope.playStatus = function () {
         return ($scope.play) ? "Pause" : "Play";
       };
 
@@ -35,7 +35,7 @@ function playerControlsDirective(Data) {
         }
       };
 
-      $scope.muteLabel = function () {
+      $scope.muteStatus = function () {
         return ($scope.mute) ? "Unmute" : "Mute";
       };
 

@@ -6,7 +6,8 @@ function playerDirective(eventsBus, Data) {
   return {
     restrict: 'E',
     scope: {
-      second: '='
+      second: '=',
+      beaming: '='
     },
     replace: false,
     link: function (scope, element, attrs) {
@@ -37,6 +38,12 @@ function playerDirective(eventsBus, Data) {
         });
       }
 
+      scope.$watch('beaming', function(beaming) {
+        if (beaming) {
+          element[0].children.player.pause();
+        }
+      });
+
       scope.$watch(
         function () {
           return Data.getVideo();
@@ -48,33 +55,35 @@ function playerDirective(eventsBus, Data) {
     },
     controller: function ($scope, $element) {
       var executeAction = function (msg) {
-        var player = $element[0].children.player;
-        var a = msg.action;
-        if (a) {
-          console.log('action ' + a);
-          switch (a) {
-            case 'play':
-              player.play();
-              $scope.paused = false;
-              break;
-            case 'pause':
-              player.pause();
-              $scope.paused = true;
-              break;
-            case 'mute':
-              player.muted = true;
-              break;
-            case 'unmute':
-              player.muted = false;
-              break;
-            case 'volume':
-              player.volume = msg.value;
-              break;
-            default:
-              console.log('Unknown action: ' + a);
+        if (!$scope.beaming) {
+          var player = $element[0].children.player;
+          var a = msg.action;
+          if (a) {
+            console.log('action ' + a);
+            switch (a) {
+              case 'play':
+                player.play();
+                $scope.paused = false;
+                break;
+              case 'pause':
+                player.pause();
+                $scope.paused = true;
+                break;
+              case 'mute':
+                player.muted = true;
+                break;
+              case 'unmute':
+                player.muted = false;
+                break;
+              case 'volume':
+                player.volume = msg.value;
+                break;
+              default:
+                console.log('Unknown action: ' + a);
+            }
+          } else {
+            console.log('Unknown message: ' + msg);
           }
-        } else {
-          console.log('Unknown message: ' + msg);
         }
       };
       eventsBus.subscribe('player', executeAction);

@@ -1,12 +1,12 @@
 <div class="container">
   <h3 class="text-center">Chapter: <b>{{chapter.title}}</b></h3>
   <br>
-  <player second="second"></player>
+  <player second="second" beaming="beaming"></player>
   <br>
   <div class="row">
     <button type="button" ng-click="goToMain()" class="btn btn-primary">Go to main</button>
+    <button type="button" ng-click="toggleBeam()" class="btn btn-primary">{{beamStatus()}}</button>
     <bookmarking chapter="chapter"></bookmarking>
-    <button type="button" ng-click="beamIt()" class="btn btn-primary">Beam to TV</button>
     <player-controls class="pull-right"></player-controls>
   </div>
   <br>
