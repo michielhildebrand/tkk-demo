@@ -7,9 +7,13 @@ function informationCardCtrl($scope, $modalInstance, entityProxy, Data, chapter)
   $scope.chapter = chapter;
   $scope.locators = _.chain(chapter.fragments)
     .pluck('locator')
-    .filter(function (l) {
-      return l != ""
+    .map(function(l) {
+      return l.trim();
     })
+    .filter(function (l) {
+      return l.length > 0;
+    })
+    .uniq()
     .value();
 
   $scope.selectedLoc = "";
@@ -21,15 +25,13 @@ function informationCardCtrl($scope, $modalInstance, entityProxy, Data, chapter)
 
     entityProxy.get({loc: loc}, function (r) {
       $scope.proxyAnswer = _.property(loc)(r);
+
+      console.log($scope.proxyAnswer);
     });
   };
 
   $scope.ok = function () {
     $modalInstance.close();
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
   };
 
 }
