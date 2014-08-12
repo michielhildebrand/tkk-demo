@@ -29,6 +29,6 @@ function playerControlsDirective($location, Data) {
         $location.path('/play/' + chIndex);
       };
     },
-    templateUrl: 'partials/chapter-list.html'
+    templateUrl: 'partials/directives/chapter-list.html'
   }
 }

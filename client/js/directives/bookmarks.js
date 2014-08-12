@@ -29,6 +29,6 @@ function bookmarksDirective(eventsBus, Data) {
 
       eventsBus.subscribe('bookmark', syncBookmarks);
     },
-    templateUrl: 'partials/bookmarks.html'
+    templateUrl: 'partials/directives/bookmarks.html'
   }
 }

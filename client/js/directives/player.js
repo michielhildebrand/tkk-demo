@@ -79,6 +79,6 @@ function playerDirective(eventsBus, Data) {
       };
       eventsBus.subscribe('player', executeAction);
     },
-    templateUrl: 'partials/player.html'
+    templateUrl: 'partials/directives/player.html'
   }
 }

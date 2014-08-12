@@ -42,8 +42,8 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
 
   function openCard() {
     var modalInstance = $modal.open({
-      templateUrl: 'partials/information-card.html',
-      controller: 'InformationCardCtrl',
+      templateUrl: 'partials/controllers/enrich.html',
+      controller: 'EnrichCtrl',
       size: 'lg',
       resolve: {
         chapter: function () {

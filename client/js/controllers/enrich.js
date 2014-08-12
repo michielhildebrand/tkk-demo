@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('InformationCardCtrl', []).controller('InformationCardCtrl',
-  ['$scope', '$modalInstance', 'entityProxy', 'Data', 'chapter', informationCardCtrl]);
+angular.module('EnrichCtrl', []).controller('EnrichCtrl',
+  ['$scope', '$modalInstance', 'entityProxy', 'Data', 'chapter', enrichCtrl]);
 
-function informationCardCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
+function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
   $scope.chapter = chapter;
   $scope.locators = _.chain(chapter.fragments)
     .pluck('locator')

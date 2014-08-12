@@ -7,7 +7,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'HomeCtrl',
   'PlayCtrl',
   'TvCtrl',
-  'InformationCardCtrl',
+  'EnrichCtrl',
 
   'app.player',
   'app.player-controls',
@@ -25,17 +25,17 @@ tkkDemoApp.config(['$routeProvider',
     $routeProvider.
       when('/', {
         title: 'TKK Demo',
-        templateUrl: 'partials/home.html',
+        templateUrl: 'partials/controllers/home.html',
         controller: 'HomeCtrl'
       }).
       when('/play/:chapterIndex', {
         title: 'TKK Demo - Chapter',
-        templateUrl: 'partials/play.html',
+        templateUrl: 'partials/controllers/play.html',
         controller: 'PlayCtrl'
       }).
       when('/tv', {
         title: 'TKK Demo - TV',
-        templateUrl: 'partials/tv.html',
+        templateUrl: 'partials/controllers/tv.html',
         controller: 'TvCtrl'
       }).
       otherwise({

@@ -38,6 +38,6 @@ function bookmarkingDirective(Data) {
         eddie.putLou('ngproxy', JSON.stringify(msg));
       }
     },
-    templateUrl: 'partials/bookmarking.html'
+    templateUrl: 'partials/directives/bookmarking.html'
   }
 }

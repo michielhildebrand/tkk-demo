@@ -51,6 +51,6 @@ function playerControlsDirective(Data) {
         eddie.putLou('ngproxy', JSON.stringify(msg));
       }
     },
-    templateUrl: 'partials/player-controls.html'
+    templateUrl: 'partials/directives/player-controls.html'
   }
 }
