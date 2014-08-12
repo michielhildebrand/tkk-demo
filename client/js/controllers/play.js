@@ -33,7 +33,7 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
     $scope.beaming = !$scope.beaming;
     if ($scope.beaming) {
       sendToTv({action: 'play', video: Data.getVideo(), chapter: Data.getChapter()});
-      openCard();
+      openEnrichment();
     } else {
       //TODO what should happen here?
     }
@@ -43,6 +43,10 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
     return (!$scope.beaming) ? "Beam to TV" : "Stop beaming";
   };
 
+  $scope.showEnrichment = function() {
+    openEnrichment();
+  };
+
   function sendToTv(action) {
     send({target: 'tv', data: action});
   }
@@ -50,7 +54,7 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
     eddie.putLou('ngproxy', JSON.stringify(msg));
   }
 
-  function openCard() {
+  function openEnrichment() {
     var modalInstance = $modal.open({
       templateUrl: 'partials/controllers/enrich.html',
       controller: 'EnrichCtrl',

@@ -6,11 +6,12 @@
   <div class="row">
     <button type="button" ng-click="goToMain()" class="btn btn-primary">Go to main</button>
     <button type="button" ng-click="toggleBeam()" class="btn btn-primary">{{beamStatus()}}</button>
-    <bookmarking chapter="chapter"></bookmarking>
+    <button type="button" ng-click="showEnrichment()" class="btn btn-primary">Enrich</button>
     <player-controls class="pull-right"></player-controls>
   </div>
   <br>
   <chapter-list chapters="video.chapters"></chapter-list>
   <br>
+  <bookmarking chapter="chapter"></bookmarking>
   <bookmarks></bookmarks>
 </div>
