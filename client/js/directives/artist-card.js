@@ -18,18 +18,18 @@ function bookmarkingDirective(Data) {
 
       _(interestingProps).map(function (prop) {
         var guessedValue = firstValue(_.property(prop)($scope.props));
-        console.log(prop);
-        console.log(guessedValue);
         $scope[prop] = guessedValue;
       });
 
       function firstValue(prop) {
         var v = '';
-        if (prop.length > 0) {
-          if (prop[0].value) {
-            v = prop[0].value;
-          } else {
-            v = prop[0];
+        if (prop) {
+          if (prop.length > 0) {
+            if (prop[0].value) {
+              v = prop[0].value;
+            } else {
+              v = prop[0];
+            }
           }
         }
         return v;
