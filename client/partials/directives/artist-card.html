@@ -1,3 +1,11 @@
 <h5>{{label}}</h5>
-<img ng-src="{{thumbnail}}" width="50px" height="50px" title="{{label}}" alt="{{label}}"/>
-<span>{{abstract}}</span>
+<img ng-src="{{thumb}}" width="50px" height="50px" title="{{label}}" alt="{{label}}"/>
+<br>
+<label>Birth:</label> <span>{{birthDate}} {{birthPlace}}</span>,
+<label>Death:</label> <span>{{deathDate}} {{deathPlace}}</span>,
+<div ng-if="nationality"><label>Nationality:</label> <span>{{nationality}}</span></div>
+<br>
+<div ng-if="profession"><label>Profession:</label> <span>{{profession}}</span></div>
+<div ng-if="style"><label>Style:</label> <span>{{style}}</span></div>
+<br>
+<span>{{comment}}</span>

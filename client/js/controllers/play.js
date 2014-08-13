@@ -67,9 +67,9 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
     });
 
     modalInstance.result.then(function () {
-      console.log('Modal accepted at: ' + new Date());
+      //console.log('Modal accepted at: ' + new Date());
     }, function () {
-      console.log('Modal dismissed at: ' + new Date());
+      //console.log('Modal dismissed at: ' + new Date());
     });
   }
 }
