@@ -7,10 +7,18 @@
       <a ng-click="proxy(loc)">{{loc}}</a>
     </li>
   </ul>
-  --> <b>{{selectedLoc}}</b>
-  <div ng-repeat="prop in proxyAnswer">
-    <span>{{prop}}</span>
+
+  <div ng-if="answered">
+    <div ng-switch on="entityType">
+      <div ng-switch-when="artist">
+        <artist-card props="proxyAnswer"></artist-card>
+      </div>
+      <div ng-switch-default>
+        <b>Entity type not known!</b>
+      </div>
+    </div>
   </div>
+
 </div>
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="ok()">OK</button>
