@@ -8,18 +8,25 @@ import org.springfield.lou.screen.Screen;
 import org.springfield.lou.user.User;
 import org.springfield.mojo.linkedtv.Channel;
 import org.springfield.mojo.linkedtv.Episode;
+import org.springfield.mojo.linkedtv.GAIN;
 
 import java.util.List;
 
 public class NewsApplication extends Html5Application {
 
-    private static boolean WORK_OFFLINE = true;
+    private boolean WORK_OFFLINE = true;
 
-    private User testUser = new User("Test User");
+    private User testUser;
+    private GAIN userTracker;
+
     private Episode choosenEpisode;
+
 
     public NewsApplication(String id) {
         super(id);
+
+        testUser = new User("Test User");
+        userTracker = new GAIN("LINKEDTV-TEST", "Culture");
     }
 
     public NewsApplication(String id, String remoteReceiver) {
@@ -108,7 +115,7 @@ public class NewsApplication extends Html5Application {
     }
 
 
-    private void sendMsg(Screen s, String target, Object data){
+    private void sendMsg(Screen s, String target, Object data) {
         Message msg = new Message(target, data);
         send(s, Serializer.toJson(msg));
     }
