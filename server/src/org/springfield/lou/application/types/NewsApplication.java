@@ -8,25 +8,25 @@ import org.springfield.lou.screen.Screen;
 import org.springfield.lou.user.User;
 import org.springfield.mojo.linkedtv.Channel;
 import org.springfield.mojo.linkedtv.Episode;
-import org.springfield.mojo.linkedtv.GAIN;
 
 import java.util.List;
 
 public class NewsApplication extends Html5Application {
 
-    private boolean WORK_OFFLINE = true;
-
-    private User testUser;
-    private GAIN userTracker;
+    private static final boolean WORK_OFFLINE = true;
 
     private Episode choosenEpisode;
+    private User testUser;
+
+    private static final int MAX_CAPACITY = 100;
+    private EventsQueue eventsQueue;
 
 
     public NewsApplication(String id) {
         super(id);
 
         testUser = new User("Test User");
-        userTracker = new GAIN("LINKEDTV-TEST", "Culture");
+        eventsQueue = new EventsQueue(MAX_CAPACITY);
     }
 
     public NewsApplication(String id, String remoteReceiver) {
@@ -70,6 +70,7 @@ public class NewsApplication extends Html5Application {
         String msgString = data.substring(pos + 1, data.length());
 
         Message msg = Serializer.fromJson(msgString);
+        eventsQueue.put(msg);
         if (msg.getTarget().equals("bookmark")) {
             List<String> bookmarks = (List<String>) msg.getData();
             //the client sends all the bookmarks every time, that is to avoid inconsistencies
