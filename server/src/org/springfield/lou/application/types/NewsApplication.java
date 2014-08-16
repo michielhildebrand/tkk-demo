@@ -2,6 +2,7 @@ package org.springfield.lou.application.types;
 
 import org.springfield.lou.application.Html5Application;
 import org.springfield.lou.application.types.domain.Video;
+import org.springfield.lou.application.types.gain.UserEvents;
 import org.springfield.lou.application.types.protocol.Message;
 import org.springfield.lou.application.types.protocol.Serializer;
 import org.springfield.lou.screen.Screen;
@@ -19,14 +20,14 @@ public class NewsApplication extends Html5Application {
     private User testUser;
 
     private static final int MAX_CAPACITY = 100;
-    private EventsQueue eventsQueue;
+    private UserEvents userEvents;
 
 
     public NewsApplication(String id) {
         super(id);
 
         testUser = new User("Test User");
-        eventsQueue = new EventsQueue(MAX_CAPACITY);
+        userEvents = new UserEvents(MAX_CAPACITY);
     }
 
     public NewsApplication(String id, String remoteReceiver) {
@@ -70,7 +71,7 @@ public class NewsApplication extends Html5Application {
         String msgString = data.substring(pos + 1, data.length());
 
         Message msg = Serializer.fromJson(msgString);
-        eventsQueue.put(msg);
+        userEvents.put(msg);
         if (msg.getTarget().equals("bookmark")) {
             List<String> bookmarks = (List<String>) msg.getData();
             //the client sends all the bookmarks every time, that is to avoid inconsistencies
