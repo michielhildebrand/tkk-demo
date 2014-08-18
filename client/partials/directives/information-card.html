@@ -2,19 +2,19 @@
 <img class="center-block" ng-src="{{thumb.value}}" width="200px" title="{{label.value}}" alt="{{label.value}}"/>
 <br>
 <div ng-if="birthDate.value">
-  <label>Birth:</label> {{birthDate.value}} <a ng-click="nav(birthPlace.uri)">{{birthPlace.value}}</a>
+  <label>Birth:</label> {{birthDate.value}} <a ng-click="nav(birthPlace)">{{birthPlace.value}}</a>
 </div>
 <div ng-if="deathDate.value">
-  <label>Death:</label> {{deathDate.value}} <a ng-click="nav(deathPlace.uri)">{{deathPlace.value}}</a>
+  <label>Death:</label> {{deathDate.value}} <a ng-click="nav(deathPlace)">{{deathPlace.value}}</a>
 </div>
 <div ng-if="nationality.value">
-  <label>Nationality:</label> <a ng-click="nav(nationality.uri)">{{nationality.value}}</a>
+  <label>Nationality:</label> <a ng-click="nav(nationality)">{{nationality.value}}</a>
 </div>
 <div ng-if="profession.value">
-  <label>Profession:</label> <a ng-click="nav(profession.uri)">{{profession.value}}</a>
+  <label>Profession:</label> <a ng-click="nav(profession)">{{profession.value}}</a>
 </div>
 <div ng-if="style.value">
-  <label>Style:</label> <a ng-click="nav(style.uri)">{{style.value}}</a>
+  <label>Style:</label> <a ng-click="nav(style)">{{style.value}}</a>
 </div>
 <div ng-if="population.value">
   <label>Population:</label> {{population.value}}

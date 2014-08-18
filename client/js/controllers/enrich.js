@@ -5,23 +5,31 @@ angular.module('EnrichCtrl', []).controller('EnrichCtrl',
 
 function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
   $scope.chapter = chapter;
-
+  $scope.crumbs = [];
   $scope.entities = _.chain(chapter.fragments)
     .map(function (f) {
-      return {title: f.title.trim(), url: f.locator.trim()}
+      return {value: f.title.trim(), uri: f.locator.trim()}
     })
     .filter(function (e) {
-      return e.url.length > 0
+      return e.uri.length > 0
     })
     .uniq(false, function (e) {
-      return e.url;
+      return e.uri;
     })
     .value();
 
   //TODO for now when the enrich screen is brought up we load the first entity
-  callEntityProxy($scope.entities[0].url);
+//  callEntityProxy('Piet Mondrian', 'http://dbpedia.org/resource/Piet_Mondrian', true);
+  callEntityProxy($scope.entities[0].value, $scope.entities[0].uri, true);
 
-  function callEntityProxy(loc) {
+  function callEntityProxy(title, loc, restart) {
+    console.log(restart);
+    if (restart) {
+      $scope.crumbs = [title]
+    } else {
+      $scope.crumbs.push(title)
+    }
+
     $scope.loading = true;
 
     entityProxy.get({loc: loc}, function (r) {
@@ -32,8 +40,8 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
     });
   }
 
-  $scope.proxy = function (loc) {
-    callEntityProxy(loc)
+  $scope.proxy = function (e, restart) {
+    callEntityProxy(e.value, e.uri, restart)
   };
 
   $scope.ok = function () {

@@ -18,34 +18,34 @@ function informationCardDirective(Data) {
         'nationality', 'profession', 'style', 'population'];
 
       _(interestingProps).map(function (prop) {
-        var guessedValue = firstValue(_.property(prop)($scope.props));
+        var guessedValue = firstEntity(_.property(prop)($scope.props));
         $scope[prop] = guessedValue;
       });
 
-      function firstValue(prop) {
-        var v = {value: '', uri: ''};
+      function firstEntity(prop) {
+        var e = {value: '', uri: ''};
         if (prop) {
           if (prop.length > 0) {
             if (prop[0].value) {
-              v = {
+              e = {
                 value: prop[0].value,
                 uri: prop[0].uri || ''
               }
             } else {
-              v = {
+              e = {
                 value: prop[0],
                 uri: ''
               }
             }
           }
         }
-        return v;
+        return e;
       }
 
       var browse = $scope.browse();
 
-      $scope.nav = function(uri) {
-        browse(uri);
+      $scope.nav = function(e) {
+        browse(e, false);
       }
     },
     templateUrl: 'partials/directives/information-card.html'
