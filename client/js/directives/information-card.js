@@ -15,7 +15,7 @@ function informationCardDirective(Data) {
     },
     controller: function ($scope, $element) {
       var interestingProps = ['label', 'thumb', 'comment', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
-        'nationality', 'profession', 'style'];
+        'nationality', 'profession', 'style', 'population'];
 
       _(interestingProps).map(function (prop) {
         var guessedValue = firstValue(_.property(prop)($scope.props));
@@ -23,7 +23,7 @@ function informationCardDirective(Data) {
       });
 
       function firstValue(prop) {
-        var v = null;
+        var v = {value: '', uri: ''};
         if (prop) {
           if (prop.length > 0) {
             if (prop[0].value) {
@@ -44,8 +44,8 @@ function informationCardDirective(Data) {
 
       var browse = $scope.browse();
 
-      $scope.nav = function() {
-        browse("http://dbpedia.org/resource/Piet_Mondrian");
+      $scope.nav = function(uri) {
+        browse(uri);
       }
     },
     templateUrl: 'partials/directives/information-card.html'
