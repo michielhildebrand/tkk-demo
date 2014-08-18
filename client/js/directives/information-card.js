@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.artist-card', []).directive('artistCard', ['Data', bookmarkingDirective]);
+angular.module('app.information-card', []).directive('informationCard', ['Data', bookmarkingDirective]);
 
 function bookmarkingDirective(Data) {
   return {
@@ -35,6 +35,6 @@ function bookmarkingDirective(Data) {
         return v;
       }
     },
-    templateUrl: 'partials/directives/artist-card.html'
+    templateUrl: 'partials/directives/information-card.html'
   }
 }

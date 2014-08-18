@@ -9,16 +9,8 @@
   </ul>
 
   <div ng-if="answered">
-    <div ng-switch on="entityType">
-      <div ng-switch-when="artist">
-        <artist-card props="proxyAnswer"></artist-card>
-      </div>
-      <div ng-switch-default>
-        <b>Entity type not known!</b>
-      </div>
-    </div>
+    <information-card props="proxyAnswer"></information-card>
   </div>
-
 </div>
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="ok()">OK</button>
