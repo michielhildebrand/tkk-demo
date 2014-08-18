@@ -119,7 +119,9 @@ public class NewsApplication extends Html5Application {
 
     private void sendMsg(Screen s, String target, Object data) {
         Message msg = new Message(target, data);
-        send(s, Serializer.toJson(msg));
+        String json = Serializer.toJson(msg);
+        System.out.println("json message = " + json);
+        send(s, json);
     }
 
     private void send(Screen s, String m) {
@@ -127,8 +129,7 @@ public class NewsApplication extends Html5Application {
     }
 
     private String getOfflineVideo() {
-        return "{\n" +
-                "  \"target\": \"video\",\n" +
+        return "{\"target\": \"video\",\n" +
                 "  \"data\": {\n" +
                 "    \"id\": \"8a8187f2-3fc8-cb54-0140-7dccd76f0001\",\n" +
                 "    \"title\": \"Tussen Kunst - 640\",\n" +
@@ -223,7 +224,15 @@ public class NewsApplication extends Html5Application {
                 "            \"type\": \"Thing\",\n" +
                 "            \"startTime\": 185000,\n" +
                 "            \"enrichments\": []\n" +
-                "          },\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"id\": \"3\",\n" +
+                "        \"duration\": \"180000.0\",\n" +
+                "        \"title\": \"Horse painting\",\n" +
+                "        \"startTime\": 284000,\n" +
+                "        \"fragments\": [\n" +
                 "          {\n" +
                 "            \"id\": \"cdba0bb8-e00c-11e3-95a7-005056a7235c\",\n" +
                 "            \"locator\": \"http://dbpedia.org/resource/Jan_Altink\",\n" +
@@ -232,15 +241,7 @@ public class NewsApplication extends Html5Application {
                 "            \"type\": \"Thing\",\n" +
                 "            \"startTime\": 285000,\n" +
                 "            \"enrichments\": [\"https://www.youtube.com/watch?v=7cFmprcLzVo\", \"https://www.flickr.com/search?sort=relevance&text=jan%20altink\", \"http://www.europeana.eu/portal/record/2021623/index_php_a_1_id_24_s_1_rg_1_rg_id_480_rg_b_1.html\"]\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"id\": \"3\",\n" +
-                "        \"duration\": \"300000.0\",\n" +
-                "        \"title\": \"Chapter2\",\n" +
-                "        \"startTime\": 300000,\n" +
-                "        \"fragments\": [\n" +
+                "          },\n" +
                 "          {\n" +
                 "            \"id\": \"c1dc27ba-1359-11e4-a082-005056a7235c\",\n" +
                 "            \"locator\": \"\",\n" +
@@ -341,12 +342,12 @@ public class NewsApplication extends Html5Application {
                 "          },\n" +
                 "          {\n" +
                 "            \"id\": \"0b8759c8-f791-11e3-8ec5-005056a7235c\",\n" +
-                "            \"locator\": \"\",\n" +
+                "            \"locator\": \"http://nl.wikipedia.org/wiki/Zilver\",\n" +
                 "            \"duration\": \"4439.9414\",\n" +
                 "            \"title\": \"zilver\",\n" +
                 "            \"type\": \"Thing\",\n" +
                 "            \"startTime\": 2302239,\n" +
-                "            \"enrichments\": []\n" +
+                "            \"enrichments\": [\"http://nl.wikipedia.org/wiki/Zilver\"]\n" +
                 "          }\n" +
                 "        ]\n" +
                 "      }\n" +

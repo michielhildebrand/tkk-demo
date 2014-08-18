@@ -94,7 +94,15 @@
             "type": "Thing",
             "startTime": 185000,
             "enrichments": []
-          },
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "duration": "180000.0",
+        "title": "Horse painting",
+        "startTime": 284000,
+        "fragments": [
           {
             "id": "cdba0bb8-e00c-11e3-95a7-005056a7235c",
             "locator": "http://dbpedia.org/resource/Jan_Altink",
@@ -103,15 +111,7 @@
             "type": "Thing",
             "startTime": 285000,
             "enrichments": ["https://www.youtube.com/watch?v=7cFmprcLzVo", "https://www.flickr.com/search?sort=relevance&text=jan%20altink", "http://www.europeana.eu/portal/record/2021623/index_php_a_1_id_24_s_1_rg_1_rg_id_480_rg_b_1.html"]
-          }
-        ]
-      },
-      {
-        "id": "3",
-        "duration": "300000.0",
-        "title": "Chapter2",
-        "startTime": 300000,
-        "fragments": [
+          },
           {
             "id": "c1dc27ba-1359-11e4-a082-005056a7235c",
             "locator": "",
@@ -212,12 +212,12 @@
           },
           {
             "id": "0b8759c8-f791-11e3-8ec5-005056a7235c",
-            "locator": "",
+            "locator": "http://nl.wikipedia.org/wiki/Zilver",
             "duration": "4439.9414",
             "title": "zilver",
             "type": "Thing",
             "startTime": 2302239,
-            "enrichments": []
+            "enrichments": ["http://nl.wikipedia.org/wiki/Zilver"]
           }
         ]
       }
