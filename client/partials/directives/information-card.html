@@ -1,21 +1,22 @@
-<h4 class="text-center">{{label}}</h4>
-<img class="center-block" ng-src="{{thumb}}" width="200px" title="{{label}}" alt="{{label}}"/>
+<h4 class="text-center">{{label.value}}</h4>
+<img class="center-block" ng-src="{{thumb.value}}" width="200px" title="{{label.value}}" alt="{{label.value}}"/>
 <br>
 <div ng-if="birthDate">
-  <label>Birth:</label> <span>{{birthDate}} {{birthPlace}}</span>,
+  <label>Birth:</label> <span>{{birthDate.value}} {{birthPlace.value}}</span>,
 </div>
 <div ng-if="deathDate">
-  <label>Death:</label> <span>{{deathDate}} {{deathPlace}}</span>,
+  <label>Death:</label> <span>{{deathDate.value}} {{deathPlace.value}}</span>,
 </div>
 <div ng-if="nationality">
-  <label>Nationality:</label> <span>{{nationality}}</span>
+  <label>Nationality:</label> <span>{{nationality.value}}</span>
 </div>
 <br>
 <div ng-if="profession">
-  <label>Profession:</label> <span>{{profession}}</span>
+  <label>Profession:</label> <span>{{profession.value}}</span>
 </div>
 <div ng-if="style">
-  <label>Style:</label> <span>{{style}}</span>
+  <label>Style:</label> <span>{{style.value}}</span>
 </div>
 <br>
-<span>{{comment}}</span>
+<span>{{comment.value}}</span>
+<button class="btn btn-primary" ng-click="nav()">test nav</button>
