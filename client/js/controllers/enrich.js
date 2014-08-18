@@ -5,25 +5,27 @@ angular.module('EnrichCtrl', []).controller('EnrichCtrl',
 
 function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
   $scope.chapter = chapter;
-  $scope.locators = _.chain(chapter.fragments)
-    .pluck('locator')
-    .map(function(l) {
-      return l.trim();
+
+  $scope.entities = _.chain(chapter.fragments)
+    .map(function (f) {
+      return {title: f.title.trim(), url: f.locator.trim()}
     })
-    .filter(function (l) {
-      return l.length > 0;
+    .filter(function (e) {
+      return e.url.length > 0
     })
-    .uniq()
+    .uniq(false, function (e) {
+      return e.url;
+    })
     .value();
 
   $scope.answered = false;
 
-  $scope.proxy = function(loc) {
+  $scope.proxy = function (loc) {
     $scope.answered = false;
 
     entityProxy.get({loc: loc}, function (r) {
       $scope.proxyAnswer = _.property(loc)(r);
-      //console.log($scope.proxyAnswer);
+      console.log($scope.proxyAnswer);
 
       var type = $scope.proxyAnswer.type[0];
       if (type == 'person' || type == 'artist') {

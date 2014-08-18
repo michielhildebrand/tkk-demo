@@ -3,8 +3,8 @@
 </div>
 <div class="modal-body">
   <ul>
-    <li ng-repeat="loc in locators">
-      <a ng-click="proxy(loc)">{{loc}}</a>
+    <li ng-repeat="e in entities">
+      <a ng-click="proxy(e.url)">{{e.title}}</a>
     </li>
   </ul>
 
