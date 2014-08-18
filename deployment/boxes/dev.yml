@@ -23,4 +23,6 @@
 
     - include: "{{root_dir}}/components/springfield.yml"
 
+    - include: "{{root_dir}}/components/server.yml"
+
     - include: "{{root_dir}}/components/client.yml"

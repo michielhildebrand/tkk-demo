@@ -1,0 +1,13 @@
+---
+  - name: Server | Create war
+    command: chdir={{root_dir}}/../server ant create-war
+    delegate_to: 127.0.0.1
+    tags: server
+
+  - name: Server | Upload war
+    copy: src={{root_dir}}/../server/dist/smt_newsapp.war dest=~/
+    tags: server
+
+  - name: Server | Deploy using Lou
+    command: chdir=~/ mv smt_newsapp.war /opt/springfield/lou/uploaddir
+    tags: server
