@@ -23,7 +23,7 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
 
     entityProxy.get({loc: loc}, function (r) {
       $scope.proxyAnswer = _.property(loc)(r);
-      console.log($scope.proxyAnswer);
+      //console.log($scope.proxyAnswer);
 
       var type = $scope.proxyAnswer.type[0];
       if (type == 'person' || type == 'artist') {
