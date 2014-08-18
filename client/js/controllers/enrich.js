@@ -18,24 +18,22 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
     })
     .value();
 
-  $scope.answered = false;
+  //TODO for now when the enrich screen is brought up we load the first entity
+  callEntityProxy($scope.entities[0].url);
 
-  $scope.proxy = function (loc) {
-    $scope.answered = false;
+  function callEntityProxy(loc) {
+    $scope.loading = true;
 
     entityProxy.get({loc: loc}, function (r) {
       $scope.proxyAnswer = _.property(loc)(r);
       console.log($scope.proxyAnswer);
 
-      var type = $scope.proxyAnswer.type[0];
-      if (type == 'person' || type == 'artist') {
-        $scope.entityType = 'artist';
-      } else {
-        $scope.entityType = 'unknown';
-      }
-
-      $scope.answered = true;
+      $scope.loading = false;
     });
+  }
+
+  $scope.proxy = function (loc) {
+    callEntityProxy(loc)
   };
 
   $scope.ok = function () {

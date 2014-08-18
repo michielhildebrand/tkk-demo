@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.information-card', []).directive('informationCard', ['Data', bookmarkingDirective]);
+angular.module('app.information-card', []).directive('informationCard', ['Data', informationCardDirective]);
 
-function bookmarkingDirective(Data) {
+function informationCardDirective(Data) {
   return {
     restrict: 'E',
     scope: {
