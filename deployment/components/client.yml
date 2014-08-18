@@ -10,14 +10,12 @@
   - name: Client | Copy Nginx configuration
     template: src={{root_dir}}/components/templates/client/nginx.conf dest=/etc/nginx/sites-available/tkk.com backup=yes
     sudo: yes
-    tags:
-      - client
-      - update
+    tags: client
 
   - include: "{{prudentia_dir}}/tasks/nodejs.yml"
     tags: client
 
-  - name: Client | Update dependencies and compile
+  - name: Client | Update dependencies
     command: chdir={{install_dir_client}} npm install
     tags:
       - client
@@ -26,12 +24,9 @@
   - name: Client | Enable website
     command: ln -fs /etc/nginx/sites-available/tkk.com /etc/nginx/sites-enabled/tkk.com
     sudo: yes
-    tags:
-      - client
+    tags: client
 
   - name: Client | Restart Nginx
     command: /etc/init.d/nginx restart
     sudo: yes
-    tags:
-      - client
-      - update
+    tags: client
