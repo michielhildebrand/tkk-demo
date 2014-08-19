@@ -5,11 +5,34 @@ html, body {
     font-weight: normal;
     font-size: 12px;
     background-color: #DDD;
+    color: #333;
 }
 
+/* home */
+.hd {
+    background-color: #FFF;
+    border-bottom: 1px solid #BBB;
+}
+.hd h1 {
+    font-size: 20px;
+    margin: 15px 0 15px 15px;
+}
+.container.section {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #E2E2E2;
+}
+.section h4 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 8px;
+    
+}
 .container {
     padding: 0;
 }
+
+/* player */
 video {
     max-height: 100%;
     background-color: black;
@@ -28,7 +51,7 @@ video {
 }
 
 .timeline {
-    padding: 14px 0;
+    padding-top: 14px;
 }
 
 .chapter-list {
@@ -37,7 +60,7 @@ video {
 
 .chapter {
     border-right: 1px solid #EEE;
-    padding: 6px;
+    padding: 8px;
     float: left;
 }
 

@@ -1,10 +1,29 @@
-<div ng-if="video" class="container">
-  <div>
-    <h3 class="text-center">Title: <b>{{video.title}}</b></h3>
-    <img ng-src="{{video.poster}}" class="center-block"/>
-  </div>
-  <br>
-  <chapter-list chapters="video.chapters"></chapter-list>
-  <br>
-  <bookmarks></bookmarks>
+<div class="container-fluid hd">
+	<div class="container clearfix">
+		<div class="pull-left"><img src="img/linkedtv_icon.png" height="50px"></div>
+		<h1 class="pull-left">Linked Culture</h1>
+	</div>
 </div>
+
+<div class="container section">
+	<h4>Latest episode</h4>
+	<div class="row" ng-click="play(0)"> <!-- MH: ng-click does not seem to work here-->
+		<div class="col-md-3">
+			<img ng-src="{{video.poster}}" width="100%"/>
+		</div>
+		<div class="col-md-9">	
+			<h5>{{video.title}}</h5>
+			<chapter-list chapters="video.chapters"></chapter-list>
+		</div>
+   	</div>
+ </div>
+
+<div class="container section">
+	<h4>Recommended</h4>
+</div>
+
+<div class="container section">
+	<h4>Bookmarks</h4>
+	<bookmarks></bookmarks>
+</div>
+
