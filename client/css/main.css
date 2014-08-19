@@ -4,8 +4,46 @@ html, body {
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 12px;
+    background-color: #DDD;
 }
 
+.container {
+    padding: 0;
+}
+video {
+    max-height: 100%;
+    background-color: black;
+}
+.chapter-controls {
+    position: absolute;
+    top: 0;
+    opacity: 0.95;
+    background-color: #FFF;
+}
+.player-controls {
+    position: absolute;
+    bottom: 0;
+    opacity: 0.95;
+    background-color: #FFF;
+}
+
+.timeline {
+    padding: 14px 0;
+}
+
+.chapter-list {
+    border-top: 1px solid #EEE;
+}
+
+.chapter {
+    border-right: 1px solid #EEE;
+    padding: 6px;
+    float: left;
+}
+
+.volume {
+    padding-top: 14px;
+}
 .red {
     color: #d14;
 }
