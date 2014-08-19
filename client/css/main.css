@@ -4,7 +4,7 @@ html, body {
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 12px;
-    background-color: #DDD;
+    background-color: #EEE;
     color: #333;
 }
 
@@ -33,17 +33,21 @@ html, body {
 }
 
 /* player */
-video {
-    max-height: 100%;
+.player {
     background-color: black;
 }
+video {
+    max-height: 100%;
+}
 .chapter-controls {
+    width: 100%;
     position: absolute;
     top: 0;
     opacity: 0.95;
     background-color: #FFF;
 }
 .player-controls {
+    width: 100%;
     position: absolute;
     bottom: 0;
     opacity: 0.95;
