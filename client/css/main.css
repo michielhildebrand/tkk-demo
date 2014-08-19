@@ -54,17 +54,18 @@ video {
     background-color: #FFF;
 }
 
+.timeline .time {
+    font-size: 10px;
+}
 .timeline {
-    padding-top: 14px;
+    margin-bottom: 10px;
 }
 
 .chapter-list {
-    border-top: 1px solid #EEE;
 }
 
 .chapter {
     border-right: 1px solid #EEE;
-    padding: 8px;
     float: left;
 }
 
