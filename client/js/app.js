@@ -15,6 +15,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.bookmarking',
   'app.bookmarks',
   'app.information-card',
+  'app.seek-bar',
 
   'Model',
   'EventsBus',
