@@ -1,1 +1,3 @@
-<button type="button" ng-click="bookmark()" class="btn btn-primary">{{bookmarkStatus()}}</button>
+<button type="button" ng-click="bookmark()" class="btn btn-link btn-lg">
+  <span class="glyphicon glyphicon-bookmark" ng-class="{red: bookmarkStatus()}"></span>
+</button>

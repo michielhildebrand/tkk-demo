@@ -20,7 +20,7 @@ function bookmarkingDirective(Data) {
       };
 
       $scope.bookmarkStatus = function () {
-        return isBookmarked() ? "Unbookmark it" : "Bookmark it";
+        return isBookmarked();
       };
 
       function isBookmarked() {
