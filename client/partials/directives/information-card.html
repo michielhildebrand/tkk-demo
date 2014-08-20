@@ -1,6 +1,8 @@
 <h4 class="text-center">{{label.value}}</h4>
 <img class="center-block" ng-src="{{thumb.value}}" width="200px" title="{{label.value}}" alt="{{label.value}}"/>
 <br>
+
+  <!-- this is for persons/artists -->
 <div ng-if="birthDate.value">
   <label>Birth:</label> {{birthDate.value}} <a ng-click="nav(birthPlace)">{{birthPlace.value}}</a>
 </div>
@@ -16,8 +18,11 @@
 <div ng-if="style.value">
   <label>Style:</label> <a ng-click="nav(style)">{{style.value}}</a>
 </div>
+
+  <!-- this is for places -->
 <div ng-if="population.value">
   <label>Population:</label> {{population.value}}
 </div>
+
 <br>
 <span>{{comment.value}}</span>
