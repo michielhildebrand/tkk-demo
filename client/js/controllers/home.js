@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'eventsBus', 'Data', homeCtrl]);
+angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'eventsBus', 'Model', homeCtrl]);
 
-function homeCtrl($scope, $location, eventsBus, Data) {
-  if (Data.getVideo() != null) initialize(Data.getVideo());
+function homeCtrl($scope, $location, eventsBus, Model) {
+  if (Model.getVideo() != null) initialize(Model.getVideo());
 
   function initialize(video) {
     //console.log(video);
 
-    Data.setVideo(video);
+    Model.setVideo(video);
     $scope.video = video;
 
     $scope.$$phase || $scope.$apply();

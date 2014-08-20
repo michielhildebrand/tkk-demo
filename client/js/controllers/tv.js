@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', 'Data', tvCtrl]);
+angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', 'Model', tvCtrl]);
 
-function tvCtrl($scope, eventsBus, Data) {
+function tvCtrl($scope, eventsBus, Model) {
   $scope.second = true;
 
   var playVideo = function (msg) {
-    Data.play(msg.video, msg.chapter);
+    Model.play(msg.video, msg.chapter);
 
     $scope.$$phase || $scope.$apply();
   };

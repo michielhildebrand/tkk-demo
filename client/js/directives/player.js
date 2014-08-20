@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player', []).directive('player', ['eventsBus', 'Data', playerDirective]);
+angular.module('app.player', []).directive('player', ['eventsBus', 'Model', playerDirective]);
 
-function playerDirective(eventsBus, Data) {
+function playerDirective(eventsBus, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -46,10 +46,10 @@ function playerDirective(eventsBus, Data) {
 
       scope.$watch(
         function () {
-          return Data.getVideo();
+          return Model.getVideo();
         },
         function (newVideo) {
-          if (newVideo != null) updatePlayer(newVideo, Data.getTime());
+          if (newVideo != null) updatePlayer(newVideo, Model.getTime());
         }
       );
     },

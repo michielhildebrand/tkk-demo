@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.information-card', []).directive('informationCard', ['Data', informationCardDirective]);
+angular.module('app.information-card', []).directive('informationCard', ['Model', informationCardDirective]);
 
-function informationCardDirective(Data) {
+function informationCardDirective(Model) {
   return {
     restrict: 'E',
     scope: {

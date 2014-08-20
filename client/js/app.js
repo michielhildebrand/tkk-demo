@@ -16,7 +16,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.bookmarks',
   'app.information-card',
 
-  'Data',
+  'Model',
   'EventsBus',
   'EntityProxy'
 ]);

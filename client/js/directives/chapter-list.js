@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-list', []).directive('chapterList', ['$location', 'Data', playerControlsDirective]);
+angular.module('app.chapter-list', []).directive('chapterList', ['$location', 'Model', playerControlsDirective]);
 
-function playerControlsDirective($location, Data) {
+function playerControlsDirective($location, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -22,7 +22,7 @@ function playerControlsDirective($location, Data) {
         var h = d.getHours() - 1;
         var m = d.getMinutes();
         var s = d.getSeconds();
-        return Data.getVideo().shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
+        return Model.getVideo().shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       };
 
       $scope.play = function (chIndex) {

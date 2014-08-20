@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('EnrichCtrl', []).controller('EnrichCtrl',
-  ['$scope', '$modalInstance', 'entityProxy', 'Data', 'chapter', enrichCtrl]);
+  ['$scope', '$modalInstance', 'entityProxy', 'Model', 'chapter', enrichCtrl]);
 
-function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
+function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
   $scope.chapter = chapter;
   $scope.crumbs = [];
   $scope.entities = _.chain(chapter.fragments)

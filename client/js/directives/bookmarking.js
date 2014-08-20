@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.bookmarking', []).directive('bookmarking', ['Data', bookmarkingDirective]);
+angular.module('app.bookmarking', []).directive('bookmarking', ['Model', bookmarkingDirective]);
 
-function bookmarkingDirective(Data) {
+function bookmarkingDirective(Model) {
   return {
     restrict: 'E',
     scope: {
@@ -15,7 +15,7 @@ function bookmarkingDirective(Data) {
     controller: function ($scope, $element) {
       $scope.bookmark = function () {
         var chId = $scope.chapter.id;
-        var currentBookmarks = isBookmarked() ? Data.unbookmark(chId) : Data.bookmark(chId);
+        var currentBookmarks = isBookmarked() ? Model.unbookmark(chId) : Model.bookmark(chId);
         sendToBookmark(currentBookmarks);
       };
 
@@ -25,7 +25,7 @@ function bookmarkingDirective(Data) {
 
       function isBookmarked() {
         if ($scope.chapter) {
-          return _.contains(Data.getBookmarks(), $scope.chapter.id);
+          return _.contains(Model.getBookmarks(), $scope.chapter.id);
         } else {
           return false;
         }

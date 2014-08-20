@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['$location', 'Data', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['$location', 'Model', playerControlsDirective]);
 
-function playerControlsDirective($location, Data) {
+function playerControlsDirective($location, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -40,20 +40,20 @@ function playerControlsDirective($location, Data) {
       };
 
       $scope.prevChapter = function() {
-        $location.path('/play/' + (Data.getChapter() - 1));
+        $location.path('/play/' + (Model.getChapter() - 1));
       };
       $scope.nextChapter = function() {
-        $location.path('/play/' + (Data.getChapter() + 1));
+        $location.path('/play/' + (Model.getChapter() + 1));
       };
 
       $scope.$watch(
         function () {
-          return Data.getVideo();
+          return Model.getVideo();
         },
         function (newVideo) {
           if (newVideo != null) {
-            $scope.isFirst = Data.isFirstChapter();
-            $scope.isLast = Data.isLastChapter();
+            $scope.isFirst = Model.isFirstChapter();
+            $scope.isLast = Model.isLastChapter();
           }
         }
       );

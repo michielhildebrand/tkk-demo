@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , '$modal', 'eventsBus', 'Data', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , '$modal', 'eventsBus', 'Model', playCtrl]);
 
-function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
+function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Model) {
   $scope.second = false;
   $scope.beaming = false;
 
@@ -10,7 +10,7 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
 
   //console.log('Play ctrl loaded @ ' + $scope.chapterIndex);
 
-  if (Data.getVideo() != null) showVideo(Data.getVideo());
+  if (Model.getVideo() != null) showVideo(Model.getVideo());
 
 
   $scope.goToMain = function () {
@@ -20,7 +20,7 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
   function showVideo(video) {
     //console.log(video);
 
-    Data.play(video, $scope.chapterIndex);
+    Model.play(video, $scope.chapterIndex);
     $scope.video = video;
     $scope.chapter = video.chapters[$scope.chapterIndex];
 
@@ -32,7 +32,7 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
   $scope.toggleBeam = function () {
     $scope.beaming = !$scope.beaming;
     if ($scope.beaming) {
-      sendToTv({action: 'play', video: Data.getVideo(), chapter: Data.getChapter()});
+      sendToTv({action: 'play', video: Model.getVideo(), chapter: Model.getChapter()});
       openEnrichment();
     } else {
       //TODO what should happen here?

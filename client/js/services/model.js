@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Data', ['ngResource']).factory('Data', data);
+angular.module('Model', ['ngResource']).factory('Model', model);
 
-function data() {
+function model() {
   var data = {
     video: null,
     chapterIndex: null,

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.bookmarks', []).directive('bookmarks', ['eventsBus', 'Data', bookmarksDirective]);
+angular.module('app.bookmarks', []).directive('bookmarks', ['eventsBus', 'Model', bookmarksDirective]);
 
-function bookmarksDirective(eventsBus, Data) {
+function bookmarksDirective(eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -12,7 +12,7 @@ function bookmarksDirective(eventsBus, Data) {
     controller: function ($scope, $element) {
       $scope.$watch(
         function () {
-          return Data.getBookmarks();
+          return Model.getBookmarks();
         },
         function (newBookmarks) {
           if (newBookmarks != null) $scope.bookmarks = newBookmarks;
@@ -21,7 +21,7 @@ function bookmarksDirective(eventsBus, Data) {
 
       var syncBookmarks = function(bookmarks) {
         _.each(bookmarks, function(b) {
-          Data.bookmark(b);
+          Model.bookmark(b);
         });
 
         $scope.$$phase || $scope.$apply();
