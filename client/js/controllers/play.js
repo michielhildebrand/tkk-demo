@@ -39,10 +39,6 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
     }
   };
 
-  $scope.beamStatus = function() {
-    return (!$scope.beaming) ? "Beam to TV" : "Stop beaming";
-  };
-
   $scope.showEnrichment = function() {
     openEnrichment();
   };
