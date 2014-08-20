@@ -12,6 +12,8 @@ function playerControlsDirective($location, Model) {
     controller: function ($scope, $element) {
       $scope.play = true;
       $scope.mute = false;
+      $scope.volume = "1"; //from 0 to 1, and range treats value as strings
+      $scope.previousVolume = $scope.volume;
 
       $scope.isFirst = false;
       $scope.isLast = false;
@@ -28,8 +30,11 @@ function playerControlsDirective($location, Model) {
       $scope.toggleMute = function () {
         $scope.mute = !$scope.mute;
         if ($scope.mute) {
+          $scope.previousVolume = $scope.volume;
+          $scope.volume = "0";
           sendToPlayer({action: 'mute'});
         } else {
+          $scope.volume = $scope.previousVolume;
           sendToPlayer({action: 'unmute'});
         }
       };
