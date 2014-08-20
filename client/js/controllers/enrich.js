@@ -19,11 +19,9 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
     .value();
 
   //TODO for now when the enrich screen is brought up we load the first entity
-//  callEntityProxy('Piet Mondrian', 'http://dbpedia.org/resource/Piet_Mondrian', true);
   callEntityProxy($scope.entities[0].value, $scope.entities[0].uri, true);
 
   function callEntityProxy(title, loc, restart) {
-    console.log(restart);
     if (restart) {
       $scope.crumbs = [title]
     } else {
@@ -34,7 +32,6 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Data, chapter) {
 
     entityProxy.get({loc: loc}, function (r) {
       $scope.proxyAnswer = _.property(loc)(r);
-      console.log($scope.proxyAnswer);
 
       $scope.loading = false;
     });

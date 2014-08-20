@@ -59,7 +59,7 @@ function playerDirective(eventsBus, Data) {
           var player = $element[0].children.player;
           var a = msg.action;
           if (a) {
-            console.log('action ' + a);
+            //console.log('action ' + a);
             switch (a) {
               case 'play':
                 player.play();

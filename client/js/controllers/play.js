@@ -8,7 +8,7 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Data) {
 
   $scope.chapterIndex = $routeParams.chapterIndex;
 
-  console.log('Play ctrl loaded @ ' + $scope.chapterIndex);
+  //console.log('Play ctrl loaded @ ' + $scope.chapterIndex);
 
   if (Data.getVideo() != null) showVideo(Data.getVideo());
 
