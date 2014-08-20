@@ -22,10 +22,6 @@ function playerControlsDirective(Data) {
         }
       };
 
-      $scope.playStatus = function () {
-        return ($scope.play) ? "Pause" : "Play";
-      };
-
       $scope.toggleMute = function () {
         $scope.mute = !$scope.mute;
         if ($scope.mute) {
@@ -33,10 +29,6 @@ function playerControlsDirective(Data) {
         } else {
           sendToPlayer({action: 'unmute'});
         }
-      };
-
-      $scope.muteStatus = function () {
-        return ($scope.mute) ? "Unmute" : "Mute";
       };
 
       $scope.setVolume = function($event) {
