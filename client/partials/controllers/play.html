@@ -1,17 +1,36 @@
-<div class="container">
-  <h3 class="text-center">Chapter: <b>{{chapter.title}}</b></h3>
-  <br>
-  <player second="second" beaming="beaming"></player>
-  <br>
-  <div class="row">
-    <button type="button" ng-click="goToMain()" class="btn btn-primary">Go to main</button>
-    <button type="button" ng-click="toggleBeam()" class="btn btn-primary">{{beamStatus()}}</button>
-    <button type="button" ng-click="showEnrichment()" class="btn btn-primary">Enrich</button>
-    <player-controls class="pull-right"></player-controls>
-  </div>
-  <br>
-  <chapter-list chapters="video.chapters"></chapter-list>
-  <br>
-  <bookmarking chapter="chapter"></bookmarking>
-  <bookmarks></bookmarks>
+<div class="container-fluid chapter-controls">
+	<div class="row">
+		<div class="col-md-1">
+			<button type="button" ng-click="goToMain()" class="btn btn-link btn-lg">
+				<span class="glyphicon glyphicon glyphicon-chevron-left"></span>
+			</button>
+		</div>
+		<div class="col-md-9">
+			<chapter-list chapters="video.chapters"></chapter-list>	
+		</div>
+		<div class="col-md-2 text-right">
+			<button type="button" ng-click="showEnrichment()" class="btn btn-link btn-lg">
+				<span class="glyphicon glyphicon glyphicon-chevron-down"></span>
+			</button>
+			<button type="button" ng-click="bookmark()" class="btn btn-link btn-lg">
+				<span class="glyphicon glyphicon glyphicon-bookmark"></span>
+			</button>
+		</div>
+	</div>
+	
+	<div class="row timeline">
+		<div class="col-md-1 text-right"><div class="time">0:00</div></div>
+		<div class="col-md-9">		
+			<input type="range" ng-click="seek($event)" min="0" max="600" step="1" value="1">
+		</div>
+		<div class="col-md-2 text-left"><div class="time">10:00</div></div>	
+	</div>
+</div>
+
+<div class="container-fluid player">
+	<player second="second" beaming="beaming"></player>
+</div>
+
+<div class="container-fluid player-controls">
+	<player-controls></player-controls>
 </div>
