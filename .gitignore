@@ -1,5 +1,6 @@
 .idea
 *.iml
+.DS_Store
 server/out
 server/build
 server/build-test
