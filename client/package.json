@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "screenfull": "=1.2.1",
-    "underscore": "=1.6.0"
+    "underscore": "=1.6.0",
+    "moment": "=2.8.1"
   }
 }
