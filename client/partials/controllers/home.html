@@ -7,8 +7,8 @@
 
 <div class="container section">
 	<h4>Latest episode</h4>
-	<div class="row" ng-click="play(0)"> <!-- MH: ng-click does not seem to work here-->
-		<div class="col-md-3">
+	<div class="row">
+		<div class="col-md-3" ng-click="playFirst()">
 			<img ng-src="{{video.poster}}" width="100%"/>
 		</div>
 		<div class="col-md-9">	
@@ -26,4 +26,3 @@
 	<h4>Bookmarks</h4>
 	<bookmarks></bookmarks>
 </div>
-

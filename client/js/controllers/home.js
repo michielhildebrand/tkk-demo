@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', 'eventsBus', 'Data', homeCtrl]);
+angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'eventsBus', 'Data', homeCtrl]);
 
-function homeCtrl($scope, eventsBus, Data) {
+function homeCtrl($scope, $location, eventsBus, Data) {
   if (Data.getVideo() != null) initialize(Data.getVideo());
 
   function initialize(video) {
@@ -13,6 +13,10 @@ function homeCtrl($scope, eventsBus, Data) {
 
     $scope.$$phase || $scope.$apply();
   }
+
+  $scope.playFirst = function () {
+    $location.path('/play/0');
+  };
 
   eventsBus.subscribe('video', initialize);
 }
