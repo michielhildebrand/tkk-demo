@@ -12,7 +12,7 @@ function playerControlsDirective($location, Model) {
     controller: function ($scope, $element) {
       $scope.play = true;
       $scope.mute = false;
-      $scope.volume = "1"; //from 0 to 1, and range treats value as strings
+      $scope.volume = '1'; //from 0 to 1, and range treats value as strings
       $scope.previousVolume = $scope.volume;
 
       $scope.isFirst = false;
@@ -31,7 +31,7 @@ function playerControlsDirective($location, Model) {
         $scope.mute = !$scope.mute;
         if ($scope.mute) {
           $scope.previousVolume = $scope.volume;
-          $scope.volume = "0";
+          $scope.volume = '0';
           sendToPlayer({action: 'mute'});
         } else {
           $scope.volume = $scope.previousVolume;
@@ -45,11 +45,15 @@ function playerControlsDirective($location, Model) {
       };
 
       $scope.prevChapter = function() {
-        $location.path('/play/' + (Model.getChapter() - 1));
+        jump(-1);
       };
       $scope.nextChapter = function() {
-        $location.path('/play/' + (Model.getChapter() + 1));
+        jump(1);
       };
+
+      function jump(delta) {
+        $location.path('/play/' + (Model.getChapterIndex() + delta));
+      }
 
       $scope.$watch(
         function () {
