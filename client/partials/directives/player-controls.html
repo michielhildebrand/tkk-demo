@@ -11,13 +11,13 @@
 	</div>	
 
 	<div class="col-md-6 text-center">
-		<a ng-click="prev()" class="btn btn-link btn-lg">
+		<a ng-click="prevChapter()" class="btn btn-link btn-lg" ng-disabled="isFirst">
 			<span class="glyphicon glyphicon-fast-backward"></span>
 		</a>
 		<button type="button" ng-click="togglePlay()" class="btn btn-link btn-lg">
 			<span class="glyphicon" ng-class="{'glyphicon-play': play, 'glyphicon-pause': !play}"></span>
 		</button>
-		<button type="button" ng-click="next()" class="btn btn-link btn-lg">
+		<button type="button" ng-click="nextChapter()" class="btn btn-link btn-lg" ng-disabled="isLast">
 			<span class="glyphicon glyphicon-fast-forward"></span>
 		</button>
 	</div>	

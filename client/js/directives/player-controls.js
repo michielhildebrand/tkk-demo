@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['Data', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['$location', 'Data', playerControlsDirective]);
 
-function playerControlsDirective(Data) {
+function playerControlsDirective($location, Data) {
   return {
     restrict: 'E',
     replace: false,
@@ -12,6 +12,9 @@ function playerControlsDirective(Data) {
     controller: function ($scope, $element) {
       $scope.play = true;
       $scope.mute = false;
+
+      $scope.isFirst = false;
+      $scope.isLast = false;
 
       $scope.togglePlay = function () {
         $scope.play = !$scope.play;
@@ -35,6 +38,25 @@ function playerControlsDirective(Data) {
         var value = $event.target.value;
         sendToPlayer({action: 'volume', value: value});
       };
+
+      $scope.prevChapter = function() {
+        $location.path('/play/' + (Data.getChapter() - 1));
+      };
+      $scope.nextChapter = function() {
+        $location.path('/play/' + (Data.getChapter() + 1));
+      };
+
+      $scope.$watch(
+        function () {
+          return Data.getVideo();
+        },
+        function (newVideo) {
+          if (newVideo != null) {
+            $scope.isFirst = Data.isFirstChapter();
+            $scope.isLast = Data.isLastChapter();
+          }
+        }
+      );
 
       function sendToPlayer(action) {
         send({target: 'player', data: action});

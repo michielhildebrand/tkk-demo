@@ -14,7 +14,7 @@ function data() {
       data.video = video;
     },
     play: function(video, chapter) {
-      data.chapterIndex = chapter;
+      data.chapterIndex = parseInt(chapter);
       data.video = video;
     },
     getVideo: function () {
@@ -22,6 +22,12 @@ function data() {
     },
     getChapter: function () {
       return data.chapterIndex;
+    },
+    isFirstChapter: function () {
+      return data.chapterIndex == 0;
+    },
+    isLastChapter: function () {
+      return data.chapterIndex == (data.video.chapters.length - 1);
     },
     getTime: function() {
       return data.video.chapters[data.chapterIndex].startTime / 1000; //in seconds
