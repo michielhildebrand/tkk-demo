@@ -6,28 +6,28 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Model) {
   $scope.second = false;
   $scope.beaming = false;
 
-  $scope.chapterIndex = $routeParams.chapterIndex;
-
-  //console.log('Play ctrl loaded @ ' + $scope.chapterIndex);
-
-  if (Model.getVideo() != null) showVideo(Model.getVideo());
-
+  if (Model.getVideos().length != 0) initialize();
 
   $scope.goToMain = function () {
     $location.path('/');
   };
 
-  function showVideo(video) {
-    //console.log(video);
+  function initialize() {
+    Model.play($routeParams.videoId, $routeParams.chapterIndex);
 
-    Model.play(video, $scope.chapterIndex);
-    $scope.video = video;
-    $scope.chapter = video.chapters[$scope.chapterIndex];
+    $scope.video = Model.getVideo();
+    $scope.chapter = Model.getChapter();
+  }
+
+  function setVideos(videos) {
+    Model.setVideos(videos);
+
+    initialize();
 
     $scope.$$phase || $scope.$apply();
   }
 
-  eventsBus.subscribe('video', showVideo);
+  eventsBus.subscribe('video', setVideos);
 
   $scope.toggleBeam = function () {
     $scope.beaming = !$scope.beaming;

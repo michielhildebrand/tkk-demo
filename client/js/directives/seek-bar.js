@@ -22,19 +22,17 @@ function seekBarDirective(Model) {
         },
         function (newVideo) {
           if (newVideo != null) {
-            $scope.duration = Model.videoDuration();
-            console.log('video duration: ' + $scope.duration);
+            $scope.duration = newVideo.duration;
           }
         }
       );
       $scope.$watch(
         function () {
-          return Model.getChapterIndex();
+          return Model.getChapter();
         },
-        function (newChapterIndex) {
-          if (newChapterIndex != null) {
-            $scope.current = Model.chapterStartTime();
-            console.log('chapter start time: ' + $scope.current);
+        function (newChapter) {
+          if (newChapter != null) {
+            $scope.current = newChapter.startTime;
 
             $scope.endLapse = moment($scope.duration - $scope.current).format('mm:ss');
             $scope.startLapse = moment($scope.current).format('mm:ss');

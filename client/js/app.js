@@ -30,7 +30,7 @@ tkkDemoApp.config(['$routeProvider',
         templateUrl: 'partials/controllers/home.html',
         controller: 'HomeCtrl'
       }).
-      when('/play/:videoId/:chapterId?', {
+      when('/play/:videoId/:chapterIndex', {
         title: 'TKK Demo - Chapter',
         templateUrl: 'partials/controllers/play.html',
         controller: 'PlayCtrl'

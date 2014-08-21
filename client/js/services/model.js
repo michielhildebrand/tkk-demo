@@ -4,41 +4,49 @@ angular.module('Model', ['ngResource']).factory('Model', model);
 
 function model() {
   var data = {
-    chapterIndex: null,
     videos: [],
-    currentVideoId: null,
-    currentChapterId: null,
+    currentVideo: null,
+    currentChapterIndex: null,
+    currentChapter: null,
     bookmarks: []
   };
+
+  function findVideo(id) {
+    return _(data.videos).find(function(v) {
+      return v.id == id;
+    });
+  }
 
   return {
     setVideos: function(videos){
       data.videos = videos;
     },
-    play: function (video, chapter) {
-      data.chapterIndex = parseInt(chapter);
-      data.video = video;
-    },
     getVideos: function () {
       return data.videos;
     },
-    videoDuration: function () {
-      return data.video.duration;
+    play: function (videoId, chapterIndex) {
+      data.currentVideoId = videoId;
+      data.currentVideo = findVideo(data.currentVideoId);
+      data.currentChapterIndex = parseInt(chapterIndex);
+      data.currentChapter = data.currentVideo.chapters[data.currentChapterIndex];
+    },
+    getVideo: function() {
+      return data.currentVideo;
+    },
+    getChapter: function() {
+      return data.currentChapter;
     },
     getChapterIndex: function () {
-      return data.chapterIndex;
-    },
-    chapterStartTime: function () {
-      return data.video.chapters[data.chapterIndex].startTime;
+      return data.currentChapterIndex;
     },
     isFirstChapter: function () {
-      return data.chapterIndex == 0;
+      return data.currentChapterIndex == 0;
     },
     isLastChapter: function () {
-      return data.chapterIndex == (data.video.chapters.length - 1);
+      return data.currentChapterIndex == (data.currentVideo.chapters.length - 1);
     },
     getTime: function () {
-      return data.video.chapters[data.chapterIndex].startTime / 1000; //in seconds
+      return data.currentChapter.startTime / 1000; //in seconds
     },
     getBookmarks: function () {
       return data.bookmarks;
