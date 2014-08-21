@@ -1,28 +1,38 @@
-<div class="container-fluid hd">
-	<div class="container clearfix">
-		<div class="pull-left"><img src="img/linkedtv_icon.png" height="50px"></div>
-		<h1 class="pull-left">Linked Culture</h1>
-	</div>
-</div>
+<div class="home">
+  <div class="container-fluid hd">
+  	<div class="container clearfix">
+  		<div class="pull-left"><img src="img/linkedtv_icon.png" height="50px"></div>
+  		<h1 class="pull-left">Linked Culture</h1>
+  	</div>
+  </div>
 
-<div class="container section">
-	<h4>Latest episode</h4>
-	<div class="row">
-		<div class="col-md-3" ng-click="playFirst()">
-			<img ng-src="{{video.poster}}" width="100%"/>
-		</div>
-		<div class="col-md-9">	
-			<h5>{{video.title}}</h5>
-			<chapter-list chapters="video.chapters"></chapter-list>
-		</div>
-   	</div>
- </div>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Episodes</div>
+      <div class="panel-body">
+        <div class="row">
+      		<div class="col-md-3" ng-click="playFirst()">
+      			<img ng-src="{{video.poster}}" width="100%"/>
+      		</div>
+      		<div class="col-md-9">	
+      			<h5>{{video.title}}</h5>
+      			<chapter-list chapters="video.chapters"></chapter-list>
+      		</div>
+        </div>
+      </div>
+    </div>
 
-<div class="container section">
-	<h4>Recommended</h4>
-</div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Recommended</div>
+      <div class="panel-body"></div>
+    </div>
+  
+    <div class="panel panel-default">
+      <div class="panel-heading">Recommended</div>
+      <div class="panel-body">
+        <bookmarks></bookmarks>
+      </div>
+    </div>
 
-<div class="container section">
-	<h4>Bookmarks</h4>
-	<bookmarks></bookmarks>
+  </div>
 </div>

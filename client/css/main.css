@@ -9,30 +9,23 @@ html, body {
 }
 
 /* home */
-.hd {
+.home .hd {
     background-color: #FFF;
     border-bottom: 1px solid #BBB;
+    margin-bottom: 15px;
 }
-.hd h1 {
+.home .hd h1 {
     font-size: 20px;
     margin: 15px 0 15px 15px;
 }
-.container.section {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #FFF;
-    border: 1px solid #E2E2E2;
-}
-.section h4 {
-    border-bottom: 1px solid #EEE;
-    padding-bottom: 8px;
-    
-}
-.container {
-    padding: 0;
-}
 
 /* player */
+.glyphicon.linkedtv {
+    background-image: url("../img/glyphicon_linkedtv.png");
+    background-position: top left; 
+    background-size: 25px 25px;
+    padding: 25px 25px 0 0;
+}
 .player {
     background-color: black;
 }
@@ -76,7 +69,52 @@ video {
     color: #d14;
 }
 
-.entities {
+/* enrichment panel */
+
+
+/* entity display */
+.entity-grid {
+    overflow: hidden;
+}
+.entity-grid ul {
+    padding-left: 0;
+    list-style: none;
+}
+.entity-bar ul {
+    padding-left: 0;
+    list-style: none;
+    width: 100%;
+    overflow: auto;
+}
+.entity-bar li,
+.entity-grid li {
+    float: left;
+    width: 20%;
+    height: 115px;
+    padding: 10px;
+    font-size: 10px;
+    line-height: 1.4;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #fff;
+}
+.information-card .title {
+    margin-top: 15px;
+    font-size: 30px;
+    line-height: 32px;
+    text-transform: uppercase;
+}
+information-card .box {
+    border: 1px solid #EEE;
+    padding: 15px;
+}
+information-card .image.box {
+    padding: 0;
+}
+information-card .image {
+    width: 100%;
+}
+.information-card .entities {
     margin-top: 15px;
     padding: 15px;
     border-top: 1px solid #e5e5e5;
