@@ -1,5 +1,5 @@
 <div class="chapter-list clearfix">
 	<div class="chapter" ng-repeat="ch in chapters">
-		<button type="button" ng-click="play(ch.id)" class="btn btn-link btn-lg">{{ch.title}}</button>
+		<button type="button" ng-click="play($index)" class="btn btn-link btn-lg">{{ch.title}}</button>
 	</div>
 </div>

@@ -22,8 +22,8 @@ function playerControlsDirective($location, Model) {
         return $scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       };
 
-      $scope.play = function (chId) {
-        $location.path('/play/' + $scope.video.id + '/' + chId);
+      $scope.play = function (chIndex) {
+        $location.path('/play/' + $scope.video.id + '/' + chIndex);
       };
     },
     templateUrl: 'partials/directives/chapter-list.html'
