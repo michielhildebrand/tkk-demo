@@ -30,7 +30,7 @@ tkkDemoApp.config(['$routeProvider',
         templateUrl: 'partials/controllers/home.html',
         controller: 'HomeCtrl'
       }).
-      when('/play/:chapterIndex', {
+      when('/play/:videoId/:chapterId?', {
         title: 'TKK Demo - Chapter',
         templateUrl: 'partials/controllers/play.html',
         controller: 'PlayCtrl'
@@ -54,9 +54,7 @@ tkkDemoApp.config(['$routeProvider',
       };
     }
   ]
-).run([
-    '$location',
-    '$rootScope',
+).run(['$location', '$rootScope',
     function ($location, $rootScope) {
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;

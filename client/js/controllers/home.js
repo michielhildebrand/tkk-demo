@@ -6,17 +6,21 @@ function homeCtrl($scope, $location, eventsBus, Model) {
   if (Model.getVideos() != null) initialize(Model.getVideos());
 
   function initialize(videos) {
-    Model.setVideos(videos);
-
     $scope.latestVideo = videos[0];
     $scope.remainingVideos = videos.slice(1);
+  }
+
+  $scope.playFirstChapter = function (videoId) {
+    $location.path('/play/' + videoId);
+  };
+
+  function setVideos(videos) {
+    Model.setVideos(videos);
+
+    initialize(videos);
 
     $scope.$$phase || $scope.$apply();
   }
 
-  $scope.playFirst = function (videoId) {
-    $location.path('/play/' + videoId + '/0');
-  };
-
-  eventsBus.subscribe('video', initialize);
+  eventsBus.subscribe('video', setVideos);
 }

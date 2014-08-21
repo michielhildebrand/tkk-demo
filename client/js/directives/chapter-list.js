@@ -6,6 +6,7 @@ function playerControlsDirective($location, Model) {
   return {
     restrict: 'E',
     scope: {
+      'video': '=',
       'chapters': '='
     },
     replace: false,
@@ -13,20 +14,16 @@ function playerControlsDirective($location, Model) {
 
     },
     controller: function ($scope, $element) {
-      $scope.getTitle = function (ch) {
-        return ch.title + " @ " + (ch.startTime / 1000) + "s";
-      };
-
       $scope.getShot = function (ch) {
         var d = new Date(ch.startTime);
         var h = d.getHours() - 1;
         var m = d.getMinutes();
         var s = d.getSeconds();
-        return Model.getVideo().shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
+        return $scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       };
 
-      $scope.play = function (chIndex) {
-        $location.path('/play/' + chIndex);
+      $scope.play = function (chId) {
+        $location.path('/play/' + $scope.video.id + '/' + chId);
       };
     },
     templateUrl: 'partials/directives/chapter-list.html'

@@ -9,18 +9,18 @@
   <h4>Episodes</h4>
 
   <div class="row">
-    <div class="col-md-3" ng-click="playFirst(latestVideo.id)">
+    <div class="col-md-3" ng-click="playFirstChapter(latestVideo.id)">
       <img ng-src="{{latestVideo.poster}}" width="100%"/>
     </div>
     <div class="col-md-9">
       <h5>{{latestVideo.title}}</h5>
-      <chapter-list chapters="latestVideo.chapters"></chapter-list>
+      <chapter-list video="latestVideo" chapters="latestVideo.chapters"></chapter-list>
     </div>
   </div>
 
   <div class="row">
     <div ng-repeat="rv in remainingVideos">
-      <div class="col-md-3" ng-click="playFirst(rv.id)">
+      <div class="col-md-3" ng-click="playFirstChapter(rv.id)">
         <h5>{{rv.title}}</h5>
         <img ng-src="{{rv.poster}}" width="100%"/>
       </div>
