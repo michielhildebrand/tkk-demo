@@ -15,7 +15,7 @@
 			<span class="glyphicon glyphicon-fast-backward"></span>
 		</button>
 		<button type="button" ng-click="togglePlay()" class="btn btn-link btn-lg">
-			<span class="glyphicon" ng-class="{'glyphicon-play': play, 'glyphicon-pause': !play}"></span>
+			<span class="glyphicon" ng-class="{'glyphicon-play': !play, 'glyphicon-pause': play}"></span>
 		</button>
 		<button type="button" ng-click="nextChapter()" class="btn btn-link btn-lg" ng-disabled="isLast">
 			<span class="glyphicon glyphicon-fast-forward"></span>
