@@ -3,19 +3,19 @@
 angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'eventsBus', 'Model', homeCtrl]);
 
 function homeCtrl($scope, $location, eventsBus, Model) {
-  if (Model.getVideo() != null) initialize(Model.getVideo());
+  if (Model.getVideos() != null) initialize(Model.getVideos());
 
-  function initialize(video) {
-    //console.log(video);
+  function initialize(videos) {
+    Model.setVideos(videos);
 
-    Model.setVideo(video);
-    $scope.video = video;
+    $scope.latestVideo = videos[0];
+    $scope.remainingVideos = videos.slice(1);
 
     $scope.$$phase || $scope.$apply();
   }
 
-  $scope.playFirst = function () {
-    $location.path('/play/0');
+  $scope.playFirst = function (videoId) {
+    $location.path('/play/' + videoId + '/0');
   };
 
   eventsBus.subscribe('video', initialize);

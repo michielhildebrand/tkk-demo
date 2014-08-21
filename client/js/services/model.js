@@ -4,21 +4,23 @@ angular.module('Model', ['ngResource']).factory('Model', model);
 
 function model() {
   var data = {
-    video: null,
     chapterIndex: null,
+    videos: [],
+    currentVideoId: null,
+    currentChapterId: null,
     bookmarks: []
   };
 
   return {
-    setVideo: function (video) {
-      data.video = video;
+    setVideos: function(videos){
+      data.videos = videos;
     },
     play: function (video, chapter) {
       data.chapterIndex = parseInt(chapter);
       data.video = video;
     },
-    getVideo: function () {
-      return data.video;
+    getVideos: function () {
+      return data.videos;
     },
     videoDuration: function () {
       return data.video.duration;
