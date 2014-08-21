@@ -1,14 +1,11 @@
 package org.springfield.lou.application.types;
 
 import org.springfield.lou.application.Html5Application;
-import org.springfield.lou.application.types.domain.Video;
 import org.springfield.lou.application.types.gain.UserEvents;
 import org.springfield.lou.application.types.protocol.Message;
 import org.springfield.lou.application.types.protocol.Serializer;
 import org.springfield.lou.screen.Screen;
 import org.springfield.lou.user.User;
-import org.springfield.mojo.linkedtv.Channel;
-import org.springfield.mojo.linkedtv.Episode;
 
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class NewsApplication extends Html5Application {
 
     private static final boolean WORK_OFFLINE = true;
 
-    private Episode choosenEpisode;
+    private VideoLoader videoLoader;
     private User testUser;
 
     private static final int MAX_CAPACITY = 100;
@@ -26,6 +23,7 @@ public class NewsApplication extends Html5Application {
     public NewsApplication(String id) {
         super(id);
 
+        videoLoader = new VideoLoader();
         testUser = new User("Test User");
         userEvents = new UserEvents(MAX_CAPACITY);
     }
@@ -42,26 +40,33 @@ public class NewsApplication extends Html5Application {
         if (fixedrole == null) {
             fixedrole = "main";
         }
-        System.out.println("fixedrole = " + fixedrole);
+        System.out.println("New screen with role = " + fixedrole);
 
         if (fixedrole.equals("main")) {
-            String id = s.getParameter("id");
-            if (id == null) {
-                Channel ch = new Channel("linkedtv", "rbb"/*"S%26V"*/);
-                choosenEpisode = ch.getLatestEpisode();
-
-                //Returns a list containing all episodes for the domain/channel with the status CURATED
-                //List<Episode> curatedEpisodes = ch.getEpisodes();
-            } else {
-                System.out.println("id = " + id);
-                if (!WORK_OFFLINE) {
-                    choosenEpisode = new Episode(id);
-                }
-            }
             loadMainScreen(s);
         } else {
             loadSecondScreen(s);
         }
+    }
+
+    private void loadMainScreen(Screen s) {
+        s.setRole("main");
+
+        // TODO what's the difference between this put and putMsg below?
+        //this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
+        //this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
+
+        if (!WORK_OFFLINE) {
+            sendMsg(s, "video", videoLoader.getRecentVideos());
+        } else {
+            send(s, getOfflineVideo());
+        }
+
+        sendMsg(s, "bookmark", testUser.getBookmarks());
+    }
+
+    private void loadSecondScreen(Screen s) {
+        s.setRole("secondary");
     }
 
     @Override
@@ -95,27 +100,6 @@ public class NewsApplication extends Html5Application {
         System.out.println("putOnScreen");
         super.putOnScreen(s, from, content);
     }
-
-    private void loadMainScreen(Screen s) {
-        s.setRole("main");
-
-        // TODO what's the difference between this put and putMsg below?
-        //this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
-        //this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
-
-        if (!WORK_OFFLINE) {
-            sendMsg(s, "video", new Video(choosenEpisode));
-        } else {
-            send(s, getOfflineVideo());
-        }
-
-        sendMsg(s, "bookmark", testUser.getBookmarks());
-    }
-
-    private void loadSecondScreen(Screen s) {
-        s.setRole("secondary");
-    }
-
 
     private void sendMsg(Screen s, String target, Object data) {
         Message msg = new Message(target, data);

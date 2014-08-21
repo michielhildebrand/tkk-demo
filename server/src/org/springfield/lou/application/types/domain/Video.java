@@ -21,6 +21,7 @@ public class Video {
         this.shots = e.getStillsUri();
         this.poster = e.getStillsUri() + "/h/0/m/0/sec10.jpg";
         this.src = e.getStreamUri();
+        System.out.println("Fetched basic info regarding episode " + title);
         this.chapters = loadChapters(e);
     }
 
@@ -109,6 +110,14 @@ public class Video {
             //Take out fragment associated to the last chapter
             fgs.removeAll(fgsToRemove);
             fgsToRemove.clear();
+        }
+
+        //Remove chapters without fragments
+        for (Iterator<Chapter> iter = chs.iterator(); iter.hasNext(); ) {
+            Chapter ch = iter.next();
+            if (ch.nrOfFragments() == 0) {
+                iter.remove();
+            }
         }
 
         return chs;

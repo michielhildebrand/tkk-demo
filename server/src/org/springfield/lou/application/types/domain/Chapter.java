@@ -45,6 +45,10 @@ public class Chapter {
         fragments.add(f);
     }
 
+    public int nrOfFragments() {
+        return fragments.size();
+    }
+
     @Override
     public String toString() {
         return "Chapter{" +

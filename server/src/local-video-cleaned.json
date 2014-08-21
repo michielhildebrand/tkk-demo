@@ -233,20 +233,6 @@
       "duration": 2733550,
       "chapters": [
         {
-          "id": "2",
-          "duration": "121000.0",
-          "title": "Introductie",
-          "startTime": 5000,
-          "fragments": []
-        },
-        {
-          "id": "4",
-          "duration": "91000.0",
-          "title": "Boek uit 1900s",
-          "startTime": 173000,
-          "fragments": []
-        },
-        {
           "id": "6",
           "duration": "101000.0",
           "title": "Jo Koster schilderij",
@@ -262,13 +248,6 @@
               "enrichments": []
             }
           ]
-        },
-        {
-          "id": "8",
-          "duration": "76000.0",
-          "title": "Zilveren koffieset",
-          "startTime": 598000,
-          "fragments": []
         },
         {
           "id": "1",
@@ -375,34 +354,6 @@
               "enrichments": ["http://nl.wikipedia.org/wiki/Place_Vend%C3%B4me"]
             }
           ]
-        },
-        {
-          "id": "7",
-          "duration": "85000.0",
-          "title": "Textielboek",
-          "startTime": 1556000,
-          "fragments": []
-        },
-        {
-          "id": "5",
-          "duration": "268000.0",
-          "title": "Hondenschilderij",
-          "startTime": 1803000,
-          "fragments": []
-        },
-        {
-          "id": "10",
-          "duration": "119000.0",
-          "title": "Stadsgezicht Amsterdam",
-          "startTime": 2300000,
-          "fragments": []
-        },
-        {
-          "id": "9",
-          "duration": "270000.0",
-          "title": "Congolees beeld",
-          "startTime": 2420000,
-          "fragments": []
         }
       ]
     },
@@ -475,13 +426,6 @@
           ]
         },
         {
-          "id": "3",
-          "duration": "197000.0",
-          "title": "Picture frames",
-          "startTime": 583000,
-          "fragments": []
-        },
-        {
           "id": "2",
           "duration": "260000.0",
           "title": "Jan Toorop",
@@ -509,34 +453,6 @@
       "duration": 2694100,
       "chapters": [
         {
-          "id": "5",
-          "duration": "20000.0",
-          "title": "Interview",
-          "startTime": 0,
-          "fragments": []
-        },
-        {
-          "id": "7",
-          "duration": "25000.0",
-          "title": "Tune",
-          "startTime": 20000,
-          "fragments": []
-        },
-        {
-          "id": "1",
-          "duration": "61000.0",
-          "title": "Introduction",
-          "startTime": 45000,
-          "fragments": []
-        },
-        {
-          "id": "3",
-          "duration": "37000.0",
-          "title": "Bronzen Beeld",
-          "startTime": 106000,
-          "fragments": []
-        },
-        {
           "id": "6",
           "duration": "70000.0",
           "title": "Kameel",
@@ -552,13 +468,6 @@
               "enrichments": []
             }
           ]
-        },
-        {
-          "id": "8",
-          "duration": "54000.0",
-          "title": "Medaillion",
-          "startTime": 262000,
-          "fragments": []
         },
         {
           "id": "4",
@@ -621,31 +530,8 @@
               "enrichments": []
             }
           ]
-        },
-        {
-          "id": "2",
-          "duration": "220000.0",
-          "title": "Wooden Maria Statue",
-          "startTime": 1522000,
-          "fragments": []
-        }
-      ]
-    },
-    {
-      "id": "8a8187f2-3fc8-cb54-0140-7dd2d0650005",
-      "title": "Tussen Kunst - 560",
-      "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1",
-      "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1/h/0/m/0/sec10.jpg",
-      "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/104/rawvideo/4/raw.mp4",
-      "duration": 2699560,
-      "chapters": [
-        {
-          "id": "1",
-          "duration": "258000.0",
-          "title": "Delftware plate",
-          "startTime": 1856000,
-          "fragments": []
         }
       ]
     }
-  ]}
+  ]
+}
