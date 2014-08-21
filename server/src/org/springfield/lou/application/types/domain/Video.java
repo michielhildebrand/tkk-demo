@@ -118,6 +118,13 @@ public class Video {
             if (ch.nrOfFragments() == 0) {
                 iter.remove();
             }
+
+            // 8a8187f2-3fc8-cb54-0140-7dd099380002 - Tussen Kunst - 200  -> Chapter "Gouden horloge - Breguet"
+            //
+            // TODO: Because in titles, locators and enrichments the '(' ')' are used the toolkit fails in parsing the delivered video message
+            if (ch.getTitle().equals("Gouden horloge - Breguet")) {
+                iter.remove();
+            }
         }
 
         return chs;
