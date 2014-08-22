@@ -5,15 +5,19 @@ angular.module('EnrichCtrl', []).controller('EnrichCtrl',
 
 function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
   $scope.chapter = chapter;
-  $scope.crumb = [];
 
-  loadFirstInformationCard();
+  $scope.loading = true;
+
+  $scope.crumb = [];
+  var answers = {};
+
+  loadChapterInformationCard();
 
   $scope.relatedVideos = Model.getOtherVideos();
 
-  function loadFirstInformationCard() {
-    $scope.loading = true;
-    $scope.entities = _.chain(chapter.fragments)
+  // the chapter information are shown in the first information card
+  function loadChapterInformationCard() {
+    $scope.metas = _.chain(chapter.fragments)
       .map(function (f) {
         return {value: f.title.trim(), uri: f.locator.trim()}
       })
@@ -25,45 +29,49 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
       })
       .value();
 
-    updateCrumb(chapter.title, true);
+    //$scope.metas.push({value: 'Piet Mondrian', uri: 'http://dbpedia.org/resource/Piet_Mondrian'}); //for testing navigation uncomment this
+
+    updateCrumb({value: chapter.title, uri: ''}, true);
 
     $scope.proxyAnswer = {
       label: [
         {value: chapter.title}
       ],
       thumb: [], //TODO chapter artwork picture (special object)
-      entities: $scope.entities
+      metas: $scope.metas
     };
+
+    answers[chapter.title] = $scope.proxyAnswer;
 
     $scope.loading = false;
   }
 
-  function callEntityProxy(title, loc, restart) {
-    updateCrumb(title, restart);
-    $scope.loading = true;
+  function callEntityProxy(e, restart) {
+    updateCrumb(e, restart);
 
-    entityProxy.get({loc: loc}, function (r) {
-      $scope.proxyAnswer = _.property(loc)(r);
-      //console.log($scope.proxyAnswer);
+    if (!_(answers).has(e.value)) {
+      $scope.loading = true;
+      entityProxy.get({loc: e.uri}, function (r) {
+        $scope.proxyAnswer = _.property(e.uri)(r);
+        answers[e.value] = $scope.proxyAnswer;
 
-      $scope.loading = false;
-    });
-  }
-
-  function updateCrumb(title, restart) {
-    if (restart) {
-      $scope.crumb = [title]
+        $scope.loading = false;
+      });
     } else {
-      $scope.crumb.push(title)
+      $scope.proxyAnswer = _.property(e.value)(answers);
     }
   }
 
-  $scope.proxy = function (e, restart) {
-    callEntityProxy(e.value, e.uri, restart)
-  };
+  function updateCrumb(e, restart) {
+    if (restart) {
+      $scope.crumb = [e]
+    } else {
+      $scope.crumb.push(e)
+    }
+  }
 
-  $scope.ok = function () {
-    $modalInstance.close();
+  $scope.proxy = function (entity, restart) {
+    callEntityProxy(entity, restart)
   };
 
 }

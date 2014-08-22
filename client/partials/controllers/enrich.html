@@ -7,7 +7,12 @@
       <!-- static information card -->
       <div class="information-card">
         <em ng-repeat="c in crumb">
-          {{c}}<i ng-if="!$last"> > </i>
+          <em ng-if="!$last">
+            <a ng-click="proxy(c, true)">{{c.value}}</a><i> > </i>
+          </em>
+          <em ng-if="$last">
+            {{c.value}}
+          </em>
         </em>
 
         <div ng-if="loading">

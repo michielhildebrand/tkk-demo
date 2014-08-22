@@ -17,9 +17,15 @@ function informationCardDirective(Model) {
       var interestingProps = ['label', 'thumb', 'comment', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
         'nationality', 'profession', 'style', 'population'];
 
-      _(interestingProps).map(function (prop) {
-        var guessedValue = firstEntity(_.property(prop)($scope.props));
-        $scope[prop] = guessedValue;
+      $scope.$watch('props', function(newProps) {
+        if (newProps != null) {
+          _(interestingProps).map(function (prop) {
+            var guessedValue = firstEntity(_.property(prop)(newProps));
+            $scope[prop] = guessedValue;
+          });
+
+          $scope.metadata = newProps.metas;
+        }
       });
 
       function firstEntity(prop) {
@@ -41,8 +47,6 @@ function informationCardDirective(Model) {
         }
         return e;
       }
-
-      $scope.metadata = $scope.props.entities;
 
       var browse = $scope.browse();
 
