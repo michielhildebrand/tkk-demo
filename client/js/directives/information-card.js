@@ -51,7 +51,7 @@ function informationCardDirective(Model) {
       var browse = $scope.browse();
 
       $scope.nav = function(e) {
-        browse(e, false);
+        browse(e);
       }
     },
     templateUrl: 'partials/directives/information-card.html'

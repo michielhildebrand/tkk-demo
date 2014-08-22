@@ -40,11 +40,11 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
     };
 
     var chapterEntity = {value: chapter.title, uri: ''};
-    callEntityProxy(chapterEntity, true);
+    callEntityProxy(chapterEntity);
   }
 
-  function callEntityProxy(e, restart) {
-    updateCrumb(e, restart);
+  function callEntityProxy(e) {
+    updateCrumb(e);
 
     $scope.loading = true;
     if (!_(answers).has(e.value)) {
@@ -60,16 +60,17 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
     }
   }
 
-  function updateCrumb(e, restart) {
-    if (restart) {
-      $scope.crumb = [e]
+  function updateCrumb(e) {
+    var index = _($scope.crumb).pluck('value').indexOf(e.value);
+    if (index != -1) {
+      $scope.crumb = _($scope.crumb).first(index + 1);
     } else {
       $scope.crumb.push(e)
     }
   }
 
-  $scope.proxy = function (entity, restart) {
-    callEntityProxy(entity, restart)
+  $scope.proxy = function (entity) {
+    callEntityProxy(entity)
   };
 
 }
