@@ -9,6 +9,7 @@
         <em ng-repeat="c in crumbs">
           {{c}}<i ng-if="!$last"> > </i>
         </em>
+
         <div ng-if="loading">
           <div class="text-center"><i>Loading ...</i></div>
         </div>
@@ -25,20 +26,20 @@
         </div>
       </div>
     </tab>
-    
+
     <tab heading="Content">
       <!-- entity grid -->
       <div class="entity-grid">
-    		<ul class="entities">
-    			<li ng-repeat="e in entities">
-    				<a ng-click="proxy(e, true)">
-    					<span class="entity-thumb"><img src=""></span>
-    					<span class="entity-title">{{e.value}}</span>
-    				</a>
-    			</li>
-    		</ul>
-    	</div>
-      
+        <ul class="entities">
+          <li ng-repeat="e in entities">
+            <a ng-click="proxy(e, true)">
+              <span class="entity-thumb"><img src=""></span>
+              <span class="entity-title">{{e.value}}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <!-- synchronized entity bar + information card -->
       <!--
     	<div class="entity-slide">
@@ -58,18 +59,18 @@
       </div>
       -->
     </tab>
-    
+
     <tab heading="related chapters">
       <div ng-repeat="v in relatedVideos">
         {{v.title}}
         <chapter-list video="v"></chapter-list>
       </div>
     </tab>
-    
+
     <tab heading="related artworks">
     </tab>
-  
+
     <tab heading="background">
-    </tab>  
-  
+    </tab>
+  </tabset>
 </div>
