@@ -11,7 +11,8 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
 
   'app.player',
   'app.player-controls',
-  'app.chapter-list',
+  'app.chapter-headline',
+  'app.chapter-overview',
   'app.bookmarking',
   'app.bookmarks',
   'app.information-card',

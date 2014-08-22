@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.chapter-list', []).directive('chapterList', ['$location', 'Model', playerControlsDirective]);
+angular.module('app.chapter-overview', []).directive('chapterOverview', ['$location', 'Model', playerControlsDirective]);
 
 function playerControlsDirective($location, Model) {
   return {
@@ -25,6 +25,6 @@ function playerControlsDirective($location, Model) {
         $location.path('/play/' + $scope.video.id + '/' + chIndex);
       };
     },
-    templateUrl: 'partials/directives/chapter-list.html'
+    templateUrl: 'partials/directives/chapter-overview.html'
   }
 }
