@@ -11,10 +11,10 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
       return {value: f.title.trim(), uri: f.locator.trim()}
     })
     .filter(function (e) {
-      return e.uri.length > 0
+      return e.value.length > 0
     })
     .uniq(false, function (e) {
-      return e.uri;
+      return e.value;
     })
     .value();
 
