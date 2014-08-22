@@ -6,7 +6,7 @@
     <tab heading="Artwork">
       <!-- static information card -->
       <div class="information-card">
-        <em ng-repeat="c in crumbs">
+        <em ng-repeat="c in crumb">
           {{c}}<i ng-if="!$last"> > </i>
         </em>
 
@@ -15,14 +15,6 @@
         </div>
         <div ng-if="!loading">
           <information-card props="proxyAnswer" browse="proxy"></information-card>
-        </div>
-        <div class="entities">
-          <h5>Entities</h5>
-          <ul>
-            <li ng-repeat="e in entities">
-              <a ng-click="proxy(e, true)">{{e.value}}</a>
-            </li>
-          </ul>
         </div>
       </div>
     </tab>

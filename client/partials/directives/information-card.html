@@ -33,8 +33,15 @@
 				<div ng-if="population.value">
 				  <label>Population:</label> {{population.value}}
 				</div>
-      
-			</div>
+
+        <!-- metadata -->
+        <div ng-if="metadata">
+          <h5>Metadata:</h5>
+          <ul ng-repeat="d in metadata">
+            <li><a ng-click="nav(d)">{{d.value}}</a></li>
+          </ul>
+        </div>
+      </div>
 		</div>
 	</div>
 </div>	

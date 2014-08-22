@@ -42,6 +42,8 @@ function informationCardDirective(Model) {
         return e;
       }
 
+      $scope.metadata = $scope.props.entities;
+
       var browse = $scope.browse();
 
       $scope.nav = function(e) {
