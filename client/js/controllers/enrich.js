@@ -18,6 +18,8 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
     })
     .value();
 
+  $scope.relatedVideos = Model.getOtherVideos();
+
   //TODO for now when the enrich screen is brought up we load the first entity
   callEntityProxy($scope.entities[0].value, $scope.entities[0].uri, true);
 

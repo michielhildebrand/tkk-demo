@@ -60,10 +60,10 @@
     </tab>
     
     <tab heading="related chapters">
-        <ul class="chapters">
-          <li>chapter 1</li>
-          <li>chapter 2</li>
-    		</ul>
+      <div ng-repeat="v in relatedVideos">
+        {{v.title}}
+        <chapter-list video="v"></chapter-list>
+      </div>
     </tab>
     
     <tab heading="related artworks">

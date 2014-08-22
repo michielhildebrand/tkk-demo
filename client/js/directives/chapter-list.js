@@ -6,8 +6,7 @@ function playerControlsDirective($location, Model) {
   return {
     restrict: 'E',
     scope: {
-      'video': '=',
-      'chapters': '='
+      'video': '='
     },
     replace: false,
     link: function (scope, element, attrs) {

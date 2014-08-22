@@ -17,6 +17,12 @@ function model() {
     });
   }
 
+  function filterOutVideo(id) {
+    return _(data.videos).filter(function(v){
+      return v.id != id;
+    })
+  }
+
   return {
     setVideos: function(videos){
       data.videos = videos;
@@ -32,6 +38,9 @@ function model() {
     },
     getVideo: function() {
       return data.currentVideo;
+    },
+    getOtherVideos: function(){
+      return filterOutVideo(data.currentVideoId);
     },
     getChapter: function() {
       return data.currentChapter;
