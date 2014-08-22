@@ -6,7 +6,7 @@ angular.module('EnrichCtrl', []).controller('EnrichCtrl',
 function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
   $scope.chapter = chapter;
 
-  $scope.loading = true;
+  $scope.loading = false;
 
   $scope.crumb = [];
   var answers = {};
@@ -15,9 +15,9 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
 
   $scope.relatedVideos = Model.getOtherVideos();
 
-  // the chapter information are shown in the first information card
+  // The chapter information are shown in the first information card
   function loadChapterInformationCard() {
-    $scope.metas = _.chain(chapter.fragments)
+    var metadata = _.chain(chapter.fragments)
       .map(function (f) {
         return {value: f.title.trim(), uri: f.locator.trim()}
       })
@@ -29,28 +29,25 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
       })
       .value();
 
-    //$scope.metas.push({value: 'Piet Mondrian', uri: 'http://dbpedia.org/resource/Piet_Mondrian'}); //for testing navigation uncomment this
+    //metadata.push({value: 'Piet Mondrian', uri: 'http://dbpedia.org/resource/Piet_Mondrian'}); //for testing navigation uncomment this
 
-    updateCrumb({value: chapter.title, uri: ''}, true);
-
-    $scope.proxyAnswer = {
+    answers[chapter.title] = {
       label: [
         {value: chapter.title}
       ],
-      thumb: [], //TODO chapter artwork picture (special object)
-      metas: $scope.metas
+      thumb: [''], //TODO chapter artwork picture (special object)
+      metadata: metadata
     };
 
-    answers[chapter.title] = $scope.proxyAnswer;
-
-    $scope.loading = false;
+    var chapterEntity = {value: chapter.title, uri: ''};
+    callEntityProxy(chapterEntity, true);
   }
 
   function callEntityProxy(e, restart) {
     updateCrumb(e, restart);
 
+    $scope.loading = true;
     if (!_(answers).has(e.value)) {
-      $scope.loading = true;
       entityProxy.get({loc: e.uri}, function (r) {
         $scope.proxyAnswer = _.property(e.uri)(r);
         answers[e.value] = $scope.proxyAnswer;
@@ -59,6 +56,7 @@ function enrichCtrl($scope, $modalInstance, entityProxy, Model, chapter) {
       });
     } else {
       $scope.proxyAnswer = _.property(e.value)(answers);
+      $scope.loading = false;
     }
   }
 

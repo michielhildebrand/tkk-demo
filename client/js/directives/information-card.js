@@ -24,7 +24,7 @@ function informationCardDirective(Model) {
             $scope[prop] = guessedValue;
           });
 
-          $scope.metadata = newProps.metas;
+          $scope.metadata = newProps.metadata;
         }
       });
 
