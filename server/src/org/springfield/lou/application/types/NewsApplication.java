@@ -23,7 +23,7 @@ public class NewsApplication extends Html5Application {
     public NewsApplication(String id) {
         super(id);
 
-        videoLoader = new VideoLoader();
+        videoLoader = new VideoLoader(WORK_OFFLINE);
         testUser = new User("Test User");
         userEvents = new UserEvents(MAX_CAPACITY);
     }

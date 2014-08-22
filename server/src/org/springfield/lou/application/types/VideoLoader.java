@@ -20,10 +20,12 @@ public class VideoLoader {
 
     private List<Video> videos = new ArrayList<Video>();
 
-    public VideoLoader() {
-        for (String s : EpisodesId) {
-            System.out.println("Fetching episode = " + s);
-            videos.add(new Video(new Episode(s)));
+    public VideoLoader(boolean offline) {
+        if (!offline) {
+            for (String s : EpisodesId) {
+                System.out.println("Fetching episode = " + s);
+                videos.add(new Video(new Episode(s)));
+            }
         }
     }
 
