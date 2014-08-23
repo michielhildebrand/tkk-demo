@@ -100,7 +100,6 @@ video {
 .player-controls {
     width: 100%;
     position: absolute;
-    padding: 6px 0;
     opacity: 0.95;
     background-color: #FFF;
 }
