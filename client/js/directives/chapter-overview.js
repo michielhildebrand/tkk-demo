@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-overview', []).directive('chapterOverview', ['$location', 'Model', playerControlsDirective]);
+angular.module('app.chapter-overview', []).directive('chapterOverview', ['$location', 'Model', chapterOverviewDirective]);
 
-function playerControlsDirective($location, Model) {
+function chapterOverviewDirective($location, Model) {
   return {
     restrict: 'E',
     scope: {
