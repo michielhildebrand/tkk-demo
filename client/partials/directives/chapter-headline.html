@@ -1,5 +1,7 @@
 <div class="chapter-list clearfix">
 	<div class="chapter" ng-repeat="ch in video.chapters">
-		<button type="button" ng-click="play($index)" class="btn btn-link btn-lg">{{ch.title}}</button>
+		<button type="button" ng-click="play($index)" class="btn btn-link btn-lg" ng-class="{red: isSelected($index)}">
+      {{ch.title}}
+    </button>
 	</div>
 </div>
