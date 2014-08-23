@@ -7,6 +7,7 @@ function homeCtrl($scope, $location, eventsBus, Model) {
 
   function initialize() {
     var videos = Model.getVideos();
+    console.log(videos);
     $scope.latestVideo = videos[0];
     $scope.remainingVideos = videos.slice(1);
   }

@@ -18,6 +18,59 @@ html, body {
     font-size: 20px;
     margin: 15px 0 15px 15px;
 }
+.home h3 {
+    font-size: 14px;
+    margin: 0 0 7px;
+}
+.home h4 {
+    font-size: 12px;
+    margin: 6px 0 0;
+}
+.home .items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.home .items li {
+    margin: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid #DDD;
+}
+.home .items li:first-child {
+    padding-top: 0;
+}
+.home .items li:last-child {
+    border-bottom: 0;
+}
+.home .chapter {
+    width: 128px;
+    overflow: hidden;
+    float: left;
+    margin-right: 10px;
+}
+.home .chapter .thumb {
+    position: relative;
+}
+.home .chapter .thumb img {
+    width: 128px;
+    height: 72px;
+}
+.home .chapter .video-thumb {
+    position: relative;
+}
+.home .chapter .chapter-time {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    padding: 0 4px;
+    font-weight: bold;
+    font-size: 11px;
+    background-color: #000;
+    color: #fff;
+    height: 14px;
+    line-height: 14px;
+    opacity: .75;
+}
 
 /* player */
 .glyphicon.linkedtv {
@@ -57,7 +110,7 @@ video {
 .chapter-list {
 }
 
-.chapter {
+.player .chapter {
     border-right: 1px solid #EEE;
     float: left;
 }

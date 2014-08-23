@@ -10,26 +10,16 @@
     <div class="panel panel-default">
       <div class="panel-heading">Episodes</div>
       <div class="panel-body">
-
-        <div class="row">
-          <div class="col-md-3" ng-click="playFirstChapter(latestVideo.id)">
-            <img ng-src="{{latestVideo.poster}}" width="100%"/>
-          </div>
-          <div class="col-md-9">
-            <h5>{{latestVideo.title}}</h5>
+        <ul class="items">
+          <li class="episode">
+            <h3><a href="" ng-click="playFirstChapter(latestVideo.id)">{{latestVideo.title}}</a></h3>
             <chapter-overview video="latestVideo"></chapter-overview>
-          </div>
-        </div>
-
-        <div class="row">
-          <div ng-repeat="rv in remainingVideos">
-            <div class="col-md-3" ng-click="playFirstChapter(rv.id)">
-              <h5>{{rv.title}}</h5>
-              <img ng-src="{{rv.poster}}" width="100%"/>
-            </div>
-          </div>
-        </div>
-      
+          </li>
+          <li class="episode" ng-repeat="rv in remainingVideos">
+            <h3><a href="" ng-click="playFirstChapter(rv.id)">{{rv.title}}</a></h3>
+            <chapter-overview video="rv"></chapter-overview>
+          </li>
+        </ul>  
       </div>
     </div>
 
