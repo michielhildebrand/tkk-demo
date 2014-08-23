@@ -1,5 +1,5 @@
-<div class="chapter-list clearfix">
-	<div class="chapter" ng-repeat="ch in video.chapters">
+<ul class="chapter-list clearfix">
+	<li class="chapter" ng-repeat="ch in video.chapters">
 	  <div class="thumb">
 	    <a href="" ng-click="play($index)">
 	      <span class="video-thumb">
@@ -8,8 +8,10 @@
 	      <span class="chapter-time">{{getDuration(ch)}}</span>
 	    </a>  
 	  </div>  
-	  <h4><a href="" ng-click="play($index)">
-	    {{ch.title}}
-	  </a></h4>
-	</div>
-</div>
+	  <div class="chapter-content">
+  	  <h4><a href="" ng-click="play($index)">
+  	    {{ch.title}}
+  	  </a></h4>
+  	</div>  
+	</li>
+</ul>

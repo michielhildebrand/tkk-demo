@@ -1,9 +1,9 @@
-<div class="col-md-1 text-right">
-  <div class="time">{{startLapse}}</div>
+<div class="time pull-left text-left">
+  {{startLapse}}
 </div>
-<div class="col-md-9">
+<div class="time pull-right text-right">
+  -{{endLapse}}
+</div>
+<div class="seekbar">
   <input type="range" min="0" max="{{duration}}" value="{{current}}">
-</div>
-<div class="col-md-2 text-left">
-  <div class="time">-{{endLapse}}</div>
 </div>

@@ -1,5 +1,17 @@
-<div class="chapter-list clearfix">
-	<div class="chapter" ng-repeat="ch in video.chapters">
-		<button type="button" ng-click="play($index)" class="btn btn-link btn-lg">{{ch.title}}</button>
-	</div>
+<ul class="chapter-list">
+	<li class="chapter clearfix" ng-repeat="ch in video.chapters">
+	  <div class="thumb pull-left">
+	    <a href="" ng-click="play($index)">
+	      <span class="video-thumb">
+	        <img ng-src="{{getShot(ch)}}" alt="{{ch.title}}">  
+	      </span>  
+	      <span class="chapter-time">{{getDuration(ch)}}</span>
+	    </a>  
+	  </div> 
+	  <div class="content"> 
+  	  <h4><a href="" ng-click="play($index)">
+  	    {{ch.title}}
+  	  </a></h4>
+  	</div>  
+	</li>
 </div>
