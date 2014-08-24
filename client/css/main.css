@@ -101,7 +101,7 @@ video {
     width: 100%;
     position: absolute;
     opacity: 0.95;
-    background-color: #FFF;
+    background-color: #EEE;
 }
 .player-controls .player-controls-content {
     padding: 11px 10px;
@@ -179,7 +179,7 @@ video {
     margin: 55px 10px;
     padding: 0;
     border: 1px solid #DDD;
-    background-color: #FFF;
+    background-color: #EEE;
     opacity: 0.95;
 }
 .player-menu {
@@ -193,6 +193,7 @@ video {
 .player-panel .content {
     height: 100%;
     overflow: auto;
+    background-color: white;
 }
 .player-panel .ng-isolate-scope { /*height hack for ng inserted element*/
     height: 100%;
@@ -200,17 +201,27 @@ video {
 .player-panel .tab-content {
     padding: 10px;
 }
+.player-panel .nav {
+    background-color: #EEE;
+}
 .player-panel .nav-tabs {
     padding: 0 10px;
+}
+.player-panel .nav-tabs>li {
+    border-width: 0;
+    background-color: transparent!important;
+}
+.player-panel .nav-tabs>li>a {
+    border-width: 0;
 }
 .player-panel .nav-tabs>li.active>a,
 .player-panel .nav-tabs>li.active>a:hover,
 .player-panel .nav-tabs>li.active>a:focus {
     color: #555;
     cursor: default;
-    background-color: #fff;
     border: 1px solid #428bca;
     border-width: 0 0 5px 0;
+    background-color: transparent!important;
 }
 
 .player-menu ul.chapter-list {
