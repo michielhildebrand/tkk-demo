@@ -21,7 +21,6 @@ function playerControlsDirective($location, Model) {
         return $scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       };
       $scope.getDuration = function (ch) {
-          console.log(ch);
           return moment.utc(parseInt(ch.duration)).format("m:ss");
       } 
 
