@@ -13,6 +13,13 @@ h3 {
 h4 {
     font-size: 12px;
 }
+.glyphicon {
+    color: #000;
+}
+.glyphicon.active {
+    color: #428bca;
+}
+
 /* home */
 .home .hd {
     background-color: #FFF;
@@ -213,11 +220,14 @@ video {
 }
 .player-panel .nav-tabs>li>a {
     border-width: 0;
+    color: #333;
+    padding: 6px 15px;
 }
 .player-panel .nav-tabs>li.active>a,
 .player-panel .nav-tabs>li.active>a:hover,
 .player-panel .nav-tabs>li.active>a:focus {
-    color: #555;
+    color: #333;
+    font-weight: bold;
     cursor: default;
     border: 1px solid #428bca;
     border-width: 0 0 5px 0;
@@ -233,11 +243,6 @@ video {
 }
 .player-menu .chapter .thumb {
     float: left;
-}
-
-/* */
-.red {
-    color: #d14;
 }
 
 /* entity display */
