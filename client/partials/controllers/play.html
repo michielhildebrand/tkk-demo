@@ -1,9 +1,18 @@
-<div class="player-menu">
-  <div class="content container">
+<div class="player-menu player-panel">
+  <div class="content">
     <tabset>
       <tab heading="Chapters">
         <chapter-overview video="video"></chapter-overview>
       </tab>
+      <tab heading="Playlist">
+      </tab>
+    </tabset>
+  </div>
+</div>
+
+<div class="enrich player-panel">
+  <div class="content">
+    <tabset>
       <tab heading="About">
         <!-- static information card -->
         <div class="information-card">
@@ -24,25 +33,80 @@
           </div>
         </div>
       </tab>
-      <tab heading="Related">
+      <tab heading="Related chapters">
+        <div ng-repeat="v in relatedVideos">
+          {{v.title}}
+          <chapter-list video="v"></chapter-list>
+        </div>
       </tab>
+      <tab heading="Artworks">
+        <div class="entity-grid">
+          <ul class="entities">
+            <li>
+            <!-- ng-repeat="e in entities">-->
+              <a ng-click="proxy(e, true)">
+                <span class="entity-thumb"><img src="http://europeanastatic.eu/api/image?uri=https%3A%2F%2Fwww.rijksmuseum.nl%2Fassetimage2.jsp%3Fid%3DSK-A-3349&size=BRIEF_DOC&type=IMAGE"></span>
+                <span class="entity-title">De schelpenvisser</span>
+              </a>
+            </li>
+            <li>
+            <!-- ng-repeat="e in entities">-->
+              <a ng-click="proxy(e, true)">
+                <span class="entity-thumb"><img src="http://europeanastatic.eu/api/image?uri=https%3A%2F%2Fwww.rijksmuseum.nl%2Fassetimage2.jsp%3Fid%3DRP-T-1942-121&size=BRIEF_DOC&type=IMAGE"></span>
+                <span class="entity-title">Gezicht op een kanaal</span>
+              </a>
+            </li>
+          </ul>
+        </div>  
+      </tab>
+      <tab heading="Articles">
+        <div class="row">
+          <div class="col-md-3">
+            <ul>
+              <li>Jan Toorop in Domburg</li>
+              <li>Domburg artists</li>
+            </ul>  
+          </div>
+          <div class="col-md-9">
+            <div class="article">
+              <div class="article-content">
+              	<h4 class="title">title</h4>
+            		<div class="article-info">
+            		  <span class="author">name</span>
+                  <span class="source">source</span>
+                  <span class="date">date</span>
+                  <div class="article-link">
+                    <a href="url">original article</a>
+                  </div>
+                </div>
+                <div class="media">
+            		</div>
+            		<div class="article-text">text</div>
+            	</div>	
+            </div>	
+          </div>    
+        </div>  
+      </tab>  
     </tabset>  
   </div>  
 </div>
 
 <div class="container-fluid player-controls player-controls-top">
 	<div class="row">
-		<div class="col-xs-1">
+		<div class="col-xs-2 col-md-1">
 			<button type="button" ng-click="goToMain()" class="btn btn-link btn-lg">
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</button>
 		</div>
-		<div class="col-xs-10">
+		<div class="col-xs-6 col-md-9">
 			<div class="timeline">
         <seek-bar></seek-bar>
     	</div>
 		</div>
-		<div class="col-xs-1 text-right">
+		<div class="col-xs-4 col-md-2 text-right">
+		  <button type="button" ng-click="togglePlayerMenu()" class="btn btn-link btn-lg">
+				<span class="glyphicon glyphicon-th-list"></span>
+			</button>
       <bookmarking chapter="chapter"></bookmarking>
 		</div>
 	</div>
