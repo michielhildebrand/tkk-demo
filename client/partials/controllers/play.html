@@ -91,31 +91,33 @@
   </div>  
 </div>
 
-<div class="container-fluid player-controls player-controls-top">
-	<div class="row">
-		<div class="col-xs-2 col-md-1">
-			<button type="button" ng-click="goToMain()" class="btn btn-link btn-lg">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-			</button>
-		</div>
-		<div class="col-xs-6 col-md-9">
-			<div class="timeline">
-        <seek-bar></seek-bar>
-    	</div>
-		</div>
-		<div class="col-xs-4 col-md-2 text-right">
-		  <button type="button" ng-click="togglePlayerMenu()" class="btn btn-link btn-lg">
-				<span class="glyphicon glyphicon-th-list"></span>
-			</button>
+<div class="player-controls player-controls-top">
+  <div class="player-controls-content">
+  	<div class="col-l">
+  		<button type="button" ng-click="goToMain()" class="btn btn-link btn-lg">
+  			<span class="glyphicon glyphicon-chevron-left"></span>
+  		</button>
+  	</div>
+  	<div class="col-r">
+  	  <button type="button" ng-click="togglePlayerMenu()" class="btn btn-link btn-lg">
+  			<span class="glyphicon glyphicon-th-list"></span>
+  		</button>
       <bookmarking chapter="chapter"></bookmarking>
-		</div>
-	</div>
+  	</div>
+  	<div class="col-m">
+  	  <div class="timeline">
+        <seek-bar></seek-bar>
+      </div>  
+    </div>
+  </div>
 </div>
 
-<div class="container-fluid player">
+<div class="player">
 	<player second="second" beaming="beaming"></player>
 </div>
 
-<div class="container-fluid player-controls player-controls-bottom">
-	<player-controls></player-controls>
+<div class="player-controls player-controls-bottom">
+  <div class="player-controls-content">
+	  <player-controls></player-controls>
+	</div>  
 </div>
