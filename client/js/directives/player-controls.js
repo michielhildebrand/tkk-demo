@@ -52,7 +52,7 @@ function playerControlsDirective($location, Model) {
       };
 
       function jump(delta) {
-        $location.path('/play/' + (Model.getChapterIndex() + delta));
+        $location.path('/play/' + $scope.video.id + '/' + (Model.getChapterIndex() + delta));
       }
 
       $scope.$watch(
