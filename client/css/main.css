@@ -200,8 +200,20 @@ video {
     left: 0;
     right: 310px;
 }
+.enrich-fullscreen {
+    margin: 0;
+    opacity: 1;
+    z-index: 10;
+}
 .enrich.player-panel-extended {
     right: 0;
+}
+.enrich .fullscreen {
+    margin-bottom: -35px;
+    text-align: right;
+}
+.enrich .fullscreen button {
+    padding: 5px 10px;
 }
 .player-panel .content {
     height: 100%;

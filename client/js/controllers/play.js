@@ -8,6 +8,8 @@ function playCtrl($scope, $routeParams, $location, Model) {
 
   $scope.showMenu = false;
   $scope.showEnrichment = false;
+  
+  $scope.enrichFull = false;
 
   $scope.$watch(
     function () {
@@ -44,6 +46,11 @@ function playCtrl($scope, $routeParams, $location, Model) {
   $scope.togglePlayerMenu = function () {
     $scope.showMenu = !$scope.showMenu;
   };
+  
+  $scope.toggleEnrichFull = function () {
+      console.log("toggle");
+      $scope.enrichFull = !$scope.enrichFull;
+    };
 
   $scope.toggleBeam = function () {
     $scope.beaming = !$scope.beaming;

@@ -12,8 +12,16 @@
   </div>
 </div>
 
-<div class="enrich player-panel" ng-class="{'player-panel-extended': !showMenu}" ng-if="showEnrichment">
+<div class="enrich player-panel" 
+    ng-class="{'player-panel-extended': !showMenu, 'enrich-fullscreen': enrichFull}"  
+    ng-if="showEnrichment">
   <div class="content">
+    <div class="fullscreen">
+      <button type="button" ng-click="toggleEnrichFull()" class="btn btn-link btn-lg">
+  			<span class="glyphicon glyphicon-resize-full" ng-if="!enrichFull"></span>
+  			<span class="glyphicon glyphicon-resize-small" ng-if="enrichFull"></span>
+  		</button>
+    </div>
     <tabset>
       <tab heading="About">
         <chapter-about video="video" chapter="chapter" metadata="metadata"></chapter-about>
