@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.bookmarks', []).directive('bookmarks', ['eventsBus', 'Model', bookmarksDirective]);
+angular.module('app.bookmarks', []).directive('bookmarks', ['Model', bookmarksDirective]);
 
-function bookmarksDirective(eventsBus, Model) {
+function bookmarksDirective(Model) {
   return {
     restrict: 'E',
     replace: false,
