@@ -53,7 +53,7 @@ function playerDirective(eventsBus, Model) {
         }
       );
     },
-    controller: function ($scope, $element) {
+    controller: function ($scope, $element, $timeout) {
       var executeAction = function (msg) {
         if (!$scope.beaming) {
           var player = $element[0].children.player;
@@ -87,6 +87,17 @@ function playerDirective(eventsBus, Model) {
         }
       };
       eventsBus.subscribe('player', executeAction);
+
+      publishCurrentTime();
+
+      function publishCurrentTime(){
+        $timeout(function(){
+          var player = $element[0].children.player;
+          eventsBus.publish('player-time', player.currentTime);
+
+          publishCurrentTime();
+        }, 1000);
+      }
     },
     templateUrl: 'partials/directives/player.html'
   }
