@@ -33,9 +33,7 @@ function bookmarkingDirective(Model) {
       }
 
       function compositeId() {
-        var c = $scope.video.id + '_' + $scope.chapter.id;
-        console.log(c);
-        return c;
+        return $scope.video.id + '_' + $scope.chapter.id;
       }
 
       function sendToBookmark(b) {
