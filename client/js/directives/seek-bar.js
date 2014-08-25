@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.seek-bar', []).directive('seekBar', ['Model', seekBarDirective]);
+angular.module('app.seek-bar', []).directive('seekBar', ['eventsBus', 'Model', seekBarDirective]);
 
-function seekBarDirective(Model) {
+function seekBarDirective(eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -32,13 +32,24 @@ function seekBarDirective(Model) {
         },
         function (newChapter) {
           if (newChapter != null) {
-            $scope.current = newChapter.startTime;
-
-            $scope.endLapse = moment($scope.duration - $scope.current).format('mm:ss');
-            $scope.startLapse = moment($scope.current).format('mm:ss');
+            updateBar(newChapter.startTime);
           }
         }
       );
+
+      function updateBar(millis) {
+        $scope.current = millis;
+        $scope.endLapse = moment($scope.duration - millis).format('mm:ss');
+        $scope.startLapse = moment(millis).format('mm:ss');
+      }
+
+      function syncCurrentTime(t) {
+        if (t != 0) updateBar(t * 1000);
+
+        $scope.$$phase || $scope.$apply();
+      }
+
+      eventsBus.subscribe('player-time', syncCurrentTime);
 
     },
     templateUrl: 'partials/directives/seek-bar.html'
