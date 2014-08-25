@@ -1,4 +1,4 @@
-<div class="player-menu player-panel">
+<div class="player-menu player-panel" ng-if="showMenu">
   <div class="content">
     <tabset>
       <tab heading="Chapters">
@@ -100,7 +100,7 @@
   	</div>
   	<div class="col-r">
   	  <button type="button" ng-click="togglePlayerMenu()" class="btn btn-link btn-lg">
-  			<span class="glyphicon glyphicon-th-list" ng-class="{active: playerPanel}"></span>
+  			<span class="glyphicon glyphicon-th-list" ng-class="{active: showMenu}"></span>
   		</button>
       <bookmarking chapter="chapter"></bookmarking>
   	</div>

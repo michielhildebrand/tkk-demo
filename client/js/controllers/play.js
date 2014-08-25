@@ -6,6 +6,8 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Model) {
   $scope.second = false;
   $scope.beaming = false;
 
+  $scope.showMenu = false;
+
   if (Model.getVideos().length != 0) initialize();
 
   $scope.goToMain = function () {
@@ -28,6 +30,10 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Model) {
   }
 
   eventsBus.subscribe('video', setVideos);
+
+  $scope.togglePlayerMenu = function () {
+    $scope.showMenu = !$scope.showMenu;
+  };
 
   $scope.toggleBeam = function () {
     $scope.beaming = !$scope.beaming;
