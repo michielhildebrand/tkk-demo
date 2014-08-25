@@ -18,9 +18,24 @@ function playCtrl($scope, $routeParams, $location, Model) {
         Model.play($routeParams.videoId, $routeParams.chapterIndex);
         $scope.video = Model.getVideo();
         $scope.chapter = Model.getChapter();
+        $scope.metadata = extractMetadata();
       }
     }
   );
+
+  function extractMetadata() {
+    return _.chain($scope.chapter.fragments)
+      .map(function (f) {
+        return {value: f.title.trim(), uri: f.locator.trim()}
+      })
+      .filter(function (e) {
+        return e.value.length > 0
+      })
+      .uniq(false, function (e) {
+        return e.value;
+      })
+      .value();
+  }
 
   $scope.goToMain = function () {
     $location.path('/');
@@ -40,7 +55,7 @@ function playCtrl($scope, $routeParams, $location, Model) {
     }
   };
 
-  $scope.enrich = function() {
+  $scope.enrich = function () {
     openEnrichment();
   };
 
@@ -51,6 +66,7 @@ function playCtrl($scope, $routeParams, $location, Model) {
   function sendToTv(action) {
     send({target: 'tv', data: action});
   }
+
   function send(msg) {
     eddie.putLou('ngproxy', JSON.stringify(msg));
   }

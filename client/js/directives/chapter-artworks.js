@@ -6,7 +6,8 @@ function chapterArtworksDirective(europeanaApi, Model) {
   return {
     restrict: 'E',
     scope: {
-      'chapter': '='
+      'chapter': '=',
+      'metadata': '='
     },
     replace: false,
     link: function (scope, element, attrs) {

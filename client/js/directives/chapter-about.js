@@ -6,7 +6,8 @@ function chapterAboutDirective(entityProxy, Model) {
   return {
     restrict: 'E',
     scope: {
-      'chapter': '='
+      'chapter': '=',
+      'metadata': '='
     },
     replace: false,
     link: function (scope, element, attrs) {
@@ -22,27 +23,13 @@ function chapterAboutDirective(entityProxy, Model) {
 
       // The chapter information are shown in the first information card
       function loadChapterInformation() {
-        var metadata = _.chain($scope.chapter.fragments)
-          .map(function (f) {
-            return {value: f.title.trim(), uri: f.locator.trim()}
-          })
-          .filter(function (e) {
-            return e.value.length > 0
-          })
-          .uniq(false, function (e) {
-            return e.value;
-          })
-          .value();
-
-        //metadata.push({value: 'Piet Mondrian', uri: 'http://dbpedia.org/resource/Piet_Mondrian'}); //for testing navigation uncomment this
-
         var chapterTitle = $scope.chapter.title;
         answers[chapterTitle] = {
           label: [
             {value: chapterTitle}
           ],
           thumb: [''], //TODO chapter artwork picture (special object)
-          metadata: metadata
+          metadata: $scope.metadata
         };
 
         var chapterEntity = {value: chapterTitle, uri: ''};
