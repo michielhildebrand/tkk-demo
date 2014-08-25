@@ -9,7 +9,7 @@ function homeCtrl($scope, $location, Model) {
       return Model.getVideos();
     },
     function (newVideos) {
-      if (newVideos.length != 0) {
+      if (newVideos.length > 0) {
         $scope.latestVideo = newVideos[0];
         $scope.remainingVideos = newVideos.slice(1);
       }
