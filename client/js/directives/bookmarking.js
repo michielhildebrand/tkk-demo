@@ -6,6 +6,7 @@ function bookmarkingDirective(Model) {
   return {
     restrict: 'E',
     scope: {
+      'video': '=',
       'chapter': '='
     },
     replace: false,
@@ -14,8 +15,8 @@ function bookmarkingDirective(Model) {
     },
     controller: function ($scope, $element) {
       $scope.bookmark = function () {
-        var chId = $scope.chapter.id;
-        var currentBookmarks = isBookmarked() ? Model.unbookmark(chId) : Model.bookmark(chId);
+        var id = compositeId();
+        var currentBookmarks = isBookmarked() ? Model.unbookmark(id) : Model.bookmark(id);
         sendToBookmark(currentBookmarks);
       };
 
@@ -25,10 +26,16 @@ function bookmarkingDirective(Model) {
 
       function isBookmarked() {
         if ($scope.chapter) {
-          return _.contains(Model.getBookmarks(), $scope.chapter.id);
+          return _.contains(Model.getBookmarks(), compositeId());
         } else {
           return false;
         }
+      }
+
+      function compositeId() {
+        var c = $scope.video.id + '_' + $scope.chapter.id;
+        console.log(c);
+        return c;
       }
 
       function sendToBookmark(b) {
