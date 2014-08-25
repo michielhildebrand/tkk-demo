@@ -51,30 +51,34 @@ h4 {
 .home ul.items>li:last-child {
     border-bottom: 0;
 }
-.home ul.chapter-list {
-    margin: 0;
-    padding: 0;
-}
+
 .home .chapter {
     float: left;
 }
 /* chapter list */
 .chapter-list {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 .chapter {
     overflow: hidden;
 }
 .chapter .thumb {
     position: relative;
+    width: 128px;
+    height: 72px;
     margin-right: 10px;
 }
 .chapter .thumb img {
-    width: 128px;
-    height: 72px;
+    width: 100%;
+    height: 100%;
 }
 .chapter .video-thumb {
     position: relative;
+}
+.chapter h4 {
+    margin: 5px 0 10px;
 }
 .chapter .chapter-time {
     position: absolute;
@@ -236,9 +240,6 @@ video {
     background-color: transparent!important;
 }
 
-.player-menu ul.chapter-list {
-    padding: 0;
-}
 .player-menu  ul.chapter-list li {
     padding: 0;
     border-bottom: 1px solid #DDD;
@@ -279,10 +280,28 @@ video {
     list-style: none;
 }
 
+/* related chapters*/
+.related-chapters {
+    padding: 10px;
+}
+.related-chapters .chapter {
+    overflow: hidden;
+    padding: 10px;
+}
+.related-chapters .chapter h4 {
+    font-size: 16px;
+}
+.related-chapters .chapter .thumb {
+    float: left;
+}
+.related-chapters .chapter .thumb {
+    width: 224px;
+    height: 126px;
+}
+
 /* grid */
 .grid {
     overflow: auto;
-    padding: 10px;
 } 
 .grid ul {
     list-style: none;

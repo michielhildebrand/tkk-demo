@@ -1,4 +1,9 @@
-<div ng-repeat="v in relatedVideos">
-  {{v.title}}
-  <chapters-overview video="v"></chapters-overview>
+<div class="related-chapters">
+  <ul class="chapter-list">
+    <span ng-repeat="v in relatedVideos">
+      <li ng-repeat="ch in v.chapters">
+        <chapter-item video="v" chapter="ch" index="$index"></chapter-item>
+  	  </li>
+  	</span>
+  </ul>
 </div>
