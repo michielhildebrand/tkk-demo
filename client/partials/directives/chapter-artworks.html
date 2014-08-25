@@ -1,18 +1,13 @@
 <div class="entity-grid">
-  <ul class="entities">
-    <li>
-      <!-- ng-repeat="e in entities">-->
-      <a ng-click="proxy(e, true)">
-        <span class="entity-thumb"><img src="http://europeanastatic.eu/api/image?uri=https%3A%2F%2Fwww.rijksmuseum.nl%2Fassetimage2.jsp%3Fid%3DSK-A-3349&size=BRIEF_DOC&type=IMAGE"></span>
-        <span class="entity-title">De schelpenvisser</span>
-      </a>
-    </li>
-    <li>
-      <!-- ng-repeat="e in entities">-->
-      <a ng-click="proxy(e, true)">
-        <span class="entity-thumb"><img src="http://europeanastatic.eu/api/image?uri=https%3A%2F%2Fwww.rijksmuseum.nl%2Fassetimage2.jsp%3Fid%3DRP-T-1942-121&size=BRIEF_DOC&type=IMAGE"></span>
-        <span class="entity-title">Gezicht op een kanaal</span>
-      </a>
-    </li>
-  </ul>
+  <div ng-if="loading">
+    <div class="text-center"><i>Loading ...</i></div>
+  </div>
+  <div ng-if="!loading">
+    <ul class="entities" ng-repeat="a in artworks">
+      <li>
+        <span class="entity-thumb"><img ng-src="{{a.img}}"></span>
+        <span class="entity-title">{{a.title}}</span>
+      </li>
+    </ul>
+  </div>
 </div>
