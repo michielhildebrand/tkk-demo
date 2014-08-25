@@ -15,6 +15,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.chapter-item',
   'app.chapter-about',
   'app.chapter-related',
+  'app.chapter-artworks',
   'app.bookmarking',
   'app.bookmarks',
   'app.information-card',
@@ -22,7 +23,8 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
 
   'Model',
   'EventsBus',
-  'EntityProxy'
+  'EntityProxy',
+  'EuropeanaApi'
 ]);
 
 tkkDemoApp.config(['$routeProvider',
@@ -48,7 +50,8 @@ tkkDemoApp.config(['$routeProvider',
       });
   }
 ]).constant('CONFIG', {
-  ENTITY_PROXY: 'http://linkedtv.project.cwi.nl/explore/entity_proxy'
+  ENTITY_PROXY: 'http://linkedtv.project.cwi.nl/explore/entity_proxy',
+  EUROPEANA_API: 'http://europeana.eu/api/v2/search.json'
 }).filter('trusted', [
     '$sce',
     function ($sce) {
