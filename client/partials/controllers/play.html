@@ -17,10 +17,7 @@
         <chapter-about chapter="chapter"></chapter-about>
       </tab>
       <tab heading="Related chapters">
-        <div ng-repeat="v in relatedVideos">
-          {{v.title}}
-          <chapters-overview video="v"></chapters-overview>
-        </div>
+        <chapter-related chapter="chapter"></chapter-related>
       </tab>
       <tab heading="Artworks">
         <div class="entity-grid">

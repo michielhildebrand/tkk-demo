@@ -16,7 +16,6 @@ function playCtrl($scope, $routeParams, $location, Model) {
     function (newVideos) {
       if (newVideos.length > 0) {
         Model.play($routeParams.videoId, $routeParams.chapterIndex);
-        $scope.relatedVideos = newVideos;
         $scope.video = Model.getVideo();
         $scope.chapter = Model.getChapter();
       }
