@@ -19,7 +19,6 @@ h4 {
 .glyphicon.active {
     color: #428bca;
 }
-
 /* home */
 .home .hd {
     background-color: #FFF;
@@ -197,6 +196,9 @@ video {
     left: 0;
     right: 310px;
 }
+.enrich.player-panel-extended {
+    right: 0;
+}
 .player-panel .content {
     height: 100%;
     overflow: auto;
@@ -206,7 +208,7 @@ video {
     height: 100%;
 }
 .player-panel .tab-content {
-    padding: 10px;
+    padding: 0;
 }
 .player-panel .nav {
     background-color: #EEE;
@@ -238,11 +240,18 @@ video {
     padding: 0;
 }
 .player-menu  ul.chapter-list li {
-    padding: 10px 0;
+    padding: 0;
     border-bottom: 1px solid #DDD;
+}
+.player-menu .chapter {
+    overflow: hidden;
+    padding: 10px;
 }
 .player-menu .chapter .thumb {
     float: left;
+}
+.player-menu .chapter .active {
+    background-color: #DDD;
 }
 
 /* entity display */

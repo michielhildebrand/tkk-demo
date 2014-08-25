@@ -1,15 +1,17 @@
-<div class="thumb" ng-class="{active: isSelected()}">
-  <a href="" ng-click="play()">
-    <span class="video-thumb">
-      <img ng-src="{{getShot()}}" alt="{{chapter.title}}">
-    </span>
-    <span class="chapter-time">{{getDuration()}}</span>
-  </a>
-</div>
-<div class="chapter-content">
-  <h4>
-    <a href="" ng-click="play($index)">
-      {{chapter.title}}
+<div class="chapter" ng-class="{active: isSelected()}">
+  <div class="thumb">
+    <a href="" ng-click="play()">
+      <span class="video-thumb">
+        <img ng-src="{{getShot()}}" alt="{{chapter.title}}">
+      </span>
+      <span class="chapter-time">{{getDuration()}}</span>
     </a>
-  </h4>
+  </div>
+  <div class="chapter-content">
+    <h4>
+      <a href="" ng-click="play($index)">
+        {{chapter.title}}
+      </a>
+    </h4>
+  </div>
 </div>
