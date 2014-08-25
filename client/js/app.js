@@ -55,11 +55,26 @@ tkkDemoApp.config(['$routeProvider',
       };
     }
   ]
-).run(['$location', '$rootScope',
-    function ($location, $rootScope) {
+).run(['$location', '$rootScope', 'eventsBus', 'Model',
+    function ($location, $rootScope, eventsBus, Model) {
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;
       });
+
+      var syncBookmarks = function(bookmarks) {
+        _.each(bookmarks, function(b) {
+          Model.bookmark(b);
+        });
+        $rootScope.$$phase || $rootScope.$apply();
+      };
+
+      function syncVideos(videos) {
+        Model.setVideos(videos);
+        $rootScope.$$phase || $rootScope.$apply();
+      }
+
+      eventsBus.subscribe('video', syncVideos);
+      eventsBus.subscribe('bookmark', syncBookmarks);
     }
   ]
 );

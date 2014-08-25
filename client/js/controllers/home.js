@@ -1,27 +1,23 @@
 'use strict';
 
-angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'eventsBus', 'Model', homeCtrl]);
+angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'Model', homeCtrl]);
 
-function homeCtrl($scope, $location, eventsBus, Model) {
-  if (Model.getVideos().length != 0) initialize();
+function homeCtrl($scope, $location, Model) {
 
-  function initialize() {
-    var videos = Model.getVideos();
-    $scope.latestVideo = videos[0];
-    $scope.remainingVideos = videos.slice(1);
-  }
+  $scope.$watch(
+    function () {
+      return Model.getVideos();
+    },
+    function (newVideos) {
+      if (newVideos != null) {
+        $scope.latestVideo = newVideos[0];
+        $scope.remainingVideos = newVideos.slice(1);
+      }
+    }
+  );
 
   $scope.playFirstChapter = function (videoId) {
     $location.path('/play/' + videoId + '/0');
   };
 
-  function setVideos(videos) {
-    Model.setVideos(videos);
-
-    initialize();
-
-    $scope.$$phase || $scope.$apply();
-  }
-
-  eventsBus.subscribe('video', setVideos);
 }

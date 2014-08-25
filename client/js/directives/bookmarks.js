@@ -18,16 +18,6 @@ function bookmarksDirective(eventsBus, Model) {
           if (newBookmarks != null) $scope.bookmarks = newBookmarks;
         }
       );
-
-      var syncBookmarks = function(bookmarks) {
-        _.each(bookmarks, function(b) {
-          Model.bookmark(b);
-        });
-
-        $scope.$$phase || $scope.$apply();
-      };
-
-      eventsBus.subscribe('bookmark', syncBookmarks);
     },
     templateUrl: 'partials/directives/bookmarks.html'
   }

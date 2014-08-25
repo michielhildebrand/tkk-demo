@@ -1,35 +1,30 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , '$modal', 'eventsBus', 'Model', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , '$modal', 'Model', playCtrl]);
 
-function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Model) {
+function playCtrl($scope, $routeParams, $location, $modal, Model) {
   $scope.second = false;
   $scope.beaming = false;
 
   $scope.showMenu = false;
 
-  if (Model.getVideos().length != 0) initialize();
+  $scope.$watch(
+    function () {
+      return Model.getVideos();
+    },
+    function (newVideos) {
+      if (newVideos != null) {
+        Model.play($routeParams.videoId, $routeParams.chapterIndex);
+        $scope.relatedVideos = newVideos;
+        $scope.video = Model.getVideo();
+        $scope.chapter = Model.getChapter();
+      }
+    }
+  );
 
   $scope.goToMain = function () {
     $location.path('/');
   };
-
-  function initialize() {
-    Model.play($routeParams.videoId, $routeParams.chapterIndex);
-    $scope.relatedVideos = Model.getVideos();
-    $scope.video = Model.getVideo();
-    $scope.chapter = Model.getChapter();
-  }
-
-  function setVideos(videos) {
-    Model.setVideos(videos);
-
-    initialize();
-
-    $scope.$$phase || $scope.$apply();
-  }
-
-  eventsBus.subscribe('video', setVideos);
 
   $scope.togglePlayerMenu = function () {
     $scope.showMenu = !$scope.showMenu;
