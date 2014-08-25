@@ -1,17 +1,5 @@
 <ul class="chapter-list clearfix">
 	<li class="chapter" ng-repeat="ch in video.chapters">
-	  <div class="thumb" ng-class="{active: isSelected($index)}">
-	    <a href="" ng-click="play($index)">
-	      <span class="video-thumb">
-	        <img ng-src="{{getShot(ch)}}" alt="{{ch.title}}">
-	      </span>  
-	      <span class="chapter-time">{{getDuration(ch)}}</span>
-	    </a>  
-	  </div>  
-	  <div class="chapter-content">
-  	  <h4><a href="" ng-click="play($index)">
-  	    {{ch.title}}
-  	  </a></h4>
-  	</div>  
+    <chapter-item video="video" chapter="ch" ng-class="{active: isSelected($index)}"></chapter-item>
 	</li>
 </ul>
