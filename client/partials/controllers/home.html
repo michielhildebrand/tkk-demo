@@ -13,11 +13,11 @@
         <ul class="items">
           <li class="episode">
             <h3><a href="" ng-click="playFirstChapter(latestVideo.id)">{{latestVideo.title}}</a></h3>
-            <chapter-overview video="latestVideo"></chapter-overview>
+            <chapters-overview video="latestVideo"></chapters-overview>
           </li>
           <li class="episode" ng-repeat="rv in remainingVideos">
             <h3><a href="" ng-click="playFirstChapter(rv.id)">{{rv.title}}</a></h3>
-            <chapter-overview video="rv"></chapter-overview>
+            <chapters-overview video="rv"></chapters-overview>
           </li>
         </ul>  
       </div>

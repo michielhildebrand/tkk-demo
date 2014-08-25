@@ -2,7 +2,7 @@
   <div class="content">
     <tabset>
       <tab heading="Chapters">
-        <chapter-overview video="video"></chapter-overview>
+        <chapters-overview video="video"></chapters-overview>
       </tab>
       <tab heading="Playlist">
       </tab>
@@ -36,7 +36,7 @@
       <tab heading="Related chapters">
         <div ng-repeat="v in relatedVideos">
           {{v.title}}
-          <chapter-overview video="v"></chapter-overview>
+          <chapters-overview video="v"></chapters-overview>
         </div>
       </tab>
       <tab heading="Artworks">

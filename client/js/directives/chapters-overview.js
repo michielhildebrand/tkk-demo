@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-overview', []).directive('chapterOverview', ['$location', 'Model', chapterOverviewDirective]);
+angular.module('app.chapters-overview', []).directive('chaptersOverview', ['$location', 'Model', chaptersOverviewDirective]);
 
-function chapterOverviewDirective($location, Model) {
+function chaptersOverviewDirective($location, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -14,7 +14,6 @@ function chapterOverviewDirective($location, Model) {
     },
     controller: function ($scope, $element) {
       $scope.isSelected = function(chIndex) {
-        console.log(chIndex);
         return Model.getChapterIndex() == chIndex;
       };
 
@@ -34,6 +33,6 @@ function chapterOverviewDirective($location, Model) {
         $location.path('/play/' + $scope.video.id + '/' + chIndex);
       };
     },
-    templateUrl: 'partials/directives/chapter-overview.html'
+    templateUrl: 'partials/directives/chapters-overview.html'
   }
 }
