@@ -250,7 +250,7 @@ video {
 .player-menu .chapter .thumb {
     float: left;
 }
-.player-menu .chapter .active {
+.player-menu .chapter.active {
     background-color: #DDD;
 }
 
