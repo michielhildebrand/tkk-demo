@@ -1,0 +1,17 @@
+<div class="information-card">
+  <em ng-repeat="c in crumb">
+    <em ng-if="!$last">
+      <a ng-click="proxy(c, true)">{{c.value}}</a><i> > </i>
+    </em>
+    <em ng-if="$last">
+      {{c.value}}
+    </em>
+  </em>
+
+  <div ng-if="loading">
+    <div class="text-center"><i>Loading ...</i></div>
+  </div>
+  <div ng-if="!loading">
+    <information-card props="proxyAnswer" browse="proxy"></information-card>
+  </div>
+</div>

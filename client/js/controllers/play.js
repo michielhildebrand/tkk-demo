@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location' , '$modal', 'Model', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location', 'Model', playCtrl]);
 
-function playCtrl($scope, $routeParams, $location, $modal, Model) {
+function playCtrl($scope, $routeParams, $location, Model) {
   $scope.second = false;
   $scope.beaming = false;
 
   $scope.showMenu = false;
+  $scope.showEnrichment = false;
 
   $scope.$watch(
     function () {
@@ -40,9 +41,13 @@ function playCtrl($scope, $routeParams, $location, $modal, Model) {
     }
   };
 
-  $scope.showEnrichment = function() {
+  $scope.enrich = function() {
     openEnrichment();
   };
+
+  function openEnrichment() {
+    $scope.showEnrichment = !$scope.showEnrichment;
+  }
 
   function sendToTv(action) {
     send({target: 'tv', data: action});
@@ -51,22 +56,4 @@ function playCtrl($scope, $routeParams, $location, $modal, Model) {
     eddie.putLou('ngproxy', JSON.stringify(msg));
   }
 
-  function openEnrichment() {
-    var modalInstance = $modal.open({
-      templateUrl: 'partials/controllers/enrich.html',
-      controller: 'EnrichCtrl',
-      size: 'lg',
-      resolve: {
-        chapter: function () {
-          return $scope.chapter;
-        }
-      }
-    });
-
-    modalInstance.result.then(function () {
-      //console.log('Modal accepted at: ' + new Date());
-    }, function () {
-      //console.log('Modal dismissed at: ' + new Date());
-    });
-  }
 }
