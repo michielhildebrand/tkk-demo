@@ -1,47 +1,48 @@
-<div class="row">
-	<div class="col-md-4">
-		<div class="image box">
-			<img class="center-block" src="{{thumb.value}}" width="200px" title="{{label.value}}" alt="{{label.value}}"/>
-		</div>
-		<div class="title box">	
-			<h4>{{label.value}}</h4>
-		</div>	
-	</div>
-	<div class="col-md-8">	
-		<div class="description box">
-			<p class="main-text">{{comment.value}}</p>
-			<div class="properties">
+<div class="information-card">
+  <!--
+  <div class="title">
+      <h3>{{label.value}}</h3>
+    </div>-->
+  
+  <div class="content clearfix">
+  	<div class="image pull-left" ng-if="thumb.value">
+  		<img class="center-block" src="{{thumb.value}}" width="300px" title="{{label.value}}" alt="{{label.value}}"/>
+    </div>	
+  	<div class="">	
+  		<div class="description">
+  			<p class="main-text">{{comment.value}}</p>
+  			<div class="properties">
 
-	      <!-- persons/artists -->
-				<div ng-if="birthDate.value">
-				  <label>Birth:</label> {{birthDate.value}} <a ng-click="nav(birthPlace)">{{birthPlace.value}}</a>
-				</div>
-				<div ng-if="deathDate.value">
-				  <label>Death:</label> {{deathDate.value}} <a ng-click="nav(deathPlace)">{{deathPlace.value}}</a>
-				</div>
-				<div ng-if="nationality.value">
-				  <label>Nationality:</label> <a ng-click="nav(nationality)">{{nationality.value}}</a>
-				</div>
-				<div ng-if="profession.value">
-				  <label>Profession:</label> <a ng-click="nav(profession)">{{profession.value}}</a>
-				</div>
-				<div ng-if="style.value">
-				  <label>Style:</label> <a ng-click="nav(style)">{{style.value}}</a>
-				</div>
+  	      <!-- persons/artists -->
+  				<div ng-if="birthDate.value">
+  				  <label>Birth:</label> {{birthDate.value}} <a ng-click="nav(birthPlace)">{{birthPlace.value}}</a>
+  				</div>
+  				<div ng-if="deathDate.value">
+  				  <label>Death:</label> {{deathDate.value}} <a ng-click="nav(deathPlace)">{{deathPlace.value}}</a>
+  				</div>
+  				<div ng-if="nationality.value">
+  				  <label>Nationality:</label> <a ng-click="nav(nationality)">{{nationality.value}}</a>
+  				</div>
+  				<div ng-if="profession.value">
+  				  <label>Profession:</label> <a ng-click="nav(profession)">{{profession.value}}</a>
+  				</div>
+  				<div ng-if="style.value">
+  				  <label>Style:</label> <a ng-click="nav(style)">{{style.value}}</a>
+  				</div>
 
-	      <!-- places -->
-				<div ng-if="population.value">
-				  <label>Population:</label> {{population.value}}
-				</div>
+  	      <!-- places -->
+  				<div ng-if="population.value">
+  				  <label>Population:</label> {{population.value}}
+  				</div>
 
-        <!-- metadata -->
-        <div ng-if="metadata">
-          <h5>Metadata:</h5>
-          <ul ng-repeat="d in metadata">
-            <li><a ng-click="nav(d)">{{d.value}}</a></li>
-          </ul>
+          <!-- metadata -->
+          <div ng-if="metadata">
+            <ul ng-repeat="d in metadata">
+              <li><a ng-click="nav(d)">{{d.value}}</a></li>
+            </ul>
+          </div>
         </div>
-      </div>
-		</div>
-	</div>
-</div>	
+  		</div>
+  	</div>
+  </div>	
+</div>

@@ -280,21 +280,28 @@ video {
     background-color: #f9f9f9;
     border: 1px solid #fff;
 }
-.information-card .title {
-    margin-top: 15px;
-    font-size: 30px;
-    line-height: 32px;
+.information-card {
+    padding: 0 10px;
+}
+.navigation {
+    padding: 10px;
+    font-size: 16px;
     text-transform: uppercase;
 }
-.information-card .box {
-    border: 1px solid #EEE;
-    padding: 15px;
+.information-card .title {
+    font-size: 30px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
 }
-.information-card .image.box {
+.information-card .title h3 {
     padding: 0;
+    margin: 0;
 }
 .information-card .image {
-    width: 100%;
+    margin-right: 15px;
+}
+.information-card .properties ul {
+    list-style: none;
 }
 .information-card .entities {
     margin-top: 15px;
