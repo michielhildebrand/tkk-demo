@@ -13,7 +13,7 @@ function playCtrl($scope, $routeParams, $location, $modal, Model) {
       return Model.getVideos();
     },
     function (newVideos) {
-      if (newVideos != null) {
+      if (newVideos.length != 0) {
         Model.play($routeParams.videoId, $routeParams.chapterIndex);
         $scope.relatedVideos = newVideos;
         $scope.video = Model.getVideo();
