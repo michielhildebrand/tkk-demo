@@ -13,9 +13,7 @@ function chaptersOverviewDirective(Model) {
 
     },
     controller: function ($scope, $element) {
-      $scope.isSelected = function(chIndex) {
-        return Model.getChapterIndex() == chIndex;
-      };
+
     },
     templateUrl: 'partials/directives/chapters-overview.html'
   }

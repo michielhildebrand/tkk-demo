@@ -1,5 +1,5 @@
 <ul class="chapter-list clearfix">
 	<li class="chapter" ng-repeat="ch in video.chapters">
-    <chapter-item video="video" chapter="ch" ng-class="{active: isSelected($index)}"></chapter-item>
+    <chapter-item video="video" chapter="ch" index="$index"></chapter-item>
 	</li>
 </ul>
