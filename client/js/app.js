@@ -7,7 +7,6 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'HomeCtrl',
   'PlayCtrl',
   'TvCtrl',
-  'EnrichCtrl',
 
   'app.player',
   'app.player-controls',
