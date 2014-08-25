@@ -1,12 +1,12 @@
-<div class="entity-grid">
+<div class="grid">
   <div ng-if="loading">
     <div class="text-center"><i>Loading ...</i></div>
   </div>
   <div ng-if="!loading">
-    <ul class="entities" ng-repeat="a in artworks">
-      <li>
-        <span class="entity-thumb"><img ng-src="{{a.img}}"></span>
-        <span class="entity-title">{{a.title}}</span>
+    <ul class="items">
+      <li ng-repeat="a in artworks">
+        <div class="item-thumb"><img ng-src="{{a.img}}"></div>
+        <div class="item-title">{{a.title}}</div>
       </li>
     </ul>
   </div>
