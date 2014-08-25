@@ -6,6 +6,7 @@ function chapterAboutDirective(entityProxy, Model) {
   return {
     restrict: 'E',
     scope: {
+      'video': '=',
       'chapter': '=',
       'metadata': '='
     },
@@ -28,12 +29,21 @@ function chapterAboutDirective(entityProxy, Model) {
           label: [
             {value: chapterTitle}
           ],
-          thumb: [''], //TODO chapter artwork picture (special object)
+          thumb: [chapterPicture()],
           metadata: $scope.metadata
         };
 
         var chapterEntity = {value: chapterTitle, uri: ''};
         callEntityProxy(chapterEntity);
+      }
+
+      //TODO replace with chapter artwork picture (special object)
+      function chapterPicture() {
+        var d = new Date($scope.chapter.startTime);
+        var h = d.getHours() - 1;
+        var m = d.getMinutes();
+        var s = d.getSeconds();
+        return $scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       }
 
       function callEntityProxy(e) {
