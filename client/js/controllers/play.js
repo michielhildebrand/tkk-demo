@@ -33,7 +33,7 @@ function playCtrl($scope, $routeParams, $location, $modal, Model) {
   $scope.toggleBeam = function () {
     $scope.beaming = !$scope.beaming;
     if ($scope.beaming) {
-      sendToTv({action: 'play', video: Model.getVideo(), chapter: Model.getChapterIndex()});
+      sendToTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
       openEnrichment();
     } else {
       //TODO what should happen here?
