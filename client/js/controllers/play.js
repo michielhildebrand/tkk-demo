@@ -16,7 +16,7 @@ function playCtrl($scope, $routeParams, $location, $modal, eventsBus, Model) {
 
   function initialize() {
     Model.play($routeParams.videoId, $routeParams.chapterIndex);
-
+    $scope.relatedVideos = Model.getVideos();
     $scope.video = Model.getVideo();
     $scope.chapter = Model.getChapter();
   }

@@ -1,9 +1,9 @@
 <ul class="chapter-list clearfix">
 	<li class="chapter" ng-repeat="ch in video.chapters">
-	  <div class="thumb">
+	  <div class="thumb" ng-class="{active: isSelected($index)}">
 	    <a href="" ng-click="play($index)">
 	      <span class="video-thumb">
-	        <img ng-src="{{getShot(ch)}}" alt="{{ch.title}}">  
+	        <img ng-src="{{getShot(ch)}}" alt="{{ch.title}}">
 	      </span>  
 	      <span class="chapter-time">{{getDuration(ch)}}</span>
 	    </a>  

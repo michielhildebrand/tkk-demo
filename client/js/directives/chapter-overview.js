@@ -13,6 +13,11 @@ function chapterOverviewDirective($location, Model) {
 
     },
     controller: function ($scope, $element) {
+      $scope.isSelected = function(chIndex) {
+        console.log(chIndex);
+        return Model.getChapterIndex() == chIndex;
+      };
+
       $scope.getShot = function (ch) {
         var d = new Date(ch.startTime);
         var h = d.getHours() - 1;
@@ -20,9 +25,10 @@ function chapterOverviewDirective($location, Model) {
         var s = d.getSeconds();
         return $scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       };
+
       $scope.getDuration = function (ch) {
-          return moment.utc(parseInt(ch.duration)).format("m:ss");
-      } 
+        return moment.utc(parseInt(ch.duration)).format("m:ss");
+      };
 
       $scope.play = function (chIndex) {
         $location.path('/play/' + $scope.video.id + '/' + chIndex);

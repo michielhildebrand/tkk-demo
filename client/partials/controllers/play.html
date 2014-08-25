@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<div class="enrich player-panel">
+<div class="enrich player-panel" ng-class="{'player-panel-extended': !showMenu}">
   <div class="content">
     <tabset>
       <tab heading="About">
@@ -36,7 +36,7 @@
       <tab heading="Related chapters">
         <div ng-repeat="v in relatedVideos">
           {{v.title}}
-          <chapter-list video="v"></chapter-list>
+          <chapter-overview video="v"></chapter-overview>
         </div>
       </tab>
       <tab heading="Artworks">
