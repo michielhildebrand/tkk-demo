@@ -6,6 +6,7 @@ function bookmarksDirective(Model) {
   return {
     restrict: 'E',
     replace: false,
+    scope: {},
     link: function (scope, element, attrs) {
 
     },
