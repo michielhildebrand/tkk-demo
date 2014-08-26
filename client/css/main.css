@@ -54,6 +54,14 @@ h4 {
 
 .home .chapter {
     float: left;
+    background-color: #f2f2f2;
+    border: 1px solid white;
+}
+.home .chapter h4 {
+    margin: 5px;
+}
+.home .chapter .thumb {
+    margin-right: 0;
 }
 /* chapter list */
 .chapter-list {
