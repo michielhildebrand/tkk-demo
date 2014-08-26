@@ -6,6 +6,9 @@ function playerControlsDirective($location, eddie, Model) {
   return {
     restrict: 'E',
     replace: false,
+    scope: {
+      video: '='
+    },
     link: function (scope, element, attrs) {
 
     },
