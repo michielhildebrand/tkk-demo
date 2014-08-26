@@ -38,7 +38,7 @@ function playerDirective(eventsBus, Model) {
         });
       }
 
-      scope.$watch('beaming', function(beaming) {
+      scope.$watch('beaming', function (beaming) {
         if (beaming) {
           element[0].children.player.pause();
         }
@@ -53,7 +53,7 @@ function playerDirective(eventsBus, Model) {
         }
       );
     },
-    controller: function ($scope, $element, $timeout) {
+    controller: function ($scope, $element, $interval) {
       var executeAction = function (msg) {
         if (!$scope.beaming) {
           var player = $element[0].children.player;
@@ -88,16 +88,16 @@ function playerDirective(eventsBus, Model) {
       };
       eventsBus.subscribe('player', executeAction);
 
-      publishCurrentTime();
+      var intervalPromise = $interval(publishCurrentTime, 1000);
 
-      function publishCurrentTime(){
-        $timeout(function(){
-          var player = $element[0].children.player;
-          eventsBus.publish('player-time', player.currentTime);
-
-          publishCurrentTime();
-        }, 1000);
+      function publishCurrentTime() {
+        var player = $element[0].children.player;
+        eventsBus.publish('player-time', player.currentTime);
       }
+
+      $scope.$on("$destroy", function () {
+        $interval.cancel(intervalPromise);
+      });
     },
     templateUrl: 'partials/directives/player.html'
   }

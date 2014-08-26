@@ -6,10 +6,11 @@ function seekBarDirective(eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
+    scope: {},
     link: function (scope, element, attrs) {
 
     },
-    controller: function ($scope, $element) {
+    controller: function ($scope, $element, $rootScope) {
       $scope.duration = '0';
       $scope.current = '0';
 
@@ -46,7 +47,7 @@ function seekBarDirective(eventsBus, Model) {
       function syncCurrentTime(t) {
         if (t != 0) updateBar(t * 1000);
 
-        $scope.$$phase || $scope.$apply();
+        $rootScope.$$phase || $rootScope.$apply();
       }
 
       eventsBus.subscribe('player-time', syncCurrentTime);
