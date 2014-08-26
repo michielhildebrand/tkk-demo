@@ -8,7 +8,7 @@ function playCtrl($scope, $routeParams, $location, eddie, Model) {
 
   $scope.showMenu = false;
   $scope.showEnrichment = false;
-  
+
   $scope.enrichFull = false;
 
   $scope.$watch(
@@ -46,32 +46,9 @@ function playCtrl($scope, $routeParams, $location, eddie, Model) {
   $scope.togglePlayerMenu = function () {
     $scope.showMenu = !$scope.showMenu;
   };
-  
+
   $scope.toggleEnrichFull = function () {
-      console.log("toggle");
-      $scope.enrichFull = !$scope.enrichFull;
-    };
-
-  $scope.toggleBeam = function () {
-    $scope.beaming = !$scope.beaming;
-    if ($scope.beaming) {
-      sendToTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
-      openEnrichment();
-    } else {
-      //TODO what should happen here?
-    }
+    $scope.enrichFull = !$scope.enrichFull;
   };
-
-  $scope.enrich = function () {
-    openEnrichment();
-  };
-
-  function openEnrichment() {
-    $scope.showEnrichment = !$scope.showEnrichment;
-  }
-
-  function sendToTv(action) {
-    eddie.putLou({target: 'tv', data: action});
-  }
 
 }
