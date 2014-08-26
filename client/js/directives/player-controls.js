@@ -7,7 +7,8 @@ function playerControlsDirective($location, eddie, Model) {
     restrict: 'E',
     replace: false,
     scope: {
-      video: '='
+      video: '=',
+      showEnrichment: '='
     },
     link: function (scope, element, attrs) {
 
@@ -42,20 +43,38 @@ function playerControlsDirective($location, eddie, Model) {
         }
       };
 
-      $scope.setVolume = function($event) {
+      $scope.setVolume = function ($event) {
         var value = $event.target.value;
         sendToPlayer({action: 'volume', value: value});
       };
 
-      $scope.prevChapter = function() {
+      $scope.prevChapter = function () {
         jump(-1);
       };
-      $scope.nextChapter = function() {
+      $scope.nextChapter = function () {
         jump(1);
       };
 
       function jump(delta) {
         $location.path('/play/' + $scope.video.id + '/' + (Model.getChapterIndex() + delta));
+      }
+
+      $scope.toggleBeam = function () {
+        $scope.beaming = !$scope.beaming;
+        if ($scope.beaming) {
+          sendToTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
+          openEnrichment();
+        } else {
+          //TODO what should happen here?
+        }
+      };
+
+      $scope.enrich = function () {
+        openEnrichment();
+      };
+
+      function openEnrichment() {
+        $scope.showEnrichment = !$scope.showEnrichment;
       }
 
       $scope.$watch(
@@ -72,6 +91,9 @@ function playerControlsDirective($location, eddie, Model) {
 
       function sendToPlayer(action) {
         eddie.putLou({target: 'player', data: action});
+      }
+      function sendToTv(action) {
+        eddie.putLou({target: 'tv', data: action});
       }
     },
     templateUrl: 'partials/directives/player-controls.html'
