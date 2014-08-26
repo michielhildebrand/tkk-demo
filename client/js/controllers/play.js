@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location', 'Model', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location', 'eddie', 'Model', playCtrl]);
 
-function playCtrl($scope, $routeParams, $location, Model) {
+function playCtrl($scope, $routeParams, $location, eddie, Model) {
   $scope.second = false;
   $scope.beaming = false;
 
@@ -71,11 +71,7 @@ function playCtrl($scope, $routeParams, $location, Model) {
   }
 
   function sendToTv(action) {
-    send({target: 'tv', data: action});
-  }
-
-  function send(msg) {
-    eddie.putLou('ngproxy', JSON.stringify(msg));
+    eddie.putLou({target: 'tv', data: action});
   }
 
 }

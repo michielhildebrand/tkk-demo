@@ -21,6 +21,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.information-card',
   'app.seek-bar',
 
+  'Eddie',
   'Model',
   'EventsBus',
   'EntityProxy',
@@ -60,14 +61,14 @@ tkkDemoApp.config(['$routeProvider',
       };
     }
   ]
-).run(['$location', '$rootScope', 'eventsBus', 'Model',
-    function ($location, $rootScope, eventsBus, Model) {
+).run(['$location', '$rootScope', 'eddie', 'eventsBus', 'Model',
+    function ($location, $rootScope, eddie, eventsBus, Model) {
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;
       });
 
-      var syncBookmarks = function(bookmarks) {
-        _.each(bookmarks, function(b) {
+      var syncBookmarks = function (bookmarks) {
+        _.each(bookmarks, function (b) {
           Model.bookmark(b);
         });
         $rootScope.$$phase || $rootScope.$apply();
@@ -80,6 +81,8 @@ tkkDemoApp.config(['$routeProvider',
 
       eventsBus.subscribe('video', syncVideos);
       eventsBus.subscribe('bookmark', syncBookmarks);
+
+      eddie.init();
     }
   ]
 );

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.bookmarking', []).directive('bookmarking', ['Model', bookmarkingDirective]);
+angular.module('app.bookmarking', []).directive('bookmarking', ['eddie', 'Model', bookmarkingDirective]);
 
-function bookmarkingDirective(Model) {
+function bookmarkingDirective(eddie, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -37,10 +37,7 @@ function bookmarkingDirective(Model) {
       }
 
       function sendToBookmark(b) {
-        send({target: 'bookmark', data: b});
-      }
-      function send(msg) {
-        eddie.putLou('ngproxy', JSON.stringify(msg));
+        eddie.putLou({target: 'bookmark', data: b});
       }
     },
     templateUrl: 'partials/directives/bookmarking.html'

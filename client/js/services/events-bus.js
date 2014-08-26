@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('EventsBus', ['ngResource']).factory('eventsBus', ['$rootScope', eventsBusService]);
+angular.module('EventsBus', []).factory('eventsBus', ['$rootScope', eventsBusService]);
 
 /** Used to broadcast and listen for global events */
 function eventsBusService($rootScope) {

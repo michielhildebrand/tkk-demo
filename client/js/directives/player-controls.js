@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['$location', 'Model', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['$location', 'eddie', 'Model', playerControlsDirective]);
 
-function playerControlsDirective($location, Model) {
+function playerControlsDirective($location, eddie, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -68,10 +68,7 @@ function playerControlsDirective($location, Model) {
       );
 
       function sendToPlayer(action) {
-        send({target: 'player', data: action});
-      }
-      function send(msg) {
-        eddie.putLou('ngproxy', JSON.stringify(msg));
+        eddie.putLou({target: 'player', data: action});
       }
     },
     templateUrl: 'partials/directives/player-controls.html'
