@@ -8,6 +8,7 @@ function playerControlsDirective($location, eddie, Model) {
     replace: false,
     scope: {
       video: '=',
+      beaming: '=',
       showEnrichment: '='
     },
     link: function (scope, element, attrs) {
