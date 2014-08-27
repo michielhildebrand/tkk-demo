@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player', []).directive('player', ['eventsBus', 'Model', playerDirective]);
+angular.module('app.player', []).directive('player', ['eddie', 'eventsBus', 'Model', playerDirective]);
 
-function playerDirective(eventsBus, Model) {
+function playerDirective(eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -91,8 +91,10 @@ function playerDirective(eventsBus, Model) {
       var intervalPromise = $interval(publishCurrentTime, 1000);
 
       function publishCurrentTime() {
-        var player = $element[0].children.player;
-        eventsBus.publish('player-time', player.currentTime);
+        if (!$scope.beaming) {
+          var time = $element[0].children.player.currentTime;
+          if (time != 0) eddie.putLou({target: 'player-time', data: time});
+        }
       }
 
       $scope.$on("$destroy", function () {

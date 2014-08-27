@@ -45,8 +45,7 @@ function seekBarDirective(eventsBus, Model) {
       }
 
       function syncCurrentTime(t) {
-        if (t != 0) updateBar(t * 1000);
-
+        updateBar(t * 1000);
         $rootScope.$$phase || $rootScope.$apply();
       }
 
