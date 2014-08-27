@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['$location', 'eddie', 'Model', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['$location', 'eddie', 'eventsBus', 'Model', playerControlsDirective]);
 
-function playerControlsDirective($location, eddie, Model) {
+function playerControlsDirective($location, eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -91,10 +91,18 @@ function playerControlsDirective($location, eddie, Model) {
       );
 
       function sendToPlayer(action) {
-        eddie.putLou({target: 'player', data: action});
+        if (!$scope.beaming) {
+          eventsBus.publish('player', action);
+        } else {
+          eddie.putLou({target: 'player', data: action});
+        }
       }
       function sendToTv(action) {
-        eddie.putLou({target: 'tv', data: action});
+        if (!$scope.beaming) {
+          eventsBus.publish('tv', action);
+        } else {
+          eddie.putLou({target: 'tv', data: action});
+        }
       }
     },
     templateUrl: 'partials/directives/player-controls.html'
