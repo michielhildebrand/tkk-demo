@@ -32,17 +32,17 @@ tkkDemoApp.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
       when('/', {
-        title: 'TKK Demo',
+        title: '',
         templateUrl: 'partials/controllers/home.html',
         controller: 'HomeCtrl'
       }).
       when('/play/:videoId/:chapterIndex', {
-        title: 'TKK Demo - Chapter',
+        title: ' - Tablet',
         templateUrl: 'partials/controllers/play.html',
         controller: 'PlayCtrl'
       }).
       when('/tv', {
-        title: 'TKK Demo - TV',
+        title: ' - TV',
         templateUrl: 'partials/controllers/tv.html',
         controller: 'TvCtrl'
       }).
@@ -64,7 +64,7 @@ tkkDemoApp.config(['$routeProvider',
 ).run(['$location', '$rootScope', 'eddie', 'eventsBus', 'Model',
     function ($location, $rootScope, eddie, eventsBus, Model) {
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = current.$$route.title;
+        $rootScope.title = 'LinkedTV Culture' + current.$$route.title;
       });
 
       var syncBookmarks = function (bookmarks) {
