@@ -1,11 +1,14 @@
 .idea
 *.iml
 .DS_Store
+
 server/out
 server/build
 server/build-test
 server/dist
 server/WebContent/WEB-INF/lib
+
+client/js/config.js
 client/node_modules
 client/video
 client/nginx.conf

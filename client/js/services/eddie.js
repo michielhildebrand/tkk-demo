@@ -2,21 +2,8 @@
 
 angular.module('Eddie', []).factory('eddie', ['$rootScope', eddieService]);
 
-/** Used to broadcast and listen for global events */
 function eddieService($rootScope) {
-  var sessionId = makeid();
-
-  var louSettings = {
-    lou_ip: window.location.hostname,
-    lou_port: window.location.port,
-    app: 'news',
-    fullapp: '/domain/linkedtv/html5application/news',
-    appparams: ""
-  };
-
-  var eddie = Eddie(louSettings);
-
-  function makeid() {
+  function generateSessionId() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (var i = 0; i < 5; i++)
@@ -24,9 +11,19 @@ function eddieService($rootScope) {
     return text;
   }
 
+  var settings = _(ToolkitConfig).extend({sessionId: generateSessionId()});
+
+  var eddie = Eddie({
+    lou_ip: settings.ip,
+    lou_port: settings.port,
+    app: settings.app,
+    fullapp: settings.fullapp,
+    appparams: settings.appparams
+  });
+
   return {
     init: function() {
-      console.log('Initializing eddie using session ' + sessionId);
+      console.log('Initializing Eddie using session ' + settings.sessionId);
       eddie.init();
 
       $rootScope.$on("$destroy", function () {
@@ -37,7 +34,7 @@ function eddieService($rootScope) {
       eddie.putLou('ngproxy', JSON.stringify(msg));
     },
     getSessionId: function () {
-      return sessionId;
+      return settings.sessionId;
     }
   }
 }

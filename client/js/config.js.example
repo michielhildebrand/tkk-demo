@@ -1,0 +1,7 @@
+ToolkitConfig = {
+  ip: window.location.hostname,
+  port: window.location.port,
+  app: 'news',
+  fullapp: '/domain/linkedtv/html5application/news',
+  appparams: ""
+};
