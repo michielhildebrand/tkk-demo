@@ -6,7 +6,9 @@ function seekBarDirective(eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
-    scope: {},
+    scope: {
+      video: '='
+    },
     link: function (scope, element, attrs) {
 
     },
@@ -17,6 +19,8 @@ function seekBarDirective(eventsBus, Model) {
       $scope.startLapse = '00:00';
       $scope.endLapse = '00:00';
 
+      $scope.progresses = [];
+
       $scope.$watch(
         function () {
           return Model.getVideo();
@@ -24,6 +28,7 @@ function seekBarDirective(eventsBus, Model) {
         function (newVideo) {
           if (newVideo != null) {
             $scope.duration = newVideo.duration;
+            calculateProgresses(newVideo);
           }
         }
       );
@@ -37,6 +42,19 @@ function seekBarDirective(eventsBus, Model) {
           }
         }
       );
+
+      function calculateProgresses(video) {
+        $scope.progresses = _(video.chapters).map(function(ch, index) {
+          var chDuration;
+          if (index == video.chapters.length - 1) { //if last one
+            chDuration = video.duration - ch.startTime;
+          } else {
+            chDuration = video.chapters[index + 1].startTime - ch.startTime;
+          }
+          var v = (chDuration * 100) / video.duration;
+          return {title: ch.title, duration: v};
+        });
+      }
 
       function updateBar(millis) {
         $scope.current = millis;

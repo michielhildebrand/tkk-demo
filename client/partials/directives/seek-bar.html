@@ -6,4 +6,7 @@
 </div>
 <div class="seekbar">
   <input type="range" min="0" max="{{duration}}" value="{{current}}">
+  <progress>
+    <bar ng-repeat="p in progresses" value="p.duration"><i>{{p.title}}</i></bar>
+  </progress>
 </div>
