@@ -19,6 +19,10 @@ h4 {
 .glyphicon.active {
     color: #428bca;
 }
+#player {
+    transform: scaleX(1.25);
+}
+
 /* home */
 .home .hd {
     background-color: #FFF;
@@ -140,6 +144,7 @@ video {
 }
 .player-controls-top {
     top: 0;
+    z-index: 1;
 }
 .player-controls-top .col-l {
     float: left;
@@ -166,6 +171,7 @@ video {
 }
 .player-controls-bottom {
     bottom: 0;
+    z-index: 1;
 }
 .player-controls-bottom .col-l {
     float: left;
@@ -188,7 +194,6 @@ video {
 }
 
 /* seekbar */
-
 .seekbar .progress {
     margin: 5px 0 0;
     border-radius: 0;
