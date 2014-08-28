@@ -210,7 +210,7 @@ video {
     bottom: 0;
     height: auto;
     width: auto;
-    margin: 55px 10px;
+    margin: 65px 10px 55px;
     padding: 0;
     border: 1px solid #DDD;
     background-color: #EEE;
@@ -223,6 +223,7 @@ video {
 .enrich {
     left: 0;
     right: 310px;
+    z-index: 1;
 }
 .enrich-fullscreen {
     margin: 0;
