@@ -187,6 +187,17 @@ video {
     text-align: right;
 }
 
+/* seekbar */
+
+.seekbar .progress {
+    margin: 5px 0 0;
+    border-radius: 0;
+    height: 10px;
+}
+.seekbar .progress-bar {
+    border-right: 1px solid #EEE;
+}
+
 /* player panel */
 .player-panel {
     position: absolute;
