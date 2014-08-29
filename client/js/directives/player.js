@@ -103,7 +103,19 @@ function playerDirective(Eddie, eventsBus, Model) {
 
       $scope.$on("$destroy", function () {
         $interval.cancel(intervalPromise);
+        destroyPlayer();
       });
+
+      function destroyPlayer() {
+        console.log('destroy player');
+        var player = $element[0].children.player;
+        var source = player.children.source;
+        source.src = '';
+        delete($(source));
+        player.pause();
+        delete($(player));
+        $($element[0]).empty();
+      }
     },
     templateUrl: 'partials/directives/player.html'
   }
