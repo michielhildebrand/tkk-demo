@@ -1,14 +1,11 @@
 'use strict';
 
-angular.module('SelectCtrl', []).controller('SelectCtrl', ['$scope', '$location','Config', 'Eddie', 'Model', selectCtrl]);
+angular.module('SelectCtrl', []).controller('SelectCtrl', ['$scope', '$location','Config', selectCtrl]);
 
-function selectCtrl($scope, $location, Config, Eddie, Model) {
+function selectCtrl($scope, $location, Config) {
   $scope.users = Config.users;
 
   $scope.join = function(user) {
-    Model.setUser(user);
-    Eddie.init(user);
-
     $location.path('/episodes/' + user);
   }
 }

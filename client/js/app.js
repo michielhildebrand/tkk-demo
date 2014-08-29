@@ -58,11 +58,22 @@ tkkDemoApp.config(['$routeProvider',
         redirectTo: '/'
       });
   }
-]).run(['$location', '$rootScope', '$route', 'Config', 'eventsBus', 'Model',
-    function ($location, $rootScope, $route, Config, eventsBus, Model) {
+]).run(['$location', '$rootScope', 'Config', 'eventsBus', 'Model', 'Eddie',
+    function ($location, $rootScope, Config, eventsBus, Model, Eddie) {
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = Config.app_title_prefix;
-        if (current.$$route != null) $rootScope.title += current.$$route.title;
+        if (current.$$route != null) {
+          $rootScope.title = Config.app_title_prefix + current.$$route.title;
+
+          if (current.$$route.originalPath != "/") {
+            var user = current.params.user;
+            if (user != null && _(Config.users).contains(user)) {
+              Eddie.init(user);
+            } else {
+              console.log('Not a valid user ' + user);
+              $location.path('/');
+            }
+          }
+        }
       });
 
       var syncBookmarks = function (bookmarks) {
