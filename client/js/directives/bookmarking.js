@@ -11,21 +11,18 @@ function bookmarkingDirective(Eddie, Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-
-    },
-    controller: function ($scope, $element) {
-      $scope.bookmark = function () {
+      scope.bookmark = function () {
         var id = compositeId();
         var currentBookmarks = isBookmarked() ? Model.unbookmark(id) : Model.bookmark(id);
         sendToBookmark(currentBookmarks);
       };
 
-      $scope.bookmarkStatus = function () {
+      scope.bookmarkStatus = function () {
         return isBookmarked();
       };
 
       function isBookmarked() {
-        if ($scope.chapter) {
+        if (scope.chapter) {
           return _.contains(Model.getBookmarks(), compositeId());
         } else {
           return false;
@@ -33,7 +30,7 @@ function bookmarkingDirective(Eddie, Model) {
       }
 
       function compositeId() {
-        return $scope.video.id + '_' + $scope.chapter.id;
+        return scope.video.id + '_' + scope.chapter.id;
       }
 
       function sendToBookmark(b) {

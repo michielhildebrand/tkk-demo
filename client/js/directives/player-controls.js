@@ -12,57 +12,54 @@ function playerControlsDirective($location, Eddie, eventsBus, Model) {
       showEnrichment: '='
     },
     link: function (scope, element, attrs) {
+      scope.play = true;
+      scope.mute = false;
+      scope.volume = '1'; //from 0 to 1, and range treats value as strings
+      scope.previousVolume = scope.volume;
 
-    },
-    controller: function ($scope, $element) {
-      $scope.play = true;
-      $scope.mute = false;
-      $scope.volume = '1'; //from 0 to 1, and range treats value as strings
-      $scope.previousVolume = $scope.volume;
+      scope.isFirst = false;
+      scope.isLast = false;
 
-      $scope.isFirst = false;
-      $scope.isLast = false;
-
-      $scope.togglePlay = function () {
-        $scope.play = !$scope.play;
-        if ($scope.play) {
+      scope.togglePlay = function () {
+        scope.play = !scope.play;
+        if (scope.play) {
           sendToPlayer({action: 'play'});
         } else {
           sendToPlayer({action: 'pause'});
         }
       };
 
-      $scope.toggleMute = function () {
-        $scope.mute = !$scope.mute;
-        if ($scope.mute) {
-          $scope.previousVolume = $scope.volume;
-          $scope.volume = '0';
+      scope.toggleMute = function () {
+        scope.mute = !scope.mute;
+        if (scope.mute) {
+          scope.previousVolume = scope.volume;
+          scope.volume = '0';
           sendToPlayer({action: 'mute'});
         } else {
-          $scope.volume = $scope.previousVolume;
+          scope.volume = scope.previousVolume;
           sendToPlayer({action: 'unmute'});
         }
       };
 
-      $scope.setVolume = function ($event) {
+      scope.setVolume = function ($event) {
         var value = $event.target.value;
         sendToPlayer({action: 'volume', value: value});
       };
 
-      $scope.prevChapter = function () {
+      scope.prevChapter = function () {
         jump(-1);
       };
-      $scope.nextChapter = function () {
+      scope.nextChapter = function () {
         jump(1);
       };
 
       function jump(delta) {
-        $location.path('/play/' + Eddie.getUser() + '/' + $scope.video.id + '/' + (Model.getChapterIndex() + delta));
+        $location.path('/play/' + Eddie.getUser() + '/' + scope.video.id + '/' + (Model.getChapterIndex() + delta));
       }
 
-      $scope.toggleBeam = function () {
-        $scope.beaming = !$scope.beaming;
-        if ($scope.beaming) {
+      scope.toggleBeam = function () {
+        scope.beaming = !scope.beaming;
+        if (scope.beaming) {
           sendToTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
           openEnrichment();
         } else {
@@ -70,35 +67,35 @@ function playerControlsDirective($location, Eddie, eventsBus, Model) {
         }
       };
 
-      $scope.enrich = function () {
+      scope.enrich = function () {
         openEnrichment();
       };
 
       function openEnrichment() {
-        $scope.showEnrichment = !$scope.showEnrichment;
+        scope.showEnrichment = !scope.showEnrichment;
       }
 
-      $scope.$watch(
+      scope.$watch(
         function () {
           return Model.getVideo();
         },
         function (newVideo) {
           if (newVideo != null) {
-            $scope.isFirst = Model.isFirstChapter();
-            $scope.isLast = Model.isLastChapter();
+            scope.isFirst = Model.isFirstChapter();
+            scope.isLast = Model.isLastChapter();
           }
         }
       );
 
       function sendToPlayer(action) {
-        if (!$scope.beaming) {
+        if (!scope.beaming) {
           eventsBus.publish('player', action);
         } else {
           Eddie.putLou({target: 'player', data: action});
         }
       }
       function sendToTv(action) {
-        if (!$scope.beaming) {
+        if (!scope.beaming) {
           eventsBus.publish('tv', action);
         } else {
           Eddie.putLou({target: 'tv', data: action});

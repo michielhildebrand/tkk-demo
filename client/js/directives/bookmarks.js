@@ -8,16 +8,13 @@ function bookmarksDirective(Model) {
     replace: false,
     scope: {},
     link: function (scope, element, attrs) {
-
-    },
-    controller: function ($scope, $element) {
-      $scope.$watch(
+      scope.$watch(
         function () {
           return Model.getBookmarks();
         },
         function (newBookmarks) {
           if (newBookmarks.length > 0) {
-            $scope.bookmarks = _(newBookmarks).map(function(b) {return findChapter(b)});
+            scope.bookmarks = _(newBookmarks).map(function(b) {return findChapter(b)});
           }
         }
       );

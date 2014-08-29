@@ -10,10 +10,7 @@ function chapterRelatedDirective(Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-
-    },
-    controller: function ($scope, $element) {
-      $scope.relatedVideos = Model.getVideos();
+      scope.relatedVideos = Model.getVideos();
     },
     templateUrl: 'partials/directives/chapter-related.html'
   }

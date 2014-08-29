@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapters-overview', []).directive('chaptersOverview', ['Model', chaptersOverviewDirective]);
+angular.module('app.chapters-overview', []).directive('chaptersOverview', [chaptersOverviewDirective]);
 
-function chaptersOverviewDirective(Model) {
+function chaptersOverviewDirective() {
   return {
     restrict: 'E',
     scope: {
@@ -10,9 +10,6 @@ function chaptersOverviewDirective(Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-
-    },
-    controller: function ($scope, $element) {
 
     },
     templateUrl: 'partials/directives/chapters-overview.html'

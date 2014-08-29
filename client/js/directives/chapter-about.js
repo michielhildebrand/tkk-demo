@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-about', []).directive('chapterAbout', ['entityProxy', 'Model', chapterAboutDirective]);
+angular.module('app.chapter-about', []).directive('chapterAbout', ['entityProxy', chapterAboutDirective]);
 
-function chapterAboutDirective(entityProxy, Model) {
+function chapterAboutDirective(entityProxy) {
   return {
     restrict: 'E',
     scope: {
@@ -12,25 +12,22 @@ function chapterAboutDirective(entityProxy, Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
+      scope.loading = false;
 
-    },
-    controller: function ($scope, $element) {
-      $scope.loading = false;
-
-      $scope.crumb = [];
+      scope.crumb = [];
       var answers = {};
 
       loadChapterInformation();
 
       // The chapter information are shown in the first information card
       function loadChapterInformation() {
-        var chapterTitle = $scope.chapter.title;
+        var chapterTitle = scope.chapter.title;
         answers[chapterTitle] = {
           label: [
             {value: chapterTitle}
           ],
           thumb: [chapterPicture()],
-          metadata: $scope.metadata
+          metadata: scope.metadata
         };
 
         var chapterEntity = {value: chapterTitle, uri: ''};
@@ -39,40 +36,40 @@ function chapterAboutDirective(entityProxy, Model) {
 
       //TODO replace with chapter artwork picture (special object)
       function chapterPicture() {
-        var d = new Date($scope.chapter.startTime);
+        var d = new Date(scope.chapter.startTime);
         var h = d.getHours() - 1;
         var m = d.getMinutes();
         var s = d.getSeconds();
-        return $scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
+        return scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       }
 
       function callEntityProxy(e) {
         updateCrumb(e);
 
-        $scope.loading = true;
+        scope.loading = true;
         if (!_(answers).has(e.value)) {
           entityProxy.get({loc: e.uri}, function (r) {
-            $scope.proxyAnswer = _.property(e.uri)(r);
-            answers[e.value] = $scope.proxyAnswer;
+            scope.proxyAnswer = _.property(e.uri)(r);
+            answers[e.value] = scope.proxyAnswer;
 
-            $scope.loading = false;
+            scope.loading = false;
           });
         } else {
-          $scope.proxyAnswer = _.property(e.value)(answers);
-          $scope.loading = false;
+          scope.proxyAnswer = _.property(e.value)(answers);
+          scope.loading = false;
         }
       }
 
       function updateCrumb(e) {
-        var index = _($scope.crumb).pluck('value').indexOf(e.value);
+        var index = _(scope.crumb).pluck('value').indexOf(e.value);
         if (index != -1) {
-          $scope.crumb = _($scope.crumb).first(index + 1);
+          scope.crumb = _(scope.crumb).first(index + 1);
         } else {
-          $scope.crumb.push(e)
+          scope.crumb.push(e)
         }
       }
 
-      $scope.proxy = function (entity) {
+      scope.proxy = function (entity) {
         callEntityProxy(entity)
       };
     },

@@ -10,29 +10,26 @@ function seekBarDirective(eventsBus, Model) {
       video: '='
     },
     link: function (scope, element, attrs) {
+      scope.duration = '0';
+      scope.current = '0';
 
-    },
-    controller: function ($scope, $element, $rootScope) {
-      $scope.duration = '0';
-      $scope.current = '0';
+      scope.startLapse = '00:00';
+      scope.endLapse = '00:00';
 
-      $scope.startLapse = '00:00';
-      $scope.endLapse = '00:00';
+      scope.progresses = [];
 
-      $scope.progresses = [];
-
-      $scope.$watch(
+      scope.$watch(
         function () {
           return Model.getVideo();
         },
         function (newVideo) {
           if (newVideo != null) {
-            $scope.duration = newVideo.duration;
+            scope.duration = newVideo.duration;
             calculateProgresses(newVideo);
           }
         }
       );
-      $scope.$watch(
+      scope.$watch(
         function () {
           return Model.getChapter();
         },
@@ -44,7 +41,7 @@ function seekBarDirective(eventsBus, Model) {
       );
 
       function calculateProgresses(video) {
-        $scope.progresses = _(video.chapters).map(function(ch, index) {
+        scope.progresses = _(video.chapters).map(function(ch, index) {
           var chDuration;
           if (index == video.chapters.length - 1) { //if last one
             chDuration = video.duration - ch.startTime;
@@ -57,14 +54,14 @@ function seekBarDirective(eventsBus, Model) {
       }
 
       function updateBar(millis) {
-        $scope.current = millis;
-        $scope.endLapse = moment($scope.duration - millis).format('mm:ss');
-        $scope.startLapse = moment(millis).format('mm:ss');
+        scope.current = millis;
+        scope.endLapse = moment(scope.duration - millis).format('mm:ss');
+        scope.startLapse = moment(millis).format('mm:ss');
       }
 
       function syncCurrentTime(t) {
         updateBar(t * 1000);
-        $rootScope.$$phase || $rootScope.$apply();
+        scope.$$phase || scope.$apply();
       }
 
       eventsBus.subscribe('player-time', syncCurrentTime);

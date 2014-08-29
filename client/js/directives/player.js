@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player', []).directive('player', ['Eddie', 'eventsBus', 'Model', playerDirective]);
+angular.module('app.player', []).directive('player', ['$interval', 'Eddie', 'eventsBus', 'Model', playerDirective]);
 
-function playerDirective(Eddie, eventsBus, Model) {
+function playerDirective($interval, Eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -56,22 +56,21 @@ function playerDirective(Eddie, eventsBus, Model) {
           if (newVideo != null) updatePlayer(newVideo, Model.getTime());
         }
       );
-    },
-    controller: function ($scope, $element, $interval) {
+
       var executeAction = function (msg) {
-        if (!$scope.beaming) {
-          var player = $element[0].children.player;
+        if (!scope.beaming) {
+          var player = element[0].children.player;
           var a = msg.action;
           if (a) {
             //console.log('action ' + a);
             switch (a) {
               case 'play':
                 player.play();
-                $scope.paused = false;
+                scope.paused = false;
                 break;
               case 'pause':
                 player.pause();
-                $scope.paused = true;
+                scope.paused = true;
                 break;
               case 'mute':
                 player.muted = true;
@@ -95,26 +94,26 @@ function playerDirective(Eddie, eventsBus, Model) {
       var intervalPromise = $interval(publishCurrentTime, 1000);
 
       function publishCurrentTime() {
-        if (!$scope.beaming) {
-          var time = $element[0].children.player.currentTime;
+        if (!scope.beaming) {
+          var time = element[0].children.player.currentTime;
           if (time != 0) Eddie.putLou({target: 'player-time', data: time});
         }
       }
 
-      $scope.$on("$destroy", function () {
+      scope.$on("$destroy", function () {
         $interval.cancel(intervalPromise);
         destroyPlayer();
       });
 
       function destroyPlayer() {
         console.log('destroy player');
-        var player = $element[0].children.player;
+        var player = element[0].children.player;
         var source = player.children.source;
         source.src = '';
         delete($(source));
         player.pause();
         delete($(player));
-        $($element[0]).empty();
+        $(element[0]).empty();
       }
     },
     templateUrl: 'partials/directives/player.html'

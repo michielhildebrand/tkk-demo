@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.information-card', []).directive('informationCard', ['Model', informationCardDirective]);
+angular.module('app.information-card', []).directive('informationCard', [informationCardDirective]);
 
-function informationCardDirective(Model) {
+function informationCardDirective() {
   return {
     restrict: 'E',
     scope: {
@@ -11,20 +11,16 @@ function informationCardDirective(Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-
-    },
-    controller: function ($scope, $element) {
       var interestingProps = ['label', 'thumb', 'comment', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
         'nationality', 'profession', 'style', 'population'];
 
-      $scope.$watch('props', function(newProps) {
+      scope.$watch('props', function(newProps) {
         if (newProps != null) {
           _(interestingProps).map(function (prop) {
-            var guessedValue = firstEntity(_.property(prop)(newProps));
-            $scope[prop] = guessedValue;
+            scope[prop] = firstEntity(_.property(prop)(newProps));
           });
 
-          $scope.metadata = newProps.metadata;
+          scope.metadata = newProps.metadata;
         }
       });
 
@@ -48,9 +44,9 @@ function informationCardDirective(Model) {
         return e;
       }
 
-      var browse = $scope.browse();
+      var browse = scope.browse();
 
-      $scope.nav = function(e) {
+      scope.nav = function(e) {
         browse(e);
       }
     },

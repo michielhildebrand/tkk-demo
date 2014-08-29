@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-articles', []).directive('chapterArticles', ['Model', chapterArticlesDirective]);
+angular.module('app.chapter-articles', []).directive('chapterArticles', [chapterArticlesDirective]);
 
-function chapterArticlesDirective(Model) {
+function chapterArticlesDirective() {
   return {
     restrict: 'E',
     scope: {
@@ -10,9 +10,6 @@ function chapterArticlesDirective(Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-
-    },
-    controller: function ($scope, $element) {
 
     },
     templateUrl: 'partials/directives/chapter-articles.html'
