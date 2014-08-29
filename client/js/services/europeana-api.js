@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('EuropeanaApi', ['ngResource']).factory('europeanaApi', ['$resource', 'CONFIG', europeanaApiResource]);
+angular.module('EuropeanaApi', ['ngResource']).factory('europeanaApi', ['$resource', 'Config', europeanaApiResource]);
 
-function europeanaApiResource($resource, CONFIG) {
-  return $resource(CONFIG.EUROPEANA_API + '?query=:query&wskey=:wskey', { query: '@query', wskey: 'hb8sGDBPe' },
+function europeanaApiResource($resource, Config) {
+  return $resource(Config.EUROPEANA_API + '?query=:query&wskey=:wskey', { query: '@query', wskey: 'hb8sGDBPe' },
     {
       get: {
         method: 'GET'

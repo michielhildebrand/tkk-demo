@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['$location', 'eddie', 'eventsBus', 'Model', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['$location', 'Eddie', 'eventsBus', 'Model', playerControlsDirective]);
 
-function playerControlsDirective($location, eddie, eventsBus, Model) {
+function playerControlsDirective($location, Eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -57,7 +57,7 @@ function playerControlsDirective($location, eddie, eventsBus, Model) {
       };
 
       function jump(delta) {
-        $location.path('/play/' + $scope.video.id + '/' + (Model.getChapterIndex() + delta));
+        $location.path('/play/' + Eddie.getUser() + '/' + $scope.video.id + '/' + (Model.getChapterIndex() + delta));
       }
 
       $scope.toggleBeam = function () {
@@ -94,14 +94,14 @@ function playerControlsDirective($location, eddie, eventsBus, Model) {
         if (!$scope.beaming) {
           eventsBus.publish('player', action);
         } else {
-          eddie.putLou({target: 'player', data: action});
+          Eddie.putLou({target: 'player', data: action});
         }
       }
       function sendToTv(action) {
         if (!$scope.beaming) {
           eventsBus.publish('tv', action);
         } else {
-          eddie.putLou({target: 'tv', data: action});
+          Eddie.putLou({target: 'tv', data: action});
         }
       }
     },

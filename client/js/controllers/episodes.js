@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$location', 'Model', homeCtrl]);
+angular.module('EpisodesCtrl', []).controller('EpisodesCtrl', ['$scope', '$location', 'Model', episodesCtrl]);
 
-function homeCtrl($scope, $location, Model) {
+function episodesCtrl($scope, $location, Model) {
 
   $scope.$watch(
     function () {
@@ -17,7 +17,7 @@ function homeCtrl($scope, $location, Model) {
   );
 
   $scope.playFirstChapter = function (videoId) {
-    $location.path('/play/' + videoId + '/0');
+    $location.path('/play/' + Model.getUser() + '/' + videoId + '/0');
   };
 
 }

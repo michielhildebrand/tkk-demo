@@ -4,6 +4,7 @@ angular.module('Model', ['ngResource']).factory('Model', model);
 
 function model() {
   var data = {
+    user: null,
     videos: [],
     currentVideo: null,
     currentChapterIndex: null,
@@ -24,6 +25,12 @@ function model() {
   }
 
   return {
+    setUser: function(user) {
+      data.user = user;
+    },
+    getUser: function() {
+      return data.user;
+    },
     setVideos: function(videos){
       data.videos = videos;
     },

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player', []).directive('player', ['eddie', 'eventsBus', 'Model', playerDirective]);
+angular.module('app.player', []).directive('player', ['Eddie', 'eventsBus', 'Model', playerDirective]);
 
-function playerDirective(eddie, eventsBus, Model) {
+function playerDirective(Eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -34,11 +34,11 @@ function playerDirective(eddie, eventsBus, Model) {
         }
 
         $(player).on('loadedmetadata', function (metadata) {
-            var actualRatio = metadata.target.videoWidth/metadata.target.videoHeight;
-            var targetRatio = 1.777777;//$(player).width()/$(player).height();
-            var adjustmentRatio = targetRatio/actualRatio;
-            $(player).css("transform","scaleX("+adjustmentRatio+")");
-            player.currentTime = time;
+          var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
+          var targetRatio = 1.777777; //$(player).width()/$(player).height();
+          var adjustmentRatio = targetRatio / actualRatio;
+          $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
+          player.currentTime = time;
         });
       }
 
@@ -97,7 +97,7 @@ function playerDirective(eddie, eventsBus, Model) {
       function publishCurrentTime() {
         if (!$scope.beaming) {
           var time = $element[0].children.player.currentTime;
-          if (time != 0) eddie.putLou({target: 'player-time', data: time});
+          if (time != 0) Eddie.putLou({target: 'player-time', data: time});
         }
       }
 

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('EntityProxy', ['ngResource']).factory('entityProxy', ['$resource', 'CONFIG', entityProxyResource]);
+angular.module('EntityProxy', ['ngResource']).factory('entityProxy', ['$resource', 'Config', entityProxyResource]);
 
-function entityProxyResource($resource, CONFIG) {
-  return $resource(CONFIG.ENTITY_PROXY + '?url=:loc&lang=:lang', { loc: '@loc', lang: 'en' },
+function entityProxyResource($resource, Config) {
+  return $resource(Config.ENTITY_PROXY + '?url=:loc&lang=:lang', { loc: '@loc', lang: 'en' },
     {
       get: {
         method: 'GET'

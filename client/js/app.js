@@ -4,7 +4,10 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'ngRoute',
   'ui.bootstrap',
 
-  'HomeCtrl',
+  'Config',
+
+  'SelectCtrl',
+  'EpisodesCtrl',
   'PlayCtrl',
   'TvCtrl',
 
@@ -32,16 +35,21 @@ tkkDemoApp.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
       when('/', {
-        title: '',
-        templateUrl: 'partials/controllers/home.html',
-        controller: 'HomeCtrl'
+        title: ' - Select user',
+        templateUrl: 'partials/controllers/select.html',
+        controller: 'SelectCtrl'
       }).
-      when('/play/:videoId/:chapterIndex', {
-        title: ' - Tablet',
+      when('/episodes/:user', {
+        title: ' - Episodes',
+        templateUrl: 'partials/controllers/episodes.html',
+        controller: 'EpisodesCtrl'
+      }).
+      when('/play/:user/:videoId/:chapterIndex', {
+        title: ' - Play',
         templateUrl: 'partials/controllers/play.html',
         controller: 'PlayCtrl'
       }).
-      when('/tv', {
+      when('/tv/:user', {
         title: ' - TV',
         templateUrl: 'partials/controllers/tv.html',
         controller: 'TvCtrl'
@@ -50,21 +58,11 @@ tkkDemoApp.config(['$routeProvider',
         redirectTo: '/'
       });
   }
-]).constant('CONFIG', {
-  ENTITY_PROXY: 'http://linkedtv.project.cwi.nl/explore/entity_proxy',
-  EUROPEANA_API: 'http://europeana.eu/api/v2/search.json'
-}).filter('trusted', [
-    '$sce',
-    function ($sce) {
-      return function (url) {
-        return $sce.trustAsResourceUrl(url);
-      };
-    }
-  ]
-).run(['$location', '$rootScope', 'eddie', 'eventsBus', 'Model',
-    function ($location, $rootScope, eddie, eventsBus, Model) {
+]).run(['$location', '$rootScope', '$route', 'Config', 'eventsBus', 'Model',
+    function ($location, $rootScope, $route, Config, eventsBus, Model) {
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = 'LinkedTV Culture' + current.$$route.title;
+        $rootScope.title = Config.app_title_prefix;
+        if (current.$$route != null) $rootScope.title += current.$$route.title;
       });
 
       var syncBookmarks = function (bookmarks) {
@@ -81,8 +79,6 @@ tkkDemoApp.config(['$routeProvider',
 
       eventsBus.subscribe('video', syncVideos);
       eventsBus.subscribe('bookmark', syncBookmarks);
-
-      eddie.init();
     }
   ]
 );

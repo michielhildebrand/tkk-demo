@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location', 'eddie', 'Model', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location', 'Model', playCtrl]);
 
-function playCtrl($scope, $routeParams, $location, eddie, Model) {
+function playCtrl($scope, $routeParams, $location, Model) {
   $scope.second = false;
   $scope.beaming = false;
 
@@ -40,7 +40,7 @@ function playCtrl($scope, $routeParams, $location, eddie, Model) {
   }
 
   $scope.goToMain = function () {
-    $location.path('/');
+    $location.path('/episodes/' + Model.getUser());
   };
 
   $scope.togglePlayerMenu = function () {

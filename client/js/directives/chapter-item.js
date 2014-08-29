@@ -32,7 +32,7 @@ function chapterItemDirective($location, Model) {
       };
 
       $scope.play = function () {
-        $location.path('/play/' + $scope.video.id + '/' + $scope.index);
+        $location.path('/play/' + Model.getUser() + '/' + $scope.video.id + '/' + $scope.index);
       };
     },
     templateUrl: 'partials/directives/chapter-item.html'
