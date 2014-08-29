@@ -5,7 +5,11 @@ angular.module('SelectCtrl', []).controller('SelectCtrl', ['$scope', '$location'
 function selectCtrl($scope, $location, Config) {
   $scope.users = Config.users;
 
-  $scope.join = function(user) {
+  $scope.goToEpisodes = function(user) {
     $location.path('/episodes/' + user);
+  };
+
+  $scope.goToTV = function(user) {
+    $location.path('/tv/' + user);
   }
 }

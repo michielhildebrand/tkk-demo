@@ -1,6 +1,6 @@
-<div class="container text-center">
-  <p>Choose one user:</p>
+<div class="container">
+  <p>Join one user:</p>
   <div ng-repeat="u in users">
-    <a ng-click="join(u)">{{u}}</a>
+    <b><i>{{u}}</i></b> on <a ng-click="goToEpisodes(u)">Tablet</a> or <a ng-click="goToTV(u)">TV</a>
   </div>
 </div>
