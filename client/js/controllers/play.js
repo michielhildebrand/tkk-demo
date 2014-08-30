@@ -17,10 +17,21 @@ function playCtrl($scope, $state, $location, Model) {
     },
     function (newVideos) {
       if (newVideos.length > 0) {
-        Model.play($state.params.videoId, $state.params.chapterIndex);
+        Model.play($state.params.videoId, $state.params.idx);
         $scope.video = Model.getVideo();
         $scope.chapter = Model.getChapter();
         $scope.metadata = extractMetadata();
+      }
+    }
+  );
+
+  $scope.$watch(
+    function () {
+      return Model.getChapterIndex();
+    },
+    function (newIndex) {
+      if (newIndex != null) {
+        $location.search('idx', newIndex);
       }
     }
   );

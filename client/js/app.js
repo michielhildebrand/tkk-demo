@@ -49,10 +49,11 @@ tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'EpisodesCtrl'
       }).
       state('play', {
-        url: '/play/:user/:videoId/:chapterIndex',
+        url: '/play/:user/:videoId?idx',
         title: ' - Play',
         templateUrl: 'partials/controllers/play.html',
-        controller: 'PlayCtrl'
+        controller: 'PlayCtrl',
+        reloadOnSearch: false
       }).
       state('tv', {
         url: '/tv/:user',

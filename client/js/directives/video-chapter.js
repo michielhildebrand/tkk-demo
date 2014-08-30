@@ -30,7 +30,7 @@ function videoChapterDirective($state, Model) {
 
       scope.play = function () {
         //TODO: avoid to set path, send to player
-        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, chapterIndex: scope.index});
+        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: scope.index});
       };
     },
     templateUrl: 'partials/directives/video-chapter.html'
