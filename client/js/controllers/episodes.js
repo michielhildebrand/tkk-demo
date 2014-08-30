@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('EpisodesCtrl', []).controller('EpisodesCtrl', ['$scope', '$location', 'Model', episodesCtrl]);
+angular.module('EpisodesCtrl', []).controller('EpisodesCtrl', ['$scope', '$state', 'Model', episodesCtrl]);
 
-function episodesCtrl($scope, $location, Model) {
+function episodesCtrl($scope, $state, Model) {
 
   $scope.$watch(
     function () {
@@ -17,7 +17,7 @@ function episodesCtrl($scope, $location, Model) {
   );
 
   $scope.playFirstChapter = function (videoId) {
-    $location.path('/play/' + Model.getUser() + '/' + videoId + '/0');
+    $state.go('play', {user: Model.getUser(), videoId: videoId, chapterIndex: 0});
   };
 
 }

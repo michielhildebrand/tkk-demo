@@ -1,7 +1,7 @@
 'use strict';
 
 var tkkDemoApp = angular.module('tkkDemoApp', [
-  'ngRoute',
+  'ui.router',
   'ui.bootstrap',
 
   'Config',
@@ -31,47 +31,48 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'EuropeanaApi'
 ]);
 
-tkkDemoApp.config(['$routeProvider',
-  function ($routeProvider) {
-    $routeProvider.
-      when('/', {
+tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',
+  function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/");
+
+    $stateProvider.
+      state('select', {
+        url: '/',
         title: ' - Select user',
         templateUrl: 'partials/controllers/select.html',
         controller: 'SelectCtrl'
       }).
-      when('/episodes/:user', {
+      state('episodes', {
+        url: '/episodes/:user',
         title: ' - Episodes',
         templateUrl: 'partials/controllers/episodes.html',
         controller: 'EpisodesCtrl'
       }).
-      when('/play/:user/:videoId/:chapterIndex', {
+      state('play', {
+        url: '/play/:user/:videoId/:chapterIndex',
         title: ' - Play',
         templateUrl: 'partials/controllers/play.html',
         controller: 'PlayCtrl'
       }).
-      when('/tv/:user', {
+      state('tv', {
+        url: '/tv/:user',
         title: ' - TV',
         templateUrl: 'partials/controllers/tv.html',
         controller: 'TvCtrl'
-      }).
-      otherwise({
-        redirectTo: '/'
       });
   }
-]).run(['$location', '$rootScope', 'Config', 'eventsBus', 'Model', 'Eddie',
-    function ($location, $rootScope, Config, eventsBus, Model, Eddie) {
-      $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        if (current.$$route != null) {
-          $rootScope.title = Config.app_title_prefix + current.$$route.title;
+]).run(['$rootScope', '$state', 'Config', 'eventsBus', 'Model', 'Eddie',
+    function ($rootScope, $state, Config, eventsBus, Model, Eddie) {
+      $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+        $rootScope.title = Config.app_title_prefix + toState.title;
 
-          if (['', '/'].indexOf(current.$$route.originalPath) == -1) {
-            var user = current.params.user;
-            if (user != null && _(Config.users).contains(user)) {
-              Eddie.init(user);
-            } else {
-              console.log('Not a valid user ' + user);
-              $location.path('/');
-            }
+        if (toParams.user != null) {
+          var user = toParams.user;
+          if (user != null && _(Config.users).contains(user)) {
+            Eddie.init(user);
+          } else {
+            console.log('Not a valid user ' + user);
+            $state.go('select');
           }
         }
       });

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$routeParams', '$location', 'Model', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', 'Model', playCtrl]);
 
-function playCtrl($scope, $routeParams, $location, Model) {
+function playCtrl($scope, $state, $location, Model) {
   $scope.second = false;
   $scope.beaming = false;
 
@@ -17,7 +17,7 @@ function playCtrl($scope, $routeParams, $location, Model) {
     },
     function (newVideos) {
       if (newVideos.length > 0) {
-        Model.play($routeParams.videoId, $routeParams.chapterIndex);
+        Model.play($state.params.videoId, $state.params.chapterIndex);
         $scope.video = Model.getVideo();
         $scope.chapter = Model.getChapter();
         $scope.metadata = extractMetadata();
@@ -40,7 +40,7 @@ function playCtrl($scope, $routeParams, $location, Model) {
   }
 
   $scope.goToMain = function () {
-    $location.path('/episodes/' + Model.getUser());
+    $state.go('episodes', {user: Model.getUser()});
   };
 
   $scope.togglePlayerMenu = function () {
