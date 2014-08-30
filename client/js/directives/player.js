@@ -58,6 +58,10 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
           if (a) {
             //console.log('action ' + a);
             switch (a) {
+              case 'set-chapter':
+                Model.seek(msg.value);
+                player.currentTime = Model.getTime();
+                break;
               case 'play':
                 player.play();
                 scope.paused = false;
@@ -90,7 +94,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       function publishCurrentTime() {
         //TODO: if second (screen) use Eddie otherwise use eventsBus
         if (!scope.beaming) {
-          var time = element[0].children.player.currentTime;
+          var time = player.currentTime;
           if (time != 0) Eddie.putLou({target: 'player-time', data: time});
         }
       }
@@ -98,7 +102,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       scope.$watch('beaming', function (beaming) {
         if (beaming) {
           //TODO: stop publishing time
-          element[0].children.player.pause();
+          player.pause();
         } else {
           //TODO: restart publishing time
         }

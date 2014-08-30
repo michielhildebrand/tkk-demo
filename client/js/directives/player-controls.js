@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['$location', 'Eddie', 'eventsBus', 'Model', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['Eddie', 'eventsBus', 'Model', playerControlsDirective]);
 
-function playerControlsDirective($location, Eddie, eventsBus, Model) {
+function playerControlsDirective(Eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -53,8 +53,7 @@ function playerControlsDirective($location, Eddie, eventsBus, Model) {
       };
 
       function jump(delta) {
-        //TODO: avoid to set path, send to player
-        $location.path('/play/' + Eddie.getUser() + '/' + Model.getVideo().id + '/' + (Model.getChapterIndex() + delta));
+        sendToPlayer({action: 'set-chapter', value: Model.getChapterIndex() + delta});
       }
 
       scope.toggleBeam = function () {
@@ -78,10 +77,10 @@ function playerControlsDirective($location, Eddie, eventsBus, Model) {
 
       scope.$watch(
         function () {
-          return Model.getVideo();
+          return Model.getChapter();
         },
-        function (newVideo) {
-          if (newVideo != null) {
+        function (newChapter) {
+          if (newChapter != null) {
             scope.isFirst = Model.isFirstChapter();
             scope.isLast = Model.isLastChapter();
           }

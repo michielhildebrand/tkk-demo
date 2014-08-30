@@ -12,10 +12,15 @@ function model() {
     bookmarks: []
   };
 
-  function findVideo(id) {
-    return _(data.videos).find(function(v) {
+  function setVideo(id) {
+    data.currentVideo = _(data.videos).find(function(v) {
       return v.id == id;
     });
+  }
+
+  function setChapter(index) {
+    data.currentChapterIndex = parseInt(index);
+    data.currentChapter = data.currentVideo.chapters[index];
   }
 
   return {
@@ -33,9 +38,11 @@ function model() {
       return data.videos;
     },
     play: function (videoId, chapterIndex) {
-      data.currentVideo = findVideo(videoId);
-      data.currentChapterIndex = parseInt(chapterIndex);
-      data.currentChapter = data.currentVideo.chapters[data.currentChapterIndex];
+      setVideo(videoId);
+      setChapter(chapterIndex)
+    },
+    seek: function(chapterIndex) {
+      setChapter(chapterIndex);
     },
     getVideo: function() {
       return data.currentVideo;
