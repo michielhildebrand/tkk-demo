@@ -4,6 +4,7 @@ angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', 'Model
 
 function tvCtrl($scope, eventsBus, Model) {
   $scope.second = true;
+  $scope.beaming = false;
 
   $scope.full = function() {
     if (screenfull.enabled) {
