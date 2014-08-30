@@ -1,0 +1,13 @@
+{
+  "name": "LinkedTV",
+  "version": "0.1",
+  "dependencies": {
+    "screenfull": "=1.2.1",
+    "underscore": "=1.6.0",
+    "moment": "=2.8.1",
+    "angular": "=1.2.22",
+    "angular-route": "=1.2.22",
+    "angular-resource": "=1.2.22",
+    "angular-bootstrap": "=0.11.0"
+  }
+}

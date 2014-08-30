@@ -9,6 +9,7 @@ server/dist
 server/WebContent/WEB-INF/lib
 
 client/js/config.js
+client/js/libs
 client/node_modules
 client/video
 client/nginx.conf

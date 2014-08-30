@@ -1,13 +1,14 @@
 {
-  "name": "TkkDemo",
+  "name": "LinkedTV",
   "version": "0.1.0",
   "engineStrict": true,
   "engines": {
     "node": ">=0.10"
   },
   "dependencies": {
-    "screenfull": "=1.2.1",
-    "underscore": "=1.6.0",
-    "moment": "=2.8.1"
+    "bower": "=1.3.9"
+  },
+  "scripts": {
+    "postinstall": "node_modules/bower/bin/bower install"
   }
 }
