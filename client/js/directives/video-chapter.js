@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-item', []).directive('chapterItem', ['$location', 'Model', chapterItemDirective]);
+angular.module('app.video-chapter', []).directive('videoChapter', ['$location', 'Model', videoChapterDirective]);
 
-function chapterItemDirective($location, Model) {
+function videoChapterDirective($location, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -33,6 +33,6 @@ function chapterItemDirective($location, Model) {
         $location.path('/play/' + Model.getUser() + '/' + scope.video.id + '/' + scope.index);
       };
     },
-    templateUrl: 'partials/directives/chapter-item.html'
+    templateUrl: 'partials/directives/video-chapter.html'
   }
 }

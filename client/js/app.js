@@ -13,8 +13,8 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
 
   'app.player',
   'app.player-controls',
-  'app.chapters-overview',
-  'app.chapter-item',
+  'app.video-overview',
+  'app.video-chapter',
   'app.chapter-about',
   'app.chapter-related',
   'app.chapter-artworks',
