@@ -5,9 +5,7 @@ angular.module('app.chapter-articles', []).directive('chapterArticles', [chapter
 function chapterArticlesDirective() {
   return {
     restrict: 'E',
-    scope: {
-      'chapter': '='
-    },
+    scope: {},
     replace: false,
     link: function (scope, element, attrs) {
 

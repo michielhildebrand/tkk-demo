@@ -7,7 +7,6 @@ function playerControlsDirective($location, Eddie, eventsBus, Model) {
     restrict: 'E',
     replace: false,
     scope: {
-      video: '=',
       beaming: '=',
       showEnrichment: '='
     },
@@ -54,16 +53,18 @@ function playerControlsDirective($location, Eddie, eventsBus, Model) {
       };
 
       function jump(delta) {
-        $location.path('/play/' + Eddie.getUser() + '/' + scope.video.id + '/' + (Model.getChapterIndex() + delta));
+        //TODO: avoid to set path, send to player
+        $location.path('/play/' + Eddie.getUser() + '/' + Model.getVideo().id + '/' + (Model.getChapterIndex() + delta));
       }
 
       scope.toggleBeam = function () {
         scope.beaming = !scope.beaming;
         if (scope.beaming) {
+          //TODO: instead of sending to tv, use player
           sendToTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
           openEnrichment();
         } else {
-          //TODO what should happen here?
+          //TODO: continue playing the video on the tablet
         }
       };
 

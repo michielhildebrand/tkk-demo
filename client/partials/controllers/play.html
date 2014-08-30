@@ -24,16 +24,16 @@
     </div>
     <tabset>
       <tab heading="About">
-        <chapter-about video="video" chapter="chapter" metadata="metadata"></chapter-about>
+        <chapter-about metadata="metadata"></chapter-about>
       </tab>
       <tab heading="Artworks">
-        <chapter-artworks chapter="chapter" metadata="metadata"></chapter-artworks>
+        <chapter-artworks metadata="metadata"></chapter-artworks>
       </tab>
       <tab heading="Articles">
-        <chapter-articles chapter="chapter"></chapter-articles>
+        <chapter-articles></chapter-articles>
       </tab>
       <tab heading="Related chapters">
-        <chapter-related chapter="chapter"></chapter-related>
+        <chapter-related></chapter-related>
       </tab>
     </tabset>
   </div>  
@@ -50,11 +50,11 @@
   	  <button type="button" ng-click="togglePlayerMenu()" class="btn btn-link btn-lg">
   			<span class="glyphicon glyphicon-th-list" ng-class="{active: showMenu}"></span>
   		</button>
-      <bookmarking video="video" chapter="chapter"></bookmarking>
+      <bookmarking></bookmarking>
   	</div>
   	<div class="col-m">
   	  <div class="timeline">
-        <seek-bar video="video"></seek-bar>
+        <seek-bar></seek-bar>
       </div>  
     </div>
   </div>
@@ -66,6 +66,6 @@
 
 <div class="player-controls player-controls-bottom">
   <div class="player-controls-content">
-	  <player-controls video="video" beaming="beaming" show-enrichment="showEnrichment"></player-controls>
+	  <player-controls beaming="beaming" show-enrichment="showEnrichment"></player-controls>
 	</div>  
 </div>

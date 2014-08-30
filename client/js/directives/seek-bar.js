@@ -6,9 +6,7 @@ function seekBarDirective(eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
-    scope: {
-      video: '='
-    },
+    scope: {},
     link: function (scope, element, attrs) {
       scope.duration = '0';
       scope.current = '0';

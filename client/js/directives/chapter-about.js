@@ -1,13 +1,11 @@
 'use strict';
 
-angular.module('app.chapter-about', []).directive('chapterAbout', ['entityProxy', chapterAboutDirective]);
+angular.module('app.chapter-about', []).directive('chapterAbout', ['entityProxy', 'Model', chapterAboutDirective]);
 
-function chapterAboutDirective(entityProxy) {
+function chapterAboutDirective(entityProxy, Model) {
   return {
     restrict: 'E',
     scope: {
-      'video': '=',
-      'chapter': '=',
       'metadata': '='
     },
     replace: false,
@@ -17,16 +15,25 @@ function chapterAboutDirective(entityProxy) {
       scope.crumb = [];
       var answers = {};
 
-      loadChapterInformation();
+      scope.$watch(
+        function () {
+          return Model.getChapter();
+        },
+        function (newChapter) {
+          if (newChapter != null) {
+            loadChapterInformation(newChapter);
+          }
+        }
+      );
 
       // The chapter information are shown in the first information card
-      function loadChapterInformation() {
-        var chapterTitle = scope.chapter.title;
+      function loadChapterInformation(ch) {
+        var chapterTitle = ch.title;
         answers[chapterTitle] = {
           label: [
             {value: chapterTitle}
           ],
-          thumb: [chapterPicture()],
+          thumb: [chapterPicture(ch)],
           metadata: scope.metadata
         };
 
@@ -35,12 +42,12 @@ function chapterAboutDirective(entityProxy) {
       }
 
       //TODO replace with chapter artwork picture (special object)
-      function chapterPicture() {
-        var d = new Date(scope.chapter.startTime);
+      function chapterPicture(ch) {
+        var d = new Date(ch.startTime);
         var h = d.getHours() - 1;
         var m = d.getMinutes();
         var s = d.getSeconds();
-        return scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
+        return Model.getVideo().shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       }
 
       function callEntityProxy(e) {

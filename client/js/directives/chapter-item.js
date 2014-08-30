@@ -29,6 +29,7 @@ function chapterItemDirective($location, Model) {
       };
 
       scope.play = function () {
+        //TODO: avoid to set path, send to player
         $location.path('/play/' + Model.getUser() + '/' + scope.video.id + '/' + scope.index);
       };
     },

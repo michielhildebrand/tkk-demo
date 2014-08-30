@@ -5,9 +5,7 @@ angular.module('app.chapter-related', []).directive('chapterRelated', ['Model', 
 function chapterRelatedDirective(Model) {
   return {
     restrict: 'E',
-    scope: {
-      'chapter': '='
-    },
+    scope: {},
     replace: false,
     link: function (scope, element, attrs) {
       scope.relatedVideos = Model.getVideos();

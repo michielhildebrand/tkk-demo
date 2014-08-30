@@ -19,6 +19,7 @@ function model() {
   }
 
   return {
+    underlyingData: data,
     setUser: function(user) {
       data.user = user;
     },

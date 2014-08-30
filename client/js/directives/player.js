@@ -13,19 +13,11 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
     link: function (scope, element, attrs) {
       scope.paused = false;
 
-      if (scope.second) {
-        angular.element(element).on("click", function () {
-          // To make fullscreen work the request has to sent from inside a short running user-generated event handler.
-          if (screenfull.enabled) {
-            screenfull.request();
-          }
-        });
-      }
+      var player = element[0].children.player;
+      var source = player.children.source;
 
       function updatePlayer(newVideo, time) {
-        var player = element[0].children.player;
-        var source = player.children.source;
-
+        console.log('update player', newVideo, time);
         player.poster = newVideo.poster;
         source.src = newVideo.src;
         player.load();
@@ -42,12 +34,6 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
         });
       }
 
-      scope.$watch('beaming', function (beaming) {
-        if (beaming) {
-          element[0].children.player.pause();
-        }
-      });
-
       scope.$watch(
         function () {
           return Model.getVideo();
@@ -57,9 +43,17 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
         }
       );
 
+      if (scope.second) {
+        angular.element(element).on("click", function () {
+          // To make fullscreen work the request has to sent from inside a short running user-generated event handler.
+          if (screenfull.enabled) {
+            screenfull.request();
+          }
+        });
+      }
+
       var executeAction = function (msg) {
         if (!scope.beaming) {
-          var player = element[0].children.player;
           var a = msg.action;
           if (a) {
             //console.log('action ' + a);
@@ -94,11 +88,21 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       var intervalPromise = $interval(publishCurrentTime, 1000);
 
       function publishCurrentTime() {
+        //TODO: if second (screen) use Eddie otherwise use eventsBus
         if (!scope.beaming) {
           var time = element[0].children.player.currentTime;
           if (time != 0) Eddie.putLou({target: 'player-time', data: time});
         }
       }
+
+      scope.$watch('beaming', function (beaming) {
+        if (beaming) {
+          //TODO: stop publishing time
+          element[0].children.player.pause();
+        } else {
+          //TODO: restart publishing time
+        }
+      });
 
       scope.$on("$destroy", function () {
         $interval.cancel(intervalPromise);
@@ -107,8 +111,6 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
 
       function destroyPlayer() {
         console.log('destroy player');
-        var player = element[0].children.player;
-        var source = player.children.source;
         source.src = '';
         delete($(source));
         player.pause();
