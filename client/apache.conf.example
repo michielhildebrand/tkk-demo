@@ -1,0 +1,26 @@
+<VirtualHost *:80>
+
+  # TKK Demo - Culture App
+  <Directory %ABSOLUTE_PATH_TO_CLIENT_DIR%>
+    Order allow,deny
+    Allow from all
+    Require all granted
+  </Directory>
+  Alias /culture %ABSOLUTE_PATH_TO_CLIENT_DIR%
+
+  # Toolkit configuration
+  ProxyPass /springfield http://%SPRINGFIELD_IP%:8080/springfield
+  ProxyPassReverse /springfield http://%SPRINGFIELD_IP%:8080/springfield
+
+  ProxyPass /lou http://%SPRINGFIELD_IP%:8080/lou
+  ProxyPassReverse /lou http://%SPRINGFIELD_IP%:8080/lou
+
+  <Directory %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/>
+    Order allow,deny
+    Allow from all
+    Require all granted
+  </Directory>
+  Alias /eddie/js %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/
+  Alias /libs %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/
+
+</VirtualHost>

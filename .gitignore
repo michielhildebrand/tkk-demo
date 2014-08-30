@@ -13,3 +13,4 @@ client/node_modules
 client/video
 client/nginx.conf
 client/nginx.error.log
+client/apache.conf
