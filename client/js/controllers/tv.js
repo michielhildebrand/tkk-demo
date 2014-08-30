@@ -5,6 +5,12 @@ angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', 'Model
 function tvCtrl($scope, eventsBus, Model) {
   $scope.second = true;
 
+  $scope.full = function() {
+    if (screenfull.enabled) {
+      screenfull.request();
+    }
+  };
+
   var playVideo = function (msg) {
     Model.play(msg.video, msg.chapter);
 
