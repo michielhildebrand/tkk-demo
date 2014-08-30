@@ -64,7 +64,7 @@ tkkDemoApp.config(['$routeProvider',
         if (current.$$route != null) {
           $rootScope.title = Config.app_title_prefix + current.$$route.title;
 
-          if (current.$$route.originalPath != "/") {
+          if (['', '/'].indexOf(current.$$route.originalPath) == -1) {
             var user = current.params.user;
             if (user != null && _(Config.users).contains(user)) {
               Eddie.init(user);
