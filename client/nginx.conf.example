@@ -23,11 +23,6 @@ server {
   location / {
     index index.html;
   }
-  location ~ ^/(tv)/?$ {
-    set $path $1;
-    rewrite ^ /#/$path permanent;
-    break;
-  }
 
   # for toolkit js
   location /libs/ {
