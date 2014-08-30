@@ -18,12 +18,6 @@ function model() {
     });
   }
 
-  function filterOutVideo(id) {
-    return _(data.videos).filter(function(v){
-      return v.id != id;
-    })
-  }
-
   return {
     setUser: function(user) {
       data.user = user;
@@ -38,16 +32,12 @@ function model() {
       return data.videos;
     },
     play: function (videoId, chapterIndex) {
-      data.currentVideoId = videoId;
-      data.currentVideo = findVideo(data.currentVideoId);
+      data.currentVideo = findVideo(videoId);
       data.currentChapterIndex = parseInt(chapterIndex);
       data.currentChapter = data.currentVideo.chapters[data.currentChapterIndex];
     },
     getVideo: function() {
       return data.currentVideo;
-    },
-    getOtherVideos: function(){
-      return filterOutVideo(data.currentVideoId);
     },
     getChapter: function() {
       return data.currentChapter;
