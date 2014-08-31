@@ -12,29 +12,24 @@ function chapterAboutDirective(entityProxy, Model) {
     link: function (scope, element, attrs) {
       scope.loading = false;
 
-      scope.crumb = [];
       var answers = {};
 
-      scope.$watch(
-        function () {
-          return Model.getChapter();
-        },
-        function (newChapter) {
-          if (newChapter != null) {
-            loadChapterInformation(newChapter);
-          }
+      scope.$watch('metadata', function (newMetadata) {
+        if (newMetadata != null) {
+          scope.crumb = [];
+          loadChapterInformation(Model.getChapter(), newMetadata);
         }
-      );
+      });
 
       // The chapter information are shown in the first information card
-      function loadChapterInformation(ch) {
+      function loadChapterInformation(ch, meta) {
         var chapterTitle = ch.title;
         answers[chapterTitle] = {
           label: [
             {value: chapterTitle}
           ],
           thumb: [chapterPicture(ch)],
-          metadata: scope.metadata
+          metadata: meta
         };
 
         var chapterEntity = {value: chapterTitle, uri: ''};
@@ -58,7 +53,6 @@ function chapterAboutDirective(entityProxy, Model) {
           entityProxy.get({loc: e.uri}, function (r) {
             scope.proxyAnswer = _.property(e.uri)(r);
             answers[e.value] = scope.proxyAnswer;
-
             scope.loading = false;
           });
         } else {

@@ -12,14 +12,15 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
     replace: false,
     link: function (scope, element, attrs) {
       scope.paused = false;
+      scope.previousCurrentTime = 0;
 
       var player = element[0].children.player;
       var source = player.children.source;
 
-      function updatePlayer(newVideo, time) {
-        //console.log('update player', newVideo, time);
-        player.poster = newVideo.poster;
-        source.src = newVideo.src;
+      function updatePlayer(video, time) {
+        console.log('update player', video, time);
+        player.poster = video.poster;
+        source.src = video.src;
         player.load();
         if (!scope.paused) {
           player.play();
@@ -30,7 +31,9 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
           var targetRatio = 1.777777; //$(player).width()/$(player).height();
           var adjustmentRatio = targetRatio / actualRatio;
           $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
+
           player.currentTime = time;
+          startTimePublisher();
         });
       }
 
@@ -59,15 +62,17 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
             //console.log('action ' + a);
             switch (a) {
               case 'set-chapter':
-                Model.seek(msg.value);
+                Model.setChapterIndex(msg.value);
                 player.currentTime = Model.getTime();
                 break;
               case 'play':
                 player.play();
+                startTimePublisher();
                 scope.paused = false;
                 break;
               case 'pause':
                 player.pause();
+                stopTimePublisher();
                 scope.paused = true;
                 break;
               case 'mute':
@@ -89,13 +94,23 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       };
       var unsubscribePlayer = eventsBus.subscribe('player', executeAction);
 
-      var publishPlayerTimeInterval = $interval(publishCurrentTime, 1000);
+      function startTimePublisher() {
+        scope.playerTimePublisher = $interval(publishCurrentTime, 1000);
+      }
+
+      function stopTimePublisher() {
+        $interval.cancel(scope.playerTimePublisher);
+      }
 
       function publishCurrentTime() {
-        //TODO: if second (screen) use Eddie otherwise use eventsBus
-        if (!scope.beaming) {
-          var time = player.currentTime;
-          if (time != 0) Eddie.putLou({target: 'player-time', data: time});
+        var currentTime = player.currentTime;
+        if (currentTime != scope.previousCurrentTime) {
+          scope.previousCurrentTime = currentTime;
+          if (scope.second) {
+            Eddie.putLou({target: 'player-time', data: currentTime});
+          } else {
+            eventsBus.publish('player-time', currentTime);
+          }
         }
       }
 
@@ -110,7 +125,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
 
       scope.$on("$destroy", function () {
         console.log('destroy player');
-        $interval.cancel(publishPlayerTimeInterval);
+        stopTimePublisher();
         unsubscribePlayer();
         destroyPlayer();
       });

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.seek-bar', []).directive('seekBar', ['eventsBus', 'Model', seekBarDirective]);
+angular.module('app.seek-bar', []).directive('seekBar', ['$rootScope', 'eventsBus', 'Model', seekBarDirective]);
 
-function seekBarDirective(eventsBus, Model) {
+function seekBarDirective($rootScope, eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -58,8 +58,10 @@ function seekBarDirective(eventsBus, Model) {
       }
 
       function syncCurrentTime(t) {
-        updateBar(t * 1000);
-        scope.$$phase || scope.$apply();
+        var millis = t * 1000;
+        Model.seek(millis);
+        updateBar(millis);
+        $rootScope.$$phase || $rootScope.$apply();
       }
 
       var unsubscribePlayerTime = eventsBus.subscribe('player-time', syncCurrentTime);

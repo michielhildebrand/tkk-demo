@@ -10,16 +10,20 @@ function chapterArtworksDirective(europeanaApi) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-      scope.artworks = [];
       scope.loading = false;
 
-      loadChapterArtworks();
+      scope.$watch('metadata', function (newMetadata) {
+        if (newMetadata != null) {
+          scope.artworks = [];
+          loadChapterArtworks(newMetadata);
+        }
+      });
 
-      function loadChapterArtworks() {
-        var metadataSize = scope.metadata.length;
+      function loadChapterArtworks(meta) {
+        var metadataSize = meta.length;
 
         scope.loading = true;
-        _(scope.metadata).each(function (m, index) {
+        _(meta).each(function (m, index) {
           europeanaApi.get({query: m.value}, function (r) {
             if (r.itemsCount > 0) {
               _(r.items).each(function (i) {

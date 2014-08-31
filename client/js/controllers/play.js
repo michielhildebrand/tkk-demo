@@ -19,8 +19,6 @@ function playCtrl($scope, $state, $location, Model) {
       if (newVideos.length > 0) {
         Model.play($state.params.videoId, $state.params.idx);
         $scope.video = Model.getVideo();
-        $scope.chapter = Model.getChapter();
-        $scope.metadata = extractMetadata();
       }
     }
   );
@@ -36,8 +34,19 @@ function playCtrl($scope, $state, $location, Model) {
     }
   );
 
-  function extractMetadata() {
-    return _.chain($scope.chapter.fragments)
+  $scope.$watch(
+    function () {
+      return Model.getChapter();
+    },
+    function (newChapter) {
+      if (newChapter != null) {
+        extractMetadata(newChapter);
+      }
+    }
+  );
+
+  function extractMetadata(ch) {
+    $scope.metadata = _.chain(ch.fragments)
       .map(function (f) {
         return {value: f.title.trim(), uri: f.locator.trim()}
       })

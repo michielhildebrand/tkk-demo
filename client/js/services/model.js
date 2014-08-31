@@ -13,7 +13,7 @@ function model() {
   };
 
   function setVideo(id) {
-    data.currentVideo = _(data.videos).find(function(v) {
+    data.currentVideo = _(data.videos).find(function (v) {
       return v.id == id;
     });
   }
@@ -23,15 +23,27 @@ function model() {
     data.currentChapter = data.currentVideo.chapters[index];
   }
 
+  function findChapter(time) {
+    var ch = _.chain(data.currentVideo.chapters).map(function(ch, index) {
+      return {ch: ch, idx: index};
+    }).filter(function (o) {
+      return o.ch.startTime <= time;
+    }).min(function(o) {
+      return time - o.ch.startTime;
+    }).value();
+    //console.log(ch);
+    setChapter(ch.idx);
+  }
+
   return {
     underlyingData: data,
-    setUser: function(user) {
+    setUser: function (user) {
       data.user = user;
     },
-    getUser: function() {
+    getUser: function () {
       return data.user;
     },
-    setVideos: function(videos){
+    setVideos: function (videos) {
       data.videos = videos;
     },
     getVideos: function () {
@@ -41,13 +53,16 @@ function model() {
       setVideo(videoId);
       setChapter(chapterIndex)
     },
-    seek: function(chapterIndex) {
+    setChapterIndex: function (chapterIndex) {
       setChapter(chapterIndex);
     },
-    getVideo: function() {
+    seek: function (time) {
+      findChapter(time);
+    },
+    getVideo: function () {
       return data.currentVideo;
     },
-    getChapter: function() {
+    getChapter: function () {
       return data.currentChapter;
     },
     getChapterIndex: function () {
