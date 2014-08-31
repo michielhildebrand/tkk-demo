@@ -17,7 +17,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       var source = player.children.source;
 
       function updatePlayer(newVideo, time) {
-        console.log('update player', newVideo, time);
+        //console.log('update player', newVideo, time);
         player.poster = newVideo.poster;
         source.src = newVideo.src;
         player.load();
@@ -87,9 +87,9 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
           }
         }
       };
-      eventsBus.subscribe('player', executeAction);
+      var unsubscribePlayer = eventsBus.subscribe('player', executeAction);
 
-      var intervalPromise = $interval(publishCurrentTime, 1000);
+      var publishPlayerTimeInterval = $interval(publishCurrentTime, 1000);
 
       function publishCurrentTime() {
         //TODO: if second (screen) use Eddie otherwise use eventsBus
@@ -109,12 +109,13 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       });
 
       scope.$on("$destroy", function () {
-        $interval.cancel(intervalPromise);
+        console.log('destroy player');
+        $interval.cancel(publishPlayerTimeInterval);
+        unsubscribePlayer();
         destroyPlayer();
       });
 
       function destroyPlayer() {
-        console.log('destroy player');
         source.src = '';
         delete($(source));
         player.pause();

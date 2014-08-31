@@ -11,9 +11,9 @@ function eventsBusService($rootScope) {
     },
     subscribe: function (channel, handler) {
       //console.log('subscribing to \'' + channel + '\'');
-      $rootScope.$on(channel, function (event, data) {
+      return $rootScope.$on(channel, function (event, data) {
         handler(data);
-      })
+      });
     }
   }
 }

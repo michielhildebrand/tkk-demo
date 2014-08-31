@@ -62,7 +62,12 @@ function seekBarDirective(eventsBus, Model) {
         scope.$$phase || scope.$apply();
       }
 
-      eventsBus.subscribe('player-time', syncCurrentTime);
+      var unsubscribePlayerTime = eventsBus.subscribe('player-time', syncCurrentTime);
+
+      scope.$on("$destroy", function () {
+        console.log('destroy seek bar');
+        unsubscribePlayerTime();
+      });
 
     },
     templateUrl: 'partials/directives/seek-bar.html'
