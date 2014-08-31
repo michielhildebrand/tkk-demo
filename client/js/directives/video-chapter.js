@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.video-chapter', []).directive('videoChapter', ['$state', 'Model', videoChapterDirective]);
+angular.module('app.video-chapter', []).directive('videoChapter', ['$state', 'Eddie', 'Model', videoChapterDirective]);
 
-function videoChapterDirective($state, Model) {
+function videoChapterDirective($state, Eddie, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -29,9 +29,16 @@ function videoChapterDirective($state, Model) {
       };
 
       scope.play = function () {
-        //TODO: avoid to set path, send to player
-        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: scope.index});
+        if ($state.current.name != 'play') {
+          $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: scope.index});
+        } else {
+          sendToPlayer({action: 'set-chapter', value: scope.index});
+        }
       };
+
+      function sendToPlayer(action) {
+        Eddie.putLou({target: 'player', data: action});
+      }
     },
     templateUrl: 'partials/directives/video-chapter.html'
   }
