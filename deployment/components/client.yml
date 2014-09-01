@@ -1,4 +1,10 @@
 ---
+  - name: Client | Copy App config
+    template: src={{root_dir}}/components/templates/client/config.js dest={{install_dir_client}}/js/config.js backup=yes
+    tags:
+      - client
+      - update
+
   - include: "{{prudentia_dir}}/tasks/nginx.yml"
     tags: client
 
@@ -7,7 +13,7 @@
     sudo: yes
     tags: client
 
-  - name: Client | Copy Nginx configuration
+  - name: Client | Copy Nginx config
     template: src={{root_dir}}/components/templates/client/nginx.conf dest=/etc/nginx/sites-available/tkk.com backup=yes
     sudo: yes
     tags: client
