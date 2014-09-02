@@ -29,6 +29,31 @@
   				<li ng-if="style.value">
   				  <label>Style:</label> <a ng-click="nav(style)">{{style.value}}</a>
   				</li>
+  				<li ng-if="predecessor.value">
+  				  <label>predecessor:</label> <a ng-click="nav(predecessor)">{{predecessor.value}}</a>
+  				</li>
+  				<li ng-if="successor.value">
+  				  <label>successor:</label> <a ng-click="nav(successor)">{{successor.value}}</a>
+  				</li>
+
+          <!-- presenter -->
+          <li ng-if="activeSince.value">
+  				  <label>active since:</label> <a ng-click="nav(activeSince)">{{activeSince.value}}</a>
+  				</li>
+  				<li ng-if="knownFor.value">
+  				  <label>known for:</label> <a ng-click="nav(knownFor)">{{knownFor.value}}</a>
+  				</li>
+  				<li ng-if="presents.value">
+  				  <label>presents:</label> <a ng-click="nav(presents)">{{presents.value}}</a>
+  				</li>
+  				<li ng-if="guestedIn.value">
+  				  <label>guest in:</label> <a ng-click="nav(guestedIn)">{{guestedIn.value}}</a>
+  				</li>
+
+          <!-- museum -->
+          <li ng-if="locatedIn.value">
+  				  <label>location:</label> <a ng-click="nav(locatedIn)">{{locatedIn.value}}</a>
+  				</li>
 
   	      <!-- places -->
   				<li ng-if="population.value">

@@ -12,7 +12,10 @@ function informationCardDirective() {
     replace: false,
     link: function (scope, element, attrs) {
       var interestingProps = ['label', 'thumb', 'comment', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
-        'nationality', 'profession', 'style', 'population'];
+        'nationality', 'profession', 'style','predecessor','successor',
+        'activeSince','knownFor','presents','guestedIn',
+        'locatedIn',
+        'population'];
 
       scope.$watch('props', function(newProps) {
         if (newProps != null) {
