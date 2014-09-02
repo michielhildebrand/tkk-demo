@@ -1,47 +1,46 @@
-<div class="information-card">
+<div class="information-card container-fluid">
   <!--
   <div class="title">
       <h3>{{label.value}}</h3>
     </div>-->
   
-  <div class="content clearfix">
-  	<div class="image pull-left" ng-if="thumb.value">
-  		<img class="center-block" ng-src="{{thumb.value}}" width="300px" title="{{label.value}}" alt="{{label.value}}"/>
+  <div class="content row">
+  	<div class="image col-md-4">
+  		<img class="center-block" ng-src="{{thumb.value}}" title="{{label.value}}" alt="{{label.value}}"/>
     </div>	
-  	<div class="">	
+  	<div class="col-md-8">	
   		<div class="description">
   			<p class="main-text">{{comment.value}}</p>
-  			<div class="properties">
+  			<ul class="properties">
 
   	      <!-- persons/artists -->
-  				<div ng-if="birthDate.value">
+  				<li ng-if="birthDate.value">
   				  <label>Birth:</label> {{birthDate.value}} <a ng-click="nav(birthPlace)">{{birthPlace.value}}</a>
-  				</div>
-  				<div ng-if="deathDate.value">
+  				</li>
+  				<li ng-if="deathDate.value">
   				  <label>Death:</label> {{deathDate.value}} <a ng-click="nav(deathPlace)">{{deathPlace.value}}</a>
-  				</div>
-  				<div ng-if="nationality.value">
+  				</li>
+  				<li ng-if="nationality.value">
   				  <label>Nationality:</label> <a ng-click="nav(nationality)">{{nationality.value}}</a>
-  				</div>
-  				<div ng-if="profession.value">
+  				</li>
+  				<li ng-if="profession.value">
   				  <label>Profession:</label> <a ng-click="nav(profession)">{{profession.value}}</a>
-  				</div>
-  				<div ng-if="style.value">
+  				</li>
+  				<li ng-if="style.value">
   				  <label>Style:</label> <a ng-click="nav(style)">{{style.value}}</a>
-  				</div>
+  				</li>
 
   	      <!-- places -->
-  				<div ng-if="population.value">
+  				<li ng-if="population.value">
   				  <label>Population:</label> {{population.value}}
-  				</div>
+  				</li>
+  			</ul>
+  			
+        <!-- metadata -->
+        <ul ng-if="metadata">
+          <li ng-repeat="d in metadata"><a ng-click="nav(d)">{{d.value}}</a></li>
+        </ul>
 
-          <!-- metadata -->
-          <div ng-if="metadata">
-            <ul ng-repeat="d in metadata">
-              <li><a ng-click="nav(d)">{{d.value}}</a></li>
-            </ul>
-          </div>
-        </div>
   		</div>
   	</div>
   </div>	

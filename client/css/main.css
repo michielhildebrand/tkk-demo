@@ -144,6 +144,7 @@ video {
 .player-controls-top {
     top: 0;
     z-index: 1;
+    border-bottom: 1px solid #CCC;
 }
 .player-controls-top .col-l {
     float: left;
@@ -171,6 +172,7 @@ video {
 .player-controls-bottom {
     bottom: 0;
     z-index: 1;
+    border-top: 1px solid #CCC;
 }
 .player-controls-bottom .col-l {
     float: left;
@@ -209,10 +211,9 @@ video {
     bottom: 0;
     height: auto;
     width: auto;
-    margin: 65px 10px 55px;
+    margin: 56px 0 46px;
     padding: 0;
-    border: 1px solid #DDD;
-    background-color: #EEE;
+    background-color: #FFF;
     opacity: 0.95;
 }
 .player-menu {
@@ -250,9 +251,12 @@ video {
 }
 .player-panel .tab-content {
     padding: 0;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 .player-panel .nav {
-    background-color: #EEE;
 }
 .player-panel .nav-tabs {
     padding: 0 10px;
@@ -291,6 +295,9 @@ video {
 .player-menu .chapter.active {
     background-color: #DDD;
 }
+.enrich .related {
+    padding: 10px 10px 0;
+}
 
 /* information card */
 .information-card {
@@ -310,11 +317,16 @@ video {
     padding: 0;
     margin: 0;
 }
-.information-card .image {
-    margin-right: 30px;
+.information-card .description {
+    font-size: 24px;
+    line-height: 32px;
 }
-.information-card .properties ul {
+.information-card .image img {
+    width: 100%;
+}
+.information-card .description ul {
     list-style: none;
+    padding: 0;
 }
 
 /* related chapters*/
