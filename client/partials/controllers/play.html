@@ -25,40 +25,49 @@
 
 <div class="explore container-fluid">
   <div class="row">
-    <div class="col-md-3 col">
+    <div class="col-md-2 col">
       <h4>Current Program</h4>
       <video-overview video="video"></video-overview>
     </div>
     
-    <div class="col-md-9" ng-if="showEnrichment">
-      <div class="player">
-        <player second="second" beaming="beaming"></player>
+    <div class="col-md-10 col">
+      <div ng-if="!showEnrichment">
+        <div class="player">
+          <player second="second" beaming="beaming"></player>
+        </div>
+        <div class="player-controls player-controls-bottom">
+          <div class="player-controls-content">
+        	  <player-controls beaming="beaming" show-enrichment="showEnrichment"></player-controls>
+        	</div>  
+        </div>
       </div>
-      <div class="player-controls player-controls-bottom">
-        <div class="player-controls-content">
-      	  <player-controls beaming="beaming" show-enrichment="showEnrichment"></player-controls>
-      	</div>  
+      <div class="enrichPanel" ng-if="showEnrichment">
+        <!-- include enrich Panel here-->
+        <div class="col-md-4 col links">
+          <accordion close-others="oneAtATime">
+            <accordion-group heading="About">
+              <chapter-about metadata="metadata"></chapter-about>
+            </accordion-group>
+            <accordion-group heading="Artworks">
+              <chapter-artworks metadata="metadata"></chapter-artworks>
+            </accordion-group>
+            <accordion-group heading="Background">
+            </accordion-group>
+            <accordion-group heading="Chapters">
+              <chapter-related></chapter-related>
+            </accordion-group>
+          </accordion>
+        </div>
+        <div class="col-md-8 col content">
+          <div ng-if="loading">
+            <div class="text-center"><i>Loading ...</i></div>
+          </div>
+          <div ng-if="!loading">
+            <information-card props="proxyAnswer" browse="proxy"></information-card>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="col-md-3 col links" ng-if="!showEnrichment">
-      <accordion close-others="oneAtATime">
-        <accordion-group heading="About">
-          <chapter-about metadata="metadata"></chapter-about>
-        </accordion-group>
-        <accordion-group heading="Artworks">
-          <chapter-artworks metadata="metadata"></chapter-artworks>
-        </accordion-group>
-        <accordion-group heading="Background">
-        </accordion-group>
-        <accordion-group heading="Chapters">
-          <chapter-related></chapter-related>
-        </accordion-group>
-      </accordion>
-    </div>
-    <div class="col-md-6 col content" ng-if="!showEnrichment">
-    
-    </div>  
   </div>
 </div>
 

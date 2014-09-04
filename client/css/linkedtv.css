@@ -72,6 +72,9 @@ button .glyphicon {
     text-align: right;
 }
 
+.enrichPanel {
+  height: 100%;
+}
 
 /* explore */
 .explore {
