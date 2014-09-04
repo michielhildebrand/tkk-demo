@@ -206,20 +206,6 @@ button .glyphicon {
     padding: 0;
     border-top: 1px solid rgb(126,139,148);
 }
-.explore .links li {
-    margin: 0;
-    list-style: none;
-    border-bottom: 1px solid white;
-    background-color: rgb(126,139,148);
-    height: 135px;
-    line-height: 18px;
-    overflow: hidden;
-    cursor: pointer;
-}
-.explore .links li a {
-    color: white;
-    text-decoration: none;
-}
 
 /* content */
 .explore .content {

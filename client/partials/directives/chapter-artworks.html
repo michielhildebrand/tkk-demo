@@ -1,13 +1,15 @@
-<div class="grid">
-  <div ng-if="loading">
+<div ng-if="loading">
     <div class="text-center"><i>Loading ...</i></div>
-  </div>
-  <div ng-if="!loading">
-    <ul class="items">
-      <li ng-repeat="a in artworks">
-        <div class="item-thumb"><img ng-src="{{a.img}}"></div>
-        <div class="item-title">{{a.title}}</div>
-      </li>
-    </ul>
-  </div>
+</div>
+<div ng-if="!loading">
+  <ul class="artworks">
+    <li ng-repeat="a in artworks">
+      <div class="thumb"><img ng-src="{{a.img}}"></div>
+      <div class="desc">
+        <div class="title">
+          {{a.title}}
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>

@@ -1,0 +1,49 @@
+/* generic */
+.links li {
+    margin: 0;
+    list-style: none;
+    border-bottom: 1px solid white;
+    background-color: rgb(126,139,148);
+    overflow: hidden;
+    cursor: pointer;
+}
+.links li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* entities in about */
+.links .about li {
+    line-height: 18px;
+    padding: 10px;
+}
+.links .about .title {
+    font-size: 14px;
+}
+
+/* artworks */
+.links .artworks li {
+    height: 135px;
+    line-height: 18px;
+    padding: 10px;
+}
+.links .artworks .thumb {
+    float: left;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+.links .artworks .thumb img {
+    width: 100%;
+    border: 1px solid white;
+}
+.links .artworks .desc {
+    color: white;
+}
+.links .artworks .title {
+    font-size: 14px;
+    line-height: 18px;
+    max-height: 36px;
+    overflow: hidden;
+}

@@ -30,7 +30,7 @@
       <video-overview video="video"></video-overview>
     </div>
     
-    <div class="col-md-9" ng-if="!showEnrichment">
+    <div class="col-md-9" ng-if="showEnrichment">
       <div class="player">
         <player second="second" beaming="beaming"></player>
       </div>
@@ -41,9 +41,10 @@
       </div>
     </div>
 
-    <div class="col-md-3 col links" ng-if="showEnrichment">
+    <div class="col-md-3 col links" ng-if="!showEnrichment">
       <accordion close-others="oneAtATime">
-        <accordion-group heading="About" is-open="true">
+        <accordion-group heading="About">
+          <chapter-about metadata="metadata"></chapter-about>
         </accordion-group>
         <accordion-group heading="Artworks">
           <chapter-artworks metadata="metadata"></chapter-artworks>
@@ -55,7 +56,7 @@
         </accordion-group>
       </accordion>
     </div>
-    <div class="col-md-6 col content" ng-if="showEnrichment">
+    <div class="col-md-6 col content" ng-if="!showEnrichment">
     
     </div>  
   </div>
