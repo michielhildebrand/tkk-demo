@@ -1,72 +1,75 @@
-<div class="player-menu player-panel" ng-if="showMenu">
-  <div class="content">
-    <tabset>
-      <tab heading="Chapters">
-        <video-overview video="video"></video-overview>
-      </tab>
-      <tab heading="Playlist">
-      </tab>
-      <tab heading="History">
-      </tab>
-    </tabset>
-  </div>
-</div>
-
-<div class="enrich player-panel" 
-    ng-class="{'player-panel-extended': !showMenu, 'enrich-fullscreen': enrichFull}"  
-    ng-if="showEnrichment">
-  <div class="content">
-    <div class="fullscreen">
-      <button type="button" ng-click="toggleEnrichFull()" class="btn btn-link btn-lg">
-  			<span class="glyphicon glyphicon-resize-full" ng-if="!enrichFull"></span>
-  			<span class="glyphicon glyphicon-resize-small" ng-if="enrichFull"></span>
-  		</button>
-    </div>
-    
-    <tabset>
-      <tab heading="About">
-        <chapter-about metadata="metadata"></chapter-about>
-      </tab>
-      <tab heading="Artworks">
-          <chapter-artworks metadata="metadata"></chapter-artworks>
-      </tab>
-      <tab heading="Background">
-        <chapter-articles></chapter-articles>
-      </tab>
-      <tab heading="Related chapters">
-        <chapter-related></chapter-related>
-      </tab>
-    </tabset>
-  </div>  
-</div>
-
-<div class="player-controls player-controls-top">
-  <div class="player-controls-content">
-  	<div class="col-l">
+<div class="header container-fluid">
+  <div class="header-content row">
+  	<div class="col-md-1">
   		<button type="button" ng-click="goToMain()" class="btn btn-link btn-lg">
   			<span class="glyphicon glyphicon-chevron-left"></span>
   		</button>
   	</div>
-  	<div class="col-r">
-  	  <button type="button" ng-click="togglePlayerMenu()" class="btn btn-link btn-lg">
-  			<span class="glyphicon glyphicon-th-list" ng-class="{active: showMenu}"></span>
-  		</button>
-      <bookmarking></bookmarking>
-  	</div>
-  	<div class="col-m">
+  	<div class="col-md-10">
+  	  <div class="title">
+  	    <h2>Tussen Kunst en Kitsch - Museum Martena</h2>
+  	  </div>  
+  	  <!--
   	  <div class="timeline">
-        <seek-bar></seek-bar>
-      </div>  
+  	          <seek-bar></seek-bar>
+  	        </div>  --> 
     </div>
+    <div class="col-md-1">
+  	  <button type="button" ng-click="toggleEnrichment()" class="btn btn-link btn-lg">
+  			<span class="glyphicon glyphicon-th-list" ng-class="{active: showEnrichment}"></span>
+  		</button>
+      <!--<bookmarking></bookmarking>-->
+  	</div>
   </div>
 </div>
 
-<div class="player">
-	<player second="second" beaming="beaming"></player>
+<div class="explore container-fluid">
+  <div class="row">
+    <div class="col-md-3 col">
+      <h4>Current Program</h4>
+      <video-overview video="video"></video-overview>
+    </div>
+    
+    <div class="col-md-9" ng-if="!showEnrichment">
+      <div class="player">
+        <player second="second" beaming="beaming"></player>
+      </div>
+      <div class="player-controls player-controls-bottom">
+        <div class="player-controls-content">
+      	  <player-controls beaming="beaming" show-enrichment="showEnrichment"></player-controls>
+      	</div>  
+      </div>
+    </div>
+
+    <div class="col-md-3 col links" ng-if="showEnrichment">
+      <accordion close-others="oneAtATime">
+        <accordion-group heading="About" is-open="true">
+        </accordion-group>
+        <accordion-group heading="Artworks">
+          <chapter-artworks metadata="metadata"></chapter-artworks>
+        </accordion-group>
+        <accordion-group heading="Background">
+        </accordion-group>
+        <accordion-group heading="Chapters">
+          <chapter-related></chapter-related>
+        </accordion-group>
+      </accordion>
+    </div>
+    <div class="col-md-6 col content" ng-if="showEnrichment">
+    
+    </div>  
+  </div>
 </div>
 
+<!--
+<div class="player">
+  <player second="second" beaming="beaming"></player>
+</div>
+-->
+<!--
 <div class="player-controls player-controls-bottom">
   <div class="player-controls-content">
 	  <player-controls beaming="beaming" show-enrichment="showEnrichment"></player-controls>
 	</div>  
 </div>
+-->

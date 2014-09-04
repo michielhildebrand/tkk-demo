@@ -65,10 +65,11 @@ function playCtrl($scope, $state, $location, Model) {
 
   $scope.togglePlayerMenu = function () {
     $scope.showMenu = !$scope.showMenu;
+    console.log($scope.showMenu);
   };
 
-  $scope.toggleEnrichFull = function () {
-    $scope.enrichFull = !$scope.enrichFull;
+  $scope.toggleEnrichment = function () {
+    $scope.showEnrichment = !$scope.showEnrichment;
   };
 
 }
