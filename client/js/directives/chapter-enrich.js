@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.enrich-panel', []).directive('enrichPanel', ['Model', enrichPanelDirective]);
+angular.module('app.chapter-enrich', []).directive('enrichPanel', ['Model', enrichPanelDirective]);
 
 function enrichPanelDirective(Model) {
   return {
@@ -35,6 +35,6 @@ function enrichPanelDirective(Model) {
           .value();
       }
     },
-    templateUrl: 'partials/directives/enrich-panel.html'
+    templateUrl: 'partials/directives/chapter-enrich.html'
   }
 }

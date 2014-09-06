@@ -23,7 +23,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.bookmarks',
   'app.information-card',
   'app.seek-bar',
-  'app.enrich-panel',
+  'app.chapter-enrich',
 
   'Eddie',
   'Model',
