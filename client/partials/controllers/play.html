@@ -8,15 +8,16 @@
   	<div class="col-md-10">
   	  <div class="title">
   	    <h2>Tussen Kunst en Kitsch - Museum Martena</h2>
-  	  </div>  
+  	  </div>
   	  <!--
   	  <div class="timeline">
-  	          <seek-bar></seek-bar>
-  	        </div>  --> 
+          <seek-bar></seek-bar>
+      </div>
+      -->
     </div>
     <div class="col-md-1">
-  	  <button type="button" ng-click="toggleEnrichment()" class="btn btn-link btn-lg">
-  			<span class="glyphicon glyphicon-th-list" ng-class="{active: showEnrichment}"></span>
+  	  <button type="button" ng-click="toggleEnrichmentMode()" class="btn btn-link btn-lg">
+  			<span class="glyphicon glyphicon-th-list" ng-class="{active: enrichmentMode}"></span>
   		</button>
       <!--<bookmarking></bookmarking>-->
   	</div>
@@ -29,57 +30,20 @@
       <h4>Current Program</h4>
       <video-overview video="video"></video-overview>
     </div>
-    
     <div class="col-md-10 col">
-      <div ng-if="!showEnrichment">
+      <div ng-if="!enrichmentMode">
         <div class="player">
           <player second="second" beaming="beaming"></player>
         </div>
         <div class="player-controls player-controls-bottom">
           <div class="player-controls-content">
-        	  <player-controls beaming="beaming" show-enrichment="showEnrichment"></player-controls>
-        	</div>  
+        	  <player-controls beaming="beaming" show-enrichment="enrichmentMode"></player-controls>
+        	</div>
         </div>
       </div>
-      <div class="enrichPanel" ng-if="showEnrichment">
-        <!-- include enrich Panel here-->
-        <div class="col-md-4 col links">
-          <accordion close-others="oneAtATime">
-            <accordion-group heading="About">
-              <chapter-about metadata="metadata"></chapter-about>
-            </accordion-group>
-            <accordion-group heading="Artworks">
-              <chapter-artworks metadata="metadata"></chapter-artworks>
-            </accordion-group>
-            <accordion-group heading="Background">
-            </accordion-group>
-            <accordion-group heading="Chapters">
-              <chapter-related></chapter-related>
-            </accordion-group>
-          </accordion>
-        </div>
-        <div class="col-md-8 col content">
-          <div ng-if="loading">
-            <div class="text-center"><i>Loading ...</i></div>
-          </div>
-          <div ng-if="!loading">
-            <information-card props="proxyAnswer" browse="proxy"></information-card>
-          </div>
-        </div>
+      <div class="enrichPanel" ng-if="enrichmentMode">
+        <enrich-panel></enrich-panel>
       </div>
     </div>
   </div>
 </div>
-
-<!--
-<div class="player">
-  <player second="second" beaming="beaming"></player>
-</div>
--->
-<!--
-<div class="player-controls player-controls-bottom">
-  <div class="player-controls-content">
-	  <player-controls beaming="beaming" show-enrichment="showEnrichment"></player-controls>
-	</div>  
-</div>
--->

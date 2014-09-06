@@ -18,7 +18,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       var source = player.children.source;
 
       function updatePlayer(video, time) {
-        console.log('update player', video, time);
+        //console.log('update player', video, time);
         player.poster = video.poster;
         source.src = video.src;
         player.load();

@@ -8,7 +8,7 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
     replace: false,
     scope: {
       beaming: '=',
-      showEnrichment: '='
+      enrichmentMode: '='
     },
     link: function (scope, element, attrs) {
       scope.play = true;
@@ -72,7 +72,7 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       };
 
       function openEnrichment() {
-        scope.showEnrichment = !scope.showEnrichment;
+        scope.enrichmentMode = !scope.enrichmentMode;
       }
 
       scope.$watch(

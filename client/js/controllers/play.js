@@ -7,7 +7,7 @@ function playCtrl($scope, $state, $location, Model) {
   $scope.beaming = false;
 
   $scope.showMenu = false;
-  $scope.showEnrichment = false;
+  $scope.enrichmentMode = false;
 
   $scope.enrichFull = false;
 
@@ -34,42 +34,17 @@ function playCtrl($scope, $state, $location, Model) {
     }
   );
 
-  $scope.$watch(
-    function () {
-      return Model.getChapter();
-    },
-    function (newChapter) {
-      if (newChapter != null) {
-        extractMetadata(newChapter);
-      }
-    }
-  );
-
-  function extractMetadata(ch) {
-    $scope.metadata = _.chain(ch.fragments)
-      .map(function (f) {
-        return {value: f.title.trim(), uri: f.locator.trim()}
-      })
-      .filter(function (e) {
-        return e.value.length > 0
-      })
-      .uniq(false, function (e) {
-        return e.value;
-      })
-      .value();
-  }
-
   $scope.goToMain = function () {
     $state.go('episodes', {user: Model.getUser()});
   };
 
   $scope.togglePlayerMenu = function () {
     $scope.showMenu = !$scope.showMenu;
-    console.log($scope.showMenu);
   };
 
-  $scope.toggleEnrichment = function () {
-    $scope.showEnrichment = !$scope.showEnrichment;
+  $scope.toggleEnrichmentMode = function () {
+    $scope.enrichmentMode = !$scope.enrichmentMode;
+    console.log($scope.enrichmentMode);
   };
 
 }

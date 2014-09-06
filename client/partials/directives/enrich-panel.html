@@ -1,0 +1,23 @@
+<div class="col-md-4 col links">
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="About">
+      <chapter-about metadata="metadata"></chapter-about>
+    </accordion-group>
+    <accordion-group heading="Artworks">
+      <chapter-artworks metadata="metadata"></chapter-artworks>
+    </accordion-group>
+    <accordion-group heading="Background">
+    </accordion-group>
+    <accordion-group heading="Chapters">
+      <chapter-related></chapter-related>
+    </accordion-group>
+  </accordion>
+</div>
+<div class="col-md-8 col content">
+  <div ng-if="loading">
+    <div class="text-center"><i>Loading ...</i></div>
+  </div>
+  <div ng-if="!loading">
+    <information-card props="proxyAnswer" browse="proxy"></information-card>
+  </div>
+</div>
