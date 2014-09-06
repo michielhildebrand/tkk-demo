@@ -7,9 +7,7 @@ function playCtrl($scope, $state, $location, Model) {
   $scope.beaming = false;
 
   $scope.showMenu = false;
-  $scope.enrichmentMode = false;
-
-  $scope.enrichFull = false;
+  $scope.enrich = false;
 
   $scope.$watch(
     function () {
@@ -42,9 +40,8 @@ function playCtrl($scope, $state, $location, Model) {
     $scope.showMenu = !$scope.showMenu;
   };
 
-  $scope.toggleEnrichmentMode = function () {
-    $scope.enrichmentMode = !$scope.enrichmentMode;
-    console.log($scope.enrichmentMode);
+  $scope.toggleEnrich = function () {
+    $scope.enrich = !$scope.enrich;
   };
 
 }

@@ -7,8 +7,7 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
     restrict: 'E',
     replace: false,
     scope: {
-      beaming: '=',
-      enrichmentMode: '='
+      beaming: '='
     },
     link: function (scope, element, attrs) {
       scope.play = true;
@@ -61,19 +60,10 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
         if (scope.beaming) {
           //TODO: instead of sending to tv, use player
           sendToTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
-          openEnrichment();
         } else {
           //TODO: continue playing the video on the tablet
         }
       };
-
-      scope.enrich = function () {
-        openEnrichment();
-      };
-
-      function openEnrichment() {
-        scope.enrichmentMode = !scope.enrichmentMode;
-      }
 
       scope.$watch(
         function () {

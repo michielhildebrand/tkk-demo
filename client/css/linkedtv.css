@@ -22,6 +22,10 @@ button .glyphicon {
     color: #FFF;
 }
 
+.glyphicon.active {
+    color: #428bca;
+}
+
 .header .title h2 {
     text-align: center;
     height: 24px;

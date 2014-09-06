@@ -16,9 +16,9 @@
       -->
     </div>
     <div class="col-md-1">
-  	  <button type="button" ng-click="toggleEnrichmentMode()" class="btn btn-link btn-lg">
-  			<span class="glyphicon glyphicon-th-list" ng-class="{active: enrichmentMode}"></span>
-  		</button>
+      <button type="button" ng-click="toggleEnrich()" class="btn btn-link btn-lg" title="Linkedtv enrichments">
+        <span class="glyphicon glyphicon-info-sign" ng-class="{active: enrich}"></span>
+      </button>
       <!--<bookmarking></bookmarking>-->
   	</div>
   </div>
@@ -31,17 +31,17 @@
       <video-overview video="video"></video-overview>
     </div>
     <div class="col-md-10 col">
-      <div ng-if="!enrichmentMode">
-        <div class="player">
+      <div ng-if="!enrich">
+        <div class="player" >
           <player second="second" beaming="beaming"></player>
         </div>
         <div class="player-controls player-controls-bottom">
           <div class="player-controls-content">
-        	  <player-controls beaming="beaming" show-enrichment="enrichmentMode"></player-controls>
-        	</div>
+            <player-controls beaming="beaming"></player-controls>
+          </div>
         </div>
       </div>
-      <div class="enrichPanel" ng-if="enrichmentMode">
+      <div class="enrichPanel" ng-if="enrich">
         <chapter-enrich></chapter-enrich>
       </div>
     </div>
