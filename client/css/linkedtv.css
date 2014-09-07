@@ -13,6 +13,12 @@ a {
   background-color: rgba(95,109,105,0.8);
   border-bottom: 1px solid rgb(100,114,124);
 }
+.bar-tkk-episodes .title {
+  background-image: url('../img/logo_avrotros.png');
+  background-repeat: no-repeat;
+  background-size: 110px 36px;
+  background-position: left center;
+}
 .bar-tkk .title,
 .bar-tkk .icon {
   color: #FFF;
