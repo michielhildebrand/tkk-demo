@@ -17,7 +17,7 @@ function chapterArtworksDirective(europeanaApi, Model) {
         function (newChapter) {
           if (newChapter != null) {
             scope.artworks = [];
-            loadChapterArtworks(chapterEnrichCtrl.extractMetadata(newChapter));
+            loadChapterArtworks(chapterEnrichCtrl.extractArtworks(newChapter));
           }
         }
       );

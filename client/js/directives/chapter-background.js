@@ -18,7 +18,7 @@ function chapterBackgroundDirective(irApi, Model) {
         },
         function (newChapter) {
           if (newChapter != null) {
-            metadata = chapterEnrichCtrl.extractMetadata(newChapter);
+            metadata = chapterEnrichCtrl.extractBackground(newChapter);
             metadataSize = metadata.length;
 
             scope.backgrounds = [];
