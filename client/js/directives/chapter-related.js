@@ -5,9 +5,12 @@ angular.module('app.chapter-related', []).directive('chapterRelated', ['Model', 
 function chapterRelatedDirective(Model) {
   return {
     restrict: 'E',
-    scope: {},
+    scope: {
+      metadata: '='
+    },
     replace: false,
-    link: function (scope, element, attrs) {
+    require: '^chapterEnrich',
+    link: function (scope, element, attrs, chapterEnrichCtrl) {
       scope.$watch(
         function () {
           return Model.getVideos();
@@ -20,11 +23,26 @@ function chapterRelatedDirective(Model) {
       );
 
       scope.getShot = function (video, chapter) {
-        var d = new Date(chapter.startTime);
+        return shot(video, chapter);
+      };
+
+      function shot(v, ch) {
+        var d = new Date(ch.startTime);
         var h = d.getHours() - 1;
         var m = d.getMinutes();
         var s = d.getSeconds();
-        return video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
+        return v.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
+      }
+
+      scope.nav = function(v, ch) {
+        var content = {
+          label: [
+            {value: ch.chapterTitle}
+          ],
+          thumb: [shot(v, ch)],
+          metadata: scope.metadata
+        };
+        chapterEnrichCtrl.setContent(content);
       };
 
     },
