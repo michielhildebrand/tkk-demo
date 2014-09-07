@@ -11,7 +11,6 @@ function chapterArtworksDirective(europeanaApi) {
     replace: false,
     require: '^chapterEnrich',
     link: function (scope, element, attrs, chapterEnrichCtrl) {
-      scope.loading = false;
 
       scope.$watch('metadata', function (newMetadata) {
         if (newMetadata != null) {
@@ -21,10 +20,7 @@ function chapterArtworksDirective(europeanaApi) {
       });
 
       function loadChapterArtworks(meta) {
-        var metadataSize = meta.length;
-
-        scope.loading = true;
-        _(meta).each(function (m, index) {
+        _(meta).each(function (m) {
           europeanaApi.search({query: m.value}, function (r) {
             if (r.itemsCount > 0) {
               _(r.items).each(function (i) {
@@ -33,10 +29,6 @@ function chapterArtworksDirective(europeanaApi) {
                   scope.artworks.push({id0: splittedId[1], id1: splittedId[2], img: i.edmPreview[0], title: i.title[0]});
                 }
               });
-            }
-
-            if (index == metadataSize - 1) {
-              scope.loading = false;
             }
           });
         });

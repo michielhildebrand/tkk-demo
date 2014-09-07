@@ -11,7 +11,6 @@ function chapterAboutDirective(entityProxy, Model) {
     require: '^chapterEnrich',
     replace: false,
     link: function (scope, element, attrs, chapterEnrichCtrl) {
-//      scope.loading = false;
 
       var answers = {};
 
