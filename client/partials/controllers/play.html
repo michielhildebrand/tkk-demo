@@ -14,7 +14,7 @@
     </div>
   
     <div class="col col-80">
-      <div  ng-if="enrich">
+      <div  ng-if="!enrich">
         <div class="player">
           <player second="second" beaming="beaming"></player>
         </div>
@@ -24,7 +24,7 @@
         	</div>  
         </div>
       </div>
-      <div class="enrichPanel" ng-if="!enrich">
+      <div class="enrichPanel" ng-if="enrich">
         <chapter-enrich></chapter-enrich>
       </div>
     </div>
