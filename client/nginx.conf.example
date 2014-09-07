@@ -37,4 +37,8 @@ server {
     proxy_pass http://%SPRINGFIELD_IP%:8080;
     proxy_set_header Host $host;
   }
+
+  location /ir {
+    proxy_pass http://ir.lmcloud.vse.cz/irapi/media-server;
+  }
 }

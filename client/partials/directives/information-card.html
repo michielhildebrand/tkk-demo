@@ -3,8 +3,11 @@
     <img ng-src="{{thumb.value}}" title="{{label.value}}" alt="{{label.value}}"/>
   </div>	
   <div class="description">
+  	<h2 ng-if="title.value">{{title.value}}</h2>
+
   	<p class="main-text">{{comment.value}}</p>
-  	<ul class="properties">
+
+    <ul class="properties">
 
       <!-- persons/artists -->
   		<li ng-if="birthDate.value">
@@ -67,4 +70,4 @@
       <li ng-repeat="d in metadata"><a ng-click="nav(d)">{{d.value}}</a></li>
     </ul>
   </div>
-</div>  
+</div>

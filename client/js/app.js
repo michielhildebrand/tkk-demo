@@ -18,9 +18,9 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.video-chapter',
   'app.chapter-list',
   'app.chapter-about',
-  'app.chapter-related',
   'app.chapter-artworks',
-  'app.chapter-articles',
+  'app.chapter-background',
+  'app.chapter-related',
   'app.bookmarking',
   'app.bookmarks',
   'app.information-card',
@@ -31,7 +31,8 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'Model',
   'EventsBus',
   'EntityProxy',
-  'EuropeanaApi'
+  'EuropeanaApi',
+  'IRApi'
 ]);
 
 tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',

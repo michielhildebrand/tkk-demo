@@ -10,7 +10,7 @@ function informationCardDirective() {
     },
     replace: false,
     link: function (scope, element, attrs) {
-      var interestingProps = ['label', 'thumb', 'comment', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
+      var interestingProps = ['label', 'thumb', 'title', 'comment', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
         'nationality', 'profession', 'style', 'predecessor', 'successor', 'activeSince', 'knownFor', 'presents',
         'guestedIn', 'locatedIn', 'population', 'dcTitle', 'dcCreator'];
 
