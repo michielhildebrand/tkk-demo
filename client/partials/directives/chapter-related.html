@@ -1,9 +1,6 @@
-<div class="related-chapters">
-  <ul class="chapter-list">
-    <span ng-repeat="v in relatedVideos">
-      <li ng-repeat="ch in v.chapters">
-        <video-chapter video="v" chapter="ch" index="$index"></video-chapter>
-  	  </li>
-  	</span>
-  </ul>
-</div>
+<ion-list ng-repeat="v in relatedVideos">
+  <ion-item ng-repeat="ch in v.chapters">
+    <h4>{{ch.title}}</h4>
+    <img ng-src="{{getShot(v, ch)}}" alt="{{ch.title}}">
+  </ion-item>
+</ion-list>
