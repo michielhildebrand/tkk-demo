@@ -1,25 +1,6 @@
 <ion-list>
-  <ion-item ng-repeat="a in artworks" class="item-thumbnail-left artwork">
-    <img src="{{a.img}}" alt="{{a.title}}">
+  <ion-item ng-repeat="a in artworks" class="item-thumbnail-left artwork" ng-click="nav(a)">
+    <img ng-src="{{a.img}}" alt="{{a.title}}">
     <h4>{{a.title}}</h4>
-    <p></p>
   </ion-item>
 </ion-list>
-
-<!--
-<div ng-if="loading">
-    <div class="text-center"><i>Loading ...</i></div>
-</div>
-<div ng-if="!loading">
-  <ul class="artworks">
-    <li ng-repeat="a in artworks">
-      <div class="thumb"><img ng-src="{{a.img}}"></div>
-      <div class="desc">
-        <div class="title">
-          {{a.title}}
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
--->

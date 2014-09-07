@@ -9,7 +9,8 @@ function chapterArtworksDirective(europeanaApi) {
       'metadata': '='
     },
     replace: false,
-    link: function (scope, element, attrs) {
+    require: '^chapterEnrich',
+    link: function (scope, element, attrs, chapterEnrichCtrl) {
       scope.loading = false;
 
       scope.$watch('metadata', function (newMetadata) {
@@ -24,11 +25,12 @@ function chapterArtworksDirective(europeanaApi) {
 
         scope.loading = true;
         _(meta).each(function (m, index) {
-          europeanaApi.get({query: m.value}, function (r) {
+          europeanaApi.search({query: m.value}, function (r) {
             if (r.itemsCount > 0) {
               _(r.items).each(function (i) {
                 if (i.edmPreview && i.title) {
-                  scope.artworks.push({img: i.edmPreview[0], title: i.title[0]});
+                  var splittedId = i.id.split('/');
+                  scope.artworks.push({id0: splittedId[1], id1: splittedId[2], img: i.edmPreview[0], title: i.title[0]});
                 }
               });
             }
@@ -39,6 +41,19 @@ function chapterArtworksDirective(europeanaApi) {
           });
         });
       }
+
+      scope.nav = function(e) {
+        europeanaApi.get({id0: e.id0, id1: e.id1}, function (r) {
+          //console.log('Europeana record', r);
+          var content = {};
+          _(r.object.proxies.reverse()).each(function(p) {
+            _(content).extend(p)
+          });
+          _(content).extend({label: [e.title], thumb: [e.img]});
+          chapterEnrichCtrl.setContent(content);
+        });
+
+      };
     },
     templateUrl: 'partials/directives/chapter-artworks.html'
   }
