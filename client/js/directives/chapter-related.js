@@ -26,6 +26,7 @@ function chapterRelatedDirective(Model) {
         return shot(video, chapter);
       };
 
+      //TODO replace with chapter artwork picture (special object)
       function shot(v, ch) {
         var d = new Date(ch.startTime);
         var h = d.getHours() - 1;
