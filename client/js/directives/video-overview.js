@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.video-overview', []).directive('videoOverview', ['$state', 'Eddie', 'Model',videoOverviewDirective]);
+angular.module('app.video-overview', []).directive('videoOverview', ['$state', 'Model',videoOverviewDirective]);
 
-function videoOverviewDirective($state, Eddie, Model) {
+function videoOverviewDirective($state, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -10,19 +10,20 @@ function videoOverviewDirective($state, Eddie, Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-      scope.getShot = function (index) {
-        var d = new Date(scope.video.chapters[index].startTime);
+      scope.getShot = function (chapter) {
+        var d = new Date(chapter.startTime);
         var h = d.getHours() - 1;
         var m = d.getMinutes();
         var s = d.getSeconds();
         return scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       };
+
+      scope.getDuration = function (chapter) {
+        return moment.utc(parseInt(chapter.duration)).format("m:ss");
+      };
+
       scope.play = function (index) {
-        if ($state.current.name != 'play') {
-          $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: index});
-        } else {
-          sendToPlayer({action: 'set-chapter', value: scope.index});
-        }
+        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: index});
       };
     },
     templateUrl: 'partials/directives/video-overview.html'

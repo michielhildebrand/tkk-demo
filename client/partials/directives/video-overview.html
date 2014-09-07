@@ -1,3 +1,13 @@
 <div ng-repeat="ch in video.chapters">
-  <video-chapter video="video" chapter="ch" index="$index"></video-chapter>
+  <div class="chapter" ng-click="play($index)">
+    <div class="thumb">
+    <span class="video-thumb">
+      <img ng-src="{{getShot(ch)}}" alt="{{ch.title}}">
+    </span>
+      <span class="chapter-time">{{getDuration(ch)}}</span>
+    </div>
+    <div class="chapter-content">
+      <h5>{{ch.title}}</h5>
+    </div>
+  </div>
 </div>

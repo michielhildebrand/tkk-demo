@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-list', []).directive('chapterList', ['$state', 'Eddie', 'Model',chapterListDirective]);
+angular.module('app.chapter-selection', []).directive('chapterSelection', ['$state', 'Eddie', 'Model',chapterSectionDirective]);
 
-function chapterListDirective($state, Eddie, Model) {
+function chapterSectionDirective($state, Eddie, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -33,6 +33,6 @@ function chapterListDirective($state, Eddie, Model) {
         Eddie.putLou({target: 'player', data: action});
       }
     },
-    templateUrl: 'partials/directives/chapter-list.html'
+    templateUrl: 'partials/directives/chapter-selection.html'
   }
 }

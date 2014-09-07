@@ -1,9 +1,8 @@
 'use strict';
 
 var tkkDemoApp = angular.module('tkkDemoApp', [
-  'ionic',
   'ui.router',
-  //'ui.bootstrap',
+  'ionic',
 
   'Config',
 
@@ -15,8 +14,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.player',
   'app.player-controls',
   'app.video-overview',
-  'app.video-chapter',
-  'app.chapter-list',
+  'app.chapter-selection',
   'app.chapter-about',
   'app.chapter-artworks',
   'app.chapter-background',
