@@ -1,0 +1,1176 @@
+[
+  {
+    "id": "953b4d09-e828-4623-b9ff-be3072411a98",
+    "title": "Compilation of clips",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream18.noterik.com/progressive/stream18/domain/linkedtv/user/avro/video/187/rawvideo/4/raw.mp4",
+    "duration": 2727280,
+    "chapters": [
+      {
+        "id": "4",
+        "duration": "27000.0",
+        "title": "Introduction",
+        "startTime": 7000,
+        "fragments": []
+      },
+      {
+        "id": "7",
+        "duration": "95000.0",
+        "title": "Jac de Vries painting",
+        "startTime": 228000,
+        "fragments": []
+      },
+      {
+        "id": "2",
+        "duration": "197000.0",
+        "title": "Rococo sign",
+        "startTime": 323000,
+        "fragments": []
+      },
+      {
+        "id": "3",
+        "duration": "233000.0",
+        "title": "Altorf sculpture",
+        "startTime": 813000,
+        "fragments": [
+          {
+            "id": "0a9f262c-276f-11e4-8057-005056a7235c",
+            "locator": "",
+            "duration": "1880.0049",
+            "title": "Den Haag",
+            "type": "Location",
+            "startTime": 980559,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "duration": "253000.0",
+        "title": "Maria lactans",
+        "startTime": 1350000,
+        "fragments": []
+      },
+      {
+        "id": "6",
+        "duration": "257000.0",
+        "title": "Spaghetti clock",
+        "startTime": 1848000,
+        "fragments": []
+      },
+      {
+        "id": "1",
+        "duration": "260000.0",
+        "title": "Koppenol painting",
+        "startTime": 2406000,
+        "fragments": []
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dccd76f0001",
+    "title": "Museum Martena",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/100/rawvideo/4/raw.mp4",
+    "duration": 2949590,
+    "chapters": [
+      {
+        "id": "3",
+        "duration": "144000.0",
+        "title": "Introduction",
+        "startTime": 7000,
+        "artworks": [
+          "museum martena"
+        ],
+        "backgrounds": [
+          "museum martena"
+        ],
+        "fragments": [
+          {
+            "id": "59198c4a-f6df-11e3-a577-005056a7235c",
+            "locator": "",
+            "duration": "280000.0",
+            "title": "A tin coffee decanter",
+            "type": "Thing",
+            "startTime": 10000,
+            "enrichments": []
+          },
+          {
+            "id": "64453d94-f6df-11e3-9ad4-005056a7235c",
+            "locator": "",
+            "duration": "240000.0",
+            "title": "A tin coffee decanter",
+            "type": "Thing",
+            "startTime": 30000,
+            "enrichments": []
+          },
+          {
+            "id": "7ef7e878-eca1-11e3-99e1-005056a7235c",
+            "locator": "http://nl.dbpedia.org/resource/Nelleke_van_der_Krogt",
+            "duration": "11000.0",
+            "title": "Nelleke van der Krogt",
+            "type": "Thing",
+            "startTime": 44000,
+            "enrichments": ["https://www.youtube.com/watch?v=uD0ot1ccbZw", "http://avro.nl/tussenkunstenkitsch/over/nelleke_van_der_krogt.aspx"]
+          },
+          {
+            "id": "4c9f6450-eca1-11e3-acd4-005056a7235c",
+            "locator": "http://nl.dbpedia.org/resource/Museum_Martena",
+            "duration": "37000.0",
+            "title": "Museum Martena",
+            "type": "Thing",
+            "startTime": 56000,
+            "enrichments": ["https://de.foursquare.com/v/museum-martena-franeker-frysl%C3%A2n/4c628a0769a1c9b6cccc38a4"]
+          },
+          {
+            "id": "361cba9e-eca0-11e3-89e2-005056a7235c",
+            "locator": "http://nl.dbpedia.org/resource/Franeker",
+            "duration": "35000.0",
+            "title": "Franeker",
+            "type": "Location",
+            "startTime": 57000,
+            "enrichments": []
+          },
+          {
+            "id": "0a01e4d0-f172-11e3-8114-005056a7235c",
+            "locator": "",
+            "duration": "125000.0",
+            "title": "A tin coffee decanter",
+            "type": "Thing",
+            "startTime": 160000,
+            "enrichments": []
+          },
+          {
+            "id": "e7eed88e-f6e0-11e3-87f6-005056a7235c",
+            "locator": "http://dbpedia.org/resource/Test_cricket",
+            "duration": "5000.0",
+            "title": "Test cricket",
+            "type": "Thing",
+            "startTime": 185000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "duration": "180000.0",
+        "title": "Horse painting",
+        "startTime": 284000,
+        "fragments": [
+          {
+            "id": "cdba0bb8-e00c-11e3-95a7-005056a7235c",
+            "locator": "http://dbpedia.org/resource/Jan_Altink",
+            "duration": "180000.0",
+            "title": "Jan Altink",
+            "type": "Thing",
+            "startTime": 285000,
+            "enrichments": ["https://www.youtube.com/watch?v=7cFmprcLzVo", "https://www.flickr.com/search?sort=relevance&text=jan%20altink", "http://www.europeana.eu/portal/record/2021623/index_php_a_1_id_24_s_1_rg_1_rg_id_480_rg_b_1.html"]
+          },
+          {
+            "id": "c1dc27ba-1359-11e4-a082-005056a7235c",
+            "locator": "",
+            "duration": "4000.0",
+            "title": "Groninger Ploeg",
+            "type": "Thing",
+            "startTime": 327640,
+            "enrichments": []
+          },
+          {
+            "id": "44268d96-1350-11e4-8d2b-005056a7235c",
+            "locator": "",
+            "duration": "4598.999",
+            "title": "Jan Altink",
+            "type": "Thing",
+            "startTime": 400839,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "duration": "212000.0",
+        "title": "Bronze horse statue",
+        "startTime": 467000,
+        "fragments": [
+          {
+            "id": "c4a971c8-1359-11e4-b4fc-005056a7235c",
+            "locator": "",
+            "duration": "3638.977",
+            "title": "Friesland",
+            "type": "Location",
+            "startTime": 550280,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "duration": "226000.0",
+        "title": "Eisenloeffel clock",
+        "startTime": 987000,
+        "artworks": [
+          "jan eisenloeffel"
+        ],
+        "backgrounds": [
+          "jan eisenloeffel"
+        ],
+        "fragments": [
+          {
+            "id": "47709d12-35d2-11e4-b8bc-005056a7235c",
+            "locator": "",
+            "duration": "2801.0254",
+            "title": "Jan Eisenloeffel",
+            "type": "Thing",
+            "startTime": 1044838,
+            "enrichments": []
+          },
+          {
+            "id": "442d5c6c-35d2-11e4-abc5-005056a7235c",
+            "locator": "",
+            "duration": "4479.004",
+            "title": "Art Nouveau",
+            "type": "Person",
+            "startTime": 1112400,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "duration": "280000.0",
+        "title": "Jan Blom painting",
+        "startTime": 1523000,
+        "fragments": [
+          {
+            "id": "f2cfc0c8-c63a-11e3-a7cd-005056a7235c",
+            "locator": "",
+            "duration": "4558.96",
+            "title": "schuif",
+            "type": "Thing",
+            "startTime": 1804280,
+            "enrichments": []
+          },
+          {
+            "id": "edeef272-c63a-11e3-95ec-005056a7235c",
+            "locator": "",
+            "duration": "3041.0156",
+            "title": "zon",
+            "type": "Thing",
+            "startTime": 1844119,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "1",
+        "duration": "237000.0",
+        "title": "Silver tea jar",
+        "startTime": 2157000,
+        "artworks": [
+          "zilver theebus"
+        ],
+        "backgrounds": [
+          "zilver theebus"
+        ],
+        "fragments": [
+          {
+            "id": "589390e2-f79b-11e3-87f6-005056a7235c",
+            "locator": "http://dbpedia.org/resource/Silver",
+            "duration": "144000.0",
+            "title": "Zilveren theebus",
+            "type": "Thing",
+            "startTime": 2165000,
+            "enrichments": ["http://europeana.eu/portal/search.html?query=zilver+theebus&rows=24"]
+          },
+          {
+            "id": "2e6b620e-f79b-11e3-a224-005056a7235c",
+            "locator": "http://dbpedia.org/resource/Tea",
+            "duration": "110000.0",
+            "title": "Friese theebus",
+            "type": "Food",
+            "startTime": 2199000,
+            "enrichments": ["http://europeana.eu/portal/search.html?query=friesland+theebus&rows=24"]
+          },
+          {
+            "id": "ee8d30a1-fae1-11e3-93c9-00264a16bc9a",
+            "locator": "http://de.dbpedia.org/resource/Friesland",
+            "duration": "6000.0",
+            "title": "Friesland",
+            "type": "Location",
+            "startTime": 2234000,
+            "enrichments": ["http://nl.wikipedia.org/wiki/Friesland"]
+          },
+          {
+            "id": "10f3d3a0-f791-11e3-99a9-005056a7235c",
+            "locator": "http://nl.wikipedia.org/wiki/Meesterteken",
+            "duration": "4000.0",
+            "title": "Meesterteken",
+            "type": "Thing",
+            "startTime": 2285000,
+            "enrichments": ["http://www.925-1000.com/Fnetherlands_Date_Code.html"]
+          },
+          {
+            "id": "89666b4a-f79b-11e3-a577-005056a7235c",
+            "locator": "http://dbpedia.org/resource/Friesland",
+            "duration": "15000.0",
+            "title": "Friese zilversmeden",
+            "type": "Place",
+            "startTime": 2294000,
+            "enrichments": ["http://europeana.eu/portal/search.html?query=zilversmid+friesland&rows=24", "http://www.friesmuseum.nl/het-museum/collectie/iconen/popta-zilver"]
+          },
+          {
+            "id": "0b8759c8-f791-11e3-8ec5-005056a7235c",
+            "locator": "http://nl.wikipedia.org/wiki/Zilver",
+            "duration": "4000.0",
+            "title": "zilver",
+            "type": "Thing",
+            "startTime": 2302000,
+            "enrichments": ["http://nl.wikipedia.org/wiki/Zilver"]
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "duration": "269000.0",
+        "title": "19th century broche",
+        "startTime": 2637000,
+        "fragments": []
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd099380002",
+    "title": "Graphic Design Museum",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/101/rawvideo/4/raw.mp4",
+    "duration": 2733550,
+    "chapters": [
+      {
+        "id": "2",
+        "duration": "121000.0",
+        "title": "Introduction",
+        "startTime": 5000,
+        "artworks": [
+          "moti breda"
+        ],
+        "backgrounds": [
+          "moti breda"
+        ],
+        "fragments": []
+      },
+      {
+        "id": "4",
+        "duration": "91000.0",
+        "title": "1900s book",
+        "startTime": 173000,
+        "fragments": []
+      },
+      {
+        "id": "6",
+        "duration": "101000.0",
+        "title": "Jo Koster painting",
+        "startTime": 264000,
+        "fragments": [
+          {
+            "id": "ee10d366-60cc-11e3-8505-00264a16bc9a",
+            "locator": "",
+            "duration": "3880.005",
+            "title": "Amsterdam",
+            "type": "Location",
+            "startTime": 294440,
+            "enrichments": []
+          },
+          {
+            "id": "49322f00-35d5-11e4-abc5-005056a7235c",
+            "locator": "",
+            "duration": "4119.995",
+            "title": "impressionisme",
+            "type": "Organization",
+            "startTime": 309880,
+            "enrichments": []
+          },
+          {
+            "id": "45c09758-35d5-11e4-943c-005056a7235c",
+            "locator": "",
+            "duration": "3720.9778",
+            "title": "Jo Koster",
+            "type": "Thing",
+            "startTime": 338678,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "duration": "76000.0",
+        "title": "Silver coffee set",
+        "startTime": 598000,
+        "fragments": []
+      },
+      {
+        "id": "1",
+        "duration": "267000.0",
+        "title": "Steltman ring",
+        "startTime": 750000,
+        "fragments": [
+          {
+            "id": "6509c222-575c-11e3-ae14-00163ebdcad9",
+            "locator": "http://dbpedia.org/resource/MOTI",
+            "duration": "290000.0",
+            "title": "Graphic Design Museum",
+            "type": "Thing",
+            "startTime": 1266000,
+            "enrichments": ["http://www.motimuseum.nl", "http://nl.wikipedia.org/wiki/Museum_of_the_Image"]
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "duration": "85000.0",
+        "title": "Textile book",
+        "startTime": 1556000,
+        "fragments": []
+      },
+      {
+        "id": "5",
+        "duration": "266000.0",
+        "title": "Dog painting",
+        "startTime": 1805000,
+        "fragments": []
+      },
+      {
+        "id": "10",
+        "duration": "118000.0",
+        "title": "Amsterdam painting",
+        "startTime": 2301000,
+        "fragments": []
+      },
+      {
+        "id": "9",
+        "duration": "268000.0",
+        "title": "Statue from Congo",
+        "startTime": 2422000,
+        "fragments": []
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd151100003",
+    "title": "Hermitage",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/102/rawvideo/4/raw.mp4",
+    "duration": 2735740,
+    "chapters": [
+      {
+        "id": "3",
+        "duration": "70000.0",
+        "title": "Introduction",
+        "startTime": 10000,
+        "artworks": [
+          "hermitage amsterdam"
+        ],
+        "backgrounds": [
+          "hermitage amsterdam"
+        ],
+        "fragments": [
+          {
+            "id": "009febb2-35d3-11e4-9a1c-005056a7235c",
+            "locator": "",
+            "duration": "2120.0027",
+            "title": "Hermitage",
+            "type": "Location",
+            "startTime": 40599,
+            "enrichments": []
+          },
+          {
+            "id": "0ad5fa36-35d3-11e4-943c-005056a7235c",
+            "locator": "",
+            "duration": "4161.003",
+            "title": "Hermitage Amsterdam",
+            "type": "Location",
+            "startTime": 71639,
+            "enrichments": []
+          },
+          {
+            "id": "17999afc-5816-11e3-807f-00163ebdcad9",
+            "locator": "",
+            "duration": "3881.0044",
+            "title": "toegepaste kunst",
+            "type": "Thing",
+            "startTime": 114919,
+            "enrichments": []
+          },
+          {
+            "id": "0d15650c-5816-11e3-807f-00163ebdcad9",
+            "locator": "",
+            "duration": "4400.0015",
+            "title": "Alexander de Grote",
+            "type": "Person",
+            "startTime": 118999,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "duration": "231000.0",
+        "title": "1549 bell",
+        "startTime": 297000,
+        "fragments": [
+          {
+            "id": "7c46747a-35d3-11e4-8d40-005056a7235c",
+            "locator": "",
+            "duration": "2759.0027",
+            "title": "Johan Afin",
+            "type": "Person",
+            "startTime": 394200,
+            "enrichments": []
+          },
+          {
+            "id": "80101b60-35d3-11e4-9d09-005056a7235c",
+            "locator": "",
+            "duration": "3838.9893",
+            "title": "Mechelen",
+            "type": "Location",
+            "startTime": 399720,
+            "enrichments": []
+          },
+          {
+            "id": "126b98a2-7867-11e3-a5c2-00264a16bc9a",
+            "locator": "",
+            "duration": "4681.0",
+            "title": "tin",
+            "type": "Thing",
+            "startTime": 448519,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "duration": "249000.0",
+        "title": "Jan Toorop painting",
+        "startTime": 736000,
+        "fragments": [
+          {
+            "id": "17977066-e573-11e3-9f03-005056a7235c",
+            "locator": "",
+            "duration": "4239.99",
+            "title": "Jan Toorop",
+            "type": "Person",
+            "startTime": 787520,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "1",
+        "duration": "219000.0",
+        "title": "Nijdam vase",
+        "startTime": 1214000,
+        "fragments": []
+      },
+      {
+        "id": "4",
+        "duration": "236000.0",
+        "title": "Oil & vinegar set",
+        "startTime": 1653000,
+        "fragments": [
+          {
+            "id": "ab4fa790-35d4-11e4-ba15-005056a7235c",
+            "locator": "",
+            "duration": "2918.9453",
+            "title": "Francois Lambrechts",
+            "type": "Person",
+            "startTime": 1711520,
+            "enrichments": []
+          },
+          {
+            "id": "b5cfee96-35d4-11e4-b07e-005056a7235c",
+            "locator": "",
+            "duration": "1640.0146",
+            "title": "zilversmid",
+            "type": "Thing",
+            "startTime": 1714640,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "duration": "228000.0",
+        "title": "Coptic weaving",
+        "startTime": 2075000,
+        "fragments": [
+          {
+            "id": "fc75903a-35d4-11e4-8d40-005056a7235c",
+            "locator": "",
+            "duration": "3640.8691",
+            "title": "kopten",
+            "type": "Thing",
+            "startTime": 2107759,
+            "enrichments": []
+          },
+          {
+            "id": "fffcda42-35d4-11e4-9d09-005056a7235c",
+            "locator": "",
+            "duration": "2239.0137",
+            "title": "textiel",
+            "type": "Thing",
+            "startTime": 2122719,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "duration": "272000.0",
+        "title": "Jan Sluijters",
+        "startTime": 2436000,
+        "artworks": [
+          "jan sluijters"
+        ],
+        "backgrounds": [
+          "jan sluijters"
+        ],
+        "fragments": [
+          {
+            "id": "f2254a56-3347-11e4-afb5-005056a7235c",
+            "locator": "",
+            "duration": "5000.0",
+            "title": "Jan Sluijters",
+            "type": "Person",
+            "startTime": 2473799,
+            "enrichments": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd247360004",
+    "title": "Twentse Welle",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/103/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/103/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/103/rawvideo/4/raw.mp4",
+    "duration": 2694100,
+    "chapters": [
+      {
+        "id": "1",
+        "duration": "58000.0",
+        "title": "Introduction",
+        "startTime": 48000,
+        "artworks": [
+          "twentse welle"
+        ],
+        "backgrounds": [
+          "twentse welle"
+        ],
+        "fragments": []
+      },
+      {
+        "id": "4",
+        "duration": "34000.0",
+        "title": "Bronze statue",
+        "startTime": 109000,
+        "fragments": [
+          {
+            "id": "d0c068f0-35d6-11e4-8d40-005056a7235c",
+            "locator": "",
+            "duration": "3517.9978",
+            "title": "art deco",
+            "type": "Person",
+            "startTime": 115360,
+            "enrichments": []
+          },
+          {
+            "id": "aa418d84-7476-11e3-a29a-00163ebdcad9",
+            "locator": "",
+            "duration": "3919.998",
+            "title": "Kamelen",
+            "type": "Thing",
+            "startTime": 187279,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "duration": "54000.0",
+        "title": "Medaillion",
+        "startTime": 262000,
+        "fragments": [
+          {
+            "id": "ffc74f92-35d6-11e4-912e-005056a7235c",
+            "locator": "",
+            "duration": "3119.995",
+            "title": "Onyx",
+            "type": "Thing",
+            "startTime": 281200,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "duration": "245000.0",
+        "title": "Egyptian clay statues",
+        "startTime": 319000,
+        "fragments": [
+          {
+            "id": "a05cd020-6987-11e3-a0b9-00163ebdcad9",
+            "locator": "",
+            "duration": "4198.9746",
+            "title": "Egypte",
+            "type": "Thing",
+            "startTime": 360519,
+            "enrichments": []
+          },
+          {
+            "id": "6bd49ba8-6987-11e3-86ad-00163ebdcad9",
+            "locator": "",
+            "duration": "3279.9988",
+            "title": "Gizeh",
+            "type": "Thing",
+            "startTime": 376559,
+            "enrichments": []
+          },
+          {
+            "id": "55d6b27e-35d7-11e4-9479-005056a7235c",
+            "locator": "",
+            "duration": "1799.9878",
+            "title": "faience",
+            "type": "Thing",
+            "startTime": 435759,
+            "enrichments": []
+          },
+          {
+            "id": "f929ba4c-6987-11e3-a0b9-00163ebdcad9",
+            "locator": "",
+            "duration": "3119.0186",
+            "title": "Zeus",
+            "type": "Thing",
+            "startTime": 466400,
+            "enrichments": []
+          },
+          {
+            "id": "edf18498-6987-11e3-9c9e-00163ebdcad9",
+            "locator": "",
+            "duration": "4079.9866",
+            "title": "Zeuskop",
+            "type": "Thing",
+            "startTime": 486320,
+            "enrichments": []
+          },
+          {
+            "id": "92cb4d9c-6987-11e3-8ddb-00163ebdcad9",
+            "locator": "",
+            "duration": "3158.9966",
+            "title": "Egyptische",
+            "type": "Organization",
+            "startTime": 496400,
+            "enrichments": []
+          },
+          {
+            "id": "4c338bca-67e2-11e3-995b-00163ebdcad9",
+            "locator": "",
+            "duration": "3440.979",
+            "title": "Piet Ouborg",
+            "type": "Person",
+            "startTime": 643359,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "duration": "234000.0",
+        "title": "Mangelplank",
+        "startTime": 918000,
+        "fragments": []
+      },
+      {
+        "id": "2",
+        "duration": "220000.0",
+        "title": "Wooden Maria Statue",
+        "startTime": 1522000,
+        "artworks": [
+          "marie statue"
+        ],
+        "backgrounds": [
+          "mariebeeld"
+        ],
+        "fragments": [
+          {
+            "id": "5856dcda-35d8-11e4-abc5-005056a7235c",
+            "locator": "",
+            "duration": "4441.04",
+            "title": "eikenhout",
+            "type": "Thing",
+            "startTime": 1555479,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "duration": "225000.0",
+        "title": "Art nouveau vases",
+        "startTime": 2023000,
+        "fragments": []
+      },
+      {
+        "id": "3",
+        "duration": "241000.0",
+        "title": "Fertility statue",
+        "startTime": 2434000,
+        "fragments": []
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd2d0650005",
+    "title": "MuZee",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/104/rawvideo/4/raw.mp4",
+    "duration": 2699560,
+    "chapters": [
+      {
+        "id": "3",
+        "duration": "240000.0",
+        "title": "Bastet statue",
+        "startTime": 331000,
+        "fragments": [
+          {
+            "id": "bafc9fc2-35d9-11e4-afb5-005056a7235c",
+            "locator": "",
+            "duration": "8839.996",
+            "title": "Bastet",
+            "type": "Person",
+            "startTime": 377519,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "duration": "201000.0",
+        "title": "Jugendstil vase",
+        "startTime": 899000,
+        "fragments": [
+          {
+            "id": "cbf9c632-35da-11e4-ba15-005056a7235c",
+            "locator": "",
+            "duration": "7078.9795",
+            "title": "Jugendstilvaas",
+            "type": "Thing",
+            "startTime": 937280,
+            "enrichments": []
+          },
+          {
+            "id": "c659097c-35da-11e4-8c09-005056a7235c",
+            "locator": "",
+            "duration": "3398.9868",
+            "title": "Henri Breetveld",
+            "type": "Person",
+            "startTime": 963520,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "duration": "226000.0",
+        "title": "Art deco ring",
+        "startTime": 1375000,
+        "fragments": [
+          {
+            "id": "2da02de0-35db-11e4-afb5-005056a7235c",
+            "locator": "",
+            "duration": "5798.95",
+            "title": "diamant",
+            "type": "Thing",
+            "startTime": 1428800,
+            "enrichments": []
+          },
+          {
+            "id": "1ed5d936-35db-11e4-8dec-005056a7235c",
+            "locator": "",
+            "duration": "6000.0",
+            "title": "Art Deco",
+            "type": "Person",
+            "startTime": 1448199,
+            "enrichments": []
+          },
+          {
+            "id": "36881490-35db-11e4-8c09-005056a7235c",
+            "locator": "",
+            "duration": "4601.074",
+            "title": "modernisme",
+            "type": "Thing",
+            "startTime": 1454199,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "1",
+        "duration": "257000.0",
+        "title": "Delftware plate",
+        "startTime": 1857000,
+        "artworks": [
+          "delftware"
+        ],
+        "backgrounds": [
+          "delftsblauw"
+        ],
+        "fragments": [
+          {
+            "id": "53448f0a-35db-11e4-9a1c-005056a7235c",
+            "locator": "",
+            "duration": "4598.999",
+            "title": "porselein",
+            "type": "Organization",
+            "startTime": 1992359,
+            "enrichments": []
+          },
+          {
+            "id": "54a8caaa-35db-11e4-9c48-005056a7235c",
+            "locator": "",
+            "duration": "5640.0146",
+            "title": "Delfts aardewerk",
+            "type": "Thing",
+            "startTime": 2026640,
+            "enrichments": []
+          },
+          {
+            "id": "010f2988-2e9d-11e4-a665-005056a7235c",
+            "locator": "http://nl.wikipedia.org/wiki/Porselein",
+            "duration": "4000.0",
+            "title": "porselen",
+            "type": "Organization",
+            "startTime": 2041000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "duration": "254000.0",
+        "title": "Beer pitcher",
+        "startTime": 2420000,
+        "fragments": [
+          {
+            "id": "171b1368-35dc-11e4-afb5-005056a7235c",
+            "locator": "",
+            "duration": "3600.0977",
+            "title": "bier",
+            "type": "Thing",
+            "startTime": 2429400,
+            "enrichments": []
+          },
+          {
+            "id": "02d19d1e-35dc-11e4-9479-005056a7235c",
+            "locator": "",
+            "duration": "6520.0195",
+            "title": "1810",
+            "type": "Thing",
+            "startTime": 2489840,
+            "enrichments": []
+          },
+          {
+            "id": "1a5df48c-35dc-11e4-ba15-005056a7235c",
+            "locator": "",
+            "duration": "11681.152",
+            "title": "messing",
+            "type": "Thing",
+            "startTime": 2523919,
+            "enrichments": []
+          },
+          {
+            "id": "300f7102-35dc-11e4-8e93-005056a7235c",
+            "locator": "",
+            "duration": "4721.1914",
+            "title": "Francois Bruxelles",
+            "type": "Person",
+            "startTime": 2575639,
+            "enrichments": []
+          },
+          {
+            "id": "3b3c0bf8-35dc-11e4-abc5-005056a7235c",
+            "locator": "",
+            "duration": "7280.0293",
+            "title": "tin",
+            "type": "Thing",
+            "startTime": 2587520,
+            "enrichments": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c44643ee-823e-476c-a099-bd28bcf1e56a",
+    "title": "Porceleyne Fles",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/150/rawvideo/4/raw.mp4",
+    "duration": 2713790,
+    "chapters": [
+      {
+        "id": "1",
+        "duration": "102000.0",
+        "title": "Introduction",
+        "startTime": 9000,
+        "backgrounds": [
+          "porcelyne fles"
+        ],
+        "fragments": []
+      },
+      {
+        "id": "2",
+        "duration": "277000.0",
+        "title": "Rozenburg porcelain",
+        "startTime": 297000,
+        "fragments": [
+          {
+            "id": "f4e1320e-35dc-11e4-b8bc-005056a7235c",
+            "locator": "",
+            "duration": "3479.9805",
+            "title": "eierschaalporselein",
+            "type": "Thing",
+            "startTime": 454920,
+            "enrichments": []
+          },
+          {
+            "id": "f20de252-35dc-11e4-abc5-005056a7235c",
+            "locator": "",
+            "duration": "3281.0059",
+            "title": "porselein",
+            "type": "Thing",
+            "startTime": 515239,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "duration": "291000.0",
+        "title": "Herman Bieling painting",
+        "startTime": 833000,
+        "fragments": [
+          {
+            "id": "a02db7fe-35dd-11e4-8fab-005056a7235c",
+            "locator": "",
+            "duration": "2599.9756",
+            "title": "Herman Bieling",
+            "type": "Person",
+            "startTime": 1059239,
+            "enrichments": []
+          },
+          {
+            "id": "a92f40a2-35dd-11e4-8413-005056a7235c",
+            "locator": "",
+            "duration": "5198.9746",
+            "title": "kubisme",
+            "type": "Thing",
+            "startTime": 1097680,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "duration": "296000.0",
+        "title": "Delft plaque",
+        "startTime": 1328000,
+        "fragments": [
+          {
+            "id": "db504cde-35dd-11e4-afb5-005056a7235c",
+            "locator": "",
+            "duration": "2719.9707",
+            "title": "plaquette",
+            "type": "Thing",
+            "startTime": 1442560,
+            "enrichments": []
+          },
+          {
+            "id": "62d4985e-35de-11e4-8d40-005056a7235c",
+            "locator": "",
+            "duration": "3040.039",
+            "title": "aardewerk",
+            "type": "Thing",
+            "startTime": 1506520,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "duration": "284000.0",
+        "title": "Schotel painting",
+        "startTime": 1888000,
+        "fragments": [
+          {
+            "id": "a8668a80-35de-11e4-b07e-005056a7235c",
+            "locator": "",
+            "duration": "3480.957",
+            "title": "Anthonie Pieter Schotel",
+            "type": "Thing",
+            "startTime": 2084919,
+            "enrichments": []
+          },
+          {
+            "id": "b0548a08-35de-11e4-9a1c-005056a7235c",
+            "locator": "",
+            "duration": "3719.9707",
+            "title": "1917",
+            "type": "Thing",
+            "startTime": 2106280,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "duration": "314000.0",
+        "title": "Fake Doornik vase",
+        "startTime": 2343000,
+        "fragments": [
+          {
+            "id": "d4fd18ca-35de-11e4-b8bc-005056a7235c",
+            "locator": "",
+            "duration": "6760.01",
+            "title": "porselein",
+            "type": "Thing",
+            "startTime": 2525159,
+            "enrichments": []
+          },
+          {
+            "id": "1149ba86-35df-11e4-ba15-005056a7235c",
+            "locator": "",
+            "duration": "3719.9707",
+            "title": "Doornik",
+            "type": "Location",
+            "startTime": 2548679,
+            "enrichments": []
+          },
+          {
+            "id": "1b8495e8-35df-11e4-9a1c-005056a7235c",
+            "locator": "",
+            "duration": "2800.0488",
+            "title": "polychroom",
+            "type": "Thing",
+            "startTime": 2579679,
+            "enrichments": []
+          }
+        ]
+      }
+    ]
+  }
+]

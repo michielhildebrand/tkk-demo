@@ -56,11 +56,7 @@ public class NewsApplication extends Html5Application {
         //this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
         //this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
-        if (!WORK_OFFLINE) {
-            sendMsg(s, "video", videoLoader.getRecentVideos());
-        } else {
-            send(s, videoLoader.getOfflineRecentVideos());
-        }
+        sendMsg(s, "video", videoLoader.getRecentVideos());
 
         sendMsg(s, "bookmark", testUser.getBookmarks());
     }
@@ -104,7 +100,7 @@ public class NewsApplication extends Html5Application {
     private void sendMsg(Screen s, String target, Object data) {
         Message msg = new Message(target, data);
         String json = Serializer.toJson(msg);
-        System.out.println("json message = " + json);
+        //System.out.println("json message = " + json);
         send(s, json);
     }
 

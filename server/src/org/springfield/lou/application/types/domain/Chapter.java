@@ -10,7 +10,8 @@ public class Chapter {
 
     private String id, duration, title;
     private Integer startTime;
-
+    private List<String> artworks;
+    private List<String> backgrounds;
     private List<Fragment> fragments = new ArrayList<Fragment>();
 
     public Chapter(FsNode chapter) {
@@ -39,6 +40,14 @@ public class Chapter {
 
     public Integer getStartTime() {
         return startTime;
+    }
+
+    public List<String> getArtworks() {
+        return artworks;
+    }
+
+    public List<String> getBackgrounds() {
+        return backgrounds;
     }
 
     public void addFragment(Fragment f) {
