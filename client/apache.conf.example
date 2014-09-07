@@ -8,6 +8,8 @@
   </Directory>
   Alias /culture %ABSOLUTE_PATH_TO_CLIENT_DIR%
 
+  ProxyPass /ir http://ir.lmcloud.vse.cz/irapi/media-server
+
   # Toolkit configuration
   ProxyPass /springfield http://%SPRINGFIELD_IP%:8080/springfield
   ProxyPassReverse /springfield http://%SPRINGFIELD_IP%:8080/springfield

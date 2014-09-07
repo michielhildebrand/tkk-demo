@@ -24,6 +24,10 @@ server {
     index index.html;
   }
 
+  location /ir {
+    proxy_pass http://ir.lmcloud.vse.cz/irapi/media-server;
+  }
+
   # for toolkit js
   location /libs/ {
     alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/;
@@ -38,7 +42,4 @@ server {
     proxy_set_header Host $host;
   }
 
-  location /ir {
-    proxy_pass http://ir.lmcloud.vse.cz/irapi/media-server;
-  }
 }
