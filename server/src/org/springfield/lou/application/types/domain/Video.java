@@ -16,7 +16,7 @@ public class Video {
     public Video(Episode e) {
         this.originalEpisode = e;
         this.id = e.getMediaResourceId();
-        this.title = e.getTitle();
+        this.title = e.getTitle().replaceAll("\\(.*\\)", "");
         this.duration = e.getDuration();
         this.shots = e.getStillsUri();
         this.poster = e.getStillsUri() + "/h/0/m/0/sec10.jpg";
@@ -112,17 +112,13 @@ public class Video {
             fgsToRemove.clear();
         }
 
-        //Remove chapters without fragments
+        //Remove some chapters
         for (Iterator<Chapter> iter = chs.iterator(); iter.hasNext(); ) {
             Chapter ch = iter.next();
-            if (ch.nrOfFragments() == 0) {
-                iter.remove();
-            }
 
-            // 8a8187f2-3fc8-cb54-0140-7dd099380002 - Tussen Kunst - 200  -> Chapter "Gouden horloge - Breguet"
-            //
+            // 8a8187f2-3fc8-cb54-0140-7dd099380002 - Tussen Kunst - 200  -> Chapter "Gold Breguet watch"
             // TODO: Because in titles, locators and enrichments the '(' ')' are used the toolkit fails in parsing the delivered video message
-            if (ch.getTitle().equals("Gouden horloge - Breguet")) {
+            if (ch.getTitle().equals("Gold Breguet watch")) {
                 iter.remove();
             }
         }
