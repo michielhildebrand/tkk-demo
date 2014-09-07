@@ -12,10 +12,6 @@ function videoChapterDirective($state, Eddie, Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-      scope.isSelected = function() {
-        return Model.getChapterIndex() == scope.index;
-      };
-
       scope.getShot = function () {
         var d = new Date(scope.chapter.startTime);
         var h = d.getHours() - 1;
@@ -29,16 +25,8 @@ function videoChapterDirective($state, Eddie, Model) {
       };
 
       scope.play = function () {
-        if ($state.current.name != 'play') {
-          $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: scope.index});
-        } else {
-          sendToPlayer({action: 'set-chapter', value: scope.index});
-        }
+        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: scope.index});
       };
-
-      function sendToPlayer(action) {
-        Eddie.putLou({target: 'player', data: action});
-      }
     },
     templateUrl: 'partials/directives/video-chapter.html'
   }

@@ -1,39 +1,30 @@
-<div class="home">
-  <div class="container-fluid hd">
-  	<div class="container clearfix">
-  		<div class="pull-left"><img src="img/linkedtv_icon.png" height="50px"></div>
-  		<h1 class="pull-left">Linked Culture</h1>
-  	</div>
-  </div>
-
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">Episodes</div>
-      <div class="panel-body">
-        <ul class="items">
-          <li class="episode">
-            <h3><a href="" ng-click="playFirstChapter(latestVideo.id)">{{latestVideo.title}}</a></h3>
-            <video-overview video="latestVideo"></video-overview>
-          </li>
-          <li class="episode" ng-repeat="rv in remainingVideos">
-            <h3><a href="" ng-click="playFirstChapter(rv.id)">{{rv.title}}</a></h3>
-            <video-overview video="rv"></video-overview>
-          </li>
-        </ul>  
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Recommended</div>
-      <div class="panel-body"></div>
-    </div>
-  
-    <div class="panel panel-default">
-      <div class="panel-heading">Bookmarks</div>
-      <div class="panel-body">
-        <bookmarks></bookmarks>
-      </div>
-    </div>
-    
-    </div>
+<div class="bar bar-header bar-tkk">
+  <h1 class="title">Tussen Kunst en Kitsch</h1>
 </div>
+
+<ion-tabs class="tabs-icon-top" tabs-type="tabs-tkk">
+  <ion-tab title="Latest" icon="icon ion-home">
+    <ion-content class="has-header has-footer">
+      <div class="episode">
+       <h3><a href="" ng-click="playFirstChapter(latestVideo.id)">{{latestVideo.title}}</a></h3>
+       <video-overview video="latestVideo"></video-overview>
+      </div>
+      <div class="episode" ng-repeat="rv in remainingVideos">
+        <h3><a href="" ng-click="playFirstChapter(rv.id)">{{rv.title}}</a></h3>
+        <video-overview video="rv"></video-overview>
+      </div>
+    </ion-content> 
+  </ion-tab>
+
+  <ion-tab title="Recommended" icon="icon ion-eye">
+    <ion-content class="has-header has-footer">
+    </ion-content>
+  </ion-tab>
+
+  <ion-tab title="Bookmarks" icon="icon ion-bookmark">
+    <ion-content class="has-header has-footer">
+      <bookmarks></bookmarks>
+    </ion-content>  
+  </ion-tab>
+
+</ion-tabs>

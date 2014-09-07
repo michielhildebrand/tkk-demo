@@ -1,3 +1,12 @@
+<ion-list>
+  <ion-item ng-repeat="a in artworks" class="item-thumbnail-left artwork">
+    <img src="{{a.img}}" alt="{{a.title}}">
+    <h4>{{a.title}}</h4>
+    <p></p>
+  </ion-item>
+</ion-list>
+
+<!--
 <div ng-if="loading">
     <div class="text-center"><i>Loading ...</i></div>
 </div>
@@ -13,3 +22,4 @@
     </li>
   </ul>
 </div>
+-->

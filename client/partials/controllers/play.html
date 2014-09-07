@@ -1,49 +1,32 @@
-<div class="header container-fluid">
-  <div class="header-content row">
-  	<div class="col-md-1">
-  		<button type="button" ng-click="goToMain()" class="btn btn-link btn-lg">
-  			<span class="glyphicon glyphicon-chevron-left"></span>
-  		</button>
-  	</div>
-  	<div class="col-md-10">
-  	  <div class="title">
-  	    <h2>Tussen Kunst en Kitsch - Museum Martena</h2>
-  	  </div>
-  	  <!--
-  	  <div class="timeline">
-          <seek-bar></seek-bar>
-      </div>
-      -->
-    </div>
-    <div class="col-md-1">
-      <button type="button" ng-click="toggleEnrich()" class="btn btn-link btn-lg" title="Linkedtv enrichments">
-        <span class="glyphicon glyphicon-info-sign" ng-class="{active: enrich}"></span>
-      </button>
-      <!--<bookmarking></bookmarking>-->
-  	</div>
-  </div>
+<div class="bar bar-header bar-tkk">
+  <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goToMain()" ></button>
+  <h1 class="title">Tussen Kunst en Kitsch</h1>
+  <button class="button button-icon icon ion-navicon" ng-click="toggleEnrich()" ></button>
 </div>
 
-<div class="explore container-fluid">
+<ion-content class="has-header" scroll="false">
   <div class="row">
-    <div class="col-md-2 col">
-      <h4>Current Program</h4>
-      <video-overview video="video"></video-overview>
+    <div class="col col-20 chapters">
+      <h3>Current Program</h3>
+      <ion-scroll direction="y">
+        <chapter-list video="video"></chapter-list>
+      </ion-scroll>  
     </div>
-    <div class="col-md-10 col">
-      <div ng-if="!enrich">
-        <div class="player" >
+  
+    <div class="col col-80">
+      <div  ng-if="enrich">
+        <div class="player">
           <player second="second" beaming="beaming"></player>
         </div>
         <div class="player-controls player-controls-bottom">
           <div class="player-controls-content">
-            <player-controls beaming="beaming"></player-controls>
-          </div>
+        	  <player-controls beaming="beaming"></player-controls>
+        	</div>  
         </div>
       </div>
-      <div class="enrichPanel" ng-if="enrich">
+      <div class="enrichPanel" ng-if="!enrich">
         <chapter-enrich></chapter-enrich>
       </div>
     </div>
   </div>
-</div>
+</ion-content>  

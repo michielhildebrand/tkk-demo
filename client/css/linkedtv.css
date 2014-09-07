@@ -1,39 +1,100 @@
 html, body {
-    margin: 0;
-    padding: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 12px;
-	background-color: rgb(45,57,64);
-    color: #333;
+    background-color: rgb(45,57,64);
 }
 
-.header {
-    height: 44px;
-    background-color: rgba(95,109,105,0.6);
-    border-bottom: 1px solid rgb(100,114,124);
-    color: #FFF;
+a {
+  text-decoration: none;
+}
+
+.bar-tkk {
+  background-color: rgba(95,109,105,0.8);
+  border-bottom: 1px solid rgb(100,114,124);
+}
+.bar-tkk .title,
+.bar-tkk .icon {
+  color: #FFF;
+}
+.button-icon.button.selected {
+  color: rgb(65,146,183);
+}
+.tabs-tkk {
+  background-color: rgba(95,109,105,0.8);
+}
+.tabs-tkk a {
+  color: #FFF;
+}
+.pane {
+  background-color: rgb(45,57,64);
+}
+.row {
+  padding: 0;
+}
+.col {
+  padding: 0;
+}
+
+
+/* episodes */
+.episode {
+  margin: 15px;
+  color: #FFF;
+  overflow: auto;
+}
+.episode h3 {
+  padding: 0;
+  margin: 0;
+	font-size: 16px;	
+	text-transform: uppercase;
+}
+.episode h3 a {
+  color: white;
+  font-size: 14px;
+}
+.episode .chapter {
+  border: 1px solid transparent;
+  float: left;
+}
+.episode .chapter img {
+  width: 100%;
+  height: 100%;
+}
+.episode .chapter-content {
+  background-color: rgb(65,146,183);
+}
+.episode .chapter h5 {
+  margin: 2px 0 0;
+  padding: 4px;
+  font-size: 12px;
+  color: #FFF;
+}
+.episode .chapter .thumb {
+    position: relative;
+    width: 160px; /* hack to force 16:9. Breaks other apsect ratios */
+    height: 90px;
+}
+.episode .chapter .chapter-time {
     position: absolute;
-    width: 100%;
-    z-index: 1;
+    right: 2px;
+    bottom: 2px;
+    padding: 0 4px;
+    font-weight: bold;
+    font-size: 11px;
+    background-color: #000;
+    color: #fff;
+    height: 14px;
+    line-height: 14px;
+    opacity: .75;
 }
 
-button .glyphicon {
-    color: #FFF;
-}
-
-.glyphicon.active {
-    color: #428bca;
-}
-
-.header .title h2 {
-    text-align: center;
-    height: 24px;
-    margin: 0;
-    font-size: 24px;
-    line-height: 24px;
-    padding: 10px 0;
-    text-align: center;
+/* play view */
+.scroll-content .scroll,
+.scroll-content .scroll .row,
+.scroll-content .scroll .col,
+.scroll-content .scroll .enrichPanel {
+  height: 100%;
 }
 
 /* player */
@@ -76,43 +137,44 @@ button .glyphicon {
     text-align: right;
 }
 
-.enrichPanel {
-  height: 100%;
+/* chapter list */
+.item.chapter {
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: rgb(126,139,148);
+  margin: 0;
+}  
+.item.chapter .item-content {
+    background-color: rgb(45,57,64);
+}
+.item.chapter.active .item-content {
+  background-color: rgb(126,139,148);
+}
+.item.chapter .icon {
+  color: #CCC;
+}
+.item.chapter h4 {
+  color: white;
 }
 
-/* explore */
-.explore {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    padding-top: 44px;
+/* links */
+.links {
+    -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
+    background-color: rgb(126,139,148);
 }
-.explore .row {
-    height: 100%;
+.links .item-content {
+    background-color: rgb(126,139,148);
 }
-.explore .col-md-1,
-.explore .col-md-2,
-.explore .col-md-3,
-.explore .col-md-4,
-.explore .col-md-5,
-.explore .col-md-6
-.explore .col-md-7,
-.explore .col-md-8,
-.explore .col-md-9,
-.explore .col-md-10,
-.explore .col-md-11,
-.explore .col-md-12 {
-    padding: 0;
-}
+/*
 .explore .col {
     background-color: rgb(45,57,64);
     color: rgb(230,229,228);
     height: 100%;
     overflow: auto;
 }
-.explore h4 {
+*/
+.chapters h3,
+.links h3 {
     margin: 0;
     padding: 4px 11px;
     font-size: 15px;
@@ -120,102 +182,29 @@ button .glyphicon {
     text-transform: uppercase;
     height: 30px;
     line-height: 22px;
-    background-color: rgb(65,146,183);
     color: white;
 }
-
-/* chapter list */
-.explore .chapter-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: auto;
+.chapters h3 {
+  background-color: rgb(65,146,183);
 }
-.explore .chapter-list li {
-    margin: 0;
-    list-style: none;
-    border-bottom: 1px solid rgb(126,139,148);
-    cursor: pointer;
-}
-.explore .chapter-list li.active {
-    background-color: rgb(126,139,148);
-}
-.chapter {
-    overflow: hidden;
-    padding: 10px;
-}
-.chapter.active {
-    background-color: rgb(126,139,148);
-}
-.chapter .thumb {
-    position: relative;
-    width: 96px;
-    height: 54px;
-    margin-right: 10px;
-    float: left;
-}
-.chapter .chapter-content {
-    float: left;
-}
-.chapter .thumb img {
-    width: 100%;
-    height: 100%;
-}
-.chapter .video-thumb {
-    position: relative;
-}
-.chapter h4 {
-    margin: 5px 0 10px;
-    font-size: 14px;
-}
-.chapter .chapter-time {
-    position: absolute;
-    right: 2px;
-    bottom: 2px;
-    padding: 0 4px;
-    font-weight: bold;
-    font-size: 11px;
-    background-color: #000;
-    color: #fff;
-    height: 14px;
-    line-height: 14px;
-    opacity: .75;
-}
-
-/* links */
-.explore .links {
-    background-color: rgb(126,139,148);
-    -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
-}
-.explore .links .panel {
-    padding: 0;
-    margin: 0;
-    border: 0;
-}
-.explore .links .panel-heading {
-    background-color: transparent;
+.links h3 {
     background-image: url(../img/background_sections_menu.png);
     background-position: center right;
     background-repeat: no-repeat; 
     -webkit-filter: drop-shadow(0 -3px 3px rgba(50, 50, 50, 0.75));
     background-color: rgb(65,146,183);
+    /*background-color: rgb(45,57,64);*/
     /*box-shadow: 0 -2px 8px #555;*/
-    padding: 0;
-    margin: 0;
 }
-.explore .links .panel-body {
-    padding: 0;
-    margin: 0;
+.links h4 {
+  color: white;
 }
-.explore .links ul {
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid rgb(126,139,148);
+.links .scroll-view {
+  height: 500px; /* show be done programmatically*/
 }
 
 /* content */
-.explore .content {
+.content {
     background-color: white;
     -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
 }

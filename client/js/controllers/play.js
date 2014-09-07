@@ -5,8 +5,6 @@ angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$loc
 function playCtrl($scope, $state, $location, Model) {
   $scope.second = false;
   $scope.beaming = false;
-
-  $scope.showMenu = false;
   $scope.enrich = false;
 
   $scope.$watch(
