@@ -5,9 +5,7 @@ angular.module('app.chapter-related', []).directive('chapterRelated', ['Model', 
 function chapterRelatedDirective(Model) {
   return {
     restrict: 'E',
-    scope: {
-      metadata: '='
-    },
+    scope: {},
     replace: false,
     require: '^chapterEnrich',
     link: function (scope, element, attrs, chapterEnrichCtrl) {
@@ -41,7 +39,7 @@ function chapterRelatedDirective(Model) {
             {value: ch.chapterTitle}
           ],
           thumb: [shot(v, ch)],
-          metadata: scope.metadata
+          metadata: chapterEnrichCtrl.extractMetadata(ch)
         };
         chapterEnrichCtrl.setContent(content);
       };

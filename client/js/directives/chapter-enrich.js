@@ -17,20 +17,18 @@ function chapterEnrichDirective(Model) {
           angular.element('.links .scroll-view').height(newHeight - (dimensionsHeight));
         }
       });
+    },
+    controller: function ($scope) {
+      $scope.crumb = [];
+      $scope.content = {};
+      $scope.activeLinks = "about";
 
-      scope.$watch(
-        function () {
-          return Model.getChapter();
-        },
-        function (newChapter) {
-          if (newChapter != null) {
-            extractMetadata(newChapter);
-          }
-        }
-      );
+      $scope.showLinks = function (active) {
+        $scope.activeLinks = active;
+      };
 
-      function extractMetadata(ch) {
-        scope.metadata = _.chain(ch.fragments)
+      this.extractMetadata = function(ch) {
+        return _.chain(ch.fragments)
           .map(function (f) {
             return {value: f.title.trim(), uri: f.locator.trim()}
           })
@@ -41,17 +39,8 @@ function chapterEnrichDirective(Model) {
             return e.value;
           })
           .value();
-      }
-    },
-    controller: function ($scope) {
-      $scope.crumb = [];
-      $scope.content = {};
-      $scope.activeLinks = "about";
-      
-      $scope.showLinks = function (active) {
-        $scope.activeLinks = active;
       };
-      
+
       this.setContent = function(c, e) {
         $scope.content = c;
       };

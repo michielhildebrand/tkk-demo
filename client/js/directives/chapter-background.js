@@ -1,31 +1,35 @@
 'use strict';
 
-angular.module('app.chapter-background', []).directive('chapterBackground', ['irApi', chapterBackgroundDirective]);
+angular.module('app.chapter-background', []).directive('chapterBackground', ['irApi', 'Model', chapterBackgroundDirective]);
 
-function chapterBackgroundDirective(irApi) {
+function chapterBackgroundDirective(irApi, Model) {
   return {
     restrict: 'E',
-    scope: {
-      'metadata': '='
-    },
+    scope: {},
     replace: false,
     require: '^chapterEnrich',
     link: function (scope, element, attrs, chapterEnrichCtrl) {
       var metadata = [];
       var metadataSize = 0;
 
-      scope.$watch('metadata', function (newMetadata) {
-        if (newMetadata != null) {
-          scope.backgrounds = [];
-          metadata = newMetadata;
-          metadataSize = newMetadata.length;
-          loadChapterBackground(0);
+      scope.$watch(
+        function () {
+          return Model.getChapter()
+        },
+        function (newChapter) {
+          if (newChapter != null) {
+            metadata = chapterEnrichCtrl.extractMetadata(newChapter);
+            metadataSize = metadata.length;
+
+            scope.backgrounds = [];
+            loadChapterBackground(0);
+          }
         }
-      });
+      );
 
       function loadChapterBackground(idx) {
         if (idx < metadataSize) {
-          var meta = scope.metadata[idx].value;
+          var meta = metadata[idx].value;
           irApi.search({query: meta}, function (r) {
             var sources = _(r).keys();
             _(sources).each(function(source) {

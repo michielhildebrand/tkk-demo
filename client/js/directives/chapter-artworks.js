@@ -1,23 +1,26 @@
 'use strict';
 
-angular.module('app.chapter-artworks', []).directive('chapterArtworks', ['europeanaApi', chapterArtworksDirective]);
+angular.module('app.chapter-artworks', []).directive('chapterArtworks', ['europeanaApi', 'Model', chapterArtworksDirective]);
 
-function chapterArtworksDirective(europeanaApi) {
+function chapterArtworksDirective(europeanaApi, Model) {
   return {
     restrict: 'E',
-    scope: {
-      'metadata': '='
-    },
+    scope: {},
     replace: false,
     require: '^chapterEnrich',
     link: function (scope, element, attrs, chapterEnrichCtrl) {
 
-      scope.$watch('metadata', function (newMetadata) {
-        if (newMetadata != null) {
-          scope.artworks = [];
-          loadChapterArtworks(newMetadata);
+      scope.$watch(
+        function () {
+          return Model.getChapter()
+        },
+        function (newChapter) {
+          if (newChapter != null) {
+            scope.artworks = [];
+            loadChapterArtworks(chapterEnrichCtrl.extractMetadata(newChapter));
+          }
         }
-      });
+      );
 
       function loadChapterArtworks(meta) {
         _(meta).each(function (m) {
