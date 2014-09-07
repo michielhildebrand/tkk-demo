@@ -6,23 +6,19 @@ function informationCardDirective() {
   return {
     restrict: 'E',
     scope: {
-      'props': '=',
-      'browse': '&'
+      'props': '='
     },
     replace: false,
     link: function (scope, element, attrs) {
       var interestingProps = ['label', 'thumb', 'comment', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
-        'nationality', 'profession', 'style','predecessor','successor',
-        'activeSince','knownFor','presents','guestedIn',
-        'locatedIn',
-        'population'];
+        'nationality', 'profession', 'style','predecessor','successor', 'activeSince','knownFor','presents','guestedIn',
+        'locatedIn', 'population'];
 
       scope.$watch('props', function(newProps) {
         if (newProps != null) {
           _(interestingProps).map(function (prop) {
             scope[prop] = firstEntity(_.property(prop)(newProps));
           });
-
           scope.metadata = newProps.metadata;
         }
       });
@@ -45,12 +41,6 @@ function informationCardDirective() {
           }
         }
         return e;
-      }
-
-      var browse = scope.browse();
-
-      scope.nav = function(e) {
-        browse(e);
       }
     },
     templateUrl: 'partials/directives/information-card.html'

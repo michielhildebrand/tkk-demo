@@ -1,4 +1,4 @@
-<div class="col-md-4 col links">
+<div class="col-md-4 col dimensions">
   <accordion close-others="oneAtATime">
     <accordion-group heading="About">
       <chapter-about metadata="metadata"></chapter-about>
@@ -14,10 +14,16 @@
   </accordion>
 </div>
 <div class="col-md-8 col content">
-  <div ng-if="loading">
-    <div class="text-center"><i>Loading ...</i></div>
+  <div class="navigation">
+    <span ng-repeat="c in crumb">
+      <span ng-if="!$last">
+        <a ng-click="proxy(c, true)">{{c.value}}</a>
+        <span class="divider">></span>
+      </span>
+      <span ng-if="$last">
+        {{c.value}}
+      </span>
+    </span>
   </div>
-  <div ng-if="!loading">
-    <information-card props="proxyAnswer" browse="proxy"></information-card>
-  </div>
+  <information-card props="content"></information-card>
 </div>

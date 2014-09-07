@@ -1,5 +1,5 @@
 /* generic */
-.links li {
+.dimensions li {
     margin: 0;
     list-style: none;
     border-bottom: 1px solid white;
@@ -7,41 +7,41 @@
     overflow: hidden;
     cursor: pointer;
 }
-.links li a {
+.dimensions li a {
     color: white;
     text-decoration: none;
 }
 
 /* entities in about */
-.links .about li {
+.dimensions .about li {
     line-height: 18px;
     padding: 10px;
 }
-.links .about .title {
+.dimensions .about .title {
     font-size: 14px;
 }
 
 /* artworks */
-.links .artworks li {
+.dimensions .artworks li {
     height: 135px;
     line-height: 18px;
     padding: 10px;
 }
-.links .artworks .thumb {
+.dimensions .artworks .thumb {
     float: left;
     width: 100px;
     height: 100px;
     overflow: hidden;
     margin-right: 10px;
 }
-.links .artworks .thumb img {
+.dimensions .artworks .thumb img {
     width: 100%;
     border: 1px solid white;
 }
-.links .artworks .desc {
+.dimensions .artworks .desc {
     color: white;
 }
-.links .artworks .title {
+.dimensions .artworks .title {
     font-size: 14px;
     line-height: 18px;
     max-height: 36px;

@@ -1,42 +1,5 @@
-<ul class="about" ng-if="metadata">
+<ul class="about">
   <li ng-repeat="d in metadata" ng-click="nav(d)">
     <div class="title">{{d.value}}</div>
   </li>
 </ul>
-
-<!--
-<div class="about-panel">
-
-  <div class="navigation">
-    <span  ng-repeat="c in crumb">
-      <span ng-if="!$last">
-        <a ng-click="proxy(c, true)">{{c.value}}</a> 
-        <span class="divider">></span>
-      </span>
-      <span ng-if="$last">
-        {{c.value}}
-      </span>
-    </span>  
-  </div>
-  
-
-  <div ng-if="loading">
-    <div class="text-center"><i>Loading ...</i></div>
-  </div>
-  <div ng-if="!loading">
-    <information-card props="proxyAnswer" browse="proxy"></information-card>
-  </div>
-  
-  <tabset>
-    <tab heading="Artworks">
-        <chapter-artworks metadata="metadata"></chapter-artworks>
-    </tab>
-    <tab heading="Artists">
-    </tab>
-    <tab heading="Chapters">
-      <chapter-related></chapter-related>
-    </tab>
-  </tabset>
-  
-</div>
--->

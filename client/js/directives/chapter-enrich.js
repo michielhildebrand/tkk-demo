@@ -5,9 +5,7 @@ angular.module('app.chapter-enrich', []).directive('chapterEnrich', ['Model', ch
 function chapterEnrichDirective(Model) {
   return {
     restrict: 'E',
-    scope: {
-
-    },
+    scope: {},
     replace: false,
     link: function (scope, element, attrs) {
       scope.$watch(
@@ -33,6 +31,27 @@ function chapterEnrichDirective(Model) {
             return e.value;
           })
           .value();
+      }
+    },
+    controller: function ($scope) {
+      $scope.crumb = [];
+      $scope.content = {};
+
+      this.setContent = function(c, e) {
+        $scope.content = c;
+      };
+
+      this.setCrumb = function(e) {
+        $scope.crumb = [e];
+      };
+
+      this.updateCrumb = function(e) {
+        var index = _($scope.crumb).pluck('value').indexOf(e.value);
+        if (index != -1) {
+          $scope.crumb = _($scope.crumb).first(index + 1);
+        } else {
+          $scope.crumb.push(e)
+        }
       }
     },
     templateUrl: 'partials/directives/chapter-enrich.html'
