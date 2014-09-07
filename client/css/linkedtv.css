@@ -201,7 +201,7 @@ a {
   color: white;
 }
 .links .scroll-view {
-  height: 500px; /* show be done programmatically*/
+  height: 540px; /* show be done programmatically*/
 }
 
 /* content */
@@ -209,7 +209,10 @@ a {
     background-color: white;
     -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
 }
-
+.content .scroll-view {
+  height: 600px;
+}
+  
 /* information card */
 .information-card {
   padding: 15px;
