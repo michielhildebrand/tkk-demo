@@ -5,9 +5,19 @@ angular.module('app.chapter-enrich', []).directive('chapterEnrich', ['Model', ch
 function chapterEnrichDirective(Model) {
   return {
     restrict: 'E',
-    scope: {},
+    scope: {
+      height : '='
+    },
     replace: false,
     link: function (scope, element, attrs) {
+      scope.$watch('height', function(newHeight) {
+        if (newHeight != 0) {
+          var dimensions = angular.element('.links h3');
+          var dimensionsHeight = dimensions.length * 30; //TODO fix it: grab height of one dimension label
+          angular.element('.links .scroll-view').height(newHeight - (dimensionsHeight));
+        }
+      });
+
       scope.$watch(
         function () {
           return Model.getChapter();

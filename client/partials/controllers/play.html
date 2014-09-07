@@ -5,7 +5,7 @@
 </div>
 
 <ion-content class="has-header" scroll="false">
-  <div class="row">
+  <div id="play-content" class="row">
     <div class="col col-20 chapters">
       <h3>Current Program</h3>
       <ion-scroll direction="y">
@@ -14,7 +14,7 @@
     </div>
   
     <div class="col col-80">
-      <div  ng-show="!enrich">
+      <div ng-show="!enrich">
         <div class="player">
           <player second="second" beaming="beaming"></player>
         </div>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="enrichPanel" ng-show="enrich">
-        <chapter-enrich></chapter-enrich>
+        <chapter-enrich height="playContentHeight"></chapter-enrich>
       </div>
     </div>
   </div>
