@@ -208,3 +208,19 @@ a {
     background-color: white;
     -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
 }
+
+/* information card */
+.information-card {
+  padding: 15px;
+}
+.information-card .image {
+  text-align: center;
+}
+.information-card img {
+  max-width: 100%;
+  max-height: 300px;
+}
+.information-card .description {
+  font-size: 20px;
+  line-height: 30px;
+}
