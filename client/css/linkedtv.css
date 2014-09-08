@@ -116,8 +116,11 @@ a {
 .player-controls {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 80%; /* this should be the same as the width of the parent column */
     background-color: #000;
+}
+.player-controls-content {
+  padding: 0 15px;
 }
 .player-controls-bottom {
     bottom: 0;
