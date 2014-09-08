@@ -4,7 +4,7 @@
   <button class="button button-icon icon ion-navicon" ng-click="toggleEnrich()" ></button>
 </div>
 
-<ion-content class="has-header" scroll="false">
+<ion-content class="has-header has-footer" scroll="false">
   <div id="play-content" class="row">
     <div class="col col-20 chapters">
       <h3>Current Program</h3>
@@ -13,20 +13,24 @@
       </ion-scroll>  
     </div>
   
-    <div class="col col-80">
-      <div ng-show="!enrich">
+    <div class="col col-80 main">
+      <div ng-if="enrich">
         <div class="player">
           <player second="second" beaming="beaming"></player>
         </div>
-        <div class="player-controls player-controls-bottom">
-          <div class="player-controls-content">
-        	  <player-controls beaming="beaming"></player-controls>
-        	</div>  
-        </div>
       </div>
-      <div class="enrichPanel" ng-show="enrich">
+      <div class="enrichPanel" ng-show="!enrich">
         <chapter-enrich height="playContentHeight"></chapter-enrich>
       </div>
     </div>
   </div>
 </ion-content>  
+
+<div class="bar bar-footer bar-tkk bar-player">
+  <div class="row">
+    <div class="col col-20 chapter-controls">
+    </div>
+    <div class="col col-80 player-controls">
+      <player-controls beaming="beaming"></player-controls>
+    </div>
+</div>  
