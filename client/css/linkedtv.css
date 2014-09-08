@@ -15,7 +15,7 @@ a {
 .bar-player {
   padding: 0;
   background-color: #000;
-  border-top: 1px solid rgb(100,114,124);
+  border-color: #000;
 }
 .bar-tkk-episodes .title {
   background-image: url('../img/linkedtv_logo.png');
@@ -135,12 +135,10 @@ a {
   border-width: 0 0 1px;
   border-style: solid;
   border-color: rgb(126,139,148);
+  background-color: rgb(45,57,64);
   margin: 0;
 }  
-.item.chapter .item-content {
-    background-color: rgb(45,57,64);
-}
-.item.chapter.active .item-content {
+.item.chapter.active {
   background-color: rgb(126,139,148);
 }
 .item.chapter .icon {
