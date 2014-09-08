@@ -2,16 +2,16 @@
   <h1 class="title">Tussen Kunst en Kitsch</h1>
 </div>
 
-<ion-tabs class="tabs-icon-top" tabs-type="tabs-tkk">
+<ion-tabs class="tabs-icon-top tabs-tkk">
   <ion-tab title="Latest" icon="icon ion-home">
     <ion-content class="has-header has-footer">
       <div class="episode">
-       <h3><a href="" ng-click="playFirstChapter(latestVideo.id)">{{latestVideo.title}}</a></h3>
-       <video-overview video="latestVideo"></video-overview>
+          <h3><a href="" ng-click="playFirstChapter(latestVideo.id)">{{latestVideo.title}}</a></h3>
+          <video-overview video="latestVideo"></video-overview>
       </div>
       <div class="episode" ng-repeat="rv in remainingVideos">
-        <h3><a href="" ng-click="playFirstChapter(rv.id)">{{rv.title}}</a></h3>
-        <video-overview video="rv"></video-overview>
+          <h3><a href="" ng-click="playFirstChapter(rv.id)">{{rv.title}}</a></h3>
+          <video-overview video="rv"></video-overview>
       </div>
     </ion-content> 
   </ion-tab>
