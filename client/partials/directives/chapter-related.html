@@ -1,6 +1,6 @@
 <ion-list ng-repeat="v in relatedVideos">
-  <ion-item ng-repeat="ch in v.chapters" ng-click="nav(v, ch)">
-    <h4>{{ch.title}}</h4>
+  <ion-item ng-repeat="ch in v.chapters" class="item-thumbnail-left related" ng-click="nav(v, ch)">
     <img ng-src="{{getShot(v, ch)}}" alt="{{ch.title}}">
+    <h4>{{ch.title}}</h4>
   </ion-item>
 </ion-list>
