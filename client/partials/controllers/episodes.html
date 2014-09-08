@@ -6,21 +6,23 @@
 </ion-header-bar>
 
 <ion-tabs class="tabs-icon-top avrotros-logo">
-  <ion-tab title="Latest" icon="icon ion-home">
-    <ion-content class="has-header has-footer">
-      <div class="episode">
-          <h3><a href="" ng-click="playFirstChapter(latestVideo.id)">{{latestVideo.title}}</a></h3>
+  <ion-tab title="Latest" icon="icon ion-ios7-star">
+    <ion-content class="has-header has-footer" scroll="false">
+      <div class="episode" ng-repeat="v in latestVideos">
+          <h3><a href="" ng-click="playFirstChapter(v.id)">{{v.title}}</a></h3>
           <ion-scroll direction="x" style="width:2000px">
-            <video-overview video="latestVideo"></video-overview>
-          </ion-scroll>  
-      </div>
-      <div class="episode" ng-repeat="rv in remainingVideos">
-          <h3><a href="" ng-click="playFirstChapter(rv.id)">{{rv.title}}</a></h3>
-          <ion-scroll direction="x" style="width:2000px">
-            <video-overview video="rv"></video-overview>
+            <video-overview video="v"></video-overview>
           </ion-scroll>  
       </div>
     </ion-content> 
+  </ion-tab>
+
+  <ion-tab title="Search" icon="icon ion-ios7-search-strong">
+    <ion-content class="has-header has-footer">
+      <div class="episode" ng-repeat="v in videos">
+          <h3><a href="" ng-click="playFirstChapter(v.id)">{{v.title}}</a></h3>
+      </div>
+    </ion-content>
   </ion-tab>
 
   <ion-tab title="Recommended" icon="icon ion-eye">

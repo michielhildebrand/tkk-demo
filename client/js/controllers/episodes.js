@@ -11,8 +11,8 @@ function episodesCtrl($scope, $state, Model, Eddie) {
     },
     function (newVideos) {
       if (newVideos.length > 0) {
-        $scope.latestVideo = newVideos[0];
-        $scope.remainingVideos = newVideos.slice(1);
+        $scope.latestVideos = [newVideos[0],newVideos[1],newVideos[2]];
+        $scope.videos = newVideos;
       }
     }
   );
