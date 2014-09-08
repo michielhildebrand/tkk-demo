@@ -65,16 +65,22 @@ a {
 }
 
 /* user select */
-.card {
+.user.card {
   float: left;
   width: 250px;
 }
-.card .item {  
+.user.card .item {  
   background-color: rgba(95,109,105,0.8);
   border: 1px solid rgb(100,114,124);
 }
-.card .item h2,
-.card .item a {
+.user.card .item-image {
+  height: 250px;
+  width: 250px;
+  overflow: hidden;
+  background-color: white;
+}
+.user.card .item h2,
+.user.card .item a {
   color: white;
 }
 
