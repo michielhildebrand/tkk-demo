@@ -44,17 +44,23 @@ function chapterEnrichDirective() {
       };
 
       this.extractArtworks = function (ch) {
-        if (ch.artworks != null) return _(ch.artworks).map(function (a) {
-          return {value: a}
-        });
-        else this.extractMetadata(ch);
+        if (ch.artworks != null) {
+          return _(ch.artworks).map(function (a) {
+            return {value: a}
+          });
+        } else {
+          return this.extractMetadata(ch);
+        }
       };
 
       this.extractBackground = function (ch) {
-        if (ch.backgrounds != null) return _(ch.backgrounds).map(function (a) {
-          return {value: a}
-        });
-        else this.extractMetadata(ch);
+        if (ch.backgrounds != null) {
+          return _(ch.backgrounds).map(function (a) {
+            return {value: a}
+          });
+        } else {
+          return this.extractMetadata(ch);
+        }
       };
 
       this.setContent = function (c) {
