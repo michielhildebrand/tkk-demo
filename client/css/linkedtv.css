@@ -59,6 +59,10 @@ a {
   -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
   background-color: #000;
 }
+#play-content {
+  overflow: hidden;
+  height: 100%;
+}
 
 /* user select */
 .card {
@@ -210,9 +214,6 @@ a {
 .links h4 {
   color: white;
   font-size: 14px;
-}
-.links .scroll-view {
-  height: 540px; /* show be done programmatically*/
 }
 .links img {
   border: 1px solid white;
