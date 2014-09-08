@@ -10,11 +10,15 @@
     <ion-content class="has-header has-footer">
       <div class="episode">
           <h3><a href="" ng-click="playFirstChapter(latestVideo.id)">{{latestVideo.title}}</a></h3>
-          <video-overview video="latestVideo"></video-overview>
+          <ion-scroll direction="x" style="width:2000px">
+            <video-overview video="latestVideo"></video-overview>
+          </ion-scroll>  
       </div>
       <div class="episode" ng-repeat="rv in remainingVideos">
           <h3><a href="" ng-click="playFirstChapter(rv.id)">{{rv.title}}</a></h3>
-          <video-overview video="rv"></video-overview>
+          <ion-scroll direction="x" style="width:2000px">
+            <video-overview video="rv"></video-overview>
+          </ion-scroll>  
       </div>
     </ion-content> 
   </ion-tab>
