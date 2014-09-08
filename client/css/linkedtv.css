@@ -242,12 +242,16 @@ a {
   margin-bottom: 10px;
   border-bottom: 1px solid rgb(141,155,175);
   overflow: auto;
-}  
+} 
+.information-card h4 {
+    float: left;
+}
 .information-card .info {
   font-size: 12px;
   color: rgb(141,155,175);
   font-weight: bold;
   float: left;
+  clear: left;
 }
 .information-card .link {
   float: right;

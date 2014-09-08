@@ -1,7 +1,7 @@
 <div class="information-card">
   <div class="header">
-  <h4 ng-if="title.value">{{title.value}}</h4>
-    <div class="info">
+    <h4 ng-if="title.value">{{title.value}}</h4>
+    <div class="info" ng-if="source.value || dcSource.value || author.value">
       <span class="source" ng-if="source.value">{{source.value}}</span>
       <span class="source" ng-if="dcSource.value">{{dcSource.value}}</span>
       <span class="author" ng-if="author.value">{{author.value}}</span>
