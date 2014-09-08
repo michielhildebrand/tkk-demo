@@ -5,13 +5,9 @@
     "screenfull": "=1.2.1",
     "underscore": "=1.6.0",
     "moment": "=2.8.1",
-    "angular": "=1.2.22",
-    "angular-resource": "=1.2.22",
-    "angular-ui-router": "=0.2.11",
-    "ionic": "=0.9.27"
-  },
-  "resolutions": {
-    "angular": "=1.2.22",
-    "angular-ui-router": "=0.2.11"
+    "angular": "=1.2.23",
+    "angular-resource": "=1.2.23",
+    "angular-ui-router": "=0.2.10",
+    "ionic": "=1.0.0-beta.11"
   }
 }

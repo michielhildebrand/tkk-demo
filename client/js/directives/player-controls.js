@@ -28,7 +28,6 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       };
 
       scope.toggleMute = function () {
-        console.log(scope.mute);
         scope.mute = !scope.mute;
         if (scope.mute) {
           scope.previousVolume = scope.volume;
