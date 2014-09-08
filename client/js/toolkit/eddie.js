@@ -30,6 +30,10 @@ var Eddie = function(options){
 	}
 	
 	self.destroy = function() {
+    //TODO: I believe when destroy the Worker should be terminated as well
+    if (settings.worker) {
+      settings.worker.terminate();
+    }
 		$.each(components, function(key, comp){
 			if(typeof comp.destroy == "function"){
 				comp.destroy();
