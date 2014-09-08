@@ -21,12 +21,12 @@
     </div>
   
     <div class="col col-80 main">
-      <div ng-if="enrich">
+      <div ng-show="!enrich">
         <div class="player">
           <player second="second" beaming="beaming"></player>
         </div>
       </div>
-      <div class="enrichPanel" ng-show="!enrich">
+      <div class="enrichPanel" ng-show="enrich">
         <chapter-enrich height="playContentHeight"></chapter-enrich>
       </div>
     </div>
