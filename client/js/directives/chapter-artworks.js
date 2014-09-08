@@ -27,7 +27,7 @@ function chapterArtworksDirective(europeanaApi, Model) {
           europeanaApi.search({query: m.value}, function (r) {
             if (r.itemsCount > 0) {
               _(r.items).each(function (i) {
-                if (i.edmPreview && i.title) {
+                if (i.edmPreview && i.title && i.completeness > 0) {
                   var splittedId = i.id.split('/');
                   scope.artworks.push({id0: splittedId[1], id1: splittedId[2], img: i.edmPreview[0], title: i.title[0]});
                 }

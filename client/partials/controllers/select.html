@@ -1,24 +1,23 @@
-<ion-header-bar align-title="center" class="bar-tkk  bar-tkk-logo">
-  <div class="buttons left"></div>
-  <h1 class="title">Tussen Kunst en Kitsch</h1>
+<ion-header-bar align-title="center" class="bar-tkk  linkedtv-logo">
+  <h1 class="title">Tussen Kunst &amp; Kitsch</h1>
 </ion-header-bar>
 
-<ion-content class="has-header has-footer" scroll="false">
+<ion-content class="has-header">
   <div class="list card" ng-repeat="u in users">
     <div class="item">
-      <h2>{{u}}</h2>
+      <h2>{{u.name}}</h2>
       <p></p>
     </div>
 
     <div class="item item-image">
-      <img src="img/linkedtv_icon.png">
+      <img ng-src="{{u.avatar}}">
     </div>
   
-    <a class="item item-icon-left light" ng-click="goToEpisodes(u)">
+    <a class="item item-icon-left light" ng-click="goToEpisodes(u.name)">
         <i class="icon ion-ipad"></i>
         Tablet
     </a>
-    <a class="item item-icon-left light" ng-click="goToTV(u)">
+    <a class="item item-icon-left light" ng-click="goToTV(u.name)">
         <i class="icon ion-ios7-monitor-outline"></i>
         TV
     </a>

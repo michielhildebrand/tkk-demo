@@ -17,7 +17,7 @@ function playCtrl($scope, $state, $location, Model) {
       if (newVideos.length > 0) {
         Model.play($state.params.videoId, $state.params.idx);
         $scope.video = Model.getVideo();
-
+        console.log(angular.element('#play-content'), angular.element('#play-content')[0].offsetHeight)
         $scope.playContentHeight = angular.element('#play-content')[0].offsetHeight;
       }
     }
@@ -36,14 +36,6 @@ function playCtrl($scope, $state, $location, Model) {
 
   $scope.goToMain = function () {
     $state.go('episodes', {user: Model.getUser()});
-  };
-
-  $scope.togglePlayerMenu = function () {
-    $scope.showMenu = !$scope.showMenu;
-  };
-
-  $scope.toggleEnrich = function () {
-    $scope.enrich = !$scope.enrich;
   };
 
 }

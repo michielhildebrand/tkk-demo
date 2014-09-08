@@ -7,7 +7,8 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
     restrict: 'E',
     replace: false,
     scope: {
-      beaming: '='
+      beaming: '=',
+      enrich: '='
     },
     link: function (scope, element, attrs) {
       scope.play = true;
@@ -63,6 +64,10 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
         } else {
           //TODO: continue playing the video on the tablet
         }
+      };
+      
+      scope.toggleEnrich = function () {
+        scope.enrich = !scope.enrich;
       };
 
       scope.$watch(
