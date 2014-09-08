@@ -48,7 +48,11 @@ function chapterBackgroundDirective(irApi, Model) {
 
       scope.nav = function(e) {
         //console.log(e);
-        var content = {title: [e.title], comment: [e.post.html]};
+        var content = {
+          title: [e.title], 
+          url: [e.url],
+          comment: [e.post.html]
+        };
         chapterEnrichCtrl.setContent(content);
       };
 

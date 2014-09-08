@@ -23,7 +23,7 @@ function chapterEnrichDirective() {
     controller: function ($scope) {
       $scope.crumb = [];
       $scope.content = null;
-      $scope.activeLinks = "about";
+      $scope.activeLinks = "chapters";
 
       $scope.showLinks = function (active) {
         $scope.activeLinks = active;
