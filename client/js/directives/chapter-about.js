@@ -23,16 +23,14 @@ function chapterAboutDirective(entityProxy, Model) {
       );
 
       scope.nav = function (e) {
-        chapterEnrichCtrl.setCrumb(e);
-
         if (!_(answers).has(e.value)) {
           entityProxy.get({loc: e.uri}, function (r) {
             var answer = _.property(e.uri)(r);
-            chapterEnrichCtrl.setContent(answer);
+            chapterEnrichCtrl.setContent(answer, e);
             answers[e.value] = answer;
           });
         } else {
-          chapterEnrichCtrl.setContent(_.property(e.value)(answers));
+          chapterEnrichCtrl.setContent(_.property(e.value)(answers), e);
         }
       };
 

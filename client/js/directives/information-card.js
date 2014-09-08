@@ -16,7 +16,10 @@ function informationCardDirective() {
 
       scope.$watch('props', function (newProps) {
         if (newProps != null) {
+          //console.log('new props', newProps);
+
           _(interestingProps).map(function (prop) {
+            //console.log('fetching', prop);
             scope[prop] = firstEntity(_.property(prop)(newProps));
           });
           scope.metadata = newProps.metadata;
@@ -26,7 +29,7 @@ function informationCardDirective() {
       function firstEntity(prop) {
         var e = {value: '', uri: ''};
         if (prop) {
-          if (Array.isArray(prop)) {
+          if (Array.isArray(prop) && prop.length > 0) {
             //console.log('property array: ', prop);
             if (prop[0].value) {
               e = {
@@ -39,14 +42,14 @@ function informationCardDirective() {
                 uri: ''
               }
             }
-          } else {
+          } else if (prop.def && prop.def.length > 0) {
             //console.log('property object: ', prop);
-            if (prop.def && prop.def.length > 0) {
-              e = {
-                value: prop.def[0],
-                uri: ''
-              }
+            e = {
+              value: prop.def[0],
+              uri: ''
             }
+          } else {
+            //console.log('property entity not found', prop);
           }
         }
         return e;

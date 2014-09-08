@@ -22,7 +22,7 @@ function chapterEnrichDirective() {
     },
     controller: function ($scope) {
       $scope.crumb = [];
-      $scope.content = {};
+      $scope.content = null;
       $scope.activeLinks = "about";
 
       $scope.showLinks = function (active) {
@@ -63,12 +63,9 @@ function chapterEnrichDirective() {
         }
       };
 
-      this.setContent = function (c) {
-        $scope.content = c;
-      };
-
-      this.setCrumb = function (e) {
-        $scope.crumb = [e];
+      this.setContent = function (content, crumb) {
+        $scope.content = content;
+        $scope.crumb = crumb ? [crumb] : [];
       };
 
       this.updateCrumb = function (e) {
