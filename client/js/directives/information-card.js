@@ -49,7 +49,7 @@ function informationCardDirective() {
               uri: ''
             }
           } else {
-            console.log('property entity not found', prop);
+            //console.log('property entity not found', prop);
           }
         }
         return e;
