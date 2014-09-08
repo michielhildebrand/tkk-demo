@@ -17,12 +17,6 @@ a {
   background-color: #000;
   border-color: #000;
 }
-.bar-tkk-logo .buttons.left {
-  background-image: url('../img/linkedtv_logo.png');
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  width: 200px;
-}
 .bar-tkk .title,
 .bar-tkk .icon {
   color: #FFF;
@@ -30,8 +24,17 @@ a {
 .button-icon.button.selected {
   color: rgb(65,146,183);
 }
+.linkedtv-logo {
+  background-image: url('../img/linkedtv_logo.png');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 184px 20px;
+}
 .tabs {
   background-color: rgba(95,109,105,0.8);
+}
+.avrotros-logo,
+.avrotros-logo .tabs {
   background-image: url('../img/logo_avrotros.png');
   background-repeat: no-repeat;
   background-position: 15px center;
