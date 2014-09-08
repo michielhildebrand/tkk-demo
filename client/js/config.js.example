@@ -8,14 +8,20 @@ angular.module('Config', []).constant('Config', {
 
   app_title_prefix: 'LinkedTV Culture',
   users: [
-    {name: 'Rita',
-      avatar: 'img/Rita.png'
+    {
+      name: 'Rita',
+      avatar: 'img/Rita.png',
+      id: 'rita'
     },
-    {name: 'Bert & Anne',
-      avatar: 'img/Anne.jpg'
+    {
+      name: 'Bert & Anne',
+      avatar: 'img/Anne.jpg',
+      id: 'bertanne'
     },
-    {name: 'Michael',
-      avatar: 'img/Michael.jpg'
+    {
+      name: 'Michael',
+      avatar: 'img/Michael.jpg',
+      id: 'michael'
     }
   ],
 
