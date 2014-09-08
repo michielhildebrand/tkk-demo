@@ -4,7 +4,7 @@
     "title": "Compilation of clips",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1",
     "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream18.noterik.com/progressive/stream18/domain/linkedtv/user/avro/video/187/rawvideo/3/raw.mp4",
+    "src": "video/187.mp4",
     "duration": 2727280,
     "chapters": [
       {
@@ -73,7 +73,7 @@
     "title": "Museum Martena",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1",
     "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/100/rawvideo/3/raw.mp4",
+    "src": "video/100.mp4",
     "duration": 2949590,
     "chapters": [
       {
@@ -345,7 +345,7 @@
     "title": "Graphic Design Museum",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1",
     "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/101/rawvideo/3/raw.mp4",
+    "src": "video/101.mp4",
     "duration": 2733550,
     "chapters": [
       {
@@ -462,7 +462,7 @@
     "title": "Hermitage",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1",
     "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/102/rawvideo/3/raw.mp4",
+    "src": "video/102.mp4",
     "duration": 2735740,
     "chapters": [
       {
@@ -656,7 +656,7 @@
     "title": "Twentse Welle",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/103/shots/1",
     "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/103/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/103/rawvideo/3/raw.mp4",
+    "src": "video/103.mp4",
     "duration": 2694100,
     "chapters": [
       {
@@ -837,7 +837,7 @@
     "title": "MuZee",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1",
     "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/104/rawvideo/3/raw.mp4",
+    "src": "video/104.mp4",
     "duration": 2699560,
     "chapters": [
       {
@@ -1019,7 +1019,7 @@
     "title": "Porceleyne Fles",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1",
     "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/150/rawvideo/3/raw.mp4",
+    "src": "video/150.mp4",
     "duration": 2713790,
     "chapters": [
       {
