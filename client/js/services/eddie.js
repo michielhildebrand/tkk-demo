@@ -25,6 +25,11 @@ function eddieService($rootScope, Config, Model) {
     });
   }
 
+  function destroyEddie() {
+    eddie.destroy();
+    initialized = false;
+  }
+
   return {
     init: function(user) {
       if (!initialized) {
@@ -39,6 +44,9 @@ function eddieService($rootScope, Config, Model) {
     },
     getUser: function () {
       return user;
+    },
+    destroy: function(){
+      destroyEddie();
     }
   }
 }

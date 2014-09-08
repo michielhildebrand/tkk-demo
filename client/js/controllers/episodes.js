@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('EpisodesCtrl', []).controller('EpisodesCtrl', ['$scope', '$state', 'Model', episodesCtrl]);
+angular.module('EpisodesCtrl', []).controller('EpisodesCtrl', ['$scope', '$state', 'Model', 'Eddie', episodesCtrl]);
 
-function episodesCtrl($scope, $state, Model) {
+function episodesCtrl($scope, $state, Model, Eddie) {
+  $scope.user = Model.getUser();
 
   $scope.$watch(
     function () {
@@ -20,4 +21,8 @@ function episodesCtrl($scope, $state, Model) {
     $state.go('play', {user: Model.getUser(), videoId: videoId, idx: 0});
   };
 
+  $scope.signOut = function() {
+    Eddie.destroy();
+    $state.go('select');
+  }
 }
