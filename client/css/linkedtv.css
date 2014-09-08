@@ -1,5 +1,4 @@
 html, body {
-    font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 12px;
     background-color: rgb(45,57,64);
@@ -14,10 +13,9 @@ a {
   border-bottom: 1px solid rgb(100,114,124);
 }
 .bar-tkk-episodes .title {
-  background-image: url('../img/logo_avrotros.png');
+  background-image: url('../img/linkedtv_logo.png');
   background-repeat: no-repeat;
-  background-size: 110px 36px;
-  background-position: left center;
+  background-position: 10px center;
 }
 .bar-tkk .title,
 .bar-tkk .icon {
@@ -28,12 +26,19 @@ a {
 }
 .tabs-tkk {
   background-color: rgba(95,109,105,0.8);
+  background-image: url('../img/logo_avrotros.png');
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  background-size: 105px 34px;
 }
 .tabs-tkk a {
   color: #FFF;
 }
 .pane {
   background-color: rgb(45,57,64);
+}
+.has-footer {
+  bottom: 49px;
 }
 .row {
   padding: 0;
@@ -116,8 +121,11 @@ a {
 .player-controls {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 80%; /* this should be the same as the width of the parent column */
     background-color: #000;
+}
+.player-controls-content {
+  padding: 0 15px;
 }
 .player-controls-bottom {
     bottom: 0;
@@ -162,6 +170,10 @@ a {
 }
 .item.chapter h4 {
   color: white;
+  font-size: 14px;
+}
+.item.chapter img {
+    border: 1px solid white;
 }
 
 /* links */
@@ -194,6 +206,9 @@ a {
 .chapters h3 {
   background-color: rgb(65,146,183);
 }
+.links .item:first-child {
+  border-color: rgb(126,139,148);
+}
 .links h3 {
     background-image: url(../img/background_sections_menu.png);
     background-position: center right;
@@ -205,9 +220,13 @@ a {
 }
 .links h4 {
   color: white;
+  font-size: 14px;
 }
 .links .scroll-view {
   height: 540px; /* show be done programmatically*/
+}
+.links img {
+  border: 1px solid white;
 }
 
 /* content */
@@ -220,15 +239,38 @@ a {
 }
   
 /* information card */
+.information-card h4 {
+  margin: 0 0 2px;
+  font-size: 19px;
+  text-transform: uppercase;
+  color: black;
+  line-height: 23px;
+}
+
+.information-card .info {
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  font-size: 12px;
+  color: rgb(141,155,175);
+  font-weight: bold;
+  border-bottom: 1px solid rgb(141,155,175);
+  overflow: auto;
+}
+.information-card .info .link {
+  float: right;
+}
+
 .information-card {
   padding: 15px;
 }
 .information-card .image {
   text-align: center;
+  max-height: 350px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 .information-card img {
-  max-width: 100%;
-  max-height: 300px;
+  max-height: 100%;
 }
 .information-card .description {
   font-size: 20px;

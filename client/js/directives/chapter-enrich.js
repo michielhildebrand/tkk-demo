@@ -14,7 +14,9 @@ function chapterEnrichDirective() {
         if (newHeight != 0) {
           var dimensions = angular.element('.links h3');
           var dimensionsHeight = dimensions.length * 30; //TODO fix it: grab height of one dimension label
-          angular.element('.links .scroll-view').height(newHeight - (dimensionsHeight));
+          angular.element('.links .scroll-view').height(newHeight - dimensionsHeight);
+          angular.element('.chapters .scroll-view').height(newHeight - 30);
+          angular.element('.content .scroll-view').height(newHeight);
         }
       });
     },
