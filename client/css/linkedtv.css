@@ -68,9 +68,10 @@ a {
 .user.card {
   float: left;
   width: 250px;
+  box-shadow: 3px 3px 8px 0px rgba(26,26,26,0.7);
 }
 .user.card .item {  
-  background-color: rgba(95,109,105,0.8);
+  background: -webkit-linear-gradient(top, rgba(45,57,64,1) 0%,rgba(45,57,64,1) 50%,rgba(50,62,71,1) 100%);
   border: 1px solid rgb(100,114,124);
 }
 .user.card .item-image {
@@ -173,7 +174,7 @@ a {
   font-size: 14px;
 }
 .item.chapter img {
-    border: 1px solid white;
+    border: 1px solid #888;
 }
 
 /* links */
