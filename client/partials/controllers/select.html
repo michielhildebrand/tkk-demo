@@ -1,6 +1,26 @@
-<div class="container">
-  <p>Join one user:</p>
-  <div ng-repeat="u in users">
-    <b><i>{{u}}</i></b> on <a ng-click="goToEpisodes(u)">Tablet</a> or <a ng-click="goToTV(u)">TV</a>
+<ion-header-bar align-title="center" class="bar-tkk  bar-tkk-logo">
+  <div class="buttons left"></div>
+  <h1 class="title">Tussen Kunst en Kitsch</h1>
+</ion-header-bar>
+
+<ion-content class="has-header has-footer" scroll="false">
+  <div class="list card" ng-repeat="u in users">
+    <div class="item">
+      <h2>{{u}}</h2>
+      <p></p>
+    </div>
+
+    <div class="item item-image">
+      <img src="img/linkedtv_icon.png">
+    </div>
+  
+    <a class="item item-icon-left light" ng-click="goToEpisodes(u)">
+        <i class="icon ion-ipad"></i>
+        Tablet
+    </a>
+    <a class="item item-icon-left light" ng-click="goToTV(u)">
+        <i class="icon ion-ios7-monitor-outline"></i>
+        TV
+    </a>
   </div>
-</div>
+</ion-content>

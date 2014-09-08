@@ -17,10 +17,11 @@ a {
   background-color: #000;
   border-color: #000;
 }
-.bar-tkk-episodes .title {
+.bar-tkk-logo .buttons.left {
   background-image: url('../img/linkedtv_logo.png');
   background-repeat: no-repeat;
   background-position: 10px center;
+  width: 200px;
 }
 .bar-tkk .title,
 .bar-tkk .icon {
@@ -54,6 +55,20 @@ a {
 .main {
   -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
   background-color: #000;
+}
+
+/* user select */
+.card {
+  float: left;
+  width: 250px;
+}
+.card .item {  
+  background-color: rgba(95,109,105,0.8);
+  border: 1px solid rgb(100,114,124);
+}
+.card .item h2,
+.card .item a {
+  color: white;
 }
 
 /* episodes */
