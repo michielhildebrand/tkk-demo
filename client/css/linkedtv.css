@@ -59,6 +59,10 @@ a {
   -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
   background-color: #000;
 }
+#play-content {
+  overflow: hidden;
+  height: 100%;
+}
 
 /* user select */
 .card {
@@ -196,9 +200,7 @@ a {
     height: 30px;
     line-height: 22px;
     color: white;
-}
-.chapters h3 {
-  background-color: rgb(65,146,183);
+    background-color: rgb(65,146,183);
 }
 .links .item:first-child {
   border-color: rgb(126,139,148);
@@ -208,16 +210,10 @@ a {
     background-position: center right;
     background-repeat: no-repeat; 
     -webkit-filter: drop-shadow(0 -3px 3px rgba(50, 50, 50, 0.75));
-    background-color: rgb(65,146,183);
-    /*background-color: rgb(45,57,64);*/
-    /*box-shadow: 0 -2px 8px #555;*/
 }
 .links h4 {
   color: white;
   font-size: 14px;
-}
-.links .scroll-view {
-  height: 540px; /* show be done programmatically*/
 }
 .links img {
   border: 1px solid white;
@@ -233,6 +229,13 @@ a {
 }
   
 /* information card */
+.crumbs {
+  padding: 4px 15px;
+  background-color: #EEE;
+}
+.information-card {
+  padding: 15px;
+}
 .information-card h4 {
   margin: 0 0 2px;
   font-size: 19px;
@@ -240,33 +243,49 @@ a {
   color: black;
   line-height: 23px;
 }
-
-.information-card .info {
+.information-card .header {
   margin-bottom: 10px;
-  padding-bottom: 5px;
+  border-bottom: 1px solid rgb(141,155,175);
+  overflow: auto;
+} 
+.information-card h4 {
+    float: left;
+}
+.information-card .info {
   font-size: 12px;
   color: rgb(141,155,175);
   font-weight: bold;
-  border-bottom: 1px solid rgb(141,155,175);
-  overflow: auto;
+  float: left;
+  clear: left;
 }
-.information-card .info .link {
+.information-card .link {
   float: right;
 }
-
-.information-card {
-  padding: 15px;
-}
 .information-card .image {
-  text-align: center;
-  max-height: 350px;
-  overflow: hidden;
-  margin-bottom: 10px;
+  max-width: 40%;
+  margin: 0 15px 15px 0;
+  float: left;
 }
-.information-card img {
-  max-height: 100%;
+.information-card .image img {
+  width: 100%;
 }
+.information-card .properties {
+  float: left;
+  font-size: 16px;
+}
+.information-card .properties li {
+  padding-bottom: 10px;
+}
+.information-card .properties label {
+  color: #999;
+  display: block;
+  font-size: 12px;
+}
+.information-card a {
+  color: rgb(65,146,183);
+}  
 .information-card .description {
-  font-size: 20px;
-  line-height: 30px;
+  clear: both;
+  font-size: 16px;
+  line-height: 24px;
 }

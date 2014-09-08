@@ -10,9 +10,12 @@ function informationCardDirective() {
     },
     replace: false,
     link: function (scope, element, attrs) {
-      var interestingProps = ['label', 'thumb', 'title', 'comment', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
-        'nationality', 'profession', 'style', 'predecessor', 'successor', 'activeSince', 'knownFor', 'presents',
-        'guestedIn', 'locatedIn', 'population', 'dcTitle', 'dcCreator'];
+      var interestingProps = ['url','thumb','title','comment', 
+        'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
+        'nationality', 'profession', 'style', 'predecessor', 'successor', 
+        'activeSince', 'knownFor', 'presents','guestedIn', 'locatedIn', 'population', 
+        'dcTitle', 'dcCreator','dcDate','dcDescription','dcFormat','dcSource','edmLandingPage'
+      ];
 
       scope.$watch('props', function (newProps) {
         if (newProps != null) {
@@ -22,6 +25,7 @@ function informationCardDirective() {
             //console.log('fetching', prop);
             scope[prop] = firstEntity(_.property(prop)(newProps));
           });
+          //console.log(scope);
           scope.metadata = newProps.metadata;
         }
       });

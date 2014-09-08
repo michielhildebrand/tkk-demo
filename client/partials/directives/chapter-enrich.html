@@ -18,18 +18,15 @@
     </ion-scroll>
   </div>
   <div class="col-75 content">
-    <div class="navigation">
-       <span ng-repeat="c in crumb">
-         <span ng-if="!$last">
-           <a ng-click="proxy(c, true)">{{c.value}}</a>
-           <span class="divider">></span>
-         </span>
-         <span ng-if="$last">
-           {{c.value}}
-         </span>
-       </span>
-    </div>
     <ion-scroll direction="y">
+      <div class="crumbs" ng-if="crumb.length>1">
+         <span ng-repeat="c in crumb">   
+           <span ng-if="!$last">
+             <span class="divider">></span>
+             <a ng-click="proxy(c, true)">{{c.value}}</a>
+           </span>
+         </span>
+      </div>
       <information-card props="content"></information-card>
     </ion-scroll>
   </div>

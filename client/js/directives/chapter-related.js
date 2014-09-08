@@ -35,9 +35,7 @@ function chapterRelatedDirective(Model) {
 
       scope.nav = function(v, ch) {
         var content = {
-          label: [
-            {value: ch.chapterTitle}
-          ],
+          title: [ch.title],
           thumb: [shot(v, ch)],
           metadata: chapterEnrichCtrl.extractMetadata(ch)
         };
