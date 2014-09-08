@@ -228,6 +228,10 @@ a {
 }
   
 /* information card */
+.crumbs {
+  padding: 4px 15px;
+  background-color: #EEE;
+}
 .information-card {
   padding: 15px;
 }
