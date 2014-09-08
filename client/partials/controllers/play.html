@@ -1,10 +1,13 @@
 <ion-header-bar align-title="center" class="bar-tkk">
   <div class="buttons left">
-    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goToMain()" >Back</button>
+    <button class="button button-icon icon ion-ios7-arrow-back" 
+    ng-click="goToMain()" >Back</button>
   </div>
   <h1 class="title">{{video.title}}</h1>
   <div class="buttons">
-    <button class="button button-icon icon ion-navicon" ng-click="toggleEnrich()" ></button>
+    <button class="button button-icon icon ion-eye" 
+        ng-class="{selected: tracking}"
+        ng-click="toggleTracking()" ></button>
   </div>  
 </ion-header-bar>
 
@@ -35,7 +38,7 @@
     <div class="col col-20 chapter-controls">
     </div>
     <div class="col col-80 player-controls">
-      <player-controls beaming="beaming"></player-controls>
+      <player-controls beaming="beaming" enrich="enrich"></player-controls>
     </div>
   </div>
 </ion-footer-bar>
