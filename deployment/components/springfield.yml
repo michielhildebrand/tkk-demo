@@ -10,6 +10,8 @@
     sudo: yes
     tags: springfield
 
+  # Upload springfield toolkit
+
   - name: Springfield | Extract it
     command: chdir=/opt tar -zxvf springfield.tar.gz
     tags: springfield
@@ -21,7 +23,8 @@
       - initdb
 
   - name: Springfield | Execute sql script
-    shell: chdir={{install_dir_springfield}} mysql -uroot < smithers_db.sql
+    #shell: chdir={{install_dir_springfield}} mysql -uroot < smithers_db.sql
+    shell: chdir={{install_dir_springfield}} mysql -uroot -p{{mysql_root_password}} < smithers_db.sql
     tags:
       - springfield
       - initdb
@@ -44,3 +47,6 @@
     tags:
       - springfield
       - inits
+
+  # start tomcat
+  # put lou news app and set autodeploy

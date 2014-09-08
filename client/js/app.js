@@ -70,11 +70,17 @@ tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',
         $rootScope.title = Config.app_title_prefix + toState.title;
 
         if (toParams.user != null) {
+          var user = null;
           var userName = toParams.user;
-          if (userName != null && _(Config.users).some(function(u){return u.name == userName})) {
-            Eddie.init(userName);
+          if (userName != null) {
+            user = _(Config.users).find(function (u) {
+              return u.name == userName
+            });
+          }
+          if (user != null) {
+            Eddie.init(user);
           } else {
-            console.log('Not a valid user name ' + userName);
+            console.log('Invalid user name ' + userName);
             $state.go('select');
           }
         }

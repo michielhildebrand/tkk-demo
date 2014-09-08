@@ -4,17 +4,17 @@ angular.module('Eddie', []).factory('Eddie', ['$rootScope', 'Config', 'Model', e
 
 function eddieService($rootScope, Config, Model) {
   var initialized = false;
-  var user;
+  var userId;
   var eddie;
 
-  function initializeEddie(u) {
-    console.log('Initializing Eddie with user ' + u);
-    user = u;
+  function initializeEddie(id) {
+    console.log('Initializing Eddie with userId ' + id);
+    userId = id;
     eddie = Eddie({
       lou_ip: Config.springfield_ip,
       lou_port: Config.springfield_port,
       app: Config.springfield_app,
-      fullapp: Config.springfield_fullapp.replace('{}', u),
+      fullapp: Config.springfield_fullapp.replace('{}', id),
       appparams: Config.springfield_appparams
     });
     eddie.init();
@@ -33,17 +33,14 @@ function eddieService($rootScope, Config, Model) {
   return {
     init: function(user) {
       if (!initialized) {
-        Model.setUser(user);
-        initializeEddie(user);
+        Model.setUser(user.name);
+        initializeEddie(user.id);
       } else {
-        //console.log('Eddie already initialized with user ' + user);
+        //console.log('Eddie already initialized with userId ' + userId);
       }
     },
     putLou: function (msg) {
       eddie.putLou('ngproxy', JSON.stringify(msg));
-    },
-    getUser: function () {
-      return user;
     },
     destroy: function(){
       destroyEddie();
