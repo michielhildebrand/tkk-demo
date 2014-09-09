@@ -11,11 +11,16 @@
   ProxyPass /ir http://ir.lmcloud.vse.cz/irapi/media-server
 
   # Toolkit configuration
-  ProxyPass /springfield http://%SPRINGFIELD_IP%:8080/springfield
-  ProxyPassReverse /springfield http://%SPRINGFIELD_IP%:8080/springfield
-
   ProxyPass /lou http://%SPRINGFIELD_IP%:8080/lou
   ProxyPassReverse /lou http://%SPRINGFIELD_IP%:8080/lou
+  ProxyPass /bart http://%SPRINGFIELD_IP%:8080/lou
+  ProxyPassReverse /bart http://%SPRINGFIELD_IP%:8080/lou
+  ProxyPass /smithers http://%SPRINGFIELD_IP%:8080/lou
+  ProxyPassReverse /smithers http://%SPRINGFIELD_IP%:8080/lou
+  ProxyPass /smithers2 http://%SPRINGFIELD_IP%:8080/lou
+  ProxyPassReverse /smithers2 http://%SPRINGFIELD_IP%:8080/lou
+  ProxyPass /springfield http://%SPRINGFIELD_IP%:8080/springfield
+  ProxyPassReverse /springfield http://%SPRINGFIELD_IP%:8080/springfield
 
   <Directory %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/>
     Order allow,deny
