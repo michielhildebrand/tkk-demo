@@ -1,74 +1,4 @@
-[LATEST EPISODES SHOULD BE: Museum Martena, Twentse Welle, Hermitage
-  
-  {
-    "id": "953b4d09-e828-4623-b9ff-be3072411a98",
-    "title": "Compilation of clips - 16 March 2011",
-    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1",
-    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream18.noterik.com/progressive/stream18/domain/linkedtv/user/avro/video/187/rawvideo/3/raw.mp4",
-    "duration": 2727280,
-    "chapters": [
-      {
-        "id": "4",
-        "duration": "27000.0",
-        "title": "Introduction",
-        "startTime": 7000,
-        "fragments": []
-      },
-      {
-        "id": "7",
-        "duration": "95000.0",
-        "title": "Jac de Vries painting",
-        "startTime": 228000,
-        "fragments": []
-      },
-      {
-        "id": "2",
-        "duration": "197000.0",
-        "title": "Rococo sign",
-        "startTime": 323000,
-        "fragments": []
-      },
-      {
-        "id": "3",
-        "duration": "233000.0",
-        "title": "Altorf sculpture",
-        "startTime": 813000,
-        "fragments": [
-          {
-            "id": "0a9f262c-276f-11e4-8057-005056a7235c",
-            "locator": "",
-            "duration": "1880.0049",
-            "title": "Den Haag",
-            "type": "Location",
-            "startTime": 980559,
-            "enrichments": []
-          }
-        ]
-      },
-      {
-        "id": "5",
-        "duration": "253000.0",
-        "title": "Maria lactans",
-        "startTime": 1350000,
-        "fragments": []
-      },
-      {
-        "id": "6",
-        "duration": "257000.0",
-        "title": "Spaghetti clock",
-        "startTime": 1848000,
-        "fragments": []
-      },
-      {
-        "id": "1",
-        "duration": "260000.0",
-        "title": "Koppenol painting",
-        "startTime": 2406000,
-        "fragments": []
-      }
-    ]
-  },
+[
   {
     "id": "8a8187f2-3fc8-cb54-0140-7dccd76f0001",
     "title": "Museum Martena - 14 November 2007",
@@ -337,123 +267,6 @@
         "duration": "269000.0",
         "title": "19th century broche",
         "startTime": 2637000,
-        "fragments": []
-      }
-    ]
-  },
-  {
-    "id": "8a8187f2-3fc8-cb54-0140-7dd099380002",
-    "title": "Graphic Design Museum - 31 July 2011",
-    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1",
-    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1/h/0/m/0/sec10.jpg",
-    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/101/rawvideo/3/raw.mp4",
-    "duration": 2733550,
-    "chapters": [
-      {
-        "id": "2",
-        "duration": "121000.0",
-        "title": "Introduction",
-        "startTime": 5000,
-        "artworks": [
-          "moti breda"
-        ],
-        "backgrounds": [
-          "moti breda"
-        ],
-        "fragments": []
-      },
-      {
-        "id": "4",
-        "duration": "91000.0",
-        "title": "1900s book",
-        "startTime": 173000,
-        "fragments": []
-      },
-      {
-        "id": "6",
-        "duration": "101000.0",
-        "title": "Jo Koster painting",
-        "startTime": 264000,
-        "fragments": [
-          {
-            "id": "ee10d366-60cc-11e3-8505-00264a16bc9a",
-            "locator": "",
-            "duration": "3880.005",
-            "title": "Amsterdam",
-            "type": "Location",
-            "startTime": 294440,
-            "enrichments": []
-          },
-          {
-            "id": "49322f00-35d5-11e4-abc5-005056a7235c",
-            "locator": "",
-            "duration": "4119.995",
-            "title": "impressionisme",
-            "type": "Organization",
-            "startTime": 309880,
-            "enrichments": []
-          },
-          {
-            "id": "45c09758-35d5-11e4-943c-005056a7235c",
-            "locator": "",
-            "duration": "3720.9778",
-            "title": "Jo Koster",
-            "type": "Thing",
-            "startTime": 338678,
-            "enrichments": []
-          }
-        ]
-      },
-      {
-        "id": "8",
-        "duration": "76000.0",
-        "title": "Silver coffee set",
-        "startTime": 598000,
-        "fragments": []
-      },
-      {
-        "id": "1",
-        "duration": "267000.0",
-        "title": "Steltman ring",
-        "startTime": 750000,
-        "fragments": [
-          {
-            "id": "6509c222-575c-11e3-ae14-00163ebdcad9",
-            "locator": "http://dbpedia.org/resource/MOTI",
-            "duration": "290000.0",
-            "title": "Graphic Design Museum",
-            "type": "Thing",
-            "startTime": 1266000,
-            "enrichments": ["http://www.motimuseum.nl", "http://nl.wikipedia.org/wiki/Museum_of_the_Image"]
-          }
-        ]
-      },
-      {
-        "id": "7",
-        "duration": "85000.0",
-        "title": "Textile book",
-        "startTime": 1556000,
-        "fragments": []
-      },
-      {
-        "id": "5",
-        "duration": "266000.0",
-        "title": "Dog painting",
-        "startTime": 1805000,
-        "fragments": []
-      },
-      {
-        "id": "10",
-        "duration": "118000.0",
-        "title": "Amsterdam painting",
-        "startTime": 2301000,
-        "fragments": []
-      },
-      {
-        "id": "9",
-        "duration": "268000.0",
-        "title": "Statue from Congo",
-        "startTime": 2422000,
         "fragments": []
       }
     ]
@@ -829,6 +642,192 @@
         "duration": "241000.0",
         "title": "Fertility statue",
         "startTime": 2434000,
+        "fragments": []
+      }
+    ]
+  },
+    {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd099380002",
+    "title": "Graphic Design Museum - 31 July 2011",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/101/rawvideo/3/raw.mp4",
+    "duration": 2733550,
+    "chapters": [
+      {
+        "id": "2",
+        "duration": "121000.0",
+        "title": "Introduction",
+        "startTime": 5000,
+        "artworks": [
+          "moti breda"
+        ],
+        "backgrounds": [
+          "moti breda"
+        ],
+        "fragments": []
+      },
+      {
+        "id": "4",
+        "duration": "91000.0",
+        "title": "1900s book",
+        "startTime": 173000,
+        "fragments": []
+      },
+      {
+        "id": "6",
+        "duration": "101000.0",
+        "title": "Jo Koster painting",
+        "startTime": 264000,
+        "fragments": [
+          {
+            "id": "ee10d366-60cc-11e3-8505-00264a16bc9a",
+            "locator": "",
+            "duration": "3880.005",
+            "title": "Amsterdam",
+            "type": "Location",
+            "startTime": 294440,
+            "enrichments": []
+          },
+          {
+            "id": "49322f00-35d5-11e4-abc5-005056a7235c",
+            "locator": "",
+            "duration": "4119.995",
+            "title": "impressionisme",
+            "type": "Organization",
+            "startTime": 309880,
+            "enrichments": []
+          },
+          {
+            "id": "45c09758-35d5-11e4-943c-005056a7235c",
+            "locator": "",
+            "duration": "3720.9778",
+            "title": "Jo Koster",
+            "type": "Thing",
+            "startTime": 338678,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "duration": "76000.0",
+        "title": "Silver coffee set",
+        "startTime": 598000,
+        "fragments": []
+      },
+      {
+        "id": "1",
+        "duration": "267000.0",
+        "title": "Steltman ring",
+        "startTime": 750000,
+        "fragments": [
+          {
+            "id": "6509c222-575c-11e3-ae14-00163ebdcad9",
+            "locator": "http://dbpedia.org/resource/MOTI",
+            "duration": "290000.0",
+            "title": "Graphic Design Museum",
+            "type": "Thing",
+            "startTime": 1266000,
+            "enrichments": ["http://www.motimuseum.nl", "http://nl.wikipedia.org/wiki/Museum_of_the_Image"]
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "duration": "85000.0",
+        "title": "Textile book",
+        "startTime": 1556000,
+        "fragments": []
+      },
+      {
+        "id": "5",
+        "duration": "266000.0",
+        "title": "Dog painting",
+        "startTime": 1805000,
+        "fragments": []
+      },
+      {
+        "id": "10",
+        "duration": "118000.0",
+        "title": "Amsterdam painting",
+        "startTime": 2301000,
+        "fragments": []
+      },
+      {
+        "id": "9",
+        "duration": "268000.0",
+        "title": "Statue from Congo",
+        "startTime": 2422000,
+        "fragments": []
+      }
+    ]
+  },
+  {
+    "id": "953b4d09-e828-4623-b9ff-be3072411a98",
+    "title": "Compilation of clips - 16 March 2011",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1/h/0/m/0/sec10.jpg",
+    "src": "http://stream18.noterik.com/progressive/stream18/domain/linkedtv/user/avro/video/187/rawvideo/3/raw.mp4",
+    "duration": 2727280,
+    "chapters": [
+      {
+        "id": "4",
+        "duration": "27000.0",
+        "title": "Introduction",
+        "startTime": 7000,
+        "fragments": []
+      },
+      {
+        "id": "7",
+        "duration": "95000.0",
+        "title": "Jac de Vries painting",
+        "startTime": 228000,
+        "fragments": []
+      },
+      {
+        "id": "2",
+        "duration": "197000.0",
+        "title": "Rococo sign",
+        "startTime": 323000,
+        "fragments": []
+      },
+      {
+        "id": "3",
+        "duration": "233000.0",
+        "title": "Altorf sculpture",
+        "startTime": 813000,
+        "fragments": [
+          {
+            "id": "0a9f262c-276f-11e4-8057-005056a7235c",
+            "locator": "",
+            "duration": "1880.0049",
+            "title": "Den Haag",
+            "type": "Location",
+            "startTime": 980559,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "duration": "253000.0",
+        "title": "Maria lactans",
+        "startTime": 1350000,
+        "fragments": []
+      },
+      {
+        "id": "6",
+        "duration": "257000.0",
+        "title": "Spaghetti clock",
+        "startTime": 1848000,
+        "fragments": []
+      },
+      {
+        "id": "1",
+        "duration": "260000.0",
+        "title": "Koppenol painting",
+        "startTime": 2406000,
         "fragments": []
       }
     ]
