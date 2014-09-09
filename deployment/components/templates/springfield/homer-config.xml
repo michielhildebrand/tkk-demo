@@ -5,8 +5,8 @@
 
   <!-- Marge communcation port, only value used unless a smithers -->
   <entry key="marge-port">5049</entry>
-  <entry key="default-bart-port">8080</entry>
-  <entry key="default-smithers-port">8080</entry>
+  <entry key="default-bart-port">80</entry>
+  <entry key="default-smithers-port">80</entry>
   <entry key="external-ipnumber">{{springfield_ip}}</entry>
 
   <!-- DATABASE & LOG SETTINGS -->

@@ -1,3 +1,3 @@
 function getSmithersUrl(){
-  return "http://{{springfield_ip}}:8080/smithers2";
+  return "http://{{springfield_ip}}/smithers2";
 }

@@ -17,7 +17,7 @@
     tags: springfield
 
   - name: Springfield | Copy sql init script
-    template: src={{root_dir}}/components/templates/springfield/init.sql dest={{install_dir_springfield}}/smithers_db.sql mode=644 backup=yes
+    template: src={{root_dir}}/components/templates/springfield/init.sql dest={{install_dir_springfield}}/smithers_db.sql mode=644
     tags:
       - springfield
       - initdb
@@ -30,13 +30,13 @@
       - initdb
 
   - name: Springfield | Configure Homer
-    template: src={{root_dir}}/components/templates/springfield/homer-config.xml dest={{install_dir_springfield}}/homer/config.xml mode=644 backup=yes
+    template: src={{root_dir}}/components/templates/springfield/homer-config.xml dest={{install_dir_springfield}}/homer/config.xml mode=644
     tags:
       - springfield
       - inits
 
   - name: Springfield | Configure Lazy Homer
-    template: src={{root_dir}}/components/templates/springfield/lazy-homer.js dest={{install_dir_springfield}}/tomcat/webapps/ROOT/springfield/Scripts/lazyHomer.js mode=644 backup=yes
+    template: src={{root_dir}}/components/templates/springfield/lazy-homer.js dest={{install_dir_springfield}}/tomcat/webapps/ROOT/springfield/Scripts/lazyHomer.js mode=644
     tags:
       - springfield
       - inits

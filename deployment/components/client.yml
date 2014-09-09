@@ -1,6 +1,6 @@
 ---
   - name: Client | Copy App config
-    template: src={{root_dir}}/components/templates/client/config.js dest={{install_dir_client}}/js/config.js backup=yes
+    template: src={{root_dir}}/components/templates/client/config.js dest={{install_dir_client}}/js/config.js
     tags:
       - client
       - update
@@ -14,9 +14,11 @@
     tags: client
 
   - name: Client | Copy Nginx config
-    template: src={{root_dir}}/components/templates/client/nginx.conf dest=/etc/nginx/sites-available/tkk.com backup=yes
+    template: src={{root_dir}}/components/templates/client/nginx.conf dest=/etc/nginx/sites-available/tkk.com
     sudo: yes
-    tags: client
+    tags:
+      - client
+      - update
 
   - include: "{{prudentia_dir}}/tasks/nodejs.yml"
     tags: client
@@ -35,4 +37,6 @@
   - name: Client | Restart Nginx
     command: /etc/init.d/nginx restart
     sudo: yes
-    tags: client
+    tags:
+      - client
+      - update
