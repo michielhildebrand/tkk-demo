@@ -5,7 +5,7 @@
       <chapter-about></chapter-about>
     </ion-scroll>
     <h3 ng-click="showLinks('artworks')">Artworks</h3>
-    <ion-scroll direction="y" ng-show="activeLinks=='artworks'">
+    <ion-scroll direction="y" ng-show="activeLinks=='related artworks'">
       <chapter-artworks></chapter-artworks>
     </ion-scroll>
     <h3 ng-click="showLinks('background')">Background</h3>
@@ -13,7 +13,7 @@
       <chapter-background></chapter-background>
     </ion-scroll>
     <h3 ng-click="showLinks('chapters')">Chapters</h3>
-    <ion-scroll direction="y" ng-show="activeLinks=='chapters'">
+    <ion-scroll direction="y" ng-show="activeLinks=='related chapters'">
       <chapter-related></chapter-related>
     </ion-scroll>
   </div>
