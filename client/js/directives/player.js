@@ -27,11 +27,11 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
         }
 
         $(player).on('loadedmetadata', function (metadata) {
-          var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
+          /*var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
           var targetRatio = 1.777777; //$(player).width()/$(player).height();
           var adjustmentRatio =  targetRatio/actualRatio;
           $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
-
+          */
           player.currentTime = time;
           startTimePublisher();
         });
