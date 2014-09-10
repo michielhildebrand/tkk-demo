@@ -22,6 +22,8 @@ a {
 .bar-tkk .icon {
   color: #FFF;
 }
+.tab-item-active .icon,
+.tab-item-active .tab-title,
 .icon.selected {
   color: rgb(65,146,183);
 }
@@ -98,28 +100,13 @@ a {
 }
 
 /* chapter */
-.chapter img {
-    width: 128px;
-    height: 72px;
-    border: 1px solid #888;
-    border-radius: 3px;
-    box-shadow: 3px 3px 8px 0px rgba(26,26,26,0.7);
-    overflow: hidden;
-}
+
 .chapter .bookmark {
   position: absolute;
   display: block;
 }
 .chapter .bookmark.selected {
   color: rgb(65,146,183);
-}
-.related .bookmark,
-.episode .bookmark {
-  display: none;
-}
-.related .bookmark.selected,
-.episode .bookmark.selected {
-  display: block;
 }
 .chapter .chapter-time {
     position: absolute;
@@ -133,6 +120,15 @@ a {
     height: 14px;
     line-height: 14px;
     opacity: .75;
+}
+.related .bookmark,
+.episode .bookmark,
+.bookmarks .bookmark {
+  display: none;
+}
+.related .bookmark.selected,
+.episode .bookmark.selected {
+  display: block;
 }
 
 /* episodes */
@@ -151,9 +147,19 @@ a {
 .episode h3 a {
   color: white;
 }
+.bookmarks .chapter,
 .episode .chapter {
   float: left;
   padding: 0 50px 25px 0;
+}
+.bookmarks .chapter img,
+.episode .chapter img {
+    width: 128px;
+    height: 72px;
+    border: 1px solid #888;
+    border-radius: 3px;
+    box-shadow: 3px 3px 8px 0px rgba(26,26,26,0.7);
+    overflow: hidden;
 }
 .episode .chapter h4 {
   position: absolute;
@@ -163,6 +169,11 @@ a {
 }
 .episode .bookmark {
   top: -10px;
+}
+
+/* bookmarks */
+.bookmarks {
+ padding: 15px; 
 }
 
 /* play view */
@@ -216,13 +227,17 @@ a {
   background-color: rgb(126,139,148);
 }
 .chapters .bookmark {
-  top: 10px;
-  right: 20px;
+  top: 30px;
+  right: 25px;
 }  
 .chapters .chapter h4 {
   margin: 0 0 8px 0;
   font-size: 14px;
   color: #FFF;
+}
+.chapters img {
+    width: 65%;
+    border: 1px solid white;
 }
 
 /* links */

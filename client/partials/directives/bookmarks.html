@@ -1,5 +1,7 @@
-<ul class="chapter-list clearfix">
-	<li class="chapter" ng-repeat="b in bookmarks">
-    <chapter-item video="b.video" chapter="b.chapter" index="b.index"></chapter-item>
-	</li>
-</ul>
+<div class="bookmarks chapters">
+  <div ng-repeat="b in bookmarks">
+    <div class="chapter" ng-click="play($index)">
+        <video-chapter video="b.video" chapter="b.chapter"></video-chapter>
+    </div>
+  </div>
+</div>
