@@ -204,7 +204,7 @@
                   "startTime":40599.0,
                   "duration":83318.0,
                   "title":"Hermitage",
-                  "locator":"http://nl.dbpedia.org/resource/Hermitage_(Sint-Petersburg)"
+                  "locator":"http://nl.dbpedia.org/resource/Hermitage_%28Sint-Petersburg)"
                },
                {  
                   "startTime":71639.0,
@@ -230,13 +230,13 @@
                   "startTime":399720.0,
                   "duration":803279.0,
                   "title":"Mechelen",
-                  "locator":"http://nl.dbpedia.org/resource/Mechelen_(stad)"
+                  "locator":"http://nl.dbpedia.org/resource/Mechelen_%28stad)"
                },
                {  
                   "startTime":448519.0,
                   "duration":901719.0,
                   "title":"tin",
-                  "locator":"http://nl.dbpedia.org/resource/Tin_(element)"
+                  "locator":"http://nl.dbpedia.org/resource/Tin_%28element)"
                }
             ]
          },
@@ -414,7 +414,7 @@
                   "startTime":435759.0,
                   "duration":873318.0,
                   "title":"faience",
-                  "locator":"http://nl.dbpedia.org/resource/Faience_(aardewerk)"
+                  "locator":"http://nl.dbpedia.org/resource/Faience_%28aardewerk)"
                },
                {  
                   "startTime":466400.0,
@@ -432,7 +432,7 @@
                   "startTime":496400.0,
                   "duration":995959.0000000001,
                   "title":"Egyptische",
-                  "locator":"http://nl.dbpedia.org/resource/Egypte_(land)"
+                  "locator":"http://nl.dbpedia.org/resource/Egypte_%28land)"
                }
             ]
          },
@@ -460,7 +460,7 @@
                   "startTime":1555479.0,
                   "duration":3115399.0000000005,
                   "title":"eikenhout",
-                  "locator":"http://nl.dbpedia.org/resource/Eiken_(hout)"
+                  "locator":"http://nl.dbpedia.org/resource/Eiken_%28hout)"
                }
             ]
          },
@@ -488,7 +488,7 @@
                   "startTime":2434000,
                   "duration":5109000,
                   "title":"Vruchtbaarheidssymbool",
-                  "locator":"http://nl.dbpedia.org/resource/Vruchtbaarheid_(symbool)"
+                  "locator":"http://nl.dbpedia.org/resource/Vruchtbaarheid_%28symbool)"
                }
             ]
          }
@@ -610,7 +610,7 @@
                   "startTime":906000,
                   "duration":1816879.0,
                   "title":"hotel Des Indes",
-                  "locator":"http://nl.dbpedia.org/resource/Hotel_Des_Indes_(Den_Haag)"
+                  "locator":"http://nl.dbpedia.org/resource/Hotel_Des_Indes_%28Den_Haag)"
                }
             ]
          },
@@ -629,8 +629,8 @@
                {  
                   "startTime":1269000,
                   "duration":2809000,
-                  "title":"Wereldtentoonstelling (1889)",
-                  "locator":"http://dbpedia.org/resource/Exposition_Universelle_(1889)"
+                  "title":"Wereldtentoonstelling %281889)",
+                  "locator":"http://dbpedia.org/resource/Exposition_Universelle_%281889)"
                },
                {  
                   "startTime":1298000,
@@ -648,19 +648,19 @@
                   "startTime":1314000,
                   "duration":2854000,
                   "title":"Jacquemart",
-                  "locator":"http://dbpedia.org/resource/Jacquemart_(bellstriker)"
+                  "locator":"http://dbpedia.org/resource/Jacquemart_%28bellstriker)"
                },
                {  
                   "startTime":1340000,
                   "duration":2880000,
                   "title":"Hebe",
-                  "locator":"http://nl.dbpedia.org/resource/Hebe_(mythologie)"
+                  "locator":"http://nl.dbpedia.org/resource/Hebe_%28mythologie)"
                },
                {  
                   "startTime":1347000,
                   "duration":2887000,
                   "title":"Charitas",
-                  "locator":"http://nl.dbpedia.org/resource/Caritas_(deugd)"
+                  "locator":"http://nl.dbpedia.org/resource/Caritas_%28deugd)"
                },
                {  
                   "startTime":1431000,
@@ -671,7 +671,7 @@
                {  
                   "startTime":1453000,
                   "duration":2993000,
-                  "title":"Breguet (bedrijf)",
+                  "title":"Breguet %28bedrijf)",
                   "locator":"http://dbpedia.org/resource/Abraham-Louis_Breguet"
                },
                {  
@@ -865,7 +865,7 @@
                   "startTime":2630280.0,
                   "duration":5264199.000000001,
                   "title":"Haagse school",
-                  "locator":"http://nl.dbpedia.org/resource/Haagse_School_(schilderkunst)"
+                  "locator":"http://nl.dbpedia.org/resource/Haagse_School_%28schilderkunst)"
                }
             ]
          }
@@ -987,7 +987,7 @@
                   "startTime":2523919.0,
                   "duration":5059519.0,
                   "title":"messing",
-                  "locator":"http://nl.dbpedia.org/resource/Messing_(legering)"
+                  "locator":"http://nl.dbpedia.org/resource/Messing_%28legering)"
                },
                {  
                   "startTime":2575639.0,
@@ -999,7 +999,7 @@
                   "startTime":2587520.0,
                   "duration":5182320.0,
                   "title":"tin",
-                  "locator":"http://nl.dbpedia.org/resource/Tin_(element)"
+                  "locator":"http://nl.dbpedia.org/resource/Tin_%28element)"
                }
             ]
          }
@@ -1077,7 +1077,7 @@
                   "startTime":1442560.0,
                   "duration":2887840.0,
                   "title":"plaquette",
-                  "locator":"http://nl.dbpedia.org/resource/Plaquette_(afbeelding)"
+                  "locator":"http://nl.dbpedia.org/resource/Plaquette_%28afbeelding)"
                },
                {  
                   "startTime":1506520.0,
