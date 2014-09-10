@@ -15,7 +15,7 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       scope.mute = false;
       scope.volume = '1'; //from 0 to 1, and range treats value as strings
       scope.previousVolume = scope.volume;
-
+      scope.fullscreen = false;
       scope.isFirst = false;
       scope.isLast = false;
 
@@ -44,7 +44,12 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
         var value = $event.target.value;
         sendToPlayer({action: 'volume', value: value});
       };
-
+      
+      scope.toggleFullscreen = function() {
+        scope.fullscreen = !scope.fullscreen;
+        sendToPlayer({action: 'fullscreen', value:scope.fullscreen});
+      }
+      
       scope.prevChapter = function () {
         jump(-1);
       };

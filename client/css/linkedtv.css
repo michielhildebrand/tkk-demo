@@ -11,6 +11,7 @@ a {
 .bar-tkk {
   background-color: rgba(95,109,105,0.8);
   border-bottom: 1px solid rgb(100,114,124);
+  z-index: 2147483647; /* http://css-tricks.com/custom-controls-in-html5-video-full-screen/ */
 }
 .bar-player {
   padding: 0;
@@ -156,6 +157,9 @@ a {
   height: auto !important;
   width: auto !important;
 }
+.player video::-webkit-media-controls {
+  display:none !important;
+}
 .player-controls {
 }
 .chapter-controls {
@@ -165,7 +169,7 @@ a {
   left: 20%;
   bottom: 29px;
   width: 80%;
-  z-index: 100;
+  z-index: 2147483648;
 }
 .range {
   padding: 0;
