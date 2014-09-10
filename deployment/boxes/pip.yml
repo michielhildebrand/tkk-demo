@@ -15,11 +15,8 @@
 
     - mysql_root_password: nDN8Dtp
 
-    #- springfield_ip: 192.16.196.73
-    #- app_address: pip.ia.cwi.nl
-
-    - springfield_ip: 85.223.106.135
-    - app_address: 85.223.106.135
+    - springfield_ip: 192.16.196.73
+    - app_address: pip.ia.cwi.nl
 
   tasks:
     - include: "{{prudentia_dir}}/tasks/common-setup.yml"
