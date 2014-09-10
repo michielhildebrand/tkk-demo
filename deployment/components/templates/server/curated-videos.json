@@ -12,6 +12,12 @@
             "startTime":7000,
             "duration":158000,
             "title":"Introduction",
+            "artworks": [
+              "museum martena"
+            ],
+            "backgrounds": [
+              "museum martena"
+            ],
             "fragments":[  
                {  
                   "startTime":44000,
@@ -78,6 +84,12 @@
             "startTime":988000,
             "duration":2201000,
             "title":"Eisenloeffel clock",
+            "artworks": [
+              "jan eisenloeffel"
+            ],
+            "backgrounds": [
+              "jan eisenloeffel"
+            ],
             "fragments":[  
                {  
                   "startTime":1044838,
@@ -107,6 +119,12 @@
             "startTime":2158000,
             "duration":4552000,
             "title":"Silver tea jar",
+            "artworks": [
+              "zilver theebus"
+            ],
+            "backgrounds": [
+              "zilver theebus"
+            ],
             "fragments":[  
                {  
                   "startTime":2165000,
@@ -193,6 +211,12 @@
             "startTime":10000,
             "duration":90000,
             "title":"Introduction",
+            "artworks": [
+              "hermitage amsterdam"
+            ],
+            "backgrounds": [
+              "hermitage amsterdam"
+            ],
             "fragments":[  
                {  
                   "startTime":40599,
@@ -278,7 +302,7 @@
             "id":5,
             "startTime":1653000,
             "duration":3542000,
-            "title":"Oil vinegar set",
+            "title":"Oil & vinegar set",
             "fragments":[  
                {  
                   "startTime":1711520,
@@ -319,6 +343,12 @@
             "startTime":2436000,
             "duration":5144000,
             "title":"Jan Sluijters",
+            "artworks": [
+              "jan sluijters"
+            ],
+            "backgrounds": [
+              "jan sluijters"
+            ],
             "fragments":[  
                {  
                   "startTime":2473799,
@@ -355,6 +385,12 @@
             "startTime":48000,
             "duration":154000,
             "title":"Introduction",
+            "artworks": [
+              "twentse welle"
+            ],
+            "backgrounds": [
+              "twentse welle"
+            ],
             "fragments":[  
                {  
                   "startTime":78399,
@@ -455,6 +491,12 @@
             "startTime":1522000,
             "duration":3264000,
             "title":"Wooden Maria Statue",
+            "artworks": [
+              "maria statue"
+            ],
+            "backgrounds": [
+              "mariebeeld"
+            ],
             "fragments":[  
                {  
                   "startTime":1555479,
@@ -507,6 +549,12 @@
             "startTime":5000,
             "duration":131000,
             "title":"Introduction",
+            "artworks": [
+              "moti breda"
+            ],
+            "backgrounds": [
+              "moti breda"
+            ],
             "fragments":[  
                {  
                   "startTime":0,
@@ -944,6 +992,12 @@
             "startTime":1857000,
             "duration":3971000,
             "title":"Delftware plate",
+            "artworks": [
+              "delftware"
+            ],
+            "backgrounds": [
+              "delftsblauw"
+            ],
             "fragments":[  
                {  
                   "startTime":1992359,
