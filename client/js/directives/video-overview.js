@@ -21,6 +21,11 @@ function videoOverviewDirective($state, Model) {
         var h = d.getHours() - 1;
         var m = d.getMinutes();
         var s = d.getSeconds();
+        s=s+2;
+        if(s>60) {
+          m++;
+          s=s-60;
+        }
         return scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       };
 
