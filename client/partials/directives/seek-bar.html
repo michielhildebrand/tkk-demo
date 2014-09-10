@@ -1,12 +1,13 @@
+<!--
 <div class="time pull-left text-left">
   {{startLapse}}
 </div>
 <div class="time pull-right text-right">
   -{{endLapse}}
 </div>
+-->
 <div class="seekbar">
-  <input type="range" min="0" max="{{duration}}" value="{{current}}">
-  <progress>
-    <bar ng-repeat="p in progresses" value="p.duration"></bar>
-  </progress>
+  <div class="range">
+    <input type="range" name="time" min="0" max="{{duration}}" value="{{current}}">
+  </div>
 </div>
