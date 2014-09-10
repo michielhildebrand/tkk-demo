@@ -1,4 +1,4 @@
-<div class="information-card">
+<div class="information-card" ng-if="!external">
   <div class="header">
     <h4 ng-if="title.value">{{title.value}}</h4>
     <div class="info" ng-if="source.value || dcSource.value || author.value">
@@ -7,7 +7,7 @@
       <span class="author" ng-if="author.value">{{author.value}}</span>
     </div>  
     <div class="link" ng-if="url.value">
-      <a ng-href="{{url.value}}">source</a>
+      <a ng-click="toggleExternalUrl(url.value)">source</a>
     </div>
   </div>
   <div class="image" ng-if="thumb.value">
@@ -84,3 +84,9 @@
   <div class="description">{{comment.value}}</div>  
 </div>  
 
+<div class="browser" ng-if="external">
+  <header ng-click="toggleExternalUrl()">{{externalUrl}}
+    <button ng-click="toggleExternalUrl()"class="close button button-small button-icon icon light ion-ios7-close-outline"></button>
+  </header>
+  <iframe ng-src="{{externalUrl}}"></iframe>
+</div>  

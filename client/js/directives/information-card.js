@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.information-card', []).directive('informationCard', [informationCardDirective]);
+angular.module('app.information-card', []).directive('informationCard', ['$sce', informationCardDirective]);
 
-function informationCardDirective() {
+function informationCardDirective($sce) {
   return {
     restrict: 'E',
     scope: {
@@ -10,6 +10,9 @@ function informationCardDirective() {
     },
     replace: false,
     link: function (scope, element, attrs) {
+      scope.external = false;
+      scope.externalUrl = "";
+      
       var interestingProps = ['url','thumb','title','comment', 
         'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
         'nationality', 'profession', 'style', 'predecessor', 'successor', 
@@ -18,6 +21,7 @@ function informationCardDirective() {
       ];
 
       scope.$watch('props', function (newProps) {
+        scope.external = false;
         if (newProps != null) {
           //console.log('new props', newProps);
 
@@ -29,6 +33,13 @@ function informationCardDirective() {
           scope.metadata = newProps.metadata;
         }
       });
+      
+      scope.toggleExternalUrl = function(url) {
+        if(url) {
+          scope.externalUrl = $sce.trustAsResourceUrl(url);
+        }  
+        scope.external = !scope.external;
+      };
 
       function firstEntity(prop) {
         var e = {value: '', uri: ''};
