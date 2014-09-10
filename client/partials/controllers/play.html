@@ -21,10 +21,8 @@
     </div>
   
     <div class="col col-80 main">
-      <div ng-show="!enrich">
-        <div class="player">
-          <player second="second" beaming="beaming"></player>
-        </div>
+      <div class="player" ng-show="!enrich">
+        <player second="second" beaming="beaming"></player>
       </div>
       <div class="enrichPanel" ng-show="enrich">
         <chapter-enrich height="playContentHeight"></chapter-enrich>
