@@ -10,6 +10,12 @@ function videoOverviewDirective($state, Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
+      var chapterWidth = 178;
+      var scrollViewWidth = element.parent().width();
+      var scrollWidth = scope.video.chapters.length * 178;
+      $(element.children()[0]).width(scrollViewWidth);
+      $(element.children()[0].children[0]).width(scrollWidth);
+      
       scope.getShot = function (chapter) {
         var d = new Date(chapter.startTime);
         var h = d.getHours() - 1;

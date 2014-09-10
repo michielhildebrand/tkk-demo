@@ -91,6 +91,9 @@ a {
   overflow: auto;
   background: -webkit-linear-gradient(top, rgba(45,57,64,1) 0%,rgba(45,57,64,1) 50%,rgba(50,62,71,1) 100%);
 }
+.episode .scroll {
+  overflow: hidden;
+}
 .episode h3 {
   margin: 10px 0;
 	font-size: 16px;	
@@ -113,7 +116,7 @@ a {
     border: 1px solid #888;
     border-radius: 3px;
     box-shadow: 3px 3px 8px 0px rgba(26,26,26,0.7);
-    overflow: auto;
+    overflow: hidden;
 }
 .episode .chapter img {
   width: 100%;
