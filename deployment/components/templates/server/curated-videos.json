@@ -732,12 +732,12 @@
         "fragments": [
           {
             "id": "3d2ebaea-3835-11e4-9f0a-005056a7235c",
-            "locator": "http://nl.wikipedia.org/wiki/Vruchtbaarheid_(symbool)",
+            "locator": "http://nl.wikipedia.org/wiki/Vruchtbaarheid_%28symbool%28",
             "duration": "241000.0",
             "title": "Vruchtbaarheidssymbool",
             "type": "Thing",
             "startTime": 2434000,
-            "enrichments": ["http://nl.wikipedia.org/wiki/Vruchtbaarheid_(symbool)"]
+            "enrichments": ["http://nl.wikipedia.org/wiki/Vruchtbaarheid_%28symbool%28"]
           }
         ]
       },
