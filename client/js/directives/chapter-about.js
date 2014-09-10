@@ -29,8 +29,9 @@ function chapterAboutDirective(entityProxy, Model) {
           url:[e.uri]
         };
         if (!_(answers).has(e.value)) {
-          entityProxy.get({loc: e.uri}, function (r) {
-             _(content).extend(_.property(e.uri)(r));
+          var uri = decodeURIComponent(e.uri); // hack sometimes we get encoded URIs, we don't want to double e
+          entityProxy.get({loc: uri}, function (r) {
+             _(content).extend(_.property(uri)(r));
             chapterEnrichCtrl.setContent(content, e);
             answers[e.value] = content;
           });
