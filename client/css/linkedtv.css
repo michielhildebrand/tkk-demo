@@ -78,7 +78,9 @@ a {
   height: 250px;
   width: 250px;
   overflow: hidden;
-  background-color: white;
+}
+.user.card .item-image img {
+  background-color: black;
 }
 .user.card .item h2,
 .user.card .item a {
