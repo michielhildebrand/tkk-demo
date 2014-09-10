@@ -14,7 +14,6 @@ a {
   z-index: 2147483647; /* http://css-tricks.com/custom-controls-in-html5-video-full-screen/ */
 }
 .bar-player {
-  padding: 0;
   border-top: none;
   background-color: black;
 }
