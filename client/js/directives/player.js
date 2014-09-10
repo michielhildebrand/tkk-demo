@@ -84,6 +84,13 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
               case 'volume':
                 player.volume = msg.value;
                 break;
+              case 'fullscreen':
+                if(msg.value) {
+                  player.webkitRequestFullscreen();
+                } else {
+                  player.webkitCancelFullScreen();
+                }  
+                break;  
               default:
                 console.log('Unknown action: ' + a);
             }
