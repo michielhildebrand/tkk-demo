@@ -15,14 +15,14 @@ a {
 }
 .bar-player {
   padding: 0;
-  background-color: #000;
-  border-color: #000;
+  border-top: none;
+  background-color: black;
 }
 .bar-tkk .title,
 .bar-tkk .icon {
   color: #FFF;
 }
-.button-icon.button.selected {
+.icon.selected {
   color: rgb(65,146,183);
 }
 .linkedtv-logo {
@@ -56,6 +56,15 @@ a {
 .col {
   padding: 0;
 }
+.col-15 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 15%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 15%;
+  -ms-flex: 0 0 15%;
+  flex: 0 0 15%;
+  max-width: 15%;
+}  
 .main {
   -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
   background-color: #000;
@@ -88,6 +97,44 @@ a {
   color: white;
 }
 
+/* chapter */
+.chapter img {
+    width: 128px;
+    height: 72px;
+    border: 1px solid #888;
+    border-radius: 3px;
+    box-shadow: 3px 3px 8px 0px rgba(26,26,26,0.7);
+    overflow: hidden;
+}
+.chapter .bookmark {
+  position: absolute;
+  display: block;
+}
+.chapter .bookmark.selected {
+  color: rgb(65,146,183);
+}
+.related .bookmark,
+.episode .bookmark {
+  display: none;
+}
+.related .bookmark.selected,
+.episode .bookmark.selected {
+  display: block;
+}
+.chapter .chapter-time {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    padding: 0 4px;
+    font-weight: bold;
+    font-size: 11px;
+    background-color: #000;
+    color: #fff;
+    height: 14px;
+    line-height: 14px;
+    opacity: .75;
+}
+
 /* episodes */
 .episode {
   padding: 20px;
@@ -104,39 +151,18 @@ a {
 .episode h3 a {
   color: white;
 }
-.episode .chapter h5 {
-  margin: 8px 0;
+.episode .chapter {
+  float: left;
+  padding: 0 50px 25px 0;
+}
+.episode .chapter h4 {
+  position: absolute;
+  bottom: 0;
   font-size: 12px;
   color: #CCC;
 }
-.episode .chapter {
-  float: left;
-  padding-right: 50px;
-}
-.episode .chapter .thumb {
-    width: 128px;
-    height: 72px;
-    border: 1px solid #888;
-    border-radius: 3px;
-    box-shadow: 3px 3px 8px 0px rgba(26,26,26,0.7);
-    overflow: hidden;
-}
-.episode .chapter img {
-  width: 100%;
-  height: 100%;
-}
-.episode .chapter .chapter-time {
-    position: absolute;
-    right: 2px;
-    bottom: 2px;
-    padding: 0 4px;
-    font-weight: bold;
-    font-size: 11px;
-    background-color: #000;
-    color: #fff;
-    height: 14px;
-    line-height: 14px;
-    opacity: .75;
+.episode .bookmark {
+  top: -10px;
 }
 
 /* play view */
@@ -160,15 +186,11 @@ a {
 .player video::-webkit-media-controls {
   display:none !important;
 }
-.player-controls {
-}
-.chapter-controls {
-}
 .seekbar {
   position: absolute;
-  left: 20%;
+  left: 15%;
   bottom: 29px;
-  width: 80%;
+  width: 85%;
   z-index: 2147483648;
 }
 .range {
@@ -182,25 +204,25 @@ a {
 }
 
 /* chapter list */
-.item.chapter {
+.chapters .item {
   border-width: 0 0 1px;
   border-style: solid;
   border-color: rgb(126,139,148);
   background-color: rgb(45,57,64);
   margin: 0;
-}  
-.item.chapter.active {
+  z-index: 1;
+}
+.chapters .item.active {
   background-color: rgb(126,139,148);
 }
-.item.chapter .icon {
-  color: #CCC;
-}
-.item.chapter h4 {
-  color: white;
+.chapters .bookmark {
+  top: 10px;
+  right: 20px;
+}  
+.chapters .chapter h4 {
+  margin: 0 0 8px 0;
   font-size: 14px;
-}
-.item.chapter img {
-    border: 1px solid #888;
+  color: #FFF;
 }
 
 /* links */

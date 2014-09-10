@@ -1,10 +1,6 @@
 <ion-list>
-  <ion-item ng-repeat="ch in video.chapters" class="item-thumbnail-left chapter" 
+  <ion-item ng-repeat="ch in video.chapters" class="item chapter" 
       ng-click="select($index)" ng-class="{active: isSelected($index)}">
-    <img ng-src="{{getShot($index)}}" alt="{{ch.title}}">
-    <h4>{{ch.title}}</h4>
-    <p>
-      <button class="button button-icon icon ion-bookmark"></button>
-    </p>
+    <video-chapter video="video" chapter="ch"></video-chapter>
   </ion-item>
 </ion-list>

@@ -13,19 +13,9 @@ function chapterSectionDirective($state, Eddie, Model) {
       scope.isSelected = function(index) {
         return Model.getChapterIndex() == index;
       };
-      scope.getShot = function (index) {
-        var d = new Date(scope.video.chapters[index].startTime);
-        var h = d.getHours() - 1;
-        var m = d.getMinutes();
-        var s = d.getSeconds();
-        s=s+2;
-        if(s>60) {
-          m++;
-          s=s-60;
-        }
-        return scope.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
-      };
+ 
       scope.select = function (index) {
+        Model.setChapterIndex(index); /* should we do this? */
         
         if ($state.current.name != 'play') {
           $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: index});

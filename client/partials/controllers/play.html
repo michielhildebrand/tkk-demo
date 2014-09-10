@@ -13,15 +13,15 @@
 
 <ion-content class="has-header has-footer" scroll="false">
   <div id="play-content" class="row">
-    <div class="col col-20 chapters">
+    <div class="col col-15 col-20 chapters">
       <h3>Current Program</h3>
       <ion-scroll direction="y">
         <chapter-selection video="video"></chapter-selection>
       </ion-scroll>  
     </div>
   
-    <div class="col col-80 main">
-      <div class="player" ng-show="!enrich">
+    <div class="col main">
+      <div class="player" ng-if="!enrich">
         <player second="second" beaming="beaming"></player>
       </div>
       <div class="enrichPanel" ng-show="enrich">
@@ -32,11 +32,11 @@
 </ion-content>  
 
 <seek-bar></seek-bar>
-<ion-footer-bar class="bar-tkk avrotros-logo">
+<ion-footer-bar class="bar-tkk bar-player avrotros-logo">
   <div class="row">
-    <div class="col col-20 chapter-controls">
+    <div class="col col-15 chapters">
     </div>
-    <div class="col col-80 player-controls">
+    <div class="col">
       
       <player-controls beaming="beaming" enrich="enrich"></player-controls>
     </div>
