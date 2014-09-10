@@ -25,8 +25,12 @@ function chapterEnrichDirective() {
       $scope.content = null;
       $scope.activeLinks = "about";
 
-      $scope.showLinks = function (active) {
-        $scope.activeLinks = active;
+      $scope.toggleLinks = function (active) {
+        if($scope.activeLinks==active) {
+          $scope.activeLinks = null
+        } else {
+          $scope.activeLinks = active;
+        }
       };
 
       this.extractMetadata = function (ch) {
