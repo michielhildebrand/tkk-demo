@@ -15,6 +15,8 @@ function chapterSectionDirective($state, Eddie, Model) {
       };
  
       scope.select = function (index) {
+        Model.setChapterIndex(index);
+
         if ($state.current.name != 'play') {
           $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: index});
         } else {
