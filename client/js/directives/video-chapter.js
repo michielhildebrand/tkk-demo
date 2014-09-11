@@ -33,10 +33,11 @@ function videoChapterDirective($state, Eddie, Model) {
         return moment.utc(parseInt(scope.chapter.duration)).format("m:ss");
       };
 
-      scope.bookmark = function () {
+      scope.bookmark = function (e) {
         var id = compositeId();
         var currentBookmarks = isBookmarked() ? Model.unbookmark(id) : Model.bookmark(id);
         sendToBookmark(currentBookmarks);
+        e.stopPropagation();
       };
 
       function isBookmarked() {
