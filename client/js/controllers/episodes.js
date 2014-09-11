@@ -5,12 +5,11 @@ angular.module('EpisodesCtrl', []).controller('EpisodesCtrl', ['$scope', '$state
 function episodesCtrl($scope, $state, Model, Eddie) {
   $scope.user = Model.getUser();
 
-  $scope.$watch(
-    function () {
-      return Model.getVideos();
-    },
-    function (newVideos) {
-      if (newVideos.length > 0) {
+  $scope.data = Model.underlyingData;
+        
+  $scope.$watchCollection('data', function () {
+      var newVideos = Model.getVideos();
+      if (Model.getBookmarks().length > 0 && newVideos.length>0) {
         $scope.latestVideos = [newVideos[0],newVideos[1],newVideos[2]];
         $scope.videos = newVideos;
       }
