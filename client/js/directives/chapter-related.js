@@ -20,6 +20,16 @@ function chapterRelatedDirective(Model) {
         }
       );
 
+      //TODO replace with chapter artwork picture (special object)
+      function shot(v, ch) {
+        var d = new Date(ch.startTime);
+        d.setSeconds(d.getSeconds() + 2); // +2 because the shots are a bit of
+        var h = d.getHours() - 1;
+        var m = d.getMinutes();
+        var s = d.getSeconds();
+        return v.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
+      }
+
       scope.nav = function(v, ch) {
         var content = {
           title: [ch.title],
