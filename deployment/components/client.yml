@@ -5,6 +5,15 @@
       - client
       - update
 
+  - include: "{{prudentia_dir}}/tasks/nodejs.yml"
+    tags: client
+
+  - name: Client | Update dependencies
+    command: chdir={{install_dir_client}} npm install
+    tags:
+      - client
+      - update
+
   - include: "{{prudentia_dir}}/tasks/nginx.yml"
     tags: client
 
@@ -16,15 +25,6 @@
   - name: Client | Copy Nginx config
     template: src={{root_dir}}/components/templates/client/nginx.conf dest=/etc/nginx/sites-available/tkk.com
     sudo: yes
-    tags:
-      - client
-      - update
-
-  - include: "{{prudentia_dir}}/tasks/nodejs.yml"
-    tags: client
-
-  - name: Client | Update dependencies
-    command: chdir={{install_dir_client}} npm install
     tags:
       - client
       - update
