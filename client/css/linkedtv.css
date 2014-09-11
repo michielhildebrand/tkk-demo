@@ -198,11 +198,6 @@ a {
   display:none !important;
 }
 .seekbar {
-  position: absolute;
-  left: 15%;
-  bottom: 28px;
-  width: 85%;
-  z-index: 2147483648;
 }
 .range {
   padding: 0;
