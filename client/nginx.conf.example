@@ -24,6 +24,11 @@ server {
     index index.html;
   }
 
+  location ~ ^/play/.* {
+    rewrite ^ /#$uri permanent;
+    break;
+  }
+
   location /ir {
     proxy_pass http://ir.lmcloud.vse.cz/irapi/media-server;
   }

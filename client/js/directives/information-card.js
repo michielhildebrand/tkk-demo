@@ -17,7 +17,8 @@ function informationCardDirective($sce) {
         'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
         'nationality', 'profession', 'style', 'predecessor', 'successor',
         'activeSince', 'knownFor', 'presents', 'guestedIn', 'locatedIn', 'population',
-        'dcTitle', 'dcCreator', 'dcDate', 'dcDescription', 'dcFormat', 'dcSource', 'edmLandingPage'
+        'dcTitle', 'dcCreator', 'dcDate', 'dcDescription', 'dcFormat', 'dcSource', 'edmLandingPage',
+        'playChapter'
       ];
 
       scope.$watch('props', function (newProps) {

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-related', []).directive('chapterRelated', ['Model', chapterRelatedDirective]);
+angular.module('app.chapter-related', []).directive('chapterRelated', ['$state', 'Model', chapterRelatedDirective]);
 
-function chapterRelatedDirective(Model) {
+function chapterRelatedDirective($state, Model) {
   return {
     restrict: 'E',
     scope: {},
@@ -30,11 +30,15 @@ function chapterRelatedDirective(Model) {
         return v.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       }
 
-      scope.nav = function (v, ch) {
+      scope.nav = function (v, ch, chapterIdx) {
         var content = {
           title: [ch.title],
           thumb: [shot(v, ch)],
-          metadata: chapterEnrichCtrl.extractMetadata(ch)
+          metadata: chapterEnrichCtrl.extractMetadata(ch),
+          playChapter: [{
+            value: ch.title,
+            uri: $state.href('play', {user: Model.getUser(), videoId: v.id, idx: chapterIdx}).substring(1)
+          }]
         };
         chapterEnrichCtrl.setContent(content);
       };

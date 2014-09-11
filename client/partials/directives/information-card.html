@@ -10,9 +10,11 @@
       <a ng-click="toggleExternalUrl(url.value)">source</a>
     </div>
   </div>
+
   <div class="image" ng-if="thumb.value">
     <img ng-src="{{thumb.value}}" title="{{label.value}}" alt="{{label.value}}"/>
   </div>
+
   <ul class="properties">
     <!-- persons/artists -->
 		<li ng-if="birthDate.value">
@@ -71,13 +73,16 @@
 		<li ng-if="dcFormat.value">
 		  <label>Format:</label> {{dcFormat.value}}
 		</li>
-		
   </ul>
-  
-  	
+
 	<!-- metadata -->
   <ul ng-if="metadata">
     <li ng-repeat="d in metadata"><a ng-click="nav(d)">{{d.value}}</a></li>
+  </ul>
+
+  <!-- related chapter -->
+  <ul ng-if="playChapter.uri">
+    <a href="{{playChapter.uri}}">Play it!</a>
   </ul>
   
   <div class="description">{{dcDescription.value}}</div>  
