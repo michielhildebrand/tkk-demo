@@ -6,13 +6,13 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     scope: {
-      second: '=',
-      beaming: '='
+      second: '='
     },
     replace: false,
     link: function (scope, element, attrs) {
       scope.paused = false;
-      scope.previousCurrentTime = 0;
+      var previousCurrentTime = 0;
+      var loaded = false;
 
       var player = element[0].children.player;
       var source = player.children.source;
@@ -28,13 +28,14 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
 
         $(player).on('loadedmetadata', function (metadata) {
           /*
-          var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
-          var targetRatio = 1.777777; //$(player).width()/$(player).height();
-          var adjustmentRatio =  targetRatio/actualRatio;
-          $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
-          */
+           var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
+           var targetRatio = 1.777777; //$(player).width()/$(player).height();
+           var adjustmentRatio =  targetRatio/actualRatio;
+           $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
+           */
           player.currentTime = time;
           startTimePublisher();
+          loaded = true;
         });
       }
 
@@ -57,51 +58,52 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       }
 
       var executeAction = function (msg) {
-        if (!scope.beaming) {
-          var a = msg.action;
-          if (a) {
-            console.log('action ' + a);
-            switch (a) {
-              case 'set-chapter':
-                Model.setChapterIndex(msg.value);
-                player.currentTime = Model.getTime();
-                break;
-              case 'play':
+        var a = msg.action;
+        if (a) {
+          //console.log('action ' + a);
+          switch (a) {
+            case 'set-chapter':
+              Model.setChapterIndex(msg.idx);
+              player.currentTime = Model.getTime();
+              break;
+            case 'play':
+              if (loaded) {
+                if (msg.time) player.currentTime = msg.time;
                 player.play();
                 startTimePublisher();
                 scope.paused = false;
-                break;
-              case 'pause':
-                player.pause();
-                stopTimePublisher();
-                scope.paused = true;
-                break;
-              case 'mute':
-                player.muted = true;
-                break;
-              case 'unmute':
-                player.muted = false;
-                break;
-              case 'volume':
-                player.volume = msg.value;
-                break;
-              case 'fullscreen':
-                if (msg.value) {
-                  if (screenfull.enabled) {
-                    screenfull.request(player);
-                  }
-                } else {
-                  if (screenfull.enabled) {
-                    screenfull.exit();
-                  }
-                }  
-                break;
-              default:
-                console.log('Unknown action: ' + a);
-            }
-          } else {
-            console.log('Unknown message: ' + msg);
+              }
+              break;
+            case 'pause':
+              player.pause();
+              stopTimePublisher();
+              scope.paused = true;
+              break;
+            case 'mute':
+              player.muted = true;
+              break;
+            case 'unmute':
+              player.muted = false;
+              break;
+            case 'volume':
+              player.volume = msg.value;
+              break;
+            case 'fullscreen':
+              if (msg.value) {
+                if (screenfull.enabled) {
+                  screenfull.request(player);
+                }
+              } else {
+                if (screenfull.enabled) {
+                  screenfull.exit();
+                }
+              }
+              break;
+            default:
+              console.log('Unknown action: ' + a);
           }
+        } else {
+          console.log('Unknown message: ' + msg);
         }
       };
       var unsubscribePlayer = eventsBus.subscribe('player', executeAction);
@@ -116,8 +118,8 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
 
       function publishCurrentTime() {
         var currentTime = player.currentTime;
-        if (currentTime != scope.previousCurrentTime) {
-          scope.previousCurrentTime = currentTime;
+        if (currentTime != previousCurrentTime) {
+          previousCurrentTime = currentTime;
           if (scope.second) {
             Eddie.putLou({target: 'player-time', data: currentTime});
           } else {
@@ -125,16 +127,6 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
           }
         }
       }
-
-      scope.$watch('beaming', function (newBeaming, oldBeaming) {
-        if (newBeaming != oldBeaming) {
-          if (newBeaming) {
-            player.pause();
-          } else {
-            player.play();
-          }
-        }
-      });
 
       scope.$on("$destroy", function () {
         console.log('destroy player');

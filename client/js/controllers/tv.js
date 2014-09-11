@@ -4,7 +4,6 @@ angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', 'Model
 
 function tvCtrl($scope, eventsBus, Model) {
   $scope.second = true;
-  $scope.beaming = false;
 
   $scope.full = function() {
     if (screenfull.enabled) {
@@ -14,9 +13,12 @@ function tvCtrl($scope, eventsBus, Model) {
 
   var playVideo = function (msg) {
     switch (msg.action) {
-      case 'play':
+      case 'set-video':
         Model.play(msg.video, msg.chapter);
         $scope.$$phase || $scope.$apply();
+        break;
+      case 'play':
+        eventsBus.publish('player', {action: 'play', time: msg.time});
         break;
       case 'stop-beaming':
         eventsBus.publish('player', {action: 'pause'});

@@ -58,17 +58,18 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       };
 
       function jump(delta) {
-        sendToPlayer({action: 'set-chapter', value: Model.getChapterIndex() + delta});
+        sendToPlayer({action: 'set-chapter', idx: Model.getChapterIndex() + delta});
       }
 
       scope.toggleBeam = function () {
         scope.beaming = !scope.beaming;
         if (scope.beaming) {
-          sendToRemoteTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
-          sendToRemotePlayer({action: 'play'})
+          sendToLocalPlayer({action: 'pause'});
+          sendToRemoteTv({action: 'set-video', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
+          sendToRemoteTv({action: 'play', time: currentTime});
         } else {
-          scope.play = true;
           sendToRemoteTv({action: 'stop-beaming'});
+          sendToLocalPlayer({action: 'play', time: currentTime});
         }
       };
 
@@ -88,6 +89,12 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
         }
       );
 
+      var currentTime = 0;
+      var noteCurrentTime = function(t) {
+        currentTime = t
+      };
+      eventsBus.subscribe('player-time', noteCurrentTime);
+
       function sendToPlayer(a) {
         if (!scope.beaming) {
           sendToLocalPlayer(a);
@@ -96,16 +103,13 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
         }
       }
       function sendToLocalPlayer(a) {
-        console.log('local msg to player', a);
         eventsBus.publish('player', a);
       }
       function sendToRemotePlayer(a) {
-        console.log('remote msg to player', a);
         Eddie.putLou({target: 'player', data: a});
       }
 
       function sendToRemoteTv(a) {
-        console.log('remote msg to tv', a);
         Eddie.putLou({target: 'tv', data: a});
       }
     },

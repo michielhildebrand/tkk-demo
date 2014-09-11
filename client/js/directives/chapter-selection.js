@@ -15,12 +15,10 @@ function chapterSectionDirective($state, Eddie, Model) {
       };
  
       scope.select = function (index) {
-        Model.setChapterIndex(index); /* should we do this? */
-        
         if ($state.current.name != 'play') {
           $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: index});
         } else {
-          sendToPlayer({action: 'set-chapter', value: index});
+          sendToPlayer({action: 'set-chapter', idx: index});
         }
       };
       
