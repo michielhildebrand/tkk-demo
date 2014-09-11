@@ -94,6 +94,11 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
                 if (screenfull.enabled) screenfull.exit();
               }
               break;
+            case 'dispose':
+              player.pause();
+              source.src = '';
+              player.poster = 'img/linkedtv_big.jpg';
+              break;
             default:
               console.log('Unknown action: ' + a);
           }
@@ -104,7 +109,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       var unsubscribePlayer = eventsBus.subscribe('player', executeAction);
 
       function startTimePublisher() {
-        scope.playerTimePublisher = $interval(publishCurrentTime, 1000);
+        scope.playerTimePublisher = $interval(publishCurrentTime, 2000);
       }
 
       function stopTimePublisher() {

@@ -23,7 +23,7 @@ function chapterAboutDirective(entityProxy, Model) {
       );
 
       scope.nav = function (e) {
-        console.log(e);
+        //console.log(e);
         var content = {
           title: [e.value],
           url: [e.uri]
