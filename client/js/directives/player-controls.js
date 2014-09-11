@@ -44,12 +44,12 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
         var value = $event.target.value;
         sendToPlayer({action: 'volume', value: value});
       };
-      
+
       scope.toggleFullscreen = function() {
         scope.fullscreen = !scope.fullscreen;
         sendToPlayer({action: 'fullscreen', value:scope.fullscreen});
-      }
-      
+      };
+
       scope.prevChapter = function () {
         jump(-1);
       };
@@ -64,13 +64,14 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       scope.toggleBeam = function () {
         scope.beaming = !scope.beaming;
         if (scope.beaming) {
-          //TODO: instead of sending to tv, use player
-          sendToTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
+          sendToRemoteTv({action: 'play', video: Model.getVideo().id, chapter: Model.getChapterIndex()});
+          sendToRemotePlayer({action: 'play'})
         } else {
-          //TODO: continue playing the video on the tablet
+          scope.play = true;
+          sendToRemoteTv({action: 'stop-beaming'});
         }
       };
-      
+
       scope.toggleEnrich = function () {
         scope.enrich = !scope.enrich;
       };
@@ -87,19 +88,25 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
         }
       );
 
-      function sendToPlayer(action) {
+      function sendToPlayer(a) {
         if (!scope.beaming) {
-          eventsBus.publish('player', action);
+          sendToLocalPlayer(a);
         } else {
-          Eddie.putLou({target: 'player', data: action});
+          sendToRemotePlayer(a);
         }
       }
-      function sendToTv(action) {
-        if (!scope.beaming) {
-          eventsBus.publish('tv', action);
-        } else {
-          Eddie.putLou({target: 'tv', data: action});
-        }
+      function sendToLocalPlayer(a) {
+        console.log('local msg to player', a);
+        eventsBus.publish('player', a);
+      }
+      function sendToRemotePlayer(a) {
+        console.log('remote msg to player', a);
+        Eddie.putLou({target: 'player', data: a});
+      }
+
+      function sendToRemoteTv(a) {
+        console.log('remote msg to tv', a);
+        Eddie.putLou({target: 'tv', data: a});
       }
     },
     templateUrl: 'partials/directives/player-controls.html'

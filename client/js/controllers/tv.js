@@ -13,9 +13,15 @@ function tvCtrl($scope, eventsBus, Model) {
   };
 
   var playVideo = function (msg) {
-    Model.play(msg.video, msg.chapter);
-
-    $scope.$$phase || $scope.$apply();
+    switch (msg.action) {
+      case 'play':
+        Model.play(msg.video, msg.chapter);
+        $scope.$$phase || $scope.$apply();
+        break;
+      case 'stop-beaming':
+        eventsBus.publish('player', {action: 'pause'});
+        break;
+    }
   };
 
   eventsBus.subscribe('tv', playVideo);

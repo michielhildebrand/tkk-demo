@@ -27,7 +27,8 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
         }
 
         $(player).on('loadedmetadata', function (metadata) {
-          /*var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
+          /*
+          var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
           var targetRatio = 1.777777; //$(player).width()/$(player).height();
           var adjustmentRatio =  targetRatio/actualRatio;
           $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
@@ -59,7 +60,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
         if (!scope.beaming) {
           var a = msg.action;
           if (a) {
-            //console.log('action ' + a);
+            console.log('action ' + a);
             switch (a) {
               case 'set-chapter':
                 Model.setChapterIndex(msg.value);
@@ -85,12 +86,16 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
                 player.volume = msg.value;
                 break;
               case 'fullscreen':
-                if(msg.value) {
-                  player.webkitRequestFullScreen();
+                if (msg.value) {
+                  if (screenfull.enabled) {
+                    screenfull.request(player);
+                  }
                 } else {
-                  document.webkitCancelFullScreen();
+                  if (screenfull.enabled) {
+                    screenfull.exit();
+                  }
                 }  
-                break;  
+                break;
               default:
                 console.log('Unknown action: ' + a);
             }
@@ -121,12 +126,13 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
         }
       }
 
-      scope.$watch('beaming', function (beaming) {
-        if (beaming) {
-          //TODO: stop publishing time
-          player.pause();
-        } else {
-          //TODO: restart publishing time
+      scope.$watch('beaming', function (newBeaming, oldBeaming) {
+        if (newBeaming != oldBeaming) {
+          if (newBeaming) {
+            player.pause();
+          } else {
+            player.play();
+          }
         }
       });
 
