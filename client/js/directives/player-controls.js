@@ -77,7 +77,7 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
 
       scope.toggleEnrich = function () {
         scope.enrich = !scope.enrich;
-        if (!scope.beaming) {
+        if (!scope.beaming && scope.play) {
           scope.togglePlay();
         }
       };
