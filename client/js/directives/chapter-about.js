@@ -25,13 +25,13 @@ function chapterAboutDirective(entityProxy, Model) {
       scope.nav = function (e) {
         console.log(e);
         var content = {
-          title:[e.value],
-          url:[e.uri]
+          title: [e.value],
+          url: [e.uri]
         };
         if (!_(answers).has(e.value)) {
           var uri = decodeURIComponent(e.uri); // hack sometimes we get encoded URIs, we don't want to double e
           entityProxy.get({loc: uri}, function (r) {
-             _(content).extend(_.property(uri)(r));
+            _(content).extend(_.property(uri)(r));
             chapterEnrichCtrl.setContent(content, e);
             answers[e.value] = content;
           });

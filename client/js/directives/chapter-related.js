@@ -30,7 +30,7 @@ function chapterRelatedDirective(Model) {
         return v.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       }
 
-      scope.nav = function(v, ch) {
+      scope.nav = function (v, ch) {
         var content = {
           title: [ch.title],
           thumb: [shot(v, ch)],

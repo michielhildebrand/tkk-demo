@@ -12,12 +12,12 @@ function informationCardDirective($sce) {
     link: function (scope, element, attrs) {
       scope.external = false;
       scope.externalUrl = "";
-      
-      var interestingProps = ['url','thumb','title','comment', 
+
+      var interestingProps = ['url', 'thumb', 'title', 'comment',
         'birthDate', 'deathDate', 'birthPlace', 'deathPlace',
-        'nationality', 'profession', 'style', 'predecessor', 'successor', 
-        'activeSince', 'knownFor', 'presents','guestedIn', 'locatedIn', 'population', 
-        'dcTitle', 'dcCreator','dcDate','dcDescription','dcFormat','dcSource','edmLandingPage'
+        'nationality', 'profession', 'style', 'predecessor', 'successor',
+        'activeSince', 'knownFor', 'presents', 'guestedIn', 'locatedIn', 'population',
+        'dcTitle', 'dcCreator', 'dcDate', 'dcDescription', 'dcFormat', 'dcSource', 'edmLandingPage'
       ];
 
       scope.$watch('props', function (newProps) {
@@ -33,11 +33,11 @@ function informationCardDirective($sce) {
           scope.metadata = newProps.metadata;
         }
       });
-      
-      scope.toggleExternalUrl = function(url) {
-        if(url) {
+
+      scope.toggleExternalUrl = function (url) {
+        if (url != null) {
           scope.externalUrl = $sce.trustAsResourceUrl(url);
-        }  
+        }
         scope.external = !scope.external;
       };
 
