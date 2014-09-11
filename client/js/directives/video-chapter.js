@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.video-chapter', []).directive('videoChapter', ['$state', 'Eddie', 'Model', videoChapterDirective]);
+angular.module('app.video-chapter', []).directive('videoChapter', ['Eddie', 'Model', videoChapterDirective]);
 
-function videoChapterDirective($state, Eddie, Model) {
+function videoChapterDirective(Eddie, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -12,9 +12,9 @@ function videoChapterDirective($state, Eddie, Model) {
     replace: false,
     link: function (scope, element, attrs) {
       scope.data = Model.underlyingData;
-            
+
       scope.$watchCollection('data', function () {
-          if (Model.getBookmarks().length > 0 && Model.getChapter() != null) {
+          if (Model.getBookmarks().length > 0) {
             scope.bookmarkStatus = isBookmarked();
           }
         }
