@@ -22,15 +22,23 @@ public class VideoLoader {
             "8a8187f2-3fc8-cb54-0140-7dd2d0650005",
             "c44643ee-823e-476c-a099-bd28bcf1e56a");
 
+    private boolean useJson;
     private List<Video> videos;
 
     public VideoLoader(boolean offline) {
-        if (!offline) {
+        useJson = offline;
+        if (!useJson) {
             videos = new ArrayList<Video>();
             for (String s : EpisodesId) {
                 System.out.println("Fetching episode = " + s);
                 videos.add(new Video(new Episode(s)));
             }
+        }
+    }
+
+    public List<Video> getRecentVideos() {
+        if (!useJson) {
+            return videos;
         } else {
             FileReader reader = null;
             try {
@@ -39,11 +47,7 @@ public class VideoLoader {
                 e.printStackTrace();
             }
             Type listType = new TypeToken<ArrayList<Video>>() {}.getType();
-            videos = new Gson().fromJson(reader, listType);
+            return new Gson().fromJson(reader, listType);
         }
-    }
-
-    public List<Video> getRecentVideos() {
-        return videos;
     }
 }
