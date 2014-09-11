@@ -17,7 +17,8 @@ function playCtrl($scope, $state, $location, Model) {
       if (newVideos.length > 0) {
         Model.play($state.params.videoId, $state.params.idx);
         $scope.video = Model.getVideo();
-        console.log(angular.element('#play-content')[0].offsetHeight)
+
+        console.log(angular.element('#play-content')[0].offsetHeight);
         $scope.playContentHeight = angular.element('#play-content')[0].offsetHeight;
       }
     }

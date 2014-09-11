@@ -46,8 +46,10 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       };
 
       scope.toggleFullscreen = function() {
-        scope.fullscreen = !scope.fullscreen;
-        sendToPlayer({action: 'fullscreen', value:scope.fullscreen});
+        if (!scope.beaming) {
+          scope.fullscreen = !scope.fullscreen;
+          sendToPlayer({action: 'fullscreen', value: scope.fullscreen});
+        }
       };
 
       scope.prevChapter = function () {
@@ -75,6 +77,9 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
 
       scope.toggleEnrich = function () {
         scope.enrich = !scope.enrich;
+        if (!scope.beaming) {
+          scope.togglePlay();
+        }
       };
 
       scope.$watch(

@@ -19,6 +19,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
 
       function updatePlayer(video, time) {
         //console.log('update player', video, time);
+        loaded = false;
         player.poster = video.poster;
         source.src = video.src;
         player.load();
@@ -51,9 +52,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       if (scope.second) {
         angular.element(element).on("click", function () {
           // To make fullscreen work the request has to sent from inside a short running user-generated event handler.
-          if (screenfull.enabled) {
-            screenfull.request();
-          }
+          if (screenfull.enabled) screenfull.request();
         });
       }
 
@@ -90,13 +89,9 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
               break;
             case 'fullscreen':
               if (msg.value) {
-                if (screenfull.enabled) {
-                  screenfull.request(player);
-                }
+                if (screenfull.enabled) screenfull.request(player);
               } else {
-                if (screenfull.enabled) {
-                  screenfull.exit();
-                }
+                if (screenfull.enabled) screenfull.exit();
               }
               break;
             default:
