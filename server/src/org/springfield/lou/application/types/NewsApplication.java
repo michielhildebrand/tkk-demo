@@ -74,16 +74,20 @@ public class NewsApplication extends Html5Application {
         System.out.println("Screen put = " + put);
         System.out.println("Screen msg = " + msgString);
 
+        boolean propagate = true;
         if (put.contains("ngproxy")) {
             Message msg = Serializer.fromJson(msgString);
             userEvents.put(msg);
             if (msg.getTarget().equals("bookmark")) {
+                propagate = false;
                 List<String> bookmarks = (List<String>) msg.getData();
                 //the client sends all the bookmarks every time, that is to avoid inconsistencies
                 testUser.getBookmarks().clear();
                 testUser.getBookmarks().addAll(bookmarks);
             }
-        } else {
+        }
+
+        if (propagate) {
             super.putData(data);
         }
     }
