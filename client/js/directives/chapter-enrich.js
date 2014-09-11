@@ -38,11 +38,14 @@ function chapterEnrichDirective() {
           .map(function (f) {
             return {value: f.title.trim(), uri: f.locator.trim()}
           })
-          .filter(function (e) {
-            return e.value.length > 0
+          .filter(function (m) {
+            return m.value.length > 0
           })
-          .uniq(false, function (e) {
-            return e.value;
+          .uniq(false, function (m) {
+            return m.value;
+          })
+          .sortBy(function (m) {
+            return m.value.toLowerCase();
           })
           .value();
       };
