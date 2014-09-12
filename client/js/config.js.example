@@ -15,7 +15,7 @@ angular.module('Config', []).constant('Config', {
     },
     {
       name: 'Bert & Anne',
-      avatar: 'img/Anne_Bert.png',
+      avatar: 'img/Bert.png',
       id: 'bertanne'
     },
     {
