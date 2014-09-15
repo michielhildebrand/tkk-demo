@@ -18,6 +18,7 @@ function chapterAboutDirective(entityProxy, Model) {
         function (newChapter) {
           if (newChapter != null) {
             scope.metadata = chapterEnrichCtrl.extractMetadata(newChapter);
+            scope.nav(scope.metadata[0]);
           }
         }
       );
