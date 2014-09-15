@@ -59,7 +59,7 @@ function seekBarDirective($rootScope, eventsBus, Model) {
 
       function syncCurrentTime(t) {
         var millis = t * 1000;
-        Model.seek(millis);
+        //Model.seek(millis);
         updateBar(millis);
         $rootScope.$$phase || $rootScope.$apply();
       }

@@ -5,25 +5,30 @@ angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', 'Model
 function tvCtrl($scope, eventsBus, Model) {
   $scope.second = true;
 
-  $scope.full = function() {
+  $scope.full = function () {
     if (screenfull.enabled) {
       screenfull.request();
     }
   };
 
   var playVideo = function (msg) {
-    switch (msg.action) {
-      case 'set-video':
-        Model.play(msg.video, msg.chapter, msg.time);
-        $scope.$$phase || $scope.$apply();
-        break;
-      case 'play':
-        eventsBus.publish('player', {action: 'play', time: msg.time});
-        break;
-      case 'stop-beaming':
-        Model.reset();
-        eventsBus.publish('player', {action: 'dispose'});
-        break;
+    var a = msg.action;
+    if (a) {
+      //console.log('action ' + a);
+      switch (a) {
+        case 'set-video':
+          Model.play(msg.video, msg.chapter, msg.time);
+          $scope.$$phase || $scope.$apply();
+          break;
+        case 'stop-beaming':
+          Model.reset();
+          eventsBus.publish('player', {action: 'dispose'});
+          break;
+        default:
+          console.log('Unknown action: ' + a);
+      }
+    } else {
+      console.log('Unknown message: ' + msg);
     }
   };
 

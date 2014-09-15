@@ -7,7 +7,6 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
     restrict: 'E',
     replace: false,
     scope: {
-      beaming: '=',
       enrich: '='
     },
     link: function (scope, element, attrs) {
@@ -16,8 +15,7 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       scope.volume = '1'; //from 0 to 1, and range treats value as strings
       scope.previousVolume = scope.volume;
       scope.fullscreen = false;
-      scope.isFirst = false;
-      scope.isLast = false;
+      scope.beaming = Model.isBeaming();
 
       scope.togglePlay = function () {
         scope.play = !scope.play;
@@ -53,7 +51,7 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       };
 
       scope.toggleBeam = function () {
-        scope.beaming = !scope.beaming;
+        scope.beaming = Model.setBeaming(!scope.beaming);
         if (scope.beaming) {
           sendToLocalPlayer({action: 'pause'});
           sendToRemoteTv({action: 'set-video', video: Model.getVideo().id, chapter: Model.getChapterIndex(), time: currentTime});
@@ -71,18 +69,6 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
           }
         }
       };
-
-      scope.$watch(
-        function () {
-          return Model.getChapter();
-        },
-        function (newChapter) {
-          if (newChapter != null) {
-            scope.isFirst = Model.isFirstChapter();
-            scope.isLast = Model.isLastChapter();
-          }
-        }
-      );
 
       var currentTime = 0;
       var noteCurrentTime = function(t) {

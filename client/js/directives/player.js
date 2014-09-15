@@ -12,32 +12,31 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
     link: function (scope, element, attrs) {
       scope.paused = false;
       var previousCurrentTime = 0;
-      var loaded = false;
 
       var player = element[0].children.player;
       var source = player.children.source;
 
       function updatePlayer(video, time) {
-        //console.log('update player', video, time);
-        loaded = false;
         player.poster = video.poster;
         source.src = video.src;
         player.load();
-        if (!scope.paused) {
-          player.play();
-        }
 
-        $(player).on('loadedmetadata', function (metadata) {
-          /*
-           var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
-           var targetRatio = 1.777777; //$(player).width()/$(player).height();
-           var adjustmentRatio =  targetRatio/actualRatio;
-           $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
-           */
-          player.currentTime = time;
-          startTimePublisher();
-          loaded = true;
-        });
+        if (!Model.isBeaming()) {
+          if (!scope.paused) {
+            player.play();
+          }
+
+          $(player).on('loadedmetadata', function (metadata) {
+            /*
+             var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
+             var targetRatio = 1.777777; //$(player).width()/$(player).height();
+             var adjustmentRatio =  targetRatio/actualRatio;
+             $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
+             */
+            player.currentTime = time;
+            startTimePublisher();
+          });
+        }
       }
 
       scope.$watch(
@@ -61,17 +60,11 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
         if (a) {
           //console.log('action ' + a);
           switch (a) {
-            case 'set-chapter':
-              Model.setChapterIndex(msg.idx);
-              player.currentTime = Model.getTime();
-              break;
             case 'play':
-              if (loaded) {
-                if (msg.time) player.currentTime = msg.time;
-                player.play();
-                startTimePublisher();
-                scope.paused = false;
-              }
+              if (msg.time) player.currentTime = msg.time;
+              player.play();
+              startTimePublisher();
+              scope.paused = false;
               break;
             case 'pause':
               player.pause();
@@ -93,6 +86,9 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
               } else {
                 if (screenfull.enabled) screenfull.exit();
               }
+              break;
+            case 'set-time':
+              player.currentTime = msg.time;
               break;
             case 'dispose':
               player.pause();

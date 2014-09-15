@@ -10,6 +10,7 @@ function model() {
     currentChapter: null,
     currentChapterIndex: null,
     currentChapterTime: null,
+    beaming: false,
     bookmarks: []
   };
 
@@ -21,7 +22,7 @@ function model() {
 
   function setChapter(index, startTime) {
     data.currentChapterIndex = parseInt(index);
-    var ch = data.currentVideo.chapters[index];
+    var ch = data.currentVideo.chapters[data.currentChapterIndex];
     if (startTime == null) {
       data.currentChapterTime = ch.startTime / 1000; //in seconds
     } else {
@@ -66,6 +67,10 @@ function model() {
     seek: function (time) {
       findChapter(time);
     },
+    setBeaming: function (beaming) {
+      data.beaming = beaming;
+      return data.beaming;
+    },
     reset: function () {
       data.currentVideo = data.currentChapter = data.currentChapterIndex = data.currentChapterTime = null;
     },
@@ -78,14 +83,11 @@ function model() {
     getChapterIndex: function () {
       return data.currentChapterIndex;
     },
-    isFirstChapter: function () {
-      return data.currentChapterIndex == 0;
-    },
-    isLastChapter: function () {
-      return data.currentChapterIndex == (data.currentVideo.chapters.length - 1);
-    },
     getTime: function () {
       return data.currentChapterTime;
+    },
+    isBeaming: function () {
+      return data.beaming;
     },
     getBookmarks: function () {
       return data.bookmarks;

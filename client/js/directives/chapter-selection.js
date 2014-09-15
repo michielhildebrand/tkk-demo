@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-selection', []).directive('chapterSelection', ['$state', 'Eddie', 'Model',chapterSectionDirective]);
+angular.module('app.chapter-selection', []).directive('chapterSelection', ['$state', 'Model',chapterSectionDirective]);
 
-function chapterSectionDirective($state, Eddie, Model) {
+function chapterSectionDirective($state, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -15,18 +15,12 @@ function chapterSectionDirective($state, Eddie, Model) {
       };
  
       scope.select = function (index) {
-        Model.setChapterIndex(index);
-
         if ($state.current.name != 'play') {
           $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: index});
         } else {
-          sendToPlayer({action: 'set-chapter', idx: index});
+          Model.setChapterIndex(index);
         }
       };
-      
-      function sendToPlayer(action) {
-        Eddie.putLou({target: 'player', data: action});
-      }
     },
     templateUrl: 'partials/directives/chapter-selection.html'
   }
