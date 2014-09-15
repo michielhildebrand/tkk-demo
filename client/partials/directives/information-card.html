@@ -7,7 +7,7 @@
       <span class="author" ng-if="author.value">{{author.value}}</span>
     </div>  
     <div class="link" ng-if="url.value">
-      <a ng-click="toggleExternalUrl(url.value)">source</a>
+      <a ng-click="toggleExternalUrl(url.uri)">Source: {{url.value}}</a>
     </div>
   </div>
 

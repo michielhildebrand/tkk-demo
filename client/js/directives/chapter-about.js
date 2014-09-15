@@ -27,7 +27,10 @@ function chapterAboutDirective(entityProxy, Model) {
         //console.log(e);
         var content = {
           title: [e.value],
-          url: [e.uri]
+          url: [{
+            value: new URL(e.uri).hostname,
+            uri: e.uri
+          }]
         };
         if (!_(answers).has(e.value)) {
           var uri = decodeURIComponent(e.uri); // hack sometimes we get encoded URIs, we don't want to double e

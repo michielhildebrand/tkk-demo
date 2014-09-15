@@ -36,7 +36,7 @@ function chapterBackgroundDirective(irApi, Model) {
               if (source.indexOf('$') == -1) {
                 _(r[source]).each(function(post) {
                   //console.log(post);
-                  scope.backgrounds.push({title: post.micropost.title, url: post.mediaUrl, post: post.micropost})
+                  scope.backgrounds.push({title: post.micropost.title, url: post.mediaUrl, post: post.micropost, source: source})
                 });
               }
             });
@@ -50,7 +50,7 @@ function chapterBackgroundDirective(irApi, Model) {
         //console.log(e);
         var content = {
           title: [e.title], 
-          url: [e.url],
+          url: [{value: e.source, uri: e.url}],
           comment: [e.post.html]
         };
         chapterEnrichCtrl.setContent(content);

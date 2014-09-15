@@ -41,12 +41,12 @@ function chapterArtworksDirective(europeanaApi, Model) {
         europeanaApi.get({id0: e.id0, id1: e.id1}, function (r) {
           var content = {
             title: [e.title], 
-            thumb: [e.img]
+            thumb: [e.img],
+            url: [{value: 'www.europeana.eu', uri: r.object.europeanaAggregation.edmLandingPage}]
           };
           _(r.object.proxies.reverse()).each(function(p) {
             _(content).extend(p)
           });
-          _(content).extend({url:[r.object.europeanaAggregation.edmLandingPage]});
           chapterEnrichCtrl.setContent(content);
         });
 
