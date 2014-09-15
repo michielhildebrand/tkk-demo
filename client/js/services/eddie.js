@@ -37,7 +37,7 @@ function eddieService($rootScope, Config, Model, Tracker) {
       if (!initialized) {
         initializeEddie(user.id);
         Model.setUser(user.name, screenId);
-        Tracker.addEvent({action: 'user_login'});
+        Tracker.collect({action: 'user_login'});
       } else {
         //console.log('Eddie already initialized with userId ' + userId);
       }
@@ -46,7 +46,7 @@ function eddieService($rootScope, Config, Model, Tracker) {
       eddie.putLou('ngproxy', JSON.stringify(msg));
     },
     destroy: function(){
-      Tracker.addEvent({action: 'user_logout'});
+      Tracker.collect({action: 'user_logout'});
       Model.resetUser();
       destroyEddie();
     }

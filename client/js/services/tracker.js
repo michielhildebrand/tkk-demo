@@ -16,7 +16,7 @@ function tracker($interval, Model) {
   }
 
   return {
-    addEvent: function(e) {
+    collect: function(e) {
       _(e).extend({user: Model.getUser(), screen: Model.getScreenId()});
       events.push(e);
     }
