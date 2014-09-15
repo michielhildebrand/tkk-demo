@@ -2,36 +2,38 @@
   <h1 class="title">Tussen Kunst &amp; Kitsch</h1>
   <div class="buttons">
     <button class="button button-icon icon ion-log-out" ng-click="signOut()">{{user}}</button>
-  </div>  
+  </div>
 </ion-header-bar>
 
 <ion-tabs class="tabs-icon-top avrotros-logo">
   <ion-tab title="Popular" icon="icon ion-ios7-star">
     <ion-content class="has-header has-footer" scroll="false">
       <div class="episode" ng-repeat="v in latestVideos">
-          <h3><a href="" ng-click="playFirstChapter(v.id)">{{v.title}}</a></h3>
-          <video-overview video="v"></video-overview>
+        <h3><a href="" ng-click="playFirstChapter(v.id)">{{v.title}}</a></h3>
+        <video-overview video="v"></video-overview>
       </div>
-    </ion-content> 
+    </ion-content>
   </ion-tab>
 
   <ion-tab title="Episodes" icon="icon ion-navicon-round">
     <ion-content class="has-header has-footer">
       <div class="episode" ng-repeat="v in videos">
-          <h3><a href="" ng-click="playFirstChapter(v.id)">{{v.title}}</a></h3>
+        <h3><a href="" ng-click="playFirstChapter(v.id)">{{v.title}}</a></h3>
       </div>
     </ion-content>
   </ion-tab>
 
-  <!--ion-tab title="Recommended" icon="icon ion-eye">
+  <!--
+  <ion-tab title="Recommended" icon="icon ion-eye">
     <ion-content class="has-header has-footer">
     </ion-content>
-  </ion-tab-->
+  </ion-tab>
+  -->
 
   <ion-tab title="Bookmarks" icon="icon ion-bookmark">
     <ion-content class="has-header has-footer">
-        <bookmarks></bookmarks>
-    </ion-content>  
+      <bookmarks></bookmarks>
+    </ion-content>
   </ion-tab>
 
 </ion-tabs>

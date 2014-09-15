@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.bookmarks', []).directive('bookmarks', ['Model', bookmarksDirective]);
+angular.module('app.bookmarks', []).directive('bookmarks', ['$state', 'Model', bookmarksDirective]);
 
-function bookmarksDirective(Model) {
+function bookmarksDirective($state, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -41,6 +41,10 @@ function bookmarksDirective(Model) {
           };
         }
       }
+
+      scope.play = function (bookmark) {
+        $state.go('play', {user: Model.getUser(), videoId: bookmark.video.id, idx: bookmark.index});
+      };
     },
     templateUrl: 'partials/directives/bookmarks.html'
   }

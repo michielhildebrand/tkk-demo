@@ -1,6 +1,6 @@
 <div class="bookmarks chapters">
   <div ng-repeat="b in bookmarks">
-    <div class="chapter" ng-click="play($index)">
+    <div class="chapter" ng-click="play(b)">
         <video-chapter video="b.video" chapter="b.chapter"></video-chapter>
     </div>
   </div>
