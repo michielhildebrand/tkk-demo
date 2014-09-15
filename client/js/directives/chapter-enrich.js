@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-enrich', []).directive('chapterEnrich', [chapterEnrichDirective]);
+angular.module('app.chapter-enrich', []).directive('chapterEnrich', ['Model', chapterEnrichDirective]);
 
-function chapterEnrichDirective() {
+function chapterEnrichDirective(Model) {
   return {
     restrict: 'E',
     scope: {
@@ -24,6 +24,17 @@ function chapterEnrichDirective() {
       $scope.crumb = [];
       $scope.content = null;
       $scope.activeLinks = "about";
+
+      $scope.$watch(
+        function () {
+          return Model.getChapter()
+        },
+        function (newChapter) {
+          if (newChapter != null) {
+            $scope.activeLinks = "about";
+          }
+        }
+      );
 
       $scope.toggleLinks = function (active) {
         if($scope.activeLinks==active) {
