@@ -52,17 +52,6 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
         }
       };
 
-      scope.prevChapter = function () {
-        jump(-1);
-      };
-      scope.nextChapter = function () {
-        jump(1);
-      };
-
-      function jump(delta) {
-        sendToPlayer({action: 'set-chapter', idx: Model.getChapterIndex() + delta});
-      }
-
       scope.toggleBeam = function () {
         scope.beaming = !scope.beaming;
         if (scope.beaming) {
