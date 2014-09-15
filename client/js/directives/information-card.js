@@ -24,10 +24,7 @@ function informationCardDirective($sce) {
       scope.$watch('props', function (newProps) {
         scope.external = false;
         if (newProps != null) {
-          //console.log('new props', newProps);
-
           _(interestingProps).map(function (prop) {
-            //console.log('fetching', prop);
             scope[prop] = firstEntity(_.property(prop)(newProps));
           });
           //console.log(scope);

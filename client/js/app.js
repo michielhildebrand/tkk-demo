@@ -24,6 +24,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.information-card',
   'app.seek-bar',
   'app.chapter-enrich',
+  'app.visible-on-load',
 
   'Eddie',
   'Model',
