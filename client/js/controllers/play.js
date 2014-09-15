@@ -5,9 +5,9 @@ angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$loc
 function playCtrl($scope, $state, $location, eventsBus, Eddie, Model, Tracker) {
   $scope.second = false;
   $scope.enrich = false;
-  $scope.beaming = Model.isBeaming();
-
   $scope.playContentHeight = 0;
+  $scope.beaming = Model.isBeaming();
+  $scope.tracking = Tracker.enabled();
 
   $scope.$watch(
     function () {
@@ -53,6 +53,10 @@ function playCtrl($scope, $state, $location, eventsBus, Eddie, Model, Tracker) {
   $scope.goToMain = function () {
     Tracker.collect({action: 'player_stop', id: $scope.video, time: Model.getTime()});
     $state.go('episodes', {user: Model.getUser()});
+  };
+
+  $scope.toggleTracking = function () {
+    $scope.tracking = Tracker.toggle();
   };
 
   function sendToPlayer(a) {
