@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.video-chapter', []).directive('videoChapter', ['Eddie', 'Model', videoChapterDirective]);
+angular.module('app.video-chapter', []).directive('videoChapter', ['Eddie', 'Model', 'Tracker', videoChapterDirective]);
 
-function videoChapterDirective(Eddie, Model) {
+function videoChapterDirective(Eddie, Model, Tracker) {
   return {
     restrict: 'E',
     scope: {
@@ -36,6 +36,7 @@ function videoChapterDirective(Eddie, Model) {
       scope.bookmark = function (e) {
         var id = compositeId();
         var currentBookmarks = isBookmarked() ? Model.unbookmark(id) : Model.bookmark(id);
+        Tracker.collect({action: 'user_bookmark', id: id});
         sendToBookmark(currentBookmarks);
         e.stopPropagation();
       };

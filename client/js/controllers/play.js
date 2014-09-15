@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', 'eventsBus', 'Eddie', 'Model', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', 'eventsBus', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
-function playCtrl($scope, $state, $location, eventsBus, Eddie, Model) {
+function playCtrl($scope, $state, $location, eventsBus, Eddie, Model, Tracker) {
   $scope.second = false;
   $scope.enrich = false;
   $scope.beaming = Model.isBeaming();
@@ -51,6 +51,7 @@ function playCtrl($scope, $state, $location, eventsBus, Eddie, Model) {
   );
 
   $scope.goToMain = function () {
+    Tracker.collect({action: 'player_stop', id: $scope.video, time: Model.getTime()});
     $state.go('episodes', {user: Model.getUser()});
   };
 

@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('Model', []).factory('Model', model);
+angular.module('Model', []).factory('Model', ['Tracker', model]);
 
-function model() {
+function model(Tracker) {
   var data = {
     user: null,
-    screenId : null,
     videos: [],
     currentVideo: null,
     currentChapter: null,
@@ -46,15 +45,12 @@ function model() {
 
   return {
     underlyingData: data,
-    setUser: function (user, screenId) {
+    signIn: function (user) {
       data.user = user;
-      data.screenId = screenId;
+      Tracker.collect({action: 'user_login'});
     },
     getUser: function () {
       return data.user;
-    },
-    getScreenId: function () {
-      return data.screenId;
     },
     setVideos: function (videos) {
       data.videos = videos;
@@ -65,15 +61,18 @@ function model() {
     play: function (videoId, chapterIndex, startTime) {
       setVideo(videoId);
       setChapter(chapterIndex, startTime);
+      Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentChapterTime});
     },
     setChapterIndex: function (chapterIndex) {
       setChapter(chapterIndex);
+      Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentChapterTime});
     },
     seek: function (time) {
       findChapter(time);
     },
-    resetUser: function () {
-      data.screenId = data.user = null;
+    signOut: function () {
+      Tracker.collect({action: 'user_logout'});
+      data.user = null;
     },
     resetPlay: function () {
       data.currentVideo = data.currentChapter = data.currentChapterIndex = data.currentChapterTime = null;

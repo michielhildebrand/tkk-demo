@@ -93,6 +93,10 @@ tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',
         }
       });
 
+      $rootScope.$on("$destroy", function () {
+        Eddie.destroy();
+      });
+
       var syncBookmarks = function (bookmarks) {
         _.each(bookmarks, function (b) {
           Model.bookmark(b);

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['Eddie', 'eventsBus', 'Model', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['Eddie', 'eventsBus', 'Model', 'Tracker', playerControlsDirective]);
 
-function playerControlsDirective(Eddie, eventsBus, Model) {
+function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
   return {
     restrict: 'E',
     replace: false,
@@ -20,9 +20,11 @@ function playerControlsDirective(Eddie, eventsBus, Model) {
       scope.togglePlay = function () {
         scope.play = !scope.play;
         if (scope.play) {
+          Tracker.collect({action: 'player_play', time: currentTime});
           sendToPlayer({action: 'play'});
         } else {
           sendToPlayer({action: 'pause'});
+          Tracker.collect({action: 'player_pause', time: currentTime});
         }
       };
 

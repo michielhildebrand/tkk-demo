@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Eddie', []).factory('Eddie', ['$rootScope', 'Config', 'Model', 'Tracker', eddieService]);
+angular.module('Eddie', []).factory('Eddie', ['Config', 'Model', 'Tracker', eddieService]);
 
-function eddieService($rootScope, Config, Model, Tracker) {
+function eddieService(Config, Model, Tracker) {
   var initialized = false;
   var userId;
   var screenId;
@@ -21,10 +21,6 @@ function eddieService($rootScope, Config, Model, Tracker) {
     eddie.init();
     screenId = eddie.getScreenId().substring(eddie.getScreenId().lastIndexOf("/") + 1);
     initialized = true;
-
-    $rootScope.$on("$destroy", function () {
-      eddie.destroy();
-    });
   }
 
   function destroyEddie() {
@@ -36,8 +32,8 @@ function eddieService($rootScope, Config, Model, Tracker) {
     init: function(user) {
       if (!initialized) {
         initializeEddie(user.id);
-        Model.setUser(user.name, screenId);
-        Tracker.collect({action: 'user_login'});
+        Tracker.init(user, screenId);
+        Model.signIn(user.name);
       } else {
         //console.log('Eddie already initialized with userId ' + userId);
       }
@@ -46,8 +42,7 @@ function eddieService($rootScope, Config, Model, Tracker) {
       eddie.putLou('ngproxy', JSON.stringify(msg));
     },
     destroy: function(){
-      Tracker.collect({action: 'user_logout'});
-      Model.resetUser();
+      Model.signOut();
       destroyEddie();
     }
   }

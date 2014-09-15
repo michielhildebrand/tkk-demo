@@ -1,11 +1,16 @@
 'use strict';
 
-angular.module('Tracker', []).factory('Tracker', ['$interval', 'Model', tracker]);
+angular.module('Tracker', []).factory('Tracker', ['$interval', tracker]);
 
-function tracker($interval, Model) {
+function tracker($interval) {
+  var user, screenId, eventPublisher = null;
   var events = [];
 
-  $interval(sendEvents, 5000);
+  function initialize(u, sId) {
+    user = u;
+    screenId = sId;
+    if (eventPublisher == null) eventPublisher = $interval(sendEvents, 5000);
+  }
 
   function sendEvents() {
     var eventsToSend = events;
@@ -16,8 +21,11 @@ function tracker($interval, Model) {
   }
 
   return {
-    collect: function(e) {
-      _(e).extend({user: Model.getUser(), screen: Model.getScreenId()});
+    init: function (u, sId) {
+      initialize(u, sId);
+    },
+    collect: function (e) {
+      _(e).extend({user: user.id, screen: screenId});
       events.push(e);
     }
   };
