@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Eddie', []).factory('Eddie', ['Config', 'Model', 'Tracker', eddieService]);
+angular.module('Eddie', []).factory('Eddie', ['Config', eddieService]);
 
-function eddieService(Config, Model, Tracker) {
+function eddieService(Config) {
   var initialized = false;
   var userId;
   var screenId;
@@ -32,17 +32,15 @@ function eddieService(Config, Model, Tracker) {
     init: function(user) {
       if (!initialized) {
         initializeEddie(user.id);
-        Tracker.init(user, screenId);
-        Model.signIn(user.name);
       } else {
         //console.log('Eddie already initialized with userId ' + userId);
       }
+      return screenId;
     },
     putLou: function (msg) {
       eddie.putLou('ngproxy', JSON.stringify(msg));
     },
-    destroy: function(){
-      Model.signOut();
+    destroy: function() {
       destroyEddie();
     }
   }

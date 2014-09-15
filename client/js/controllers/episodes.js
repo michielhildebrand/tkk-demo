@@ -22,6 +22,7 @@ function episodesCtrl($scope, $state, Model, Eddie) {
   };
 
   $scope.signOut = function() {
+    Model.signOut();
     Eddie.destroy();
     $state.go('select');
   }

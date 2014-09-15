@@ -71,8 +71,8 @@ tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',
   // Override the Android platform default to add "tabs-striped" class to "ion-tabs" elements.
   $ionicTabsConfig.type = '';
 }])
-.run(['$rootScope', '$state', 'Config', 'eventsBus', 'Model', 'Eddie',
-    function ($rootScope, $state, Config, eventsBus, Model, Eddie) {
+.run(['$rootScope', '$state', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
+    function ($rootScope, $state, Config, eventsBus, Model, Eddie, Tracker) {
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $rootScope.title = Config.app_title_prefix + toState.title;
 
@@ -85,7 +85,9 @@ tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',
             });
           }
           if (user != null) {
-            Eddie.init(user);
+            var screenId = Eddie.init(user);
+            Tracker.init(user, screenId);
+            Model.signIn(userName);
           } else {
             console.log('Invalid user name ' + userName);
             $state.go('select');
@@ -94,6 +96,7 @@ tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',
       });
 
       $rootScope.$on("$destroy", function () {
+        Model.signOut();
         Eddie.destroy();
       });
 
