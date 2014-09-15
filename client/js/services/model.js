@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('Model', ['ngResource']).factory('Model', model);
+angular.module('Model', []).factory('Model', model);
 
 function model() {
   var data = {
     user: null,
+    screenId : null,
     videos: [],
     currentVideo: null,
     currentChapter: null,
@@ -45,11 +46,15 @@ function model() {
 
   return {
     underlyingData: data,
-    setUser: function (user) {
+    setUser: function (user, screenId) {
       data.user = user;
+      data.screenId = screenId;
     },
     getUser: function () {
       return data.user;
+    },
+    getScreenId: function () {
+      return data.screenId;
     },
     setVideos: function (videos) {
       data.videos = videos;
@@ -67,12 +72,15 @@ function model() {
     seek: function (time) {
       findChapter(time);
     },
+    resetUser: function () {
+      data.screenId = data.user = null;
+    },
+    resetPlay: function () {
+      data.currentVideo = data.currentChapter = data.currentChapterIndex = data.currentChapterTime = null;
+    },
     setBeaming: function (beaming) {
       data.beaming = beaming;
       return data.beaming;
-    },
-    reset: function () {
-      data.currentVideo = data.currentChapter = data.currentChapterIndex = data.currentChapterTime = null;
     },
     getVideo: function () {
       return data.currentVideo;

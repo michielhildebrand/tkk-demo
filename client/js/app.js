@@ -31,7 +31,8 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'EventsBus',
   'EntityProxy',
   'EuropeanaApi',
-  'IRApi'
+  'IRApi',
+  'Tracker'
 ]);
 
 tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',

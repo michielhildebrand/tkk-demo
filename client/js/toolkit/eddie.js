@@ -121,7 +121,8 @@ var Eddie = function(options){
 			'type': 'PUT',
 			'url': 'http://' + settings.lou_ip +":"+ settings.lou_port + '/lou/LouServlet' + settings.fullapp+"?"+settings.appparams,
 			'data': settings.postData,
-			'success': parseRegisterResponse
+			'success': parseRegisterResponse,
+      'async': false
 		})
 	}
 	

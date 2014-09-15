@@ -21,7 +21,7 @@ function tvCtrl($scope, eventsBus, Model) {
           $scope.$$phase || $scope.$apply();
           break;
         case 'stop-beaming':
-          Model.reset();
+          Model.resetPlay();
           eventsBus.publish('player', {action: 'dispose'});
           break;
         default:
