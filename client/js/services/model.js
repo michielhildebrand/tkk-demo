@@ -7,9 +7,9 @@ function model() {
     user: null,
     videos: [],
     currentVideo: null,
-    currentChapterIndex: null,
     currentChapter: null,
-    startTime: null,
+    currentChapterIndex: null,
+    currentChapterTime: null,
     bookmarks: []
   };
 
@@ -19,10 +19,14 @@ function model() {
     });
   }
 
-  function setChapter(index) {
+  function setChapter(index, startTime) {
     data.currentChapterIndex = parseInt(index);
     var ch = data.currentVideo.chapters[index];
-    data.startTime = ch.startTime / 1000; //in seconds
+    if (startTime == null) {
+      data.currentChapterTime = ch.startTime / 1000; //in seconds
+    } else {
+      data.currentChapterTime = startTime;
+    }
     data.currentChapter = ch;
   }
 
@@ -54,8 +58,7 @@ function model() {
     },
     play: function (videoId, chapterIndex, startTime) {
       setVideo(videoId);
-      setChapter(chapterIndex);
-      if (startTime != null) data.startTime = startTime;
+      setChapter(chapterIndex, startTime);
     },
     setChapterIndex: function (chapterIndex) {
       setChapter(chapterIndex);
@@ -64,7 +67,7 @@ function model() {
       findChapter(time);
     },
     reset: function () {
-      data.currentVideo = data.currentChapter = data.currentChapterIndex = data.startTime = null;
+      data.currentVideo = data.currentChapter = data.currentChapterIndex = data.currentChapterTime = null;
     },
     getVideo: function () {
       return data.currentVideo;
@@ -82,7 +85,7 @@ function model() {
       return data.currentChapterIndex == (data.currentVideo.chapters.length - 1);
     },
     getTime: function () {
-      return data.startTime;
+      return data.currentChapterTime;
     },
     getBookmarks: function () {
       return data.bookmarks;
