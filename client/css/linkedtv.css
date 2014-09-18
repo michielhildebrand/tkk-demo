@@ -197,6 +197,17 @@ a {
 .player video::-webkit-media-controls {
   display:none !important;
 }
+.video-logo {
+  position: absolute;
+  top: 10px;
+  margin: 10px 30px;
+  z-index: 100000000000;
+  height: 40px;
+  width: 60px;
+  background-size: 100% 100%;
+  background-image: url(../img/AVRO-logo-wit-transp.png);
+  background-repeat: no-repeat;
+}
 .seekbar {
 }
 .range {
