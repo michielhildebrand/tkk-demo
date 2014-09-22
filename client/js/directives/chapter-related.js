@@ -15,7 +15,7 @@ function chapterRelatedDirective($state, Model) {
         },
         function (newVideos) {
           if (newVideos.length > 0) {
-            scope.relatedVideos = newVideos;
+            scope.relatedVideos = _(newVideos).filter(function (v) {return v.id != Model.getVideo().id});
           }
         }
       );
