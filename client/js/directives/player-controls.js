@@ -20,11 +20,11 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
       scope.togglePlay = function () {
         scope.play = !scope.play;
         if (scope.play) {
-          Tracker.collect({action: 'player_play', time: currentTime});
+          Tracker.collect({action: 'player_play', id: Model.getVideo().id, time: currentTime});
           sendToPlayer({action: 'play'});
         } else {
           sendToPlayer({action: 'pause'});
-          Tracker.collect({action: 'player_pause', time: currentTime});
+          Tracker.collect({action: 'player_pause', id: Model.getVideo().id, time: currentTime});
         }
       };
 
@@ -73,10 +73,10 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
       };
 
       var currentTime = 0;
-      var noteCurrentTime = function(t) {
+      var updateCurrentTime = function(t) {
         currentTime = t
       };
-      eventsBus.subscribe('player-time', noteCurrentTime);
+      eventsBus.subscribe('player-time', updateCurrentTime);
 
       function sendToPlayer(a) {
         if (!scope.beaming) {

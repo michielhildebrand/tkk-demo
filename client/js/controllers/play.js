@@ -51,7 +51,7 @@ function playCtrl($scope, $state, $location, eventsBus, Eddie, Model, Tracker) {
   );
 
   $scope.goToMain = function () {
-    Tracker.collect({action: 'player_stop', id: $scope.video, time: Model.getTime()});
+    Tracker.collect({action: 'player_stop', id: $scope.video.id, time: Model.getTime()});
     $state.go('episodes', {user: Model.getUser()});
   };
 
