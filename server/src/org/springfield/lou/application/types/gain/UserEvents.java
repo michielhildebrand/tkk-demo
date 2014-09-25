@@ -65,11 +65,11 @@ public class UserEvents {
             } else if (a.equals("user_bookmark")) {
                 tracker.user_bookmark(event.getUser(), event.getId(), event.getScreen());
             } else if (a.equals("player_play")) {
-                tracker.player_play(event.getUser(), event.getId(), event.getTime().toString());
+                tracker.player_play(event.getScreen(), event.getId(), event.getTime().toString());
             } else if (a.equals("player_pause")) {
-                tracker.player_pause(event.getUser(), event.getId(), event.getTime().toString());
+                tracker.player_pause(event.getScreen(), event.getId(), event.getTime().toString());
             } else if (a.equals("player_stop")) {
-                tracker.player_stop(event.getUser(), event.getId(), event.getTime().toString());
+                tracker.player_stop(event.getScreen(), event.getId(), event.getTime().toString());
             }
         }
 
