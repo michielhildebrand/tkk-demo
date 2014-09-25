@@ -14,10 +14,7 @@
     - git_repository: https://github.com/TizianoPerrucci/tkk-demo.git
 
     - mysql_root_password: nDN8Dtp
-
-    #- springfield_ip: 85.223.106.135
-    #- app_address: 85.223.106.135
-    
+    - webserver: nginx
     - springfield_ip: 192.168.42.84
     - app_address: 192.168.42.84
 

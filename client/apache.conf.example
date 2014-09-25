@@ -1,13 +1,13 @@
 <VirtualHost *:80>
+  Alias /culture /opt/tkk/client/culture.html
+  Alias /news2 /opt/tkk/client/news.html
 
-  # TKK Demo - Culture App
+  DocumentRoot %ABSOLUTE_PATH_TO_CLIENT_DIR%
   <Directory %ABSOLUTE_PATH_TO_CLIENT_DIR%>
     Order allow,deny
     Allow from all
     Require all granted
   </Directory>
-  AliasMatch ^/culture/(*) %ABSOLUTE_PATH_TO_CLIENT_DIR%/culture.html
-  AliasMatch ^/news/(*) %ABSOLUTE_PATH_TO_CLIENT_DIR%/news.html
 
   ProxyPass /ir http://ir.lmcloud.vse.cz/irapi/media-server
 
@@ -30,5 +30,4 @@
   </Directory>
   Alias /eddie/js %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/
   Alias /libs %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/
-
 </VirtualHost>

@@ -5,22 +5,22 @@ angular.module('Config', []).constant('Config', {
   EUROPEANA_API: 'http://europeana.eu/api/v2',
   IR_API: 'http://{{app_address}}/ir',
 
-  app_title_prefix: 'LinkedTV Culture',
+  app_title_prefix: 'LinkedTV News',
   users: [
     {
-      name: 'Rita',
-      avatar: 'img/Rita.png',
-      id: 'rita'
+      name: 'Ralph',
+      avatar: 'img/anonym.jpg',
+      id: 'ralph'
     },
     {
-      name: 'Bert & Anne',
-      avatar: 'img/Anne_Bert.png',
-      id: 'bertanne'
+      name: 'Peter',
+      avatar: 'img/anonym.jpg',
+      id: 'peter'
     },
     {
-      name: 'Michael',
-      avatar: 'img/Michael.jpg',
-      id: 'michael'
+      name: 'Nina',
+      avatar: 'img/anonym.jpg',
+      id: 'nina'
     }
   ],
 

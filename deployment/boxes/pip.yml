@@ -14,7 +14,7 @@
     - git_repository: https://github.com/TizianoPerrucci/tkk-demo.git
 
     - mysql_root_password: nDN8Dtp
-
+    - webserver: apache
     - springfield_ip: 192.16.196.73
     - app_address: pip.ia.cwi.nl
 

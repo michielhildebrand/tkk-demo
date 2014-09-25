@@ -1,6 +1,9 @@
 ---
-  - name: Client | Copy App config
-    template: src={{root_dir}}/components/templates/client/config.js dest={{install_dir_client}}/js/config.js
+  - name: Client | Copy Applications config
+    template: src={{root_dir}}/components/templates/client/{{item}}.js dest={{install_dir_client}}/js/{{item}}.js
+    with_items:
+      - config-culture
+      - config-news
     tags:
       - client
       - update
@@ -14,29 +17,53 @@
       - client
       - update
 
+
   - include: "{{prudentia_dir}}/tasks/nginx.yml"
+    when: "webserver == 'nginx'"
     tags: client
 
   - name: Client | Removing Nginx default site configuration
     command: rm -f /etc/nginx/sites-enabled/default
+    when: "webserver == 'nginx'"
     sudo: yes
     tags: client
 
   - name: Client | Copy Nginx config
-    template: src={{root_dir}}/components/templates/client/nginx.conf dest=/etc/nginx/sites-available/tkk.com
+    template: src={{root_dir}}/components/templates/client/nginx.conf dest=/etc/nginx/sites-available/linkedtv.com
+    when: "webserver == 'nginx'"
     sudo: yes
     tags:
       - client
       - update
 
   - name: Client | Enable website
-    command: ln -fs /etc/nginx/sites-available/tkk.com /etc/nginx/sites-enabled/tkk.com
+    command: ln -fs /etc/nginx/sites-available/linkedtv.com /etc/nginx/sites-enabled/linkedtv.com
+    when: "webserver == 'nginx'"
     sudo: yes
     tags: client
 
   - name: Client | Restart Nginx
     command: /etc/init.d/nginx restart
+    when: "webserver == 'nginx'"
     sudo: yes
     tags:
       - client
       - update
+
+
+  - name: Client | Copy Apache config
+    template: src={{root_dir}}/components/templates/client/apache.conf dest=/etc/httpd/conf.d/linkedtv.com backup=yes
+    when: "webserver == 'apache'"
+    sudo: yes
+    tags:
+      - client
+      - update
+
+  - name: Client | Reload Apache
+    command: service httpd reload
+    when: "webserver == 'apache'"
+    sudo: yes
+    tags:
+      - client
+      - update
+
