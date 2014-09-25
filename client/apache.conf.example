@@ -6,10 +6,8 @@
     Allow from all
     Require all granted
   </Directory>
-  Alias /culture %ABSOLUTE_PATH_TO_CLIENT_DIR%
-
-  RewriteEngine on
-  RewriteRule ^(/play/.*)$ #$1 [NE,R=302]
+  AliasMatch ^/culture/(*) %ABSOLUTE_PATH_TO_CLIENT_DIR%/culture.html
+  AliasMatch ^/news/(*) %ABSOLUTE_PATH_TO_CLIENT_DIR%/news.html
 
   ProxyPass /ir http://ir.lmcloud.vse.cz/irapi/media-server
 
