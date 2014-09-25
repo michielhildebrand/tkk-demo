@@ -1,4 +1,4 @@
-TKK Demo
+LinkedTV Demo
 ===================
 
 ## Prerequisites
@@ -9,13 +9,13 @@ In order to run the demo you need the Springfield toolkit.
 
 ### Access Lou
 Once you have it running somewhere locally access the Lou dashboard using this url 
-http://\<springfield_ip\>:8080/lou/domain/linkedtv/html5application/dashboard and you can login with `admin:FTHmc8e4`.
+http://\<springfield_ip\>:8080/lou/domain/linkedtv/html5application/dashboard.
 
 ###  Create a new application
 
 * Make dir in \<springfield_dir\>/lou/apps/<app_name>
-* Go to this url http://\<springfield_ip\>:8080/bart/domain/internal/service/lou/apps/<app_name>/properties?method=put
-* Go to this url http://\<springfield_ip\>:8080/bart/domain/internal/service/lou/apps/<app_name>/properties/autodeploy?method=put&datatype=value&development/production
+* Call this url http://\<springfield_ip\>:8080/bart/domain/internal/service/lou/apps/<app_name>/properties?method=put
+* Call this url http://\<springfield_ip\>:8080/bart/domain/internal/service/lou/apps/<app_name>/properties/autodeploy?method=put&datatype=value&development/production
 
 ### Test
 
@@ -56,15 +56,28 @@ I'm assuming you have the springfield toolkit running with the application deplo
 
 Add a new entry to the file `/etc/hosts` that looks like:
 
-    127.0.0.1 tkk.dev
+    127.0.0.1 linkedtv.dev
     
-I prefer using nginx to serve the static files so I've included an `nginx.conf.example` in the project that can be used 
-to setup an nginx site. If you like apache you can contribute to the project and create another example :)
+#### Setup Nginx
+    
+The `client/nginx.conf.example` can be copied and then changed accordingly to match your local environment:
 
     $ cp nginx.conf.example nginx.conf
     $ sed -i "s/%ABSOLUTE_PATH_TO_CLIENT_DIR%/`pwd`/g" nginx.conf
     $ sed -i "s/%SPRINGFIELD_IP%/`curl ifconfig.me/ip`/g" nginx.conf
     
-Include the new nginx.conf to your nginx global config.
-     
-Now you can access the website [here](http://tkk.dev).
+Include this new nginx.conf into your global config.
+
+#### Setup Apache
+
+The `client/apache.conf.example` can be copied and then changed accordingly to match your local environment:
+
+    $ cp apache.conf.example apache.conf
+    $ sed -i "s/%ABSOLUTE_PATH_TO_CLIENT_DIR%/`pwd`/g" apache.conf
+    $ sed -i "s/%SPRINGFIELD_IP%/`curl ifconfig.me/ip`/g" apache.conf
+    
+Include this new apache.conf into your global config.
+
+## Done
+
+Now you can access the website [here](http://linkedtv.dev).
