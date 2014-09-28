@@ -25,9 +25,14 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
+  video_ids: [
+    'adb65e0a-642b-432f-aa86-c296dab0375a'
+  ],
+
+  load_curated_videos: false,
+
   springfield_ip: window.location.hostname,
   springfield_port: window.location.port,
   springfield_app: 'news',
-  springfield_fullapp: '/domain/linkedtv/user/{}/html5application/news',
-  springfield_appparams: ""
+  springfield_fullapp: '/domain/linkedtv/user/{}/html5application/news'
 });

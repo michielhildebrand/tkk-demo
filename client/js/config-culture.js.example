@@ -25,9 +25,20 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
+  video_ids: [
+    '8a8187f2-3fc8-cb54-0140-7dccd76f0001',
+    '8a8187f2-3fc8-cb54-0140-7dd151100003',
+    '8a8187f2-3fc8-cb54-0140-7dd247360004',
+    '8a8187f2-3fc8-cb54-0140-7dd099380002',
+    '953b4d09-e828-4623-b9ff-be3072411a98',
+    '8a8187f2-3fc8-cb54-0140-7dd2d0650005',
+    'c44643ee-823e-476c-a099-bd28bcf1e56a'
+  ],
+
+  load_curated_videos: true,
+
   springfield_ip: window.location.hostname,
   springfield_port: window.location.port,
   springfield_app: 'news',
-  springfield_fullapp: '/domain/linkedtv/user/{}/html5application/news',
-  springfield_appparams: ""
+  springfield_fullapp: '/domain/linkedtv/user/{}/html5application/news'
 });

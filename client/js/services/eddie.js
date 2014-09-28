@@ -16,7 +16,7 @@ function eddieService(Config) {
       lou_port: Config.springfield_port,
       app: Config.springfield_app,
       fullapp: Config.springfield_fullapp.replace('{}', id),
-      appparams: Config.springfield_appparams
+      appparams: 'videos=' + Config.video_ids.join() + '&curated=' + Config.load_curated_videos
     });
     eddie.init();
     screenId = eddie.getScreenId().substring(eddie.getScreenId().lastIndexOf("/") + 1);

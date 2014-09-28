@@ -9,45 +9,48 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VideoLoader {
-    private final static List<String> EpisodesId = Arrays.asList(
-            "8a8187f2-3fc8-cb54-0140-7dccd76f0001",
-            "8a8187f2-3fc8-cb54-0140-7dd151100003",
-            "8a8187f2-3fc8-cb54-0140-7dd247360004",
-            "8a8187f2-3fc8-cb54-0140-7dd099380002",
-            "953b4d09-e828-4623-b9ff-be3072411a98",
-            "8a8187f2-3fc8-cb54-0140-7dd2d0650005",
-            "c44643ee-823e-476c-a099-bd28bcf1e56a");
+    Map<String, Video> originalVideos = new HashMap<String, Video>();
 
-    private boolean useJson;
-    private List<Video> videos;
+    public List<Video> getRecentVideos(List<String> videoIds, boolean loadCurated) {
+        System.out.println("VideoLoader.getRecentVideos - " + videoIds + ", " + loadCurated);
 
-    public VideoLoader(boolean offline) {
-        useJson = offline;
-        if (!useJson) {
-            videos = new ArrayList<Video>();
-            for (String s : EpisodesId) {
-                System.out.println("Fetching episode = " + s);
-                videos.add(new Video(new Episode(s)));
+        List<Video> result = new ArrayList<Video>();
+
+        if (loadCurated) {
+            List<Video> curatedVideos = getCuratedVideos();
+            for (Video curatedVideo : curatedVideos) {
+                if (videoIds.contains(curatedVideo.getId()))
+                    result.add(curatedVideo);
+            }
+        } else {
+            for (String videoId : videoIds) {
+                if (originalVideos.containsKey(videoId)) {
+                    result.add(originalVideos.get(videoId));
+                } else {
+                    Video v = new Video(new Episode(videoId));
+                    originalVideos.put(v.getId(), v);
+                    result.add(v);
+                }
             }
         }
+
+        return result;
     }
 
-    public List<Video> getRecentVideos() {
-        if (!useJson) {
-            return videos;
-        } else {
-            FileReader reader = null;
-            try {
-                reader = new FileReader("/opt/tkk/curated-videos.json");
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            Type listType = new TypeToken<ArrayList<Video>>() {}.getType();
-            return new Gson().fromJson(reader, listType);
+    private List<Video> getCuratedVideos() {
+        FileReader reader = null;
+        try {
+            reader = new FileReader("/opt/tkk/curated-videos.json");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+        Type listType = new TypeToken<ArrayList<Video>>() {
+        }.getType();
+        return new Gson().fromJson(reader, listType);
     }
 }

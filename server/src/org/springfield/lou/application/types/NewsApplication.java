@@ -7,14 +7,13 @@ import org.springfield.lou.application.types.protocol.Serializer;
 import org.springfield.lou.screen.Screen;
 import org.springfield.lou.user.User;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class NewsApplication extends Html5Application {
 
-    private static final boolean WORK_OFFLINE = true;
-
     private VideoLoader videoLoader;
-    private User testUser;
+    private User user;
 
     private static final int MAX_CAPACITY = 100;
     private UserEvents userEvents;
@@ -23,8 +22,8 @@ public class NewsApplication extends Html5Application {
     public NewsApplication(String id) {
         super(id);
 
-        videoLoader = new VideoLoader(WORK_OFFLINE);
-        testUser = new User("Test User");
+        videoLoader = new VideoLoader();
+        user = new User("User");
         userEvents = new UserEvents(MAX_CAPACITY);
     }
 
@@ -36,33 +35,16 @@ public class NewsApplication extends Html5Application {
     public void onNewScreen(Screen s) {
         loadContent(s, "ngproxy");
 
-        String fixedrole = s.getParameter("role");
-        if (fixedrole == null) {
-            fixedrole = "main";
-        }
-        System.out.println("New screen with role = " + fixedrole);
-
-        if (fixedrole.equals("main")) {
-            loadMainScreen(s);
-        } else {
-            loadSecondScreen(s);
-        }
-    }
-
-    private void loadMainScreen(Screen s) {
-        s.setRole("main");
+        List<String> videoIds = Arrays.asList(s.getParameter("videos").split(","));
+        boolean loadCurated = Boolean.valueOf(s.getParameter("curated"));
 
         // TODO what's the difference between this put and putMsg below?
         //this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
         //this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
-        sendMsg(s, "video", videoLoader.getRecentVideos());
+        sendMsg(s, "video", videoLoader.getRecentVideos(videoIds, loadCurated));
 
-        sendMsg(s, "bookmark", testUser.getBookmarks());
-    }
-
-    private void loadSecondScreen(Screen s) {
-        s.setRole("secondary");
+        sendMsg(s, "bookmark", user.getBookmarks());
     }
 
     @Override
@@ -81,8 +63,8 @@ public class NewsApplication extends Html5Application {
                 propagate = false;
                 List<String> bookmarks = (List<String>) msg.getData();
                 //the client sends all the bookmarks every time, that is to avoid inconsistencies
-                testUser.getBookmarks().clear();
-                testUser.getBookmarks().addAll(bookmarks);
+                user.getBookmarks().clear();
+                user.getBookmarks().addAll(bookmarks);
             } else if (msg.getTarget().equals("tracker")) {
                 propagate = false;
                 userEvents.put(msg);
