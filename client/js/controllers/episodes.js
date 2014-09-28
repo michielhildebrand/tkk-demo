@@ -11,7 +11,7 @@ function episodesCtrl($scope, $state, Model, Eddie) {
     },
     function (newVideos) {
       if (newVideos.length > 0) {
-        $scope.latestVideos = [newVideos[0],newVideos[1],newVideos[2]];
+        $scope.latestVideos = _(newVideos).first(3);
         $scope.videos = newVideos;
       }
     }
@@ -21,7 +21,7 @@ function episodesCtrl($scope, $state, Model, Eddie) {
     $state.go('play', {user: Model.getUser(), videoId: videoId, idx: 0});
   };
 
-  $scope.signOut = function() {
+  $scope.signOut = function () {
     Model.signOut();
     Eddie.destroy();
     $state.go('select');
