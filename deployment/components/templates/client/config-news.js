@@ -30,6 +30,21 @@ angular.module('Config', []).constant('Config', {
 
   load_curated_videos: false,
 
+  dimensions: [
+    {
+      id: 'other-media',
+      title: 'In other media'
+    },
+    {
+      id: 'background',
+      title: 'Background'
+    },
+    {
+      id: 'history',
+      title: 'History'
+    }
+  ],
+
   springfield_ip: window.location.hostname,
   springfield_port: window.location.port,
   springfield_app: 'news',

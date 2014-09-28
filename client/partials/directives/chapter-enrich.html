@@ -1,21 +1,14 @@
 <div class="row">
   <div class="col col-25 links">
-    <h3 ng-click="toggleLinks('about')">About</h3>
-    <ion-scroll direction="y" ng-show="activeLinks=='about'">
-      <chapter-about></chapter-about>
-    </ion-scroll>
-    <h3 ng-click="toggleLinks('background')">Background</h3>
-    <ion-scroll direction="y" ng-show="activeLinks=='background'">
-      <chapter-background></chapter-background>
-    </ion-scroll>
-    <h3 ng-click="toggleLinks('artworks')">Related works</h3>
-    <ion-scroll direction="y" ng-show="activeLinks=='artworks'">
-      <chapter-artworks></chapter-artworks>
-    </ion-scroll>
-    <h3 ng-click="toggleLinks('chapters')">Related chapters</h3>
-    <ion-scroll direction="y" ng-show="activeLinks=='chapters'">
-      <chapter-related></chapter-related>
-    </ion-scroll>
+    <div ng-repeat="d in dimensions">
+      <h3 ng-click="toggleDimension(d.id)" ng-bind="d.title"></h3>
+      <ion-scroll direction="y" ng-show="dimension==d.id" ng-switch="d.id">
+        <chapter-about ng-switch-when="about"></chapter-about>
+        <chapter-background ng-switch-when="background"></chapter-background>
+        <chapter-artworks ng-switch-when="artworks"></chapter-artworks>
+        <chapter-related ng-switch-when="related"></chapter-related>
+      </ion-scroll>
+    </div>
   </div>
   <div class="col-75 content">
     <ion-scroll direction="y">

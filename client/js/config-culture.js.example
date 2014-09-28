@@ -37,6 +37,25 @@ angular.module('Config', []).constant('Config', {
 
   load_curated_videos: true,
 
+  dimensions: [
+    {
+      id: 'about',
+      title: 'About'
+    },
+    {
+      id: 'background',
+      title: 'Background'
+    },
+    {
+      id: 'artworks',
+      title: 'Related works'
+    },
+    {
+      id: 'related',
+      title: 'Related chapters'
+    }
+  ],
+
   springfield_ip: window.location.hostname,
   springfield_port: window.location.port,
   springfield_app: 'news',
