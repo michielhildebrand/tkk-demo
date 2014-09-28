@@ -1,1192 +1,1637 @@
-[  
-   {  
-      "id":"8a8187f2-3fc8-cb54-0140-7dccd76f0001",
-      "title":"Museum Martena - 14 November 2007",
-      "shots":"http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1",
-      "poster":"http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/0/sec10.jpg",
-      "src":"video/100.mp4",
-      "duration":2949590,
-      "chapters":[  
-         {  
-            "id":1,
-            "startTime":7000,
-            "duration":158000,
-            "title":"Introduction",
-            "artworks": [
-              "museum martena"
-            ],
-            "backgrounds": [
-              "museum martena"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":44000,
-                  "duration":99000,
-                  "title":"Nelleke van der Krogt",
-                  "locator":"http://nl.dbpedia.org/resource/Nelleke_van_der_Krogt"
-               },
-               {  
-                  "startTime":44000,
-                  "duration":100000,
-                  "title":"Hessel van Martena",
-                  "locator":"http://nl.dbpedia.org/resource/Hessel_Martena"
-               },
-               {  
-                  "startTime":56000,
-                  "duration":149000,
-                  "title":"Museum Martena",
-                  "locator":"http://nl.dbpedia.org/resource/Museum_Martena"
-               },
-               {  
-                  "startTime":57000,
-                  "duration":149000,
-                  "title":"Franeker",
-                  "locator":"http://nl.dbpedia.org/resource/Franeker"
-               }
-            ]
-         },
-         {  
-            "id":2,
-            "startTime":284000,
-            "duration":748000,
-            "title":"Horse painting",
-            "fragments":[  
-               {  
-                  "startTime":327640,
-                  "duration":659280,
-                  "title":"Groninger Ploeg",
-                  "locator":"http://nl.dbpedia.org/resource/De_Ploeg_%28Groningen)"
-               },
-               {  
-                  "startTime":400839,
-                  "duration":806277,
-                  "title":"Jan Altink",
-                  "locator":"http://nl.dbpedia.org/resource/Jan_Altink"
-               }
-            ]
-         },
-         {  
-            "id":3,
-            "startTime":468000,
-            "duration":1147000,
-            "title":"Bronze horse statue",
-            "fragments":[  
-               {  
-                  "startTime":550280,
-                  "duration":1104199,
-                  "title":"Friesland",
-                  "locator":"http://nl.dbpedia.org/resource/Friesland"
-               }
-            ]
-         },
-         {  
-            "id":4,
-            "startTime":988000,
-            "duration":2201000,
-            "title":"Eisenloeffel clock",
-            "artworks": [
-              "jan eisenloeffel"
-            ],
-            "backgrounds": [
-              "jan eisenloeffel"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":1044838,
-                  "duration":2092476,
-                  "title":"Jan Eisenloeffel",
-                  "locator":"http://nl.dbpedia.org/resource/Jan_Eisenloeffel"
-               },
-               {  
-                  "startTime":1112400,
-                  "duration":2229279,
-                  "title":"Art Nouveau",
-                  "locator":"http://nl.dbpedia.org/resource/Jugendstil"
-               }
-            ]
-         },
-         {  
-            "id":5,
-            "startTime":1524000,
-            "duration":3327000,
-            "title":"Jan Blom painting",
-            "fragments":[  
+[
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dccd76f0001",
+    "title": "Museum Martena - 14 November 2007",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/100.mp4",
+    "duration": 2949590,
+    "chapters": [
+      {
+        "id": 1,
+        "startTime": 7000,
+        "duration": 158000,
+        "title": "Introduction",
+        "artworks": [
+          "museum martena"
+        ],
+        "backgrounds": [
+          "museum martena"
+        ],
+        "fragments": [
+          {
+            "startTime": 44000,
+            "duration": 99000,
+            "title": "Nelleke van der Krogt",
+            "locator": "http://nl.dbpedia.org/resource/Nelleke_van_der_Krogt"
+          },
+          {
+            "startTime": 44000,
+            "duration": 100000,
+            "title": "Hessel van Martena",
+            "locator": "http://nl.dbpedia.org/resource/Hessel_Martena"
+          },
+          {
+            "startTime": 56000,
+            "duration": 149000,
+            "title": "Museum Martena",
+            "locator": "http://nl.dbpedia.org/resource/Museum_Martena"
+          },
+          {
+            "startTime": 57000,
+            "duration": 149000,
+            "title": "Franeker",
+            "locator": "http://nl.dbpedia.org/resource/Franeker"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "startTime": 284000,
+        "duration": 748000,
+        "title": "Horse painting",
+        "fragments": [
+          {
+            "startTime": 327640,
+            "duration": 659280,
+            "title": "Groninger Ploeg",
+            "locator": "http://nl.dbpedia.org/resource/De_Ploeg_%28Groningen)"
+          },
+          {
+            "startTime": 400839,
+            "duration": 806277,
+            "title": "Jan Altink",
+            "locator": "http://nl.dbpedia.org/resource/Jan_Altink"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "startTime": 468000,
+        "duration": 1147000,
+        "title": "Bronze horse statue",
+        "fragments": [
+          {
+            "startTime": 550280,
+            "duration": 1104199,
+            "title": "Friesland",
+            "locator": "http://nl.dbpedia.org/resource/Friesland"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "startTime": 988000,
+        "duration": 2201000,
+        "title": "Eisenloeffel clock",
+        "artworks": [
+          "jan eisenloeffel"
+        ],
+        "backgrounds": [
+          "jan eisenloeffel"
+        ],
+        "fragments": [
+          {
+            "startTime": 1044838,
+            "duration": 2092476,
+            "title": "Jan Eisenloeffel",
+            "locator": "http://nl.dbpedia.org/resource/Jan_Eisenloeffel"
+          },
+          {
+            "startTime": 1112400,
+            "duration": 2229279,
+            "title": "Art Nouveau",
+            "locator": "http://nl.dbpedia.org/resource/Jugendstil"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "startTime": 1524000,
+        "duration": 3327000,
+        "title": "Jan Blom painting",
+        "fragments": [
 
-            ]
-         },
-         {  
-            "id":6,
-            "startTime":2158000,
-            "duration":4552000,
-            "title":"Silver tea jar",
-            "artworks": [
-              "zilver theebus"
-            ],
-            "backgrounds": [
-              "zilver theebus"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":2165000,
-                  "duration":4474000,
-                  "title":"Subject: Frisian silver",
-                  "locator":"http://dbpedia.org/resource/Friesland"
-               },
-               {  
-                  "startTime":2234000,
-                  "duration":4474000,
-                  "title":"Location: Friesland",
-                  "locator":"http://nl.dbpedia.org/resource/Friesland"
-               },
-               {  
-                  "startTime":2285000,
-                  "duration":4574000,
-                  "title":"Subject: Master sign",
-                  "locator":"http://nl.dbpedia.org/resource/Meesterteken"
-               },
-               {  
-                  "startTime":2289000,
-                  "duration":4583000,
-                  "title":"Date: 1742",
-                  "locator":"http://nl.dbpedia.org/resource/1742"
-               },
-               {  
-                  "startTime":2289000,
-                  "duration":4583000,
-                  "title":"Subject: Silver smith",
-                  "locator":"http://nl.dbpedia.org/resource/Zilversmid"
-               },
-               {  
-                  "startTime":2302000,
-                  "duration":4608000,
-                  "title":"Material: silver",
-                  "locator":"http://nl.dbpedia.org/resource/Zilver"
-               }
-            ]
-         },
-         {  
-            "id":7,
-            "startTime":2638000,
-            "duration":5544000,
-            "title":"19th century broche",
-            "fragments":[  
-               {  
-                  "startTime":2758399,
-                  "duration":5522398,
-                  "title":"Napoleon III",
-                  "locator":"http://nl.dbpedia.org/resource/Napoleon_III"
-               },
-               {  
-                  "startTime":2764199,
-                  "duration":5532719,
-                  "title":"Marie Antoinette",
-                  "locator":"http://nl.dbpedia.org/resource/Marie_Antoinette_van_Oostenrijk"
-               },
-               {  
-                  "startTime":2810320,
-                  "duration":5626079,
-                  "title":"lapis lazuli",
-                  "locator":"http://nl.dbpedia.org/resource/Lapis_lazuli"
-               },
-               {  
-                  "startTime":2850399,
-                  "duration":5706878,
-                  "title":"zilver",
-                  "locator":"http://nl.dbpedia.org/resource/Zilver"
-               }
-            ]
-         }
-      ]
-   },
-   {  
-      "id":"8a8187f2-3fc8-cb54-0140-7dd151100003",
-      "title":"Hermitage Amsterdam - 8 December 2010",
-      "shots":"http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1",
-      "poster":"http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1/h/0/m/0/sec10.jpg",
-      "src":"video/102.mp4",
-      "duration":2735740,
-      "chapters":[  
-         {  
-            "id":1,
-            "startTime":10000,
-            "duration":90000,
-            "title":"Introduction",
-            "artworks": [
-              "hermitage amsterdam"
-            ],
-            "backgrounds": [
-              "hermitage amsterdam"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":40599,
-                  "duration":83318,
-                  "title":"Amsterdam",
-                  "locator":"http://nl.dbpedia.org/resource/Amsterdam"
-               },
-               {  
-                  "startTime":40599,
-                  "duration":83318,
-                  "title":"Hermitage",
-                  "locator":"http://nl.dbpedia.org/resource/Hermitage_%28Sint-Petersburg)"
-               },
-               {  
-                  "startTime":71639,
-                  "duration":147439,
-                  "title":"Hermitage          Amsterdam",
-                  "locator":"http://yago-knowledge.org/resource/Amsterdam"
-               }
-            ]
-         },
-         {  
-            "id":2,
-            "startTime":297000,
-            "duration":825000,
-            "title":"1549 bell",
-            "fragments":[  
-               {  
-                  "startTime":394200,
-                  "duration":791159,
-                  "title":"Johan Afin",
-                  "locator":""
-               },
-               {  
-                  "startTime":399720,
-                  "duration":803279,
-                  "title":"Mechelen",
-                  "locator":"http://nl.dbpedia.org/resource/Mechelen_%28stad)"
-               },
-               {  
-                  "startTime":448519,
-                  "duration":901719,
-                  "title":"tin",
-                  "locator":"http://nl.dbpedia.org/resource/Tin_%28element)"
-               }
-            ]
-         },
-         {  
-            "id":3,
-            "startTime":736000,
-            "duration":1721000,
-            "title":"Jan Toorop painting",
-            "fragments":[  
-               {  
-                  "startTime":787520,
-                  "duration":1579280,
-                  "title":"Jan Toorop",
-                  "locator":"http://nl.dbpedia.org/resource/Jan_Toorop"
-               }
-            ]
-         },
-         {  
-            "id":4,
-            "startTime":1214000,
-            "duration":2647000,
-            "title":"Nijdam vase",
-            "fragments":[  
-               {  
-                  "startTime":1265400,
-                  "duration":2532839,
-                  "title":"Uranium",
-                  "locator":"http://nl.dbpedia.org/resource/Uranium"
-               },
-               {  
-                  "startTime":1290119,
-                  "duration":2582519,
-                  "title":"Leerdam",
-                  "locator":"http://nl.dbpedia.org/resource/Leerdam"
-               }
-            ]
-         },
-         {  
-            "id":5,
-            "startTime":1653000,
-            "duration":3542000,
-            "title":"Oil & vinegar set",
-            "fragments":[  
-               {  
-                  "startTime":1711520,
-                  "duration":3425959,
-                  "title":"Francois Lambrechts",
-                  "locator":""
-               },
-               {  
-                  "startTime":1714640,
-                  "duration":3430920,
-                  "title":"zilversmid",
-                  "locator":"http://nl.dbpedia.org/resource/Zilversmid"
-               }
-            ]
-         },
-         {  
-            "id":6,
-            "startTime":2075000,
-            "duration":4378000,
-            "title":"Coptic weaving",
-            "fragments":[  
-               {  
-                  "startTime":2107759,
-                  "duration":4219159,
-                  "title":"kopten",
-                  "locator":"http://nl.dbpedia.org/resource/Kopten"
-               },
-               {  
-                  "startTime":2122719,
-                  "duration":4247677,
-                  "title":"textiel",
-                  "locator":"http://nl.dbpedia.org/resource/Textiel"
-               }
-            ]
-         },
-         {  
-            "id":7,
-            "startTime":2436000,
-            "duration":5144000,
-            "title":"Jan Sluijters",
-            "artworks": [
-              "jan sluijters"
-            ],
-            "backgrounds": [
-              "jan sluijters"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":2473799,
-                  "duration":4952598,
-                  "title":"Jan Sluijters",
-                  "locator":"http://nl.dbpedia.org/resource/Jan_Sluijters"
-               },
-               {  
-                  "startTime":2542438,
-                  "duration":5086998,
-                  "title":"Parijs",
-                  "locator":"http://nl.dbpedia.org/resource/Parijs"
-               },
-               {  
-                  "startTime":2626878,
-                  "duration":5257557,
-                  "title":"Fauvisten",
-                  "locator":"http://nl.dbpedia.org/resource/Les_Fauves"
-               }
-            ]
-         }
-      ]
-   },
-   {  
-      "id":"8a8187f2-3fc8-cb54-0140-7dd247360004",
-      "title":"Twentse Welle - 21 December 2011",
-      "shots":"http://images1.noterik.com/domain/linkedtv/user/avro/video/103/shots/1",
-      "poster":"http://images1.noterik.com/domain/linkedtv/user/avro/video/103/shots/1/h/0/m/0/sec10.jpg",
-      "src":"video/103.mp4",
-      "duration":2694100,
-      "chapters":[  
-         {  
-            "id":1,
-            "startTime":48000,
-            "duration":154000,
-            "title":"Introduction",
-            "artworks": [
-              "twentse welle"
-            ],
-            "backgrounds": [
-              "twentse welle"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":78399,
-                  "duration":160598,
-                  "title":"TwentseWelle",
-                  "locator":"http://nl.dbpedia.org/resource/TwentseWelle"
-               }
-            ]
-         },
-         {  
-            "id":2,
-            "startTime":109000,
-            "duration":252000,
-            "title":"Bronzen Beeld",
-            "fragments":[  
-               {  
-                  "startTime":115360,
-                  "duration":234238,
-                  "title":"art deco",
-                  "locator":"http://nl.dbpedia.org/resource/Art_deco"
-               }
-            ]
-         },
-         {  
-            "id":3,
-            "startTime":262000,
-            "duration":578000,
-            "title":"Medaillion",
-            "fragments":[  
-               {  
-                  "startTime":281200,
-                  "duration":565520,
-                  "title":"Onyx",
-                  "locator":"http://nl.dbpedia.org/resource/Onyx"
-               }
-            ]
-         },
-         {  
-            "id":4,
-            "startTime":319000,
-            "duration":883000,
-            "title":"Egyptian clay statues",
-            "fragments":[  
-               {  
-                  "startTime":360519,
-                  "duration":725237,
-                  "title":"Egypte",
-                  "locator":"http://nl.dbpedia.org/resource/Egypte"
-               },
-               {  
-                  "startTime":376559,
-                  "duration":756398,
-                  "title":"Gizeh",
-                  "locator":"http://nl.dbpedia.org/resource/Gizeh"
-               },
-               {  
-                  "startTime":435759,
-                  "duration":873318,
-                  "title":"faience",
-                  "locator":"http://nl.dbpedia.org/resource/Faience_%28aardewerk)"
-               },
-               {  
-                  "startTime":466400,
-                  "duration":935919,
-                  "title":"Zeus",
-                  "locator":"http://yago-knowledge.org/resource/Zeus"
-               },
-               {  
-                  "startTime":486320,
-                  "duration":976720,
-                  "title":"Zeuskop",
-                  "locator":""
-               },
-               {  
-                  "startTime":496400,
-                  "duration":995959,
-                  "title":"Egyptische",
-                  "locator":"http://nl.dbpedia.org/resource/Egypte_%28land)"
-               }
-            ]
-         },
-         {  
-            "id":5,
-            "startTime":918000,
-            "duration":2070000,
-            "title":"Mangelplank",
-            "fragments":[  
-               {  
-                  "startTime":1121880,
-                  "duration":2248479,
-                  "title":"volkskunst",
-                  "locator":"http://nl.dbpedia.org/resource/Volkskunst"
-               }
-            ]
-         },
-         {  
-            "id":6,
-            "startTime":1522000,
-            "duration":3264000,
-            "title":"Wooden Maria Statue",
-            "artworks": [
-              "maria statue"
-            ],
-            "backgrounds": [
-              "mariebeeld"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":1555479,
-                  "duration":3115399,
-                  "title":"eikenhout",
-                  "locator":"http://nl.dbpedia.org/resource/Eiken_%28hout)"
-               }
-            ]
-         },
-         {  
-            "id":7,
-            "startTime":2023000,
-            "duration":4271000,
-            "title":"Art nouveau vases",
-            "fragments":[  
-               {  
-                  "startTime":2023000,
-                  "duration":4271000,
-                  "title":"Art nouveau",
-                  "locator":"http://nl.dbpedia.org/resource/Jugendstil"
-               }
-            ]
-         },
-         {  
-            "id":8,
-            "startTime":2434000,
-            "duration":5109000,
-            "title":"Fertility statue",
-            "fragments":[  
-               {  
-                  "startTime":2434000,
-                  "duration":5109000,
-                  "title":"Vruchtbaarheidssymbool",
-                  "locator":"http://nl.dbpedia.org/resource/Vruchtbaarheid_%28symbool)"
-               }
-            ]
-         }
-      ]
-   },
-   {  
-      "id":"8a8187f2-3fc8-cb54-0140-7dd099380002",
-      "title":"Graphic Design Museum - 31 July 2011",
-      "shots":"http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1",
-      "poster":"http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1/h/0/m/0/sec10.jpg",
-      "src":"video/101.mp4",
-      "duration":2733550,
-      "chapters":[  
-         {  
-            "id":1,
-            "startTime":5000,
-            "duration":131000,
-            "title":"Introduction",
-            "artworks": [
-              "moti breda"
-            ],
-            "backgrounds": [
-              "moti breda"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":0,
-                  "duration":0,
-                  "title":"Chi-Rho",
-                  "locator":"http://dbpedia.org/resource/Chi-Rho"
-               },
-               {  
-                  "startTime":1000,
-                  "duration":31000,
-                  "title":"Chi-Rho",
-                  "locator":"http://dbpedia.org/resource/Chi-Rho"
-               },
-               {  
-                  "startTime":28919,
-                  "duration":61718,
-                  "title":"Graphic Design Museum",
-                  "locator":"http://nl.dbpedia.org/resource/Graphic_Design_Museum"
-               }
-            ]
-         },
-         {  
-            "id":2,
-            "startTime":175000,
-            "duration":439000,
-            "title":"1900s book",
-            "fragments":[  
-               {  
-                  "startTime":182119,
-                  "duration":365719,
-                  "title":"1905",
-                  "locator":"http://nl.dbpedia.org/resource/1905"
-               },
-               {  
-                  "startTime":201798,
-                  "duration":407596,
-                  "title":"Puccini",
-                  "locator":"http://nl.dbpedia.org/resource/Giacomo_Puccini"
-               }
-            ]
-         },
-         {  
-            "id":3,
-            "startTime":266000,
-            "duration":631000,
-            "title":"Jo Koster painting",
-            "fragments":[  
-               {  
-                  "startTime":294440,
-                  "duration":592760,
-                  "title":"Amsterdam",
-                  "locator":"http://nl.dbpedia.org/resource/Amsterdam"
-               },
-               {  
-                  "startTime":309880,
-                  "duration":623880,
-                  "title":"impressionisme",
-                  "locator":"http://dbpedia.org/resource/Impressionism"
-               },
-               {  
-                  "startTime":338678,
-                  "duration":681077,
-                  "title":"Jo Koster",
-                  "locator":"http://nl.dbpedia.org/resource/Koster"
-               }
-            ]
-         },
-         {  
-            "id":4,
-            "startTime":601000,
-            "duration":1275000,
-            "title":"Silver coffee set",
-            "fragments":[  
-               {  
-                  "startTime":624439,
-                  "duration":1251958,
-                  "title":"zilver",
-                  "locator":"http://nl.dbpedia.org/resource/Zilver"
-               },
-               {  
-                  "startTime":636559,
-                  "duration":1276319,
-                  "title":"ivoor",
-                  "locator":"http://nl.dbpedia.org/resource/Ivoor"
-               }
-            ]
-         },
-         {  
-            "id":5,
-            "startTime":750000,
-            "duration":1767000,
-            "title":"Steltman ring",
-            "fragments":[  
-               {  
-                  "startTime":873318,
-                  "duration":1748117,
-                  "title":"Den Haag",
-                  "locator":"http://dbpedia.org/resource/The_Hague"
-               },
-               {  
-                  "startTime":906000,
-                  "duration":1816879,
-                  "title":"hotel Des Indes",
-                  "locator":"http://nl.dbpedia.org/resource/Hotel_Des_Indes_%28Den_Haag)"
-               }
-            ]
-         },
-         {  
-            "id":6,
-            "startTime":1266000,
-            "duration":2806000,
-            "title":"Gold Breguet watch",
-            "fragments":[  
-               {  
-                  "startTime":1266000,
-                  "duration":2806000,
-                  "title":"MOTI",
-                  "locator":"http://dbpedia.org/resource/Breda"
-               },
-               {  
-                  "startTime":1269000,
-                  "duration":2809000,
-                  "title":"Wereldtentoonstelling %281889)",
-                  "locator":"http://dbpedia.org/resource/Exposition_Universelle_%281889)"
-               },
-               {  
-                  "startTime":1298000,
-                  "duration":2838000,
-                  "title":"1820",
-                  "locator":"http://dbpedia.org/resource/1820"
-               },
-               {  
-                  "startTime":1303000,
-                  "duration":2843000,
-                  "title":"Fred Kats",
-                  "locator":""
-               },
-               {  
-                  "startTime":1314000,
-                  "duration":2854000,
-                  "title":"Jacquemart",
-                  "locator":"http://dbpedia.org/resource/Jacquemart_%28bellstriker)"
-               },
-               {  
-                  "startTime":1340000,
-                  "duration":2880000,
-                  "title":"Hebe",
-                  "locator":"http://nl.dbpedia.org/resource/Hebe_%28mythologie)"
-               },
-               {  
-                  "startTime":1347000,
-                  "duration":2887000,
-                  "title":"Charitas",
-                  "locator":"http://nl.dbpedia.org/resource/Caritas_%28deugd)"
-               },
-               {  
-                  "startTime":1431000,
-                  "duration":2971000,
-                  "title":"Abraham-Louis Breguet",
-                  "locator":"http://dbpedia.org/resource/Abraham-Louis_Breguet"
-               },
-               {  
-                  "startTime":1453000,
-                  "duration":2993000,
-                  "title":"Breguet %28bedrijf)",
-                  "locator":"http://dbpedia.org/resource/Abraham-Louis_Breguet"
-               },
-               {  
-                  "startTime":1482000,
-                  "duration":3022000,
-                  "title":"Place Vendome",
-                  "locator":"http://dbpedia.org/resource/Paris"
-               }
-            ]
-         },
-         {  
-            "id":7,
-            "startTime":1805000,
-            "duration":3876000,
-            "title":"Dog painting",
-            "fragments":[  
-               {  
-                  "startTime":1964790,
-                  "duration":3932908,
-                  "title":"impressionistisch",
-                  "locator":"http://nl.dbpedia.org/resource/Impressionisme"
-               }
-            ]
-         },
-         {  
-            "id":8,
-            "startTime":2302000,
-            "duration":4721000,
-            "title":"Amsterdam painting",
-            "fragments":[  
-               {  
-                  "startTime":2343439,
-                  "duration":4689678,
-                  "title":"Amsterdam",
-                  "locator":"http://nl.dbpedia.org/resource/Amsterdam"
-               },
-               {  
-                  "startTime":2346439,
-                  "duration":4694558,
-                  "title":"Haarlem",
-                  "locator":"http://nl.dbpedia.org/resource/Haarlem"
-               }
-            ]
-         },
-         {  
-            "id":9,
-            "startTime":2422000,
-            "duration":5112000,
-            "title":"Congo statue",
-            "fragments":[  
-               {  
-                  "startTime":2460879,
-                  "duration":4924398,
-                  "title":"Belgisch                Congo",
-                  "locator":"http://nl.dbpedia.org/resource/Congo"
-               }
-            ]
-         }
-      ]
-   },
-   {  
-      "id":"953b4d09-e828-4623-b9ff-be3072411a98",
-      "title":"Compilation of clips - 16 March 2011",
-      "shots":"http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1",
-      "poster":"http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1/h/0/m/0/sec10.jpg",
-      "src":"video/187.mp4",
-      "duration":2727280,
-      "chapters":[  
-         {  
-            "id":1,
-            "startTime":7000,
-            "duration":41000,
-            "title":"Introduction",
-            "fragments":[  
+        ]
+      },
+      {
+        "id": 6,
+        "startTime": 2158000,
+        "duration": 4552000,
+        "title": "Silver tea jar",
+        "artworks": [
+          "zilver theebus"
+        ],
+        "backgrounds": [
+          "zilver theebus"
+        ],
+        "fragments": [
+          {
+            "startTime": 2165000,
+            "duration": 4474000,
+            "title": "Subject: Frisian silver",
+            "locator": "http://dbpedia.org/resource/Friesland"
+          },
+          {
+            "startTime": 2234000,
+            "duration": 4474000,
+            "title": "Location: Friesland",
+            "locator": "http://nl.dbpedia.org/resource/Friesland"
+          },
+          {
+            "startTime": 2285000,
+            "duration": 4574000,
+            "title": "Subject: Master sign",
+            "locator": "http://nl.dbpedia.org/resource/Meesterteken"
+          },
+          {
+            "startTime": 2289000,
+            "duration": 4583000,
+            "title": "Date: 1742",
+            "locator": "http://nl.dbpedia.org/resource/1742"
+          },
+          {
+            "startTime": 2289000,
+            "duration": 4583000,
+            "title": "Subject: Silver smith",
+            "locator": "http://nl.dbpedia.org/resource/Zilversmid"
+          },
+          {
+            "startTime": 2302000,
+            "duration": 4608000,
+            "title": "Material: silver",
+            "locator": "http://nl.dbpedia.org/resource/Zilver"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "startTime": 2638000,
+        "duration": 5544000,
+        "title": "19th century broche",
+        "fragments": [
+          {
+            "startTime": 2758399,
+            "duration": 5522398,
+            "title": "Napoleon III",
+            "locator": "http://nl.dbpedia.org/resource/Napoleon_III"
+          },
+          {
+            "startTime": 2764199,
+            "duration": 5532719,
+            "title": "Marie Antoinette",
+            "locator": "http://nl.dbpedia.org/resource/Marie_Antoinette_van_Oostenrijk"
+          },
+          {
+            "startTime": 2810320,
+            "duration": 5626079,
+            "title": "lapis lazuli",
+            "locator": "http://nl.dbpedia.org/resource/Lapis_lazuli"
+          },
+          {
+            "startTime": 2850399,
+            "duration": 5706878,
+            "title": "zilver",
+            "locator": "http://nl.dbpedia.org/resource/Zilver"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd151100003",
+    "title": "Hermitage Amsterdam - 8 December 2010",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/102.mp4",
+    "duration": 2735740,
+    "chapters": [
+      {
+        "id": 1,
+        "startTime": 10000,
+        "duration": 90000,
+        "title": "Introduction",
+        "artworks": [
+          "hermitage amsterdam"
+        ],
+        "backgrounds": [
+          "hermitage amsterdam"
+        ],
+        "fragments": [
+          {
+            "startTime": 40599,
+            "duration": 83318,
+            "title": "Amsterdam",
+            "locator": "http://nl.dbpedia.org/resource/Amsterdam"
+          },
+          {
+            "startTime": 40599,
+            "duration": 83318,
+            "title": "Hermitage",
+            "locator": "http://nl.dbpedia.org/resource/Hermitage_%28Sint-Petersburg)"
+          },
+          {
+            "startTime": 71639,
+            "duration": 147439,
+            "title": "Hermitage          Amsterdam",
+            "locator": "http://yago-knowledge.org/resource/Amsterdam"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "startTime": 297000,
+        "duration": 825000,
+        "title": "1549 bell",
+        "fragments": [
+          {
+            "startTime": 394200,
+            "duration": 791159,
+            "title": "Johan Afin",
+            "locator": ""
+          },
+          {
+            "startTime": 399720,
+            "duration": 803279,
+            "title": "Mechelen",
+            "locator": "http://nl.dbpedia.org/resource/Mechelen_%28stad)"
+          },
+          {
+            "startTime": 448519,
+            "duration": 901719,
+            "title": "tin",
+            "locator": "http://nl.dbpedia.org/resource/Tin_%28element)"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "startTime": 736000,
+        "duration": 1721000,
+        "title": "Jan Toorop painting",
+        "fragments": [
+          {
+            "startTime": 787520,
+            "duration": 1579280,
+            "title": "Jan Toorop",
+            "locator": "http://nl.dbpedia.org/resource/Jan_Toorop"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "startTime": 1214000,
+        "duration": 2647000,
+        "title": "Nijdam vase",
+        "fragments": [
+          {
+            "startTime": 1265400,
+            "duration": 2532839,
+            "title": "Uranium",
+            "locator": "http://nl.dbpedia.org/resource/Uranium"
+          },
+          {
+            "startTime": 1290119,
+            "duration": 2582519,
+            "title": "Leerdam",
+            "locator": "http://nl.dbpedia.org/resource/Leerdam"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "startTime": 1653000,
+        "duration": 3542000,
+        "title": "Oil & vinegar set",
+        "fragments": [
+          {
+            "startTime": 1711520,
+            "duration": 3425959,
+            "title": "Francois Lambrechts",
+            "locator": ""
+          },
+          {
+            "startTime": 1714640,
+            "duration": 3430920,
+            "title": "zilversmid",
+            "locator": "http://nl.dbpedia.org/resource/Zilversmid"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "startTime": 2075000,
+        "duration": 4378000,
+        "title": "Coptic weaving",
+        "fragments": [
+          {
+            "startTime": 2107759,
+            "duration": 4219159,
+            "title": "kopten",
+            "locator": "http://nl.dbpedia.org/resource/Kopten"
+          },
+          {
+            "startTime": 2122719,
+            "duration": 4247677,
+            "title": "textiel",
+            "locator": "http://nl.dbpedia.org/resource/Textiel"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "startTime": 2436000,
+        "duration": 5144000,
+        "title": "Jan Sluijters",
+        "artworks": [
+          "jan sluijters"
+        ],
+        "backgrounds": [
+          "jan sluijters"
+        ],
+        "fragments": [
+          {
+            "startTime": 2473799,
+            "duration": 4952598,
+            "title": "Jan Sluijters",
+            "locator": "http://nl.dbpedia.org/resource/Jan_Sluijters"
+          },
+          {
+            "startTime": 2542438,
+            "duration": 5086998,
+            "title": "Parijs",
+            "locator": "http://nl.dbpedia.org/resource/Parijs"
+          },
+          {
+            "startTime": 2626878,
+            "duration": 5257557,
+            "title": "Fauvisten",
+            "locator": "http://nl.dbpedia.org/resource/Les_Fauves"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd247360004",
+    "title": "Twentse Welle - 21 December 2011",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/103/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/103/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/103.mp4",
+    "duration": 2694100,
+    "chapters": [
+      {
+        "id": 1,
+        "startTime": 48000,
+        "duration": 154000,
+        "title": "Introduction",
+        "artworks": [
+          "twentse welle"
+        ],
+        "backgrounds": [
+          "twentse welle"
+        ],
+        "fragments": [
+          {
+            "startTime": 78399,
+            "duration": 160598,
+            "title": "TwentseWelle",
+            "locator": "http://nl.dbpedia.org/resource/TwentseWelle"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "startTime": 109000,
+        "duration": 252000,
+        "title": "Bronzen Beeld",
+        "fragments": [
+          {
+            "startTime": 115360,
+            "duration": 234238,
+            "title": "art deco",
+            "locator": "http://nl.dbpedia.org/resource/Art_deco"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "startTime": 262000,
+        "duration": 578000,
+        "title": "Medaillion",
+        "fragments": [
+          {
+            "startTime": 281200,
+            "duration": 565520,
+            "title": "Onyx",
+            "locator": "http://nl.dbpedia.org/resource/Onyx"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "startTime": 319000,
+        "duration": 883000,
+        "title": "Egyptian clay statues",
+        "fragments": [
+          {
+            "startTime": 360519,
+            "duration": 725237,
+            "title": "Egypte",
+            "locator": "http://nl.dbpedia.org/resource/Egypte"
+          },
+          {
+            "startTime": 376559,
+            "duration": 756398,
+            "title": "Gizeh",
+            "locator": "http://nl.dbpedia.org/resource/Gizeh"
+          },
+          {
+            "startTime": 435759,
+            "duration": 873318,
+            "title": "faience",
+            "locator": "http://nl.dbpedia.org/resource/Faience_%28aardewerk)"
+          },
+          {
+            "startTime": 466400,
+            "duration": 935919,
+            "title": "Zeus",
+            "locator": "http://yago-knowledge.org/resource/Zeus"
+          },
+          {
+            "startTime": 486320,
+            "duration": 976720,
+            "title": "Zeuskop",
+            "locator": ""
+          },
+          {
+            "startTime": 496400,
+            "duration": 995959,
+            "title": "Egyptische",
+            "locator": "http://nl.dbpedia.org/resource/Egypte_%28land)"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "startTime": 918000,
+        "duration": 2070000,
+        "title": "Mangelplank",
+        "fragments": [
+          {
+            "startTime": 1121880,
+            "duration": 2248479,
+            "title": "volkskunst",
+            "locator": "http://nl.dbpedia.org/resource/Volkskunst"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "startTime": 1522000,
+        "duration": 3264000,
+        "title": "Wooden Maria Statue",
+        "artworks": [
+          "maria statue"
+        ],
+        "backgrounds": [
+          "mariebeeld"
+        ],
+        "fragments": [
+          {
+            "startTime": 1555479,
+            "duration": 3115399,
+            "title": "eikenhout",
+            "locator": "http://nl.dbpedia.org/resource/Eiken_%28hout)"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "startTime": 2023000,
+        "duration": 4271000,
+        "title": "Art nouveau vases",
+        "fragments": [
+          {
+            "startTime": 2023000,
+            "duration": 4271000,
+            "title": "Art nouveau",
+            "locator": "http://nl.dbpedia.org/resource/Jugendstil"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "startTime": 2434000,
+        "duration": 5109000,
+        "title": "Fertility statue",
+        "fragments": [
+          {
+            "startTime": 2434000,
+            "duration": 5109000,
+            "title": "Vruchtbaarheidssymbool",
+            "locator": "http://nl.dbpedia.org/resource/Vruchtbaarheid_%28symbool)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd099380002",
+    "title": "Graphic Design Museum - 31 July 2011",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/101/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/101.mp4",
+    "duration": 2733550,
+    "chapters": [
+      {
+        "id": 1,
+        "startTime": 5000,
+        "duration": 131000,
+        "title": "Introduction",
+        "artworks": [
+          "moti breda"
+        ],
+        "backgrounds": [
+          "moti breda"
+        ],
+        "fragments": [
+          {
+            "startTime": 0,
+            "duration": 0,
+            "title": "Chi-Rho",
+            "locator": "http://dbpedia.org/resource/Chi-Rho"
+          },
+          {
+            "startTime": 1000,
+            "duration": 31000,
+            "title": "Chi-Rho",
+            "locator": "http://dbpedia.org/resource/Chi-Rho"
+          },
+          {
+            "startTime": 28919,
+            "duration": 61718,
+            "title": "Graphic Design Museum",
+            "locator": "http://nl.dbpedia.org/resource/Graphic_Design_Museum"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "startTime": 175000,
+        "duration": 439000,
+        "title": "1900s book",
+        "fragments": [
+          {
+            "startTime": 182119,
+            "duration": 365719,
+            "title": "1905",
+            "locator": "http://nl.dbpedia.org/resource/1905"
+          },
+          {
+            "startTime": 201798,
+            "duration": 407596,
+            "title": "Puccini",
+            "locator": "http://nl.dbpedia.org/resource/Giacomo_Puccini"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "startTime": 266000,
+        "duration": 631000,
+        "title": "Jo Koster painting",
+        "fragments": [
+          {
+            "startTime": 294440,
+            "duration": 592760,
+            "title": "Amsterdam",
+            "locator": "http://nl.dbpedia.org/resource/Amsterdam"
+          },
+          {
+            "startTime": 309880,
+            "duration": 623880,
+            "title": "impressionisme",
+            "locator": "http://dbpedia.org/resource/Impressionism"
+          },
+          {
+            "startTime": 338678,
+            "duration": 681077,
+            "title": "Jo Koster",
+            "locator": "http://nl.dbpedia.org/resource/Koster"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "startTime": 601000,
+        "duration": 1275000,
+        "title": "Silver coffee set",
+        "fragments": [
+          {
+            "startTime": 624439,
+            "duration": 1251958,
+            "title": "zilver",
+            "locator": "http://nl.dbpedia.org/resource/Zilver"
+          },
+          {
+            "startTime": 636559,
+            "duration": 1276319,
+            "title": "ivoor",
+            "locator": "http://nl.dbpedia.org/resource/Ivoor"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "startTime": 750000,
+        "duration": 1767000,
+        "title": "Steltman ring",
+        "fragments": [
+          {
+            "startTime": 873318,
+            "duration": 1748117,
+            "title": "Den Haag",
+            "locator": "http://dbpedia.org/resource/The_Hague"
+          },
+          {
+            "startTime": 906000,
+            "duration": 1816879,
+            "title": "hotel Des Indes",
+            "locator": "http://nl.dbpedia.org/resource/Hotel_Des_Indes_%28Den_Haag)"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "startTime": 1266000,
+        "duration": 2806000,
+        "title": "Gold Breguet watch",
+        "fragments": [
+          {
+            "startTime": 1266000,
+            "duration": 2806000,
+            "title": "MOTI",
+            "locator": "http://dbpedia.org/resource/Breda"
+          },
+          {
+            "startTime": 1269000,
+            "duration": 2809000,
+            "title": "Wereldtentoonstelling %281889)",
+            "locator": "http://dbpedia.org/resource/Exposition_Universelle_%281889)"
+          },
+          {
+            "startTime": 1298000,
+            "duration": 2838000,
+            "title": "1820",
+            "locator": "http://dbpedia.org/resource/1820"
+          },
+          {
+            "startTime": 1303000,
+            "duration": 2843000,
+            "title": "Fred Kats",
+            "locator": ""
+          },
+          {
+            "startTime": 1314000,
+            "duration": 2854000,
+            "title": "Jacquemart",
+            "locator": "http://dbpedia.org/resource/Jacquemart_%28bellstriker)"
+          },
+          {
+            "startTime": 1340000,
+            "duration": 2880000,
+            "title": "Hebe",
+            "locator": "http://nl.dbpedia.org/resource/Hebe_%28mythologie)"
+          },
+          {
+            "startTime": 1347000,
+            "duration": 2887000,
+            "title": "Charitas",
+            "locator": "http://nl.dbpedia.org/resource/Caritas_%28deugd)"
+          },
+          {
+            "startTime": 1431000,
+            "duration": 2971000,
+            "title": "Abraham-Louis Breguet",
+            "locator": "http://dbpedia.org/resource/Abraham-Louis_Breguet"
+          },
+          {
+            "startTime": 1453000,
+            "duration": 2993000,
+            "title": "Breguet %28bedrijf)",
+            "locator": "http://dbpedia.org/resource/Abraham-Louis_Breguet"
+          },
+          {
+            "startTime": 1482000,
+            "duration": 3022000,
+            "title": "Place Vendome",
+            "locator": "http://dbpedia.org/resource/Paris"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "startTime": 1805000,
+        "duration": 3876000,
+        "title": "Dog painting",
+        "fragments": [
+          {
+            "startTime": 1964790,
+            "duration": 3932908,
+            "title": "impressionistisch",
+            "locator": "http://nl.dbpedia.org/resource/Impressionisme"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "startTime": 2302000,
+        "duration": 4721000,
+        "title": "Amsterdam painting",
+        "fragments": [
+          {
+            "startTime": 2343439,
+            "duration": 4689678,
+            "title": "Amsterdam",
+            "locator": "http://nl.dbpedia.org/resource/Amsterdam"
+          },
+          {
+            "startTime": 2346439,
+            "duration": 4694558,
+            "title": "Haarlem",
+            "locator": "http://nl.dbpedia.org/resource/Haarlem"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "startTime": 2422000,
+        "duration": 5112000,
+        "title": "Congo statue",
+        "fragments": [
+          {
+            "startTime": 2460879,
+            "duration": 4924398,
+            "title": "Belgisch                Congo",
+            "locator": "http://nl.dbpedia.org/resource/Congo"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "953b4d09-e828-4623-b9ff-be3072411a98",
+    "title": "Compilation of clips - 16 March 2011",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/187.mp4",
+    "duration": 2727280,
+    "chapters": [
+      {
+        "id": 1,
+        "startTime": 7000,
+        "duration": 41000,
+        "title": "Introduction",
+        "fragments": [
 
-            ]
-         },
-         {  
-            "id":2,
-            "startTime":231000,
-            "duration":554000,
-            "title":"Jac de Vries painting",
-            "fragments":[  
-               {  
-                  "startTime":231000,
-                  "duration":554000,
-                  "title":"Related artist: Jan Sluijters",
-                  "locator":"http://en.dbpedia.org/resource/Jan_Sluyters"
-               },
-               {  
-                  "startTime":231000,
-                  "duration":554000,
-                  "title":"Related artist: Leo Gestel",
-                  "locator":"http://en.dbpedia.org/resource/Leo_Gestel"
-               }
-            ]
-         },
-         {  
-            "id":3,
-            "startTime":326000,
-            "duration":846000,
-            "title":"Rococo sign",
-            "fragments":[  
-               {  
-                  "startTime":421799,
-                  "duration":846719,
-                  "title":"1910",
-                  "locator":"http://dbpedia.org/resource/1910"
-               },
-               {  
-                  "startTime":507200,
-                  "duration":1015878,
-                  "title":"rococo",
-                  "locator":"http://nl.dbpedia.org/resource/Rococo"
-               }
-            ]
-         },
-         {  
-            "id":4,
-            "startTime":814000,
-            "duration":1860000,
-            "title":"Altorf sculpture",
-            "fragments":[  
-               {  
-                  "startTime":980559,
-                  "duration":1962998,
-                  "title":"Den Haag",
-                  "locator":"http://nl.dbpedia.org/resource/Den_Haag"
-               },
-               {  
-                  "startTime":994400,
-                  "duration":1993079,
-                  "title":"Johan Coenraad Altorf",
-                  "locator":"http://nl.dbpedia.org/resource/Johan_Coenraad_Altorf"
-               },
-               {  
-                  "startTime":1004799,
-                  "duration":2015158,
-                  "title":"ivoor",
-                  "locator":"http://nl.dbpedia.org/resource/Ivoor"
-               }
-            ]
-         },
-         {  
-            "id":5,
-            "startTime":1350000,
-            "duration":2953000,
-            "title":"Maria lactans",
-            "fragments":[  
-               {  
-                  "startTime":1419879,
-                  "duration":2842799,
-                  "title":"18e eeuw",
-                  "locator":"http://nl.dbpedia.org/resource/18e_eeuw"
-               },
-               {  
-                  "startTime":1523359,
-                  "duration":3050519,
-                  "title":"polychroom",
-                  "locator":"http://nl.dbpedia.org/resource/Polychromie"
-               }
-            ]
-         },
-         {  
-            "id":6,
-            "startTime":1849000,
-            "duration":3954000,
-            "title":"Spaghetti clock",
-            "fragments":[  
-               {  
-                  "startTime":2096639,
-                  "duration":4194878,
-                  "title":"17e eeuw",
-                  "locator":"http://nl.dbpedia.org/resource/17e_eeuw"
-               }
-            ]
-         },
-         {  
-            "id":7,
-            "startTime":2408000,
-            "duration":5074000,
-            "title":"Koppenol painting",
-            "fragments":[  
-               {  
-                  "startTime":2626639,
-                  "duration":5257439,
-                  "title":"1890",
-                  "locator":"http://nl.dbpedia.org/resource/1890"
-               },
-               {  
-                  "startTime":2630280,
-                  "duration":5264199,
-                  "title":"Haagse school",
-                  "locator":"http://nl.dbpedia.org/resource/Haagse_School_%28schilderkunst)"
-               }
-            ]
-         }
-      ]
-   },
-   {  
-      "id":"8a8187f2-3fc8-cb54-0140-7dd2d0650005",
-      "title":"MuZee - 28 December 2011",
-      "shots":"http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1",
-      "poster":"http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1/h/0/m/0/sec10.jpg",
-      "src":"video/104.mp4",
-      "duration":2699560,
-      "chapters":[  
-         {  
-            "id":1,
-            "startTime":331000,
-            "duration":902000,
-            "title":"Bastet statue",
-            "fragments":[  
-               {  
-                  "startTime":377519,
-                  "duration":763877,
-                  "title":"Bastet",
-                  "locator":"http://nl.dbpedia.org/resource/Bastet"
-               }
-            ]
-         },
-         {  
-            "id":2,
-            "startTime":899000,
-            "duration":1999000,
-            "title":"Vase",
-            "fragments":[  
-               {  
-                  "startTime":937280,
-                  "duration":1881639,
-                  "title":"Jugendstilvaas",
-                  "locator":""
-               },
-               {  
-                  "startTime":963520,
-                  "duration":1930438,
-                  "title":"Henri Breetveld",
-                  "locator":""
-               }
-            ]
-         },
-         {  
-            "id":3,
-            "startTime":1375000,
-            "duration":2976000,
-            "title":"Art deco ring",
-            "fragments":[  
-               {  
-                  "startTime":1428800,
-                  "duration":2863399,
-                  "title":"diamant",
-                  "locator":"http://nl.dbpedia.org/resource/Diamant"
-               },
-               {  
-                  "startTime":1448199,
-                  "duration":2902398,
-                  "title":"Art Deco",
-                  "locator":"http://nl.dbpedia.org/resource/Art_deco"
-               },
-               {  
-                  "startTime":1454199,
-                  "duration":2912999,
-                  "title":"modernisme",
-                  "locator":"http://nl.dbpedia.org/resource/Modernisme"
-               }
-            ]
-         },
-         {  
-            "id":4,
-            "startTime":1857000,
-            "duration":3971000,
-            "title":"Delftware plate",
-            "artworks": [
-              "delftware"
-            ],
-            "backgrounds": [
-              "delftsblauw"
-            ],
-            "fragments":[  
-               {  
-                  "startTime":1992359,
-                  "duration":3989317,
-                  "title":"porselein",
-                  "locator":"http://nl.dbpedia.org/resource/Porselein"
-               },
-               {  
-                  "startTime":2026640,
-                  "duration":4058920,
-                  "title":"Delfts aardewerk",
-                  "locator":"http://nl.dbpedia.org/resource/Delfts_blauw"
-               },
-               {  
-                  "startTime":2041000,
-                  "duration":4086000,
-                  "title":"porselen",
-                  "locator":"http://nl.dbpedia.org/resource/Porselein"
-               }
-            ]
-         },
-         {  
-            "id":5,
-            "startTime":2420000,
-            "duration":5094000,
-            "title":"Beer pitcher",
-            "fragments":[  
-               {  
-                  "startTime":2429400,
-                  "duration":4862400,
-                  "title":"bier",
-                  "locator":"http://nl.dbpedia.org/resource/Bier"
-               },
-               {  
-                  "startTime":2489840,
-                  "duration":4986200,
-                  "title":"1810",
-                  "locator":"http://nl.dbpedia.org/resource/1810"
-               },
-               {  
-                  "startTime":2523919,
-                  "duration":5059519,
-                  "title":"messing",
-                  "locator":"http://nl.dbpedia.org/resource/Messing_%28legering)"
-               },
-               {  
-                  "startTime":2575639,
-                  "duration":5155999,
-                  "title":"Francois Bruxelles",
-                  "locator":""
-               },
-               {  
-                  "startTime":2587520,
-                  "duration":5182320,
-                  "title":"tin",
-                  "locator":"http://nl.dbpedia.org/resource/Tin_%28element)"
-               }
-            ]
-         }
-      ]
-   },
-   {  
-      "id":"c44643ee-823e-476c-a099-bd28bcf1e56a",
-      "title":"Porceleyne Fles - 29 October 2011",
-      "shots":"http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1",
-      "poster":"http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1/h/0/m/0/sec10.jpg",
-      "src":"video/150.mp4",
-      "duration":2713790,
-      "chapters":[  
-         {  
-            "id":1,
-            "startTime":9000,
-            "duration":120000,
-            "title":"Introduction",
-            "fragments":[  
-               {  
-                  "startTime":9000,
-                  "duration":120000,
-                  "title":"Porceleyne Fles",
-                  "locator":"http://nl.dbpedia.org/resource/De_Porceleyne_Fles"
-               }
-            ]
-         },
-         {  
-            "id":2,
-            "startTime":298000,
-            "duration":872000,
-            "title":"Rozenburg porcelain",
-            "fragments":[  
-               {  
-                  "startTime":454920,
-                  "duration":913319,
-                  "title":"eierschaalporselein",
-                  "locator":"http://nl.dbpedia.org/resource/Eierschaalporselein"
-               },
-               {  
-                  "startTime":515239,
-                  "duration":1033759,
-                  "title":"porselein",
-                  "locator":"http://nl.dbpedia.org/resource/Porselein"
-               }
-            ]
-         },
-         {  
-            "id":3,
-            "startTime":833000,
-            "duration":1957000,
-            "title":"Herman Bieling painting",
-            "fragments":[  
-               {  
-                  "startTime":1059239,
-                  "duration":2121078,
-                  "title":"Herman Bieling",
-                  "locator":"http://nl.dbpedia.org/resource/Herman_Bieling"
-               },
-               {  
-                  "startTime":1097680,
-                  "duration":2200559,
-                  "title":"kubisme",
-                  "locator":"http://nl.dbpedia.org/resource/Kubisme"
-               }
-            ]
-         },
-         {  
-            "id":4,
-            "startTime":1329000,
-            "duration":2953000,
-            "title":"Delft plaque",
-            "fragments":[  
-               {  
-                  "startTime":1442560,
-                  "duration":2887840,
-                  "title":"plaquette",
-                  "locator":"http://nl.dbpedia.org/resource/Plaquette_%28afbeelding)"
-               },
-               {  
-                  "startTime":1506520,
-                  "duration":3016080,
-                  "title":"aardewerk",
-                  "locator":"http://nl.dbpedia.org/resource/Aardewerk"
-               }
-            ]
-         },
-         {  
-            "id":5,
-            "startTime":1888000,
-            "duration":4060000,
-            "title":"Schotel painting",
-            "fragments":[  
-               {  
-                  "startTime":2084918,
-                  "duration":4173318,
-                  "title":"Anthonie Pieter             Schotel",
-                  "locator":"http://nl.dbpedia.org/resource/Schotel"
-               },
-               {  
-                  "startTime":2106280,
-                  "duration":4216280,
-                  "title":"1917",
-                  "locator":"http://nl.dbpedia.org/resource/1917"
-               }
-            ]
-         },
-         {  
-            "id":6,
-            "startTime":2344000,
-            "duration":5001000,
-            "title":"Fake Doornik vase",
-            "fragments":[  
-               {  
-                  "startTime":2525159,
-                  "duration":5057077,
-                  "title":"porselein",
-                  "locator":"http://nl.dbpedia.org/resource/Porselein"
-               },
-               {  
-                  "startTime":2548679,
-                  "duration":5101077,
-                  "title":"Doornik",
-                  "locator":"http://dbpedia.org/resource/Doornik"
-               },
-               {  
-                  "startTime":2579679,
-                  "duration":5162157,
-                  "title":"polychroom",
-                  "locator":"http://nl.dbpedia.org/resource/Polychromie"
-               }
-            ]
-         }
-      ]
-   }
+        ]
+      },
+      {
+        "id": 2,
+        "startTime": 231000,
+        "duration": 554000,
+        "title": "Jac de Vries painting",
+        "fragments": [
+          {
+            "startTime": 231000,
+            "duration": 554000,
+            "title": "Related artist: Jan Sluijters",
+            "locator": "http://en.dbpedia.org/resource/Jan_Sluyters"
+          },
+          {
+            "startTime": 231000,
+            "duration": 554000,
+            "title": "Related artist: Leo Gestel",
+            "locator": "http://en.dbpedia.org/resource/Leo_Gestel"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "startTime": 326000,
+        "duration": 846000,
+        "title": "Rococo sign",
+        "fragments": [
+          {
+            "startTime": 421799,
+            "duration": 846719,
+            "title": "1910",
+            "locator": "http://dbpedia.org/resource/1910"
+          },
+          {
+            "startTime": 507200,
+            "duration": 1015878,
+            "title": "rococo",
+            "locator": "http://nl.dbpedia.org/resource/Rococo"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "startTime": 814000,
+        "duration": 1860000,
+        "title": "Altorf sculpture",
+        "fragments": [
+          {
+            "startTime": 980559,
+            "duration": 1962998,
+            "title": "Den Haag",
+            "locator": "http://nl.dbpedia.org/resource/Den_Haag"
+          },
+          {
+            "startTime": 994400,
+            "duration": 1993079,
+            "title": "Johan Coenraad Altorf",
+            "locator": "http://nl.dbpedia.org/resource/Johan_Coenraad_Altorf"
+          },
+          {
+            "startTime": 1004799,
+            "duration": 2015158,
+            "title": "ivoor",
+            "locator": "http://nl.dbpedia.org/resource/Ivoor"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "startTime": 1350000,
+        "duration": 2953000,
+        "title": "Maria lactans",
+        "fragments": [
+          {
+            "startTime": 1419879,
+            "duration": 2842799,
+            "title": "18e eeuw",
+            "locator": "http://nl.dbpedia.org/resource/18e_eeuw"
+          },
+          {
+            "startTime": 1523359,
+            "duration": 3050519,
+            "title": "polychroom",
+            "locator": "http://nl.dbpedia.org/resource/Polychromie"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "startTime": 1849000,
+        "duration": 3954000,
+        "title": "Spaghetti clock",
+        "fragments": [
+          {
+            "startTime": 2096639,
+            "duration": 4194878,
+            "title": "17e eeuw",
+            "locator": "http://nl.dbpedia.org/resource/17e_eeuw"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "startTime": 2408000,
+        "duration": 5074000,
+        "title": "Koppenol painting",
+        "fragments": [
+          {
+            "startTime": 2626639,
+            "duration": 5257439,
+            "title": "1890",
+            "locator": "http://nl.dbpedia.org/resource/1890"
+          },
+          {
+            "startTime": 2630280,
+            "duration": 5264199,
+            "title": "Haagse school",
+            "locator": "http://nl.dbpedia.org/resource/Haagse_School_%28schilderkunst)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8a8187f2-3fc8-cb54-0140-7dd2d0650005",
+    "title": "MuZee - 28 December 2011",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/104/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/104.mp4",
+    "duration": 2699560,
+    "chapters": [
+      {
+        "id": 1,
+        "startTime": 331000,
+        "duration": 902000,
+        "title": "Bastet statue",
+        "fragments": [
+          {
+            "startTime": 377519,
+            "duration": 763877,
+            "title": "Bastet",
+            "locator": "http://nl.dbpedia.org/resource/Bastet"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "startTime": 899000,
+        "duration": 1999000,
+        "title": "Vase",
+        "fragments": [
+          {
+            "startTime": 937280,
+            "duration": 1881639,
+            "title": "Jugendstilvaas",
+            "locator": ""
+          },
+          {
+            "startTime": 963520,
+            "duration": 1930438,
+            "title": "Henri Breetveld",
+            "locator": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "startTime": 1375000,
+        "duration": 2976000,
+        "title": "Art deco ring",
+        "fragments": [
+          {
+            "startTime": 1428800,
+            "duration": 2863399,
+            "title": "diamant",
+            "locator": "http://nl.dbpedia.org/resource/Diamant"
+          },
+          {
+            "startTime": 1448199,
+            "duration": 2902398,
+            "title": "Art Deco",
+            "locator": "http://nl.dbpedia.org/resource/Art_deco"
+          },
+          {
+            "startTime": 1454199,
+            "duration": 2912999,
+            "title": "modernisme",
+            "locator": "http://nl.dbpedia.org/resource/Modernisme"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "startTime": 1857000,
+        "duration": 3971000,
+        "title": "Delftware plate",
+        "artworks": [
+          "delftware"
+        ],
+        "backgrounds": [
+          "delftsblauw"
+        ],
+        "fragments": [
+          {
+            "startTime": 1992359,
+            "duration": 3989317,
+            "title": "porselein",
+            "locator": "http://nl.dbpedia.org/resource/Porselein"
+          },
+          {
+            "startTime": 2026640,
+            "duration": 4058920,
+            "title": "Delfts aardewerk",
+            "locator": "http://nl.dbpedia.org/resource/Delfts_blauw"
+          },
+          {
+            "startTime": 2041000,
+            "duration": 4086000,
+            "title": "porselen",
+            "locator": "http://nl.dbpedia.org/resource/Porselein"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "startTime": 2420000,
+        "duration": 5094000,
+        "title": "Beer pitcher",
+        "fragments": [
+          {
+            "startTime": 2429400,
+            "duration": 4862400,
+            "title": "bier",
+            "locator": "http://nl.dbpedia.org/resource/Bier"
+          },
+          {
+            "startTime": 2489840,
+            "duration": 4986200,
+            "title": "1810",
+            "locator": "http://nl.dbpedia.org/resource/1810"
+          },
+          {
+            "startTime": 2523919,
+            "duration": 5059519,
+            "title": "messing",
+            "locator": "http://nl.dbpedia.org/resource/Messing_%28legering)"
+          },
+          {
+            "startTime": 2575639,
+            "duration": 5155999,
+            "title": "Francois Bruxelles",
+            "locator": ""
+          },
+          {
+            "startTime": 2587520,
+            "duration": 5182320,
+            "title": "tin",
+            "locator": "http://nl.dbpedia.org/resource/Tin_%28element)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c44643ee-823e-476c-a099-bd28bcf1e56a",
+    "title": "Porceleyne Fles - 29 October 2011",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/150.mp4",
+    "duration": 2713790,
+    "chapters": [
+      {
+        "id": 1,
+        "startTime": 9000,
+        "duration": 120000,
+        "title": "Introduction",
+        "fragments": [
+          {
+            "startTime": 9000,
+            "duration": 120000,
+            "title": "Porceleyne Fles",
+            "locator": "http://nl.dbpedia.org/resource/De_Porceleyne_Fles"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "startTime": 298000,
+        "duration": 872000,
+        "title": "Rozenburg porcelain",
+        "fragments": [
+          {
+            "startTime": 454920,
+            "duration": 913319,
+            "title": "eierschaalporselein",
+            "locator": "http://nl.dbpedia.org/resource/Eierschaalporselein"
+          },
+          {
+            "startTime": 515239,
+            "duration": 1033759,
+            "title": "porselein",
+            "locator": "http://nl.dbpedia.org/resource/Porselein"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "startTime": 833000,
+        "duration": 1957000,
+        "title": "Herman Bieling painting",
+        "fragments": [
+          {
+            "startTime": 1059239,
+            "duration": 2121078,
+            "title": "Herman Bieling",
+            "locator": "http://nl.dbpedia.org/resource/Herman_Bieling"
+          },
+          {
+            "startTime": 1097680,
+            "duration": 2200559,
+            "title": "kubisme",
+            "locator": "http://nl.dbpedia.org/resource/Kubisme"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "startTime": 1329000,
+        "duration": 2953000,
+        "title": "Delft plaque",
+        "fragments": [
+          {
+            "startTime": 1442560,
+            "duration": 2887840,
+            "title": "plaquette",
+            "locator": "http://nl.dbpedia.org/resource/Plaquette_%28afbeelding)"
+          },
+          {
+            "startTime": 1506520,
+            "duration": 3016080,
+            "title": "aardewerk",
+            "locator": "http://nl.dbpedia.org/resource/Aardewerk"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "startTime": 1888000,
+        "duration": 4060000,
+        "title": "Schotel painting",
+        "fragments": [
+          {
+            "startTime": 2084918,
+            "duration": 4173318,
+            "title": "Anthonie Pieter             Schotel",
+            "locator": "http://nl.dbpedia.org/resource/Schotel"
+          },
+          {
+            "startTime": 2106280,
+            "duration": 4216280,
+            "title": "1917",
+            "locator": "http://nl.dbpedia.org/resource/1917"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "startTime": 2344000,
+        "duration": 5001000,
+        "title": "Fake Doornik vase",
+        "fragments": [
+          {
+            "startTime": 2525159,
+            "duration": 5057077,
+            "title": "porselein",
+            "locator": "http://nl.dbpedia.org/resource/Porselein"
+          },
+          {
+            "startTime": 2548679,
+            "duration": 5101077,
+            "title": "Doornik",
+            "locator": "http://dbpedia.org/resource/Doornik"
+          },
+          {
+            "startTime": 2579679,
+            "duration": 5162157,
+            "title": "polychroom",
+            "locator": "http://nl.dbpedia.org/resource/Polychromie"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "adb65e0a-642b-432f-aa86-c296dab0375a",
+    "title": "rbb AKTUELL vom 02.06.2014 ",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/rbb/video/1633/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/rbb/video/1633/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/1633.mp4",
+    "duration": 1730470,
+    "chapters": [
+      {
+        "id": "9",
+        "duration": "25000.0",
+        "title": "Themen&uuml;bersicht",
+        "startTime": 0,
+        "fragments": [
+          {
+            "id": "a7082992-171f-11e4-8fa5-005056a7235c",
+            "locator": "",
+            "duration": "239000.0",
+            "title": "Internetseite Bundesverkehrsministerium",
+            "type": "Thing",
+            "startTime": 24000,
+            "enrichments": ["http://www.bmvi.de/DE/Home/home_node.html"]
+          },
+          {
+            "id": "a6c0efca-31e4-11e4-8c09-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Korruption",
+            "duration": "30000.0",
+            "title": "Korruption am BER",
+            "type": "Thing",
+            "startTime": 25000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "duration": "238000.0",
+        "title": "Korruptionsaff&auml;re BER",
+        "startTime": 25000,
+        "fragments": [
+          {
+            "id": "d178c45c-171f-11e4-9ed8-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Klaus_Wowereit",
+            "duration": "18000.0",
+            "title": "Klaus Wowereit",
+            "type": "OfficeHolder",
+            "startTime": 58000,
+            "enrichments": []
+          },
+          {
+            "id": "b1faa346-3364-11e4-8d40-005056a7235c",
+            "locator": "http://de.wikipedia.org/wiki/Jochen_Gro%C3%9Fmann",
+            "duration": "27000.0",
+            "title": "Jochen Gro&szlig;mann",
+            "type": "Thing",
+            "startTime": 73000,
+            "enrichments": ["http://www.rbb-online.de/politik/Flughafen-BER/BER-Aktuelles/akteure_aktuell/ber-staatsanwaltschaft-ermittelt-gegen-ex-technikchef-grossmann.html", "http://www.rbb-online.de/politik/Flughafen-BER/BER-Aktuelles/akteure_aktuell/bestechungsverdacht-am-ber.html"]
+          },
+          {
+            "id": "b540bbbe-171f-11e4-a1bc-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Hartmut_Mehdorn",
+            "duration": "49000.0",
+            "title": "Hartmut Mehdorn",
+            "type": "Thing",
+            "startTime": 102000,
+            "enrichments": []
+          },
+          {
+            "id": "95b250d0-3378-11e4-97bd-005056a7235c",
+            "locator": "http://www.rbb-online.de/politik/Flughafen-BER/BER-Aktuelles/akteure_aktuell/ber-flughafen-kuendigung-bereichsleiter-siegle.html",
+            "duration": "3000.0",
+            "title": "Harald Siegle",
+            "type": "Thing",
+            "startTime": 181000,
+            "enrichments": []
+          },
+          {
+            "id": "563c9398-1721-11e4-bc37-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Martin_Delius",
+            "duration": "22000.0",
+            "title": "Martin Delius",
+            "type": "Thing",
+            "startTime": 190000,
+            "enrichments": []
+          },
+          {
+            "id": "7076c424-171f-11e4-bc37-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Transparency_International",
+            "duration": "16000.0",
+            "title": "Transparency International",
+            "type": "Organisation",
+            "startTime": 218000,
+            "enrichments": []
+          },
+          {
+            "id": "9b2c7bc8-171f-11e4-9abf-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Alexander_Dobrindt",
+            "duration": "18000.0",
+            "title": "Alexander Dobrindt",
+            "type": "OfficeHolder",
+            "startTime": 245000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "1",
+        "duration": "321000.0",
+        "title": "Blackout in Berlin",
+        "startTime": 264000,
+        "fragments": [
+          {
+            "id": "f85ff444-1721-11e4-9b70-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Bundesrechnungshof",
+            "duration": "2000.0",
+            "title": "Bundesrechnungshof",
+            "type": "Organization",
+            "startTime": 265000,
+            "enrichments": []
+          },
+          {
+            "id": "06e56e86-1722-11e4-9c95-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Stromausfall",
+            "duration": "3000.0",
+            "title": "Blackout",
+            "type": "Thing",
+            "startTime": 316000,
+            "enrichments": []
+          },
+          {
+            "id": "cb6e790c-1725-11e4-9e64-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Bernd_Kr&ouml;mer",
+            "duration": "20000.0",
+            "title": "Bernd Kr&ouml;mer",
+            "type": "Thing",
+            "startTime": 323000,
+            "enrichments": []
+          },
+          {
+            "id": "145cb9a8-1726-11e4-9b70-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Vattenfall_%28Deutschland)",
+            "duration": "20000.0",
+            "title": "Vattenfall",
+            "type": "Thing",
+            "startTime": 330000,
+            "enrichments": []
+          },
+          {
+            "id": "2889b0d4-1726-11e4-bc37-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Blockheizkraftwerk",
+            "duration": "20000.0",
+            "title": "Blockheizkraftwerk",
+            "type": "Thing",
+            "startTime": 350000,
+            "enrichments": []
+          },
+          {
+            "id": "5e003fa8-1726-11e4-9ed8-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Christopher_Lauer",
+            "duration": "19000.0",
+            "title": "Christopher Lauer",
+            "type": "Thing",
+            "startTime": 367000,
+            "enrichments": []
+          },
+          {
+            "id": "05de855e-1722-11e4-a9a2-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Stromerzeugungsaggregat",
+            "duration": "3000.0",
+            "title": "Notstromaggregate",
+            "type": "Thing",
+            "startTime": 413000,
+            "enrichments": []
+          },
+          {
+            "id": "9e5e10ac-1726-11e4-b055-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Claudia_Kemfert",
+            "duration": "9000.0",
+            "title": "Expertin Claudia Kemfert",
+            "type": "Person",
+            "startTime": 464000,
+            "enrichments": []
+          },
+          {
+            "id": "94345096-1726-11e4-add5-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Energiewende",
+            "duration": "3000.0",
+            "title": "Energiewende",
+            "type": "Thing",
+            "startTime": 512000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "duration": "69000.0",
+        "title": "Kurznachrichten I",
+        "startTime": 586000,
+        "fragments": [
+          {
+            "id": "903401d0-172b-11e4-9d95-005056a7235c",
+            "locator": "http://dbpedia.org/resource/Karl-Liebknecht-Haus",
+            "duration": "173000.0",
+            "title": "Karl-Liebknecht-Haus",
+            "type": "Thing",
+            "startTime": 655000,
+            "enrichments": ["http://de.wikipedia.org/wiki/Karl_Liebknecht", "http://www.die-linke.de/partei/organe/karlliebknechthaus/diegeschichtedeskarlliebknechthauses/", "http://www.die-linke.de/partei/organe/karlliebknechthaus/"]
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "duration": "309000.0",
+        "title": "Kohleabbau Welzow",
+        "startTime": 656000,
+        "fragments": [
+          {
+            "id": "053f9c9c-172b-11e4-9ed8-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Tagebau_Welzow-S&uuml;d",
+            "duration": "20000.0",
+            "title": "Tagebau Welzow S&uuml;d",
+            "type": "Thing",
+            "startTime": 670000,
+            "enrichments": []
+          },
+          {
+            "id": "2ca0c2a2-172b-11e4-9b70-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Greenpeace",
+            "duration": "20000.0",
+            "title": "Greenpeace",
+            "type": "Entity",
+            "startTime": 680000,
+            "enrichments": []
+          },
+          {
+            "id": "7cbf16c6-172b-11e4-b055-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Katja_Kipping",
+            "duration": "29000.0",
+            "title": "Katja Kipping",
+            "type": "Thing",
+            "startTime": 692000,
+            "enrichments": []
+          },
+          {
+            "id": "5ad61d0c-172b-11e4-a7a7-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Helmuth_Markov",
+            "duration": "20000.0",
+            "title": "Helmuth Markov",
+            "type": "Thing",
+            "startTime": 701000,
+            "enrichments": []
+          },
+          {
+            "id": "2bee7e84-172c-11e4-b055-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Anita_Tack",
+            "duration": "18000.0",
+            "title": "Anita Tack",
+            "type": "Thing",
+            "startTime": 768000,
+            "enrichments": []
+          },
+          {
+            "id": "412ef972-172c-11e4-9141-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Axel_Vogel",
+            "duration": "20000.0",
+            "title": "Axel Vogel",
+            "type": "Thing",
+            "startTime": 796000,
+            "enrichments": []
+          },
+          {
+            "id": "bdc35754-172b-11e4-9ed8-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Claudia_Kemfert",
+            "duration": "121000.0",
+            "title": "Claudia Kemfert",
+            "type": "Thing",
+            "startTime": 829000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "duration": "195000.0",
+        "title": "Fl&uuml;chtlingssituation in Berlin",
+        "startTime": 966000,
+        "fragments": [
+          {
+            "id": "4f18f47c-172f-11e4-a9a2-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Fl&uuml;chtlingsproteste_in_Deutschland_ab_2012",
+            "duration": "20000.0",
+            "title": "Fl&uuml;chtlinge am Oranienplatz",
+            "type": "Thing",
+            "startTime": 1024000,
+            "enrichments": []
+          },
+          {
+            "id": "86deb7f2-172f-11e4-bc37-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Deutscher_Caritasverband",
+            "duration": "20000.0",
+            "title": "Caritas",
+            "type": "Entity",
+            "startTime": 1110000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "duration": "162000.0",
+        "title": "WM Wohnzimmer",
+        "startTime": 1161000,
+        "fragments": [
+          {
+            "id": "1a44e83a-1731-11e4-bc37-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Fussball-Weltmeisterschaft_2014",
+            "duration": "20000.0",
+            "title": "FIFA World Cup 2014",
+            "type": "Organisation",
+            "startTime": 1188000,
+            "enrichments": []
+          },
+          {
+            "id": "350c1292-1731-11e4-9b70-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Stadion_An_der_Alten_F&ouml;rsterei",
+            "duration": "20000.0",
+            "title": "Alte F&ouml;rsterei",
+            "type": "Thing",
+            "startTime": 1204000,
+            "enrichments": []
+          },
+          {
+            "id": "5d42f488-1731-11e4-9e64-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Deutscher_Fussball-Bund",
+            "duration": "22000.0",
+            "title": "DFB",
+            "type": "Thing",
+            "startTime": 1300000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "duration": "75000.0",
+        "title": "Kurznachrichten II",
+        "startTime": 1324000,
+        "fragments": []
+      },
+      {
+        "id": "8",
+        "duration": "157000.0",
+        "title": "rbb Nachrichten-Apps",
+        "startTime": 1400000,
+        "fragments": [
+          {
+            "id": "94988d02-1732-11e4-9ed8-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Abendschau_%28Berlin)",
+            "duration": "20000.0",
+            "title": "RBB Abendschau App",
+            "type": "Thing",
+            "startTime": 1440000,
+            "enrichments": []
+          },
+          {
+            "id": "02294244-1733-11e4-9d95-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Rundfunk_Berlin-Brandenburg",
+            "duration": "20000.0",
+            "title": "RBB",
+            "type": "Thing",
+            "startTime": 1500000,
+            "enrichments": []
+          },
+          {
+            "id": "7655c44e-1733-11e4-9e64-005056a7235c",
+            "locator": "http://de.wikipedia.org/wiki/Die_Blechtrommel",
+            "duration": "44000.0",
+            "title": "Wikipedia zum Roman Die Blechtrommel",
+            "type": "Thing",
+            "startTime": 1557000,
+            "enrichments": ["http://de.wikipedia.org/wiki/Die_Blechtrommel"]
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "duration": "43000.0",
+        "title": "20 Jahre Arthaus",
+        "startTime": 1557000,
+        "fragments": [
+          {
+            "id": "0bfcadc8-1734-11e4-9d95-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/G&uuml;nter_Grass",
+            "duration": "25000.0",
+            "title": "G&uuml;nter Grass",
+            "type": "Thing",
+            "startTime": 1575000,
+            "enrichments": []
+          },
+          {
+            "id": "399e6fc8-1734-11e4-8fa5-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Volker_Schl&ouml;ndorff",
+            "duration": "20000.0",
+            "title": "Volker Schl&ouml;ndorff",
+            "type": "Thing",
+            "startTime": 1580000,
+            "enrichments": []
+          },
+          {
+            "id": "5e34765c-1734-11e4-add5-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Arthaus_Filmvertrieb",
+            "duration": "15000.0",
+            "title": "Arthaus Filme",
+            "type": "Thing",
+            "startTime": 1585000,
+            "enrichments": []
+          },
+          {
+            "id": "6f9592c8-1734-11e4-9abf-005056a7235c",
+            "locator": "http://de.dbpedia.org/resource/Wibke_Bruhns",
+            "duration": "10000.0",
+            "title": "Wibke Bruhns",
+            "type": "Thing",
+            "startTime": 1590000,
+            "enrichments": []
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "duration": "65000.0",
+        "title": "Medienmorgen",
+        "startTime": 1603000,
+        "fragments": []
+      },
+      {
+        "id": "2",
+        "duration": "59000.0",
+        "title": "Wetter",
+        "startTime": 1670000,
+        "fragments": []
+      }
+    ]
+  }
 ]
