@@ -17,7 +17,7 @@ public class Fragment {
     public Fragment(FsNode annotation) {
         this.originalAnnotation = annotation;
         this.id = annotation.getId();
-        this.locator = annotation.getProperty("locator");
+        this.locator = annotation.getProperty("locator").replace("(", "%28"); //If '(' is used the toolkit fails in parsing
         this.duration = annotation.getProperty("duration");
         this.title = annotation.getProperty("title");
         this.startTime = new Double(annotation.getProperty("starttime")).intValue();
