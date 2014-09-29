@@ -25,7 +25,7 @@ function informationCardDirective($sce) {
         scope.external = false;
         if (newProps != null) {
           _(interestingProps).map(function (prop) {
-            scope[prop] = firstEntity(_.property(prop)(newProps));
+            scope[prop] = cleanDate(prop, firstEntity(_.property(prop)(newProps)));
           });
           //console.log(scope);
           scope.metadata = newProps.metadata;
@@ -66,6 +66,15 @@ function informationCardDirective($sce) {
           }
         }
         return e;
+      }
+
+      function cleanDate(propName, prop) {
+        var dateProps = ['birthDate','deathDate','activeSince','dcDate'];
+        if (_(dateProps).contains(propName)) {
+          var i = prop.value.indexOf('+');
+          prop.value = prop.value.substring(0, i);
+        }
+        return prop;
       }
     },
     templateUrl: 'partials/directives/information-card.html'

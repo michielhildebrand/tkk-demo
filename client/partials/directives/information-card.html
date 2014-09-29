@@ -18,10 +18,10 @@
   <ul class="properties">
     <!-- persons/artists -->
 		<li ng-if="birthDate.value">
-		  <label>Birth:</label> {{birthDate.value}} <a ng-click="nav(birthPlace)">{{birthPlace.value}}</a>
+		  <label>Birth:</label> {{birthDate.value | date : 'd MMMM y'}} <a ng-click="nav(birthPlace)">{{birthPlace.value}}</a>
 		</li>
 		<li ng-if="deathDate.value">
-		  <label>Death:</label> {{deathDate.value}} <a ng-click="nav(deathPlace)">{{deathPlace.value}}</a>
+		  <label>Death:</label> {{deathDate.value | date : 'd MMMM y'}} <a ng-click="nav(deathPlace)">{{deathPlace.value}}</a>
 		</li>
 		<li ng-if="nationality.value">
 		  <label>Nationality:</label> <a ng-click="nav(nationality)">{{nationality.value}}</a>
@@ -41,7 +41,7 @@
 
     <!-- presenter -->
     <li ng-if="activeSince.value">
-		  <label>active since:</label> <a ng-click="nav(activeSince)">{{activeSince.value}}</a>
+		  <label>active since:</label> <a ng-click="nav(activeSince)">{{activeSince.value | date : 'd MMMM y'}}</a>
 		</li>
 		<li ng-if="knownFor.value">
 		  <label>known for:</label> <a ng-click="nav(knownFor)">{{knownFor.value}}</a>
@@ -60,7 +60,7 @@
 
     <!-- places -->
 		<li ng-if="population.value">
-		  <label>Population:</label> {{population.value}}
+		  <label>Population:</label> {{population.value | number}}
 		</li>
 
     <!-- artwork -->
@@ -68,7 +68,7 @@
 		  <label>Creator:</label> {{dcCreator.value}}
 		</li>
 		<li ng-if="dcDate.value">
-		  <label>Date:</label> {{dcDate.value}}
+		  <label>Date:</label> {{dcDate.value | date : 'd MMMM y'}}
 		</li>
 		<li ng-if="dcFormat.value">
 		  <label>Format:</label> {{dcFormat.value}}
