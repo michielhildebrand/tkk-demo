@@ -20,6 +20,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'app.chapter-artworks',
   'app.chapter-background',
   'app.chapter-related',
+  'app.chapter-history',
   'app.bookmarks',
   'app.information-card',
   'app.seek-bar',

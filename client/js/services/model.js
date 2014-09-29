@@ -11,7 +11,8 @@ function model(Tracker) {
     currentChapterIndex: null,
     currentChapterTime: null,
     beaming: false,
-    bookmarks: []
+    bookmarks: [],
+    history: []
   };
 
   function setVideo(id) {
@@ -43,6 +44,12 @@ function model(Tracker) {
     setChapter(ch.idx);
   }
 
+  function addCurrentToHistory() {
+    if (data.currentVideo != null && data.currentChapter != null) {
+      data.history.push({video: data.currentVideo, chapter: data.currentChapter, index: data.currentChapterIndex});
+    }
+  }
+
   return {
     underlyingData: data,
     signIn: function (user) {
@@ -59,11 +66,13 @@ function model(Tracker) {
       return data.videos;
     },
     play: function (videoId, chapterIndex, startTime) {
+      addCurrentToHistory();
       setVideo(videoId);
       setChapter(chapterIndex, startTime);
       Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentChapterTime});
     },
     setChapterIndex: function (chapterIndex) {
+      addCurrentToHistory();
       setChapter(chapterIndex);
       Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentChapterTime});
     },
@@ -106,6 +115,9 @@ function model(Tracker) {
     unbookmark: function (chapterId) {
       data.bookmarks = _.difference(data.bookmarks, [chapterId]);
       return data.bookmarks;
+    },
+    getHistory: function () {
+      return data.history;
     }
   };
 }
