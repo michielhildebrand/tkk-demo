@@ -55,6 +55,8 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
+  tracking_enabled_default: true,
+
   springfield_ip: window.location.hostname,
   springfield_port: window.location.port,
   springfield_app: 'news',

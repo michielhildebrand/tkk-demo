@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Tracker', []).factory('Tracker', ['$interval', 'Eddie', tracker]);
+angular.module('Tracker', []).factory('Tracker', ['$interval', 'Eddie', 'Config', tracker]);
 
-function tracker($interval, Eddie) {
+function tracker($interval, Eddie, Config) {
   var user, screenId, eventPublisher, enabled = null;
   var events = [];
 
@@ -10,7 +10,7 @@ function tracker($interval, Eddie) {
     user = u;
     screenId = sId;
     if (eventPublisher == null) eventPublisher = $interval(sendEvents, 5000);
-    enabled = true;
+    enabled = Config.tracking_enabled_default;
   }
 
   function pushEvent(e) {
