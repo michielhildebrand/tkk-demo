@@ -9,6 +9,7 @@ function chapterAboutDirective(entityProxy, Model) {
     require: '^chapterEnrich',
     replace: false,
     link: function (scope, element, attrs, chapterEnrichCtrl) {
+      var selectedAbout = '';
       var answers = {};
 
       scope.$watch(
@@ -23,7 +24,12 @@ function chapterAboutDirective(entityProxy, Model) {
         }
       );
 
+      scope.isSelected = function(m) {
+        return m.value == selectedAbout;
+      };
+
       scope.nav = function (e) {
+        selectedAbout = e.value;
         var uri = e.uri.replace('dbpedia', 'wikipedia').replace('resource', 'wiki');
         //console.log(e);
         var content = {

@@ -11,6 +11,7 @@ function chapterBackgroundDirective(irApi, Model) {
     link: function (scope, element, attrs, chapterEnrichCtrl) {
       var metadata = [];
       var metadataSize = 0;
+      var selectedBackground = '';
 
       scope.$watch(
         function () {
@@ -20,9 +21,9 @@ function chapterBackgroundDirective(irApi, Model) {
           if (newChapter != null) {
             metadata = chapterEnrichCtrl.extractBackground(newChapter);
             metadataSize = metadata.length;
-
             scope.backgrounds = [];
             loadChapterBackground(0);
+            selectedBackground = '';
           }
         }
       );
@@ -46,7 +47,12 @@ function chapterBackgroundDirective(irApi, Model) {
         }
       }
 
+      scope.isSelected = function(b) {
+        return b.url == selectedBackground;
+      };
+
       scope.nav = function(e) {
+        selectedBackground = e.url;
         //console.log(e);
         var content = {
           title: [e.title], 

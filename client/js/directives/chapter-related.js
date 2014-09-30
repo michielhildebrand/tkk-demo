@@ -9,6 +9,8 @@ function chapterRelatedDirective($state, Model) {
     replace: false,
     require: '^chapterEnrich',
     link: function (scope, element, attrs, chapterEnrichCtrl) {
+      var selectedRelated = '';
+
       scope.$watch(
         function () {
           return Model.getVideos();
@@ -16,9 +18,14 @@ function chapterRelatedDirective($state, Model) {
         function (newVideos) {
           if (newVideos.length > 0) {
             scope.relatedVideos = _(newVideos).filter(function (v) {return v.id != Model.getVideo().id});
+            selectedRelated = '';
           }
         }
       );
+
+      scope.isSelected = function(v, ch) {
+        return v.id + '_' + ch.id == selectedRelated;
+      };
 
       //TODO replace with chapter artwork picture (special object)
       function shot(v, ch) {
@@ -31,6 +38,7 @@ function chapterRelatedDirective($state, Model) {
       }
 
       scope.nav = function (v, ch, chapterIdx) {
+        selectedRelated = v.id + '_' + ch.id;
         var content = {
           title: [ch.title],
           thumb: [shot(v, ch)],

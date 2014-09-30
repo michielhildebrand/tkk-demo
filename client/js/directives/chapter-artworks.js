@@ -9,6 +9,7 @@ function chapterArtworksDirective(europeanaApi, Model) {
     replace: false,
     require: '^chapterEnrich',
     link: function (scope, element, attrs, chapterEnrichCtrl) {
+      var selectedArtwork = '';
 
       scope.$watch(
         function () {
@@ -18,6 +19,7 @@ function chapterArtworksDirective(europeanaApi, Model) {
           if (newChapter != null) {
             scope.artworks = [];
             loadChapterArtworks(chapterEnrichCtrl.extractArtworks(newChapter));
+            selectedArtwork = '';
           }
         }
       );
@@ -37,7 +39,12 @@ function chapterArtworksDirective(europeanaApi, Model) {
         });
       }
 
+      scope.isSelected = function(a) {
+        return a.id0 + '_' + a.id1 == selectedArtwork;
+      };
+
       scope.nav = function(e) {
+        selectedArtwork = e.id0 + '_' + e.id1;
         europeanaApi.get({id0: e.id0, id1: e.id1}, function (r) {
           var content = {
             title: [e.title], 

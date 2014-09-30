@@ -1,5 +1,5 @@
 <ion-list>
-  <ion-item ng-repeat="a in artworks" class="item-thumbnail-left artwork" ng-click="nav(a)">
+  <ion-item ng-repeat="a in artworks" class="item-thumbnail-left artwork" ng-click="nav(a)" ng-class="{'item-dark': isSelected(a)}">
     <img ng-src="{{a.img}}" alt="{{a.title}}">
     <h4>{{a.title}}</h4>
   </ion-item>
