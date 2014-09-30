@@ -24,18 +24,19 @@ function chapterAboutDirective(entityProxy, Model) {
       );
 
       scope.nav = function (e) {
+        var uri = e.uri.replace('dbpedia', 'wikipedia').replace('resource', 'wiki');
         //console.log(e);
         var content = {
           title: [e.value],
           url: [{
-            value: new URL(e.uri).hostname,
-            uri: e.uri
+            value: new URL(uri).hostname,
+            uri: uri
           }]
         };
         if (!_(answers).has(e.value)) {
-          var uri = decodeURIComponent(e.uri); // hack sometimes we get encoded URIs, we don't want to double e
-          entityProxy.get({loc: uri}, function (r) {
-            _(content).extend(_.property(uri)(r));
+          var decodedUri = decodeURIComponent(e.uri); // hack sometimes we get encoded URIs, we don't want to double e
+          entityProxy.get({loc: decodedUri}, function (r) {
+            _(content).extend(_.property(decodedUri)(r));
             chapterEnrichCtrl.setContent(content, e);
             answers[e.value] = content;
           });
