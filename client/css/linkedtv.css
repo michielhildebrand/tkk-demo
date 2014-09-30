@@ -260,6 +260,9 @@ a {
 .links .item {
     background-color: rgb(126,139,148);
 }
+.links .item-dark {
+    background-color: rgb(170,184,194);
+}
 /*
 .explore .col {
     background-color: rgb(45,57,64);
