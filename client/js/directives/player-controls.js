@@ -20,8 +20,8 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
       scope.togglePlay = function () {
         scope.play = !scope.play;
         if (scope.play) {
-          Tracker.collect({action: 'player_play', id: Model.getVideo().id, time: currentTime});
           sendToPlayer({action: 'play'});
+          Tracker.collect({action: 'player_play', id: Model.getVideo().id, time: currentTime});
         } else {
           sendToPlayer({action: 'pause'});
           Tracker.collect({action: 'player_pause', id: Model.getVideo().id, time: currentTime});
@@ -65,6 +65,7 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
 
       scope.toggleEnrich = function () {
         scope.enrich = !scope.enrich;
+        Tracker.collect({action: 'player_enrich', id: Model.getVideo().id, time: currentTime});
         if (!scope.beaming) {
           if ((scope.enrich && scope.play) || (!scope.enrich && !scope.play)) {
             scope.togglePlay();
