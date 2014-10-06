@@ -65,7 +65,9 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
 
       scope.toggleEnrich = function () {
         scope.enrich = !scope.enrich;
-        Tracker.collect({action: 'player_enrich', id: Model.getVideo().id, time: currentTime});
+        if (scope.enrich) {
+          Tracker.collect({action: 'player_enrich', id: Model.getVideo().id, time: currentTime});
+        }
         if (!scope.beaming) {
           if ((scope.enrich && scope.play) || (!scope.enrich && !scope.play)) {
             scope.togglePlay();
