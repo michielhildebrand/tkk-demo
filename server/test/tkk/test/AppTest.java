@@ -1,7 +1,7 @@
 package tkk.test;
 
 import org.junit.Test;
-import org.springfield.lou.application.types.VideoLoader;
+import org.springfield.lou.application.types.VideoManager;
 import org.springfield.lou.application.types.protocol.Message;
 import org.springfield.lou.application.types.protocol.Serializer;
 
@@ -22,7 +22,7 @@ public class AppTest {
 //        List<Episode> curatedEpisodes = ch.getEpisodes();
 //        System.out.println("curatedEpisodes.size() = " + curatedEpisodes.size()); //0 for S&V, 1 for rbb
 
-        Message msg = new Message("video", new VideoLoader().getRecentVideos(Arrays.asList("adb65e0a-642b-432f-aa86-c296dab0375a"), false));
+        Message msg = new Message("video", new VideoManager().getVideos(Arrays.asList("adb65e0a-642b-432f-aa86-c296dab0375a"), false));
         System.out.println(Serializer.toJson(msg));
 
         assertTrue(true);

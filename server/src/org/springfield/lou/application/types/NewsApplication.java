@@ -12,9 +12,8 @@ import java.util.List;
 
 public class NewsApplication extends Html5Application {
 
-    private VideoLoader videoLoader;
     private User user;
-
+    private VideoManager videoManager;
     private static final int MAX_CAPACITY = 100;
     private UserEvents userEvents;
 
@@ -22,9 +21,9 @@ public class NewsApplication extends Html5Application {
     public NewsApplication(String id) {
         super(id);
 
-        videoLoader = new VideoLoader();
         user = new User("User");
-        userEvents = new UserEvents(MAX_CAPACITY);
+        videoManager = new VideoManager();
+        userEvents = new UserEvents(MAX_CAPACITY, videoManager);
     }
 
     public NewsApplication(String id, String remoteReceiver) {
@@ -42,7 +41,7 @@ public class NewsApplication extends Html5Application {
         //this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
         //this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
-        sendMsg(s, "video", videoLoader.getRecentVideos(videoIds, loadCurated));
+        sendMsg(s, "video", videoManager.getVideos(videoIds, loadCurated));
 
         sendMsg(s, "bookmark", user.getBookmarks());
     }
