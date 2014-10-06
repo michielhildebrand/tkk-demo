@@ -58,6 +58,8 @@ public class Chapter {
         return fragments.size();
     }
 
+    public List<Fragment> getFragments() {return fragments;}
+
     @Override
     public String toString() {
         return "Chapter{" +
