@@ -6,8 +6,8 @@ function chapterAboutDirective(entityProxy, Model) {
   return {
     restrict: 'E',
     scope: {},
-    require: '^chapterEnrich',
     replace: false,
+    require: '^chapterEnrich',
     link: function (scope, element, attrs, chapterEnrichCtrl) {
       var selectedAbout = '';
       var answers = {};
@@ -50,7 +50,6 @@ function chapterAboutDirective(entityProxy, Model) {
           chapterEnrichCtrl.setContent(_.property(e.value)(answers), e);
         }
       };
-
     },
     templateUrl: 'partials/directives/chapter-about.html'
   }

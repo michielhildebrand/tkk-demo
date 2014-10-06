@@ -19,31 +19,32 @@ function chapterEnrichDirective(Config, Model) {
           angular.element('.content .scroll-view').height(newHeight);
         }
       });
-    },
-    controller: function ($scope) {
-      $scope.crumb = [];
-      $scope.content = null;
-      $scope.dimensions = Config.dimensions;
-      $scope.dimension = $scope.dimensions[0].id;
 
-      $scope.$watch(
+      scope.dimensions = Config.dimensions;
+      scope.dimension = scope.dimensions[0].id;
+
+      scope.$watch(
         function () {
           return Model.getChapter()
         },
         function (newChapter) {
           if (newChapter != null) {
-            $scope.dimension = $scope.dimensions[0].id;
+            scope.dimension = scope.dimensions[0].id;
           }
         }
       );
 
-      $scope.toggleDimension = function (active) {
-        if($scope.dimension==active) {
-          $scope.dimension = null
+      scope.toggleDimension = function (active) {
+        if(scope.dimension==active) {
+          scope.dimension = null
         } else {
-          $scope.dimension = active;
+          scope.dimension = active;
         }
       };
+    },
+    controller: function ($scope) {
+      $scope.crumb = [];
+      $scope.content = null;
 
       this.extractMetadata = function (ch) {
         return _.chain(ch.fragments)
