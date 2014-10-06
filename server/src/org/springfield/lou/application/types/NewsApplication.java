@@ -23,7 +23,7 @@ public class NewsApplication extends Html5Application {
 
         user = new User("User");
         videoManager = new VideoManager();
-        userEvents = new UserEvents(MAX_CAPACITY, videoManager);
+        userEvents = new UserEvents(MAX_CAPACITY);
     }
 
     public NewsApplication(String id, String remoteReceiver) {

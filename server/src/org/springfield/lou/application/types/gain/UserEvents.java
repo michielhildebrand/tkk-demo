@@ -4,11 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import org.springfield.lou.application.types.VideoManager;
 import org.springfield.lou.application.types.domain.Chapter;
 import org.springfield.lou.application.types.domain.Fragment;
 import org.springfield.lou.application.types.domain.Video;
 import org.springfield.lou.application.types.protocol.Message;
+import org.springfield.mojo.linkedtv.Episode;
 import org.springfield.mojo.linkedtv.GAIN;
 import org.springfield.mojo.linkedtv.GAINObjectEntity;
 
@@ -23,10 +23,8 @@ public class UserEvents {
     private GAIN tracker;
     private Gson deserializer;
     private Type eventsType;
-    private VideoManager videoManager;
 
-    public UserEvents(int maxCapacity, VideoManager videoManager) {
-        this.videoManager = videoManager;
+    public UserEvents(int maxCapacity) {
         queue = new ArrayBlockingQueue<Message>(maxCapacity);
         tracker = new GAIN("LINKEDTV-TEST", "Culture");
         deserializer = new GsonBuilder().disableHtmlEscaping().create();
@@ -79,8 +77,11 @@ public class UserEvents {
                 tracker.player_stop(event.getScreen(), event.getId(), event.getTime().toString());
             } else if (a.equals("player_enrich")) {
                 List<GAINObjectEntity> entities = getGainEntities(event.getId(), event.getTime());
-                tracker.updateEntities(entities);
-                tracker.sendKeepAliveRequest();
+                if (entities.size() > 0) {
+                    tracker.updateEntities(entities);
+                    tracker.sendKeepAliveRequest(event.getTime().toString());
+                    entities.clear();
+                }
             }
         }
     }
@@ -88,7 +89,7 @@ public class UserEvents {
     private List<GAINObjectEntity> getGainEntities(String videoId, Integer selectedTime) {
         System.out.println("UserEvents.getGainEntities  - " + videoId + ", " + selectedTime);
 
-        Video video = videoManager.getCachedVideo(videoId);
+        Video video = new Video(new Episode(videoId));
         Chapter selectedChapter = findChapter(video, selectedTime);
 
         List<GAINObjectEntity> entityList = new ArrayList<GAINObjectEntity>();
