@@ -6,7 +6,8 @@ function informationCardDirective($sce) {
   return {
     restrict: 'E',
     scope: {
-      'props': '='
+      'props': '=',
+      'navigate': '&'
     },
     replace: false,
     link: function (scope, element, attrs) {
@@ -37,6 +38,11 @@ function informationCardDirective($sce) {
           scope.externalUrl = $sce.trustAsResourceUrl(url);
         }
         scope.external = !scope.external;
+      };
+
+      var navigate = scope.navigate();
+      scope.nav = function(prop) {
+        navigate(prop);
       };
 
       function firstEntity(prop) {

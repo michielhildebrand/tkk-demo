@@ -35,7 +35,7 @@ function chapterEnrichDirective(Config, Model) {
       );
 
       scope.toggleDimension = function (active) {
-        if(scope.dimension==active) {
+        if (scope.dimension == active) {
           scope.dimension = null
         } else {
           scope.dimension = active;
@@ -83,19 +83,28 @@ function chapterEnrichDirective(Config, Model) {
         }
       };
 
-      this.setContent = function (content, crumb) {
+      this.setContent = function (content, crumb, linked) {
         $scope.content = content;
-        $scope.crumb = crumb ? [crumb] : [];
+
+        if (!linked) {
+          $scope.crumb = crumb ? [crumb] : [];
+        } else {
+          updateCrumb(crumb);
+        }
       };
 
-      this.updateCrumb = function (e) {
+      var updateCrumb = function (e) {
         var index = _($scope.crumb).pluck('value').indexOf(e.value);
         if (index != -1) {
           $scope.crumb = _($scope.crumb).first(index + 1);
         } else {
           $scope.crumb.push(e)
         }
-      }
+      };
+
+      $scope.setAbout = function (entity) {
+        $scope.linkedAbout = entity;
+      };
     },
     templateUrl: 'partials/directives/chapter-enrich.html'
   }
