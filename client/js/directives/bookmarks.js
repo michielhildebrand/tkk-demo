@@ -15,6 +15,7 @@ function bookmarksDirective($state, Model) {
         function (newBookmarks) {
           if (newBookmarks.length > 0) {
             scope.bookmarks = _(newBookmarks).map(function(b) {return findChapter(b)});
+            scope.bookmarksByVideo = _(scope.bookmarks).groupBy(function(b) {return b.video.id})
           }
         }
       );

@@ -1,7 +1,8 @@
-<div class="bookmarks chapters">
+<div class="bookmarks chapters" ng-repeat="(videoId, bookmarks) in bookmarksByVideo">
   <div ng-repeat="b in bookmarks">
+    <h4 ng-if="$first">{{b.video.title}}</h4>
     <div class="chapter" ng-click="play(b)">
-        <video-chapter video="b.video" chapter="b.chapter"></video-chapter>
+      <video-chapter video="b.video" chapter="b.chapter"></video-chapter>
     </div>
   </div>
 </div>
