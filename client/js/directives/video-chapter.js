@@ -11,10 +11,10 @@ function videoChapterDirective(Eddie, Model, Tracker) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-      scope.data = Model.underlyingData;
-
-      scope.$watchCollection('data', function () {
-          if (Model.getBookmarks().length > 0) {
+      scope.$watchCollection(function () {
+          return Model.getBookmarks();
+        }, function (newBookmarks) {
+          if (newBookmarks.length > 0) {
             scope.bookmarkStatus = isBookmarked();
           }
         }
@@ -45,7 +45,7 @@ function videoChapterDirective(Eddie, Model, Tracker) {
         return _.contains(Model.getBookmarks(), compositeId());
       }
 
-      function compositeId(chapterId) {
+      function compositeId() {
         return scope.video.id + '_' + scope.chapter.id;
       }
 

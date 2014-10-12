@@ -51,7 +51,6 @@ function model(Tracker) {
   }
 
   return {
-    underlyingData: data,
     signIn: function (user) {
       data.user = user;
       Tracker.collect({action: 'user_login'});
