@@ -52,7 +52,7 @@
 
 
   - name: Client | Copy Apache config
-    template: src={{root_dir}}/components/templates/client/apache.conf dest=/etc/httpd/conf.d/linkedtv.com backup=yes
+    template: src={{root_dir}}/components/templates/client/apache.conf dest=/etc/httpd/conf.d/linkedtv.conf backup=yes
     when: "webserver == 'apache'"
     sudo: yes
     tags:

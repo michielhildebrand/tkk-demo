@@ -1,6 +1,9 @@
 <VirtualHost *:80>
-  Alias /culture /opt/tkk/client/culture.html
-  Alias /news2 /opt/tkk/client/news.html
+  RewriteEngine On
+  RewriteRule ^/(culture|news2)$ $1/ [L,R=301]
+
+  Alias /culture/ /opt/tkk/client/culture.html
+  Alias /news2/ /opt/tkk/client/news.html
 
   DocumentRoot %ABSOLUTE_PATH_TO_CLIENT_DIR%
   <Directory %ABSOLUTE_PATH_TO_CLIENT_DIR%>
