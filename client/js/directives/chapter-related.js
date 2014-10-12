@@ -13,11 +13,11 @@ function chapterRelatedDirective($state, Model) {
 
       scope.$watch(
         function () {
-          return Model.getVideos();
+          return Model.getVideo();
         },
-        function (newVideos) {
-          if (newVideos.length > 0) {
-            scope.relatedVideos = _(newVideos).filter(function (v) {return v.id != Model.getVideo().id});
+        function (newVideo) {
+          if (newVideo != null) {
+            scope.relatedVideos = _(Model.getVideos()).filter(function (v) {return v.id != Model.getVideo().id});
             selectedRelated = '';
           }
         }
@@ -45,7 +45,7 @@ function chapterRelatedDirective($state, Model) {
           metadata: chapterEnrichCtrl.extractMetadata(ch),
           playChapter: [{
             value: ch.title,
-            uri: $state.href('play', {user: Model.getUser(), videoId: v.id, idx: chapterIdx}).substring(1)
+            uri: $state.href('play', {user: Model.getUser(), videoId: v.id, idx: chapterIdx}, {absolute: true})
           }]
         };
         chapterEnrichCtrl.setContent(content);

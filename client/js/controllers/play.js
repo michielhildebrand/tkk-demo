@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', 'Eddie', 'Model', 'Tracker', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
-function playCtrl($scope, $state, Eddie, Model, Tracker) {
+function playCtrl($scope, $state, $location, Eddie, Model, Tracker) {
   $scope.second = false;
   $scope.enrich = false;
   $scope.playContentHeight = 0;
@@ -15,19 +15,25 @@ function playCtrl($scope, $state, Eddie, Model, Tracker) {
     },
     function (newVideos) {
       if (newVideos.length > 0) {
-        var videoId = $state.params.videoId;
-        var chIdx = $state.params.idx;
-
-        Model.play(videoId, chIdx);
-        $scope.video = Model.getVideo();
-        $scope.playContentHeight = angular.element('#play-content')[0].offsetHeight;
-
-        if ($scope.beaming) {
-          sendToRemoteTv({action: 'set-video', video: videoId, chapter: chIdx});
-        }
+        playVideo($state.params.videoId, $state.params.idx);
       }
     }
   );
+
+  $scope.$on('$locationChangeSuccess', function(event, nextLocation, currentLocation) {
+    var currentParams = $location.search();
+    playVideo(currentParams.videoId, currentParams.idx);
+  });
+
+  function playVideo(videoId, chIdx) {
+    Model.play(videoId, chIdx);
+    $scope.video = Model.getVideo();
+    $scope.playContentHeight = angular.element('#play-content')[0].offsetHeight;
+
+    if ($scope.beaming) {
+      sendToRemoteTv({action: 'set-video', video: videoId, chapter: chIdx});
+    }
+  }
 
   $scope.$watch(
     function () {
