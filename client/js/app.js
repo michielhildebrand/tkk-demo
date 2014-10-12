@@ -1,8 +1,9 @@
 'use strict';
 
-var tkkDemoApp = angular.module('tkkDemoApp', [
+var linkedTvApp = angular.module('linkedTvApp', [
   'ui.router',
   'ionic',
+  '720kb.socialshare',
   
   'Config',
 
@@ -36,7 +37,7 @@ var tkkDemoApp = angular.module('tkkDemoApp', [
   'Tracker'
 ]);
 
-tkkDemoApp.config(['$stateProvider', '$urlRouterProvider',
+linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
   function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 
