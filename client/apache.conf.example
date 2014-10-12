@@ -2,8 +2,11 @@
   RewriteEngine On
   RewriteRule ^/(culture|news2)$ $1/ [L,R=301]
 
-  Alias /culture/ /opt/tkk/client/culture.html
-  Alias /news2/ /opt/tkk/client/news.html
+  AliasMatch /culture/(.+)$ %ABSOLUTE_PATH_TO_CLIENT_DIR%/$1
+  AliasMatch /news2/(.+)$ %ABSOLUTE_PATH_TO_CLIENT_DIR%/$1
+
+  Alias /culture/ %ABSOLUTE_PATH_TO_CLIENT_DIR%/culture.html
+  Alias /news2/ %ABSOLUTE_PATH_TO_CLIENT_DIR%/news.html
 
   DocumentRoot %ABSOLUTE_PATH_TO_CLIENT_DIR%
   <Directory %ABSOLUTE_PATH_TO_CLIENT_DIR%>
