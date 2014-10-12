@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-selection', []).directive('chapterSelection', ['$state', 'Model',chapterSectionDirective]);
+angular.module('app.chapter-selection', []).directive('chapterSelection', ['$location', 'eventsBus', 'Eddie', 'Model',chapterSectionDirective]);
 
-function chapterSectionDirective($state, Model) {
+function chapterSectionDirective($location, eventsBus, Eddie, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -15,12 +15,24 @@ function chapterSectionDirective($state, Model) {
       };
  
       scope.select = function (index) {
-        if ($state.current.name != 'play') {
-          $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: index});
-        } else {
-          Model.setChapterIndex(index);
-        }
+        Model.setChapterIndex(index);
+        $location.search('idx', index);
+        sendToPlayer({action: 'set-time', time: Model.getTime()});
       };
+
+      function sendToPlayer(a) {
+        if (!Model.isBeaming()) {
+          sendToLocalPlayer(a);
+        } else {
+          sendToRemotePlayer(a);
+        }
+      }
+      function sendToLocalPlayer(a) {
+        eventsBus.publish('player', a);
+      }
+      function sendToRemotePlayer(a) {
+        Eddie.putLou({target: 'player', data: a});
+      }
     },
     templateUrl: 'partials/directives/chapter-selection.html'
   }

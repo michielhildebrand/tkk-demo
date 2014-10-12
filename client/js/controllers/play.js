@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', 'eventsBus', 'Eddie', 'Model', 'Tracker', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
-function playCtrl($scope, $state, $location, eventsBus, Eddie, Model, Tracker) {
+function playCtrl($scope, $state, Eddie, Model, Tracker) {
   $scope.second = false;
   $scope.enrich = false;
   $scope.playContentHeight = 0;
@@ -31,18 +31,6 @@ function playCtrl($scope, $state, $location, eventsBus, Eddie, Model, Tracker) {
 
   $scope.$watch(
     function () {
-      return Model.getChapterIndex();
-    },
-    function (newIndex, oldIndex) {
-      if (newIndex != null && oldIndex != null && newIndex != oldIndex) {
-        sendToPlayer({action: 'set-time', time: Model.getTime()});
-        $location.search('idx', newIndex);
-      }
-    }
-  );
-
-  $scope.$watch(
-    function () {
       return Model.isBeaming();
     },
     function (isBeaming) {
@@ -58,20 +46,6 @@ function playCtrl($scope, $state, $location, eventsBus, Eddie, Model, Tracker) {
   $scope.toggleTracking = function () {
     $scope.tracking = Tracker.toggle();
   };
-
-  function sendToPlayer(a) {
-    if (!$scope.beaming) {
-      sendToLocalPlayer(a);
-    } else {
-      sendToRemotePlayer(a);
-    }
-  }
-  function sendToLocalPlayer(a) {
-    eventsBus.publish('player', a);
-  }
-  function sendToRemotePlayer(a) {
-    Eddie.putLou({target: 'player', data: a});
-  }
 
   function sendToRemoteTv(a) {
     Eddie.putLou({target: 'tv', data: a});
