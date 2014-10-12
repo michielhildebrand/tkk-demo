@@ -21,6 +21,7 @@ function playCtrl($scope, $state, $location, Eddie, Model, Tracker) {
   );
 
   $scope.$on('$locationChangeSuccess', function(event, nextLocation, currentLocation) {
+    $scope.enrich = false;
     var currentParams = $location.search();
     playVideo(currentParams.videoId, currentParams.idx);
   });

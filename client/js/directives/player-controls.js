@@ -45,7 +45,7 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
         sendToPlayer({action: 'volume', value: value});
       };
 
-      scope.toggleFullscreen = function() {
+      scope.toggleFullscreen = function () {
         if (!scope.beaming) {
           scope.fullscreen = !scope.fullscreen;
           sendToPlayer({action: 'fullscreen', value: scope.fullscreen});
@@ -65,6 +65,14 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
 
       scope.toggleEnrich = function () {
         scope.enrich = !scope.enrich;
+        enrichUpdated();
+      };
+
+      scope.$watch('enrich', function () {
+        enrichUpdated();
+      });
+
+      function enrichUpdated() {
         if (scope.enrich) {
           Tracker.collect({action: 'player_enrich', id: Model.getVideo().id, time: currentTime});
         }
@@ -73,10 +81,10 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
             scope.togglePlay();
           }
         }
-      };
+      }
 
       var currentTime = 0;
-      var updateCurrentTime = function(t) {
+      var updateCurrentTime = function (t) {
         currentTime = t
       };
       eventsBus.subscribe('player-time', updateCurrentTime);
