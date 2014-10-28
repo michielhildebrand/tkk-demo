@@ -1654,7 +1654,7 @@
         ],
         "fragments": [
           { "id": "1",
-            "locator: "http://dbpedia.org/resource/Videophone",
+            "locator": "http://dbpedia.org/resource/Videophone",
 	    "title": "Videophone"
           },
           { "id": "2",
