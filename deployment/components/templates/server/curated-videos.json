@@ -1658,7 +1658,7 @@
 	    "title": "Videophone"
           },
           { "id": "2",
-            "locator: "http://dbpedia.org/resource/Philips",
+            "locator": "http://dbpedia.org/resource/Philips",
 	    "title": "Philips"
           }
         ]
