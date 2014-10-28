@@ -1653,6 +1653,14 @@
         "backgrounds": [
         ],
         "fragments": [
+          { "id": "1",
+            "locator: "http://dbpedia.org/resource/Videophone",
+	    "title": "Videophone"
+          },
+          { "id": "2",
+            "locator: "http://dbpedia.org/resource/Philips",
+	    "title": "Philips"
+          },
         ]
       }
     ]
