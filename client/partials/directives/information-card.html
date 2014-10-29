@@ -73,6 +73,37 @@
 		<li ng-if="dcFormat.value">
 		  <label>Format:</label> {{dcFormat.value}}
 		</li>
+		
+		<!-- place -->
+		<li ng-if="owner.value">
+		  <label>Owner:</label> {{owner.value}}
+		</li>
+		<li ng-if="builtDate.value">
+		  <label>built:</label> {{builtYear.value | date : 'y'}}
+		</li>
+		<li ng-if="openingDate.value">
+		  <label>Opened:</label> {{openingDate.value | date : 'd MMMM y'}}
+		</li>
+		<li ng-if="location.value">
+		  <label>Location:</label> {{location.value}}
+		</li>
+		<li ng-if="architect.value">
+		  <label>Architect:</label> {{architect.value}}
+		</li>
+		
+		<!-- organisation -->
+		<li ng-if="chairman.value">
+		  <label>Chairman:</label> {{chairman.value}}
+		</li>
+		<li ng-if="industry.value">
+		  <label>Industry:</label> {{industry.value}}, {{focus.value}} 
+		</li>  
+		<li ng-if="founder.value">
+		  <label>Founded:</label> {{foundingYear.value | date : 'y'}}, <a ng-click="nav(founder)">{{founder.value}}</a>
+		</li>
+		<li ng-if="location.value">
+		  <label>Location:</label> {{locationCity.value}}, {{location.value}}
+		</li>		
   </ul>
 
 	<!-- metadata -->

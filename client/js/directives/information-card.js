@@ -19,7 +19,9 @@ function informationCardDirective($sce) {
         'nationality', 'profession', 'style', 'predecessor', 'successor',
         'activeSince', 'knownFor', 'presents', 'guestedIn', 'locatedIn', 'population',
         'dcTitle', 'dcCreator', 'dcDate', 'dcDescription', 'dcFormat', 'dcSource', 'edmLandingPage',
-        'playChapter'
+        'playChapter',
+        'owner','openingDate','location','architect','builtBy','builtYear','achitecture',
+        'chairman','focus','formationYear','founder','foundingYear','industry','location','locationCity','numberEmployees'
       ];
 
       scope.$watch('props', function (newProps) {
