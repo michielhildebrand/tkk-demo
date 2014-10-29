@@ -1651,6 +1651,9 @@
           'Beeldtelefoon+OR+Bildtelefon+OR+"Image+telephone"+OR+Imagephone+OR+"Phone+TV"+OR+Pictaphone+OR+"Pictoral+phone"+OR+"Picture-Phone+TV"+OR+"Picture+telephone"+OR+"Picture+phone"+OR+"See-and-talk+telephone"+OR+"See-talk+phone"+OR+"See-talk+telephone"+OR+"Sight-sound+telephone"+OR+"Telephone-television"+OR+"Television-telephone"+OR+"Television+phone"+OR+"Video+call"+OR+"Video+chat"+OR+"Video+telephone"+OR+Videocall+OR+Videochat+OR+Videophone+OR+Videotelephone+OR+"View+phone"+OR+"Visual+telephone"+OR+Picturephone+OR+Visiophone+OR+Viewphone+OR+Lumaphone+OR+Ikonophone+OR+Fernsehsprechstellen'
         ],
         "backgrounds": [
+          "Beeldtelefoon",
+          "Videophone",
+          "Imagephone"
         ],
         "fragments": [
           { "id": "1",
