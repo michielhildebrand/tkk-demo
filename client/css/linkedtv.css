@@ -1,7 +1,15 @@
 html, body {
+    font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 12px;
     background-color: rgb(45,57,64);
+}
+.linkedtv h1,
+.linkedtv h2,
+.linkedtv h3,
+.linkedtv h4,
+.linkedtv h5 {
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -9,17 +17,18 @@ a {
 }
 
 .bar-tkk {
-  background-color: rgba(95,109,105,0.8);
+  background-color: rgba(95,109,105,0.6);
   border-bottom: 1px solid rgb(100,114,124);
   z-index: 2147483647; /* http://css-tricks.com/custom-controls-in-html5-video-full-screen/ */
 }
-.bar-player {
-  border-top: none;
-  background-color: black;
-}
+
 .bar-tkk .title,
 .bar-tkk .icon {
   color: #FFF;
+ ￼color: white;
+}
+.linkedtv .bar .title {
+    ￼font-size: 24px;
 }
 .tab-item-active .icon,
 .tab-item-active .tab-title,
@@ -67,8 +76,6 @@ a {
   max-width: 15%;
 }  
 .main {
-  -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
-  background-color: #000;
   height: 100%;
 }
 #play-content {
@@ -130,7 +137,6 @@ a {
 .episode .bookmark.selected {
   display: block;
 }
-
 /* episodes */
 .episode {
   padding: 20px;
@@ -226,6 +232,9 @@ a {
 }
 
 /* chapter list */
+.chapters .item img {
+    display: none;
+}
 .chapters .item {
   border-width: 0 0 1px;
   border-style: solid;
@@ -238,7 +247,7 @@ a {
   background-color: rgb(126,139,148);
 }
 .chapters .bookmark {
-  top: 30px;
+  top: 5px;
   right: 25px;
 }  
 .chapters .chapter h4 {
@@ -274,13 +283,14 @@ a {
 .links h3 {
     margin: 0;
     padding: 4px 11px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     text-transform: uppercase;
-    height: 30px;
-    line-height: 22px;
+    height: 34px;
+    line-height: 26px;
     color: white;
     background-color: rgb(65,146,183);
+    box-sizing: border-box;
 }
 .links .item:first-child {
   border-color: rgb(126,139,148);
