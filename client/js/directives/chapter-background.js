@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-background', []).directive('chapterBackground', ['irApi', 'Model', chapterBackgroundDirective]);
+angular.module('app.chapter-background', []).directive('chapterBackground', ['irApi', 'contentFiltering', 'Model', chapterBackgroundDirective]);
 
-function chapterBackgroundDirective(irApi, Model) {
+function chapterBackgroundDirective(irApi, contentFiltering, Model) {
   return {
     restrict: 'E',
     scope: {},
@@ -37,6 +37,11 @@ function chapterBackgroundDirective(irApi, Model) {
               if (source.indexOf('$') == -1) {
                 _(r[source]).each(function(post) {
                   //console.log(post);
+
+                  // Once the personalization service is working we can send the IRApi response to it
+                  // and receive a ranking property for each post and we can re-order the posts based on it
+                  //contentFiltering.personalize(post)
+
                   scope.backgrounds.push({title: post.micropost.title, url: post.mediaUrl, post: post.micropost, source: source})
                 });
               }
