@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('Eddie', []).factory('Eddie', ['Config', eddieService]);
+angular.module('Eddie', []).factory('Eddie', ['$log', 'Config', eddieService]);
 
-function eddieService(Config) {
+function eddieService($log, Config) {
   var initialized = false;
   var userId;
   var screenId;
   var eddie;
 
   function initializeEddie(id) {
-    console.log('Initializing Eddie with userId ' + id);
+    debug('Initializing Eddie with userId: ' + id);
     userId = id;
     eddie = Eddie({
       lou_ip: Config.springfield_ip,
@@ -28,12 +28,16 @@ function eddieService(Config) {
     initialized = false;
   }
 
+  function debug(msg) {
+    $log.debug('[Eddie] ' + msg)
+  }
+
   return {
     init: function(user) {
       if (!initialized) {
         initializeEddie(user.id);
       } else {
-        //console.log('Eddie already initialized with userId ' + userId);
+        debug('Eddie already initialized with userId ' + userId);
       }
       return screenId;
     },

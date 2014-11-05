@@ -62,5 +62,7 @@ angular.module('Config', []).constant('Config', {
   springfield_ip: window.location.hostname,
   springfield_port: window.location.port,
   springfield_app: 'news',
-  springfield_fullapp: '/domain/linkedtv/user/{}/html5application/news'
+  springfield_fullapp: '/domain/linkedtv/user/{}/html5application/news',
+
+  debug_enabled: false
 });

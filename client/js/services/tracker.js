@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Tracker', []).factory('Tracker', ['$interval', 'Eddie', 'Config', tracker]);
+angular.module('Tracker', []).factory('Tracker', ['$interval', '$log', 'Eddie', 'Config', tracker]);
 
-function tracker($interval, Eddie, Config) {
+function tracker($interval, $log, Eddie, Config) {
   var user, screenId, eventPublisher, enabled = null;
   var events = [];
 
@@ -24,9 +24,13 @@ function tracker($interval, Eddie, Config) {
     var eventsToSend = events;
     events = [];
     if (eventsToSend.length > 0) {
-      //console.log('Send events', eventsToSend);
+      debug('Send events', eventsToSend);
       Eddie.putLou({target: 'tracker', data: eventsToSend});
     }
+  }
+
+  function debug(msg) {
+    $log.debug('[Tracker] ' + msg)
   }
 
   return {

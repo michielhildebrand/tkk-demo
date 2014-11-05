@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-about', []).directive('chapterAbout', ['entityProxy', 'Model', chapterAboutDirective]);
+angular.module('app.chapter-about', []).directive('chapterAbout', ['$log', 'entityProxy', 'Model', chapterAboutDirective]);
 
-function chapterAboutDirective(entityProxy, Model) {
+function chapterAboutDirective($log, entityProxy, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -37,7 +37,7 @@ function chapterAboutDirective(entityProxy, Model) {
       scope.nav = function (e, linked) {
         selectedAbout = e.value;
         var uri = e.uri.replace('dbpedia', 'wikipedia').replace('resource', 'wiki');
-        //console.log(e);
+        debug('Navigate to ' + JSON.stringify(e));
         var content = {
           title: [e.value],
           url: [
@@ -58,6 +58,10 @@ function chapterAboutDirective(entityProxy, Model) {
           chapterEnrichCtrl.setContent(_.property(e.value)(answers), e, linked);
         }
       };
+
+      function debug(msg) {
+        $log.debug('[Chapter About] ' + msg)
+      }
     },
     templateUrl: 'partials/directives/chapter-about.html'
   }

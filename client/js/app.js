@@ -4,7 +4,7 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'ui.router',
   'ionic',
   '720kb.socialshare',
-  
+
   'Config',
 
   'SelectCtrl',
@@ -69,13 +69,14 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'TvCtrl'
       });
   }
-])
-.config(['$ionicTabsConfig', function($ionicTabsConfig) {
-  // Override the Android platform default to add "tabs-striped" class to "ion-tabs" elements.
-  $ionicTabsConfig.type = '';
-}])
-.run(['$rootScope', '$state', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
-    function ($rootScope, $state, Config, eventsBus, Model, Eddie, Tracker) {
+]).config(['$ionicTabsConfig', '$logProvider', 'Config', function($ionicTabsConfig, $logProvider, Config) {
+    // Override the Android platform default to add "tabs-striped" class to "ion-tabs" elements.
+    $ionicTabsConfig.type = '';
+
+    $logProvider.debugEnabled(Config.debug_enabled);
+  }
+]).run(['$rootScope', '$state', '$log', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
+    function ($rootScope, $state, $log, Config, eventsBus, Model, Eddie, Tracker) {
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $rootScope.title = Config.app_title_prefix + toState.title;
 
@@ -92,7 +93,7 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
             Tracker.init(user, screenId);
             Model.signIn(userName);
           } else {
-            console.log('Invalid user name ' + userName);
+            $log.error('[App] Invalid user name ' + userName);
             $state.go('select');
           }
         }

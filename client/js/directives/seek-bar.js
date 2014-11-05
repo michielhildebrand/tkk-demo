@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.seek-bar', []).directive('seekBar', ['$rootScope', 'eventsBus', 'Model', seekBarDirective]);
+angular.module('app.seek-bar', []).directive('seekBar', ['$rootScope', '$log', 'eventsBus', 'Model', seekBarDirective]);
 
-function seekBarDirective($rootScope, eventsBus, Model) {
+function seekBarDirective($rootScope, $log, eventsBus, Model) {
   return {
     restrict: 'E',
     replace: false,
@@ -67,10 +67,13 @@ function seekBarDirective($rootScope, eventsBus, Model) {
       var unsubscribePlayerTime = eventsBus.subscribe('player-time', syncCurrentTime);
 
       scope.$on("$destroy", function () {
-        console.log('destroy seek bar');
+        debug('destroy seek bar');
         unsubscribePlayerTime();
       });
 
+      function debug(msg) {
+        $log.debug('[Seek Bar] ' + msg)
+      }
     },
     templateUrl: 'partials/directives/seek-bar.html'
   }

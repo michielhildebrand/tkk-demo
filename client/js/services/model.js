@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('Model', []).factory('Model', ['Tracker', model]);
+angular.module('Model', []).factory('Model', ['$log', 'Tracker', model]);
 
-function model(Tracker) {
+function model($log, Tracker) {
   var data = {
     user: null,
     videos: [],
@@ -30,7 +30,7 @@ function model(Tracker) {
     } else {
       data.currentTime = startTime;
     }
-    //console.log('current chapter: ' + chapter.title);
+    debug('Current chapter: ' + chapter.title);
     data.currentChapter = chapter;
     findAndSetFragment(data.currentTime);
   }
@@ -39,7 +39,7 @@ function model(Tracker) {
     var fragment = _.chain(data.currentChapter.fragments).min(function (f) {
       return f.startTime - startTime;
     }).value();
-    //console.log('current fragment: ' + fragment.title);
+    debug('Current fragment: ' + fragment.title);
     data.currentFragment = fragment;
   }
 
@@ -51,7 +51,6 @@ function model(Tracker) {
     }).min(function (o) {
       return time - o.ch.startTime;
     }).value();
-    //console.log(ch);
     setChapter(ch.idx);
   }
 
@@ -59,6 +58,10 @@ function model(Tracker) {
     if (data.currentVideo != null && data.currentChapter != null) {
       data.history.push({video: data.currentVideo, chapter: data.currentChapter, index: data.currentChapterIndex});
     }
+  }
+
+  function debug(msg) {
+    $log.debug('[Model] ' + msg)
   }
 
   return {

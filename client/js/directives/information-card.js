@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.information-card', []).directive('informationCard', ['$sce', informationCardDirective]);
+angular.module('app.information-card', []).directive('informationCard', ['$sce', '$log', informationCardDirective]);
 
-function informationCardDirective($sce) {
+function informationCardDirective($sce, $log) {
   return {
     restrict: 'E',
     scope: {
@@ -20,8 +20,8 @@ function informationCardDirective($sce) {
         'activeSince', 'knownFor', 'presents', 'guestedIn', 'locatedIn', 'population',
         'dcTitle', 'dcCreator', 'dcDate', 'dcDescription', 'dcFormat', 'dcSource', 'edmLandingPage',
         'playChapter',
-        'owner','openingDate','location','architect','builtBy','builtYear','achitecture',
-        'chairman','focus','formationYear','founder','foundingYear','industry','location','locationCity','numberEmployees'
+        'owner', 'openingDate', 'location', 'architect', 'builtBy', 'builtYear', 'achitecture',
+        'chairman', 'focus', 'formationYear', 'founder', 'foundingYear', 'industry', 'location', 'locationCity', 'numberEmployees'
       ];
 
       scope.$watch('props', function (newProps) {
@@ -43,7 +43,7 @@ function informationCardDirective($sce) {
       };
 
       var navigate = scope.navigate();
-      scope.nav = function(prop) {
+      scope.nav = function (prop) {
         navigate(prop);
       };
 
@@ -69,20 +69,22 @@ function informationCardDirective($sce) {
               value: prop.def[0],
               uri: ''
             }
-          } else {
-            //console.log('property entity not found', prop);
           }
         }
         return e;
       }
 
       function cleanDate(propName, prop) {
-        var dateProps = ['birthDate','deathDate','activeSince','dcDate'];
+        var dateProps = ['birthDate', 'deathDate', 'activeSince', 'dcDate'];
         if (_(dateProps).contains(propName)) {
           var i = prop.value.indexOf('+');
           prop.value = prop.value.substring(0, i);
         }
         return prop;
+      }
+
+      function debug(msg) {
+        $log.debug('[Information Card] ' + msg)
       }
     },
     templateUrl: 'partials/directives/information-card.html'

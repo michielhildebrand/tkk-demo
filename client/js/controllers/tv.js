@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', 'eventsBus', 'Model', tvCtrl]);
+angular.module('TvCtrl', []).controller('TvCtrl', ['$scope', '$log', 'eventsBus', 'Model', tvCtrl]);
 
-function tvCtrl($scope, eventsBus, Model) {
+function tvCtrl($scope, $log, eventsBus, Model) {
   $scope.second = true;
 
   $scope.full = function () {
@@ -12,9 +12,9 @@ function tvCtrl($scope, eventsBus, Model) {
   };
 
   var playVideo = function (msg) {
+    debug('Event: ' + JSON.stringify(msg));
     var a = msg.action;
     if (a) {
-      //console.log('action ' + a);
       switch (a) {
         case 'set-video':
           Model.play(msg.video, msg.chapter, msg.time);
@@ -25,12 +25,16 @@ function tvCtrl($scope, eventsBus, Model) {
           eventsBus.publish('player', {action: 'dispose'});
           break;
         default:
-          console.log('Unknown action: ' + a);
+          debug('Unknown action: ' + a);
       }
     } else {
-      console.log('Unknown message: ' + msg);
+      debug('Unknown message');
     }
   };
+
+  function debug(msg) {
+    $log.debug('[TV] ' + msg)
+  }
 
   eventsBus.subscribe('tv', playVideo);
 }

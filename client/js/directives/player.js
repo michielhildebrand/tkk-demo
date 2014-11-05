@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player', []).directive('player', ['$interval', 'Eddie', 'eventsBus', 'Model', playerDirective]);
+angular.module('app.player', []).directive('player', ['$interval', '$log', 'Eddie', 'eventsBus', 'Model', playerDirective]);
 
-function playerDirective($interval, Eddie, eventsBus, Model) {
+function playerDirective($interval, $log, Eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -17,6 +17,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       var source = player.children.source;
 
       function updatePlayer(video, time) {
+        debug('Update player with video: ' + video.id + ', and time: ' + time);
         player.poster = video.poster;
         source.src = video.src;
         player.load();
@@ -33,7 +34,6 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
              var adjustmentRatio =  targetRatio/actualRatio;
              $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
              */
-            //console.log('[Player] update player time: ' + time);
             player.currentTime = time / 1000; //Seconds
             startTimePublisher();
           });
@@ -57,15 +57,12 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       }
 
       var executeAction = function (msg) {
+        debug('Event: ' + JSON.stringify(msg));
         var a = msg.action;
         if (a) {
-          //console.log('action ' + a);
           switch (a) {
             case 'play':
-              if (msg.time) {
-                //console.log('[Player] play event: ' + msg.time);
-                player.currentTime = msg.time / 1000; //Seconds
-              }
+              if (msg.time) player.currentTime = msg.time / 1000; //Seconds
               player.play();
               startTimePublisher();
               scope.paused = false;
@@ -92,7 +89,6 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
               }
               break;
             case 'set-time':
-              //console.log('[Player] set-time event: ' + msg.time);
               player.currentTime = msg.time / 1000; //Seconds
               break;
             case 'dispose':
@@ -101,10 +97,10 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
               player.poster = 'img/linkedtv_big.jpg';
               break;
             default:
-              console.log('Unknown action: ' + a);
+              debug('Unknown action: ' + a);
           }
         } else {
-          console.log('Unknown message: ' + msg);
+          debug('Unknown message');
         }
       };
       var unsubscribePlayer = eventsBus.subscribe('player', executeAction);
@@ -130,7 +126,7 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
       }
 
       scope.$on("$destroy", function () {
-        console.log('destroy player');
+        debug('Destroy player');
         stopTimePublisher();
         unsubscribePlayer();
         destroyPlayer();
@@ -142,6 +138,10 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
         player.pause();
         delete($(player));
         $(element[0]).empty();
+      }
+
+      function debug(msg) {
+        $log.debug('[Player] ' + msg)
       }
     },
     templateUrl: 'partials/directives/player.html'
