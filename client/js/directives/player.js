@@ -33,7 +33,8 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
              var adjustmentRatio =  targetRatio/actualRatio;
              $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
              */
-            player.currentTime = time;
+            //console.log('[Player] update player time: ' + time);
+            player.currentTime = time / 1000; //Seconds
             startTimePublisher();
           });
         }
@@ -61,7 +62,10 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
           //console.log('action ' + a);
           switch (a) {
             case 'play':
-              if (msg.time) player.currentTime = msg.time;
+              if (msg.time) {
+                //console.log('[Player] play event: ' + msg.time);
+                player.currentTime = msg.time / 1000; //Seconds
+              }
               player.play();
               startTimePublisher();
               scope.paused = false;
@@ -88,7 +92,8 @@ function playerDirective($interval, Eddie, eventsBus, Model) {
               }
               break;
             case 'set-time':
-              player.currentTime = msg.time;
+              //console.log('[Player] set-time event: ' + msg.time);
+              player.currentTime = msg.time / 1000; //Seconds
               break;
             case 'dispose':
               player.pause();

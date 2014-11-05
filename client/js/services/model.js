@@ -9,7 +9,8 @@ function model(Tracker) {
     currentVideo: null,
     currentChapter: null,
     currentChapterIndex: null,
-    currentChapterTime: null,
+    currentFragment: null,
+    currentTime: null,
     beaming: false,
     bookmarks: [],
     history: []
@@ -23,13 +24,23 @@ function model(Tracker) {
 
   function setChapter(index, startTime) {
     data.currentChapterIndex = parseInt(index);
-    var ch = data.currentVideo.chapters[data.currentChapterIndex];
+    var chapter = data.currentVideo.chapters[data.currentChapterIndex];
     if (startTime == null) {
-      data.currentChapterTime = ch.startTime / 1000; //in seconds
+      data.currentTime = chapter.startTime;
     } else {
-      data.currentChapterTime = startTime;
+      data.currentTime = startTime;
     }
-    data.currentChapter = ch;
+    //console.log('current chapter: ' + chapter.title);
+    data.currentChapter = chapter;
+    findAndSetFragment(data.currentTime);
+  }
+
+  function findAndSetFragment(startTime) {
+    var fragment = _.chain(data.currentChapter.fragments).min(function (f) {
+      return f.startTime - startTime;
+    }).value();
+    //console.log('current fragment: ' + fragment.title);
+    data.currentFragment = fragment;
   }
 
   function findChapter(time) {
@@ -68,12 +79,12 @@ function model(Tracker) {
       addCurrentToHistory();
       setVideo(videoId);
       setChapter(chapterIndex, startTime);
-      Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentChapterTime});
+      Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
     },
     setChapterIndex: function (chapterIndex) {
       addCurrentToHistory();
       setChapter(chapterIndex);
-      Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentChapterTime});
+      Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
     },
     seek: function (time) {
       findChapter(time);
@@ -83,7 +94,7 @@ function model(Tracker) {
       data.user = null;
     },
     resetPlay: function () {
-      data.currentVideo = data.currentChapter = data.currentChapterIndex = data.currentChapterTime = null;
+      data.currentVideo = data.currentChapter = data.currentChapterIndex = data.currentTime = null;
     },
     setBeaming: function (beaming) {
       data.beaming = beaming;
@@ -99,7 +110,7 @@ function model(Tracker) {
       return data.currentChapterIndex;
     },
     getTime: function () {
-      return data.currentChapterTime;
+      return data.currentTime;
     },
     isBeaming: function () {
       return data.beaming;
