@@ -17,7 +17,7 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
       var source = player.children.source;
 
       function updatePlayer(video, time) {
-        debug('Update player with video: ' + video.id + ', and time: ' + time);
+        debug('Video changed with video: ' + video.id + ', and time: ' + time);
         player.poster = video.poster;
         source.src = video.src;
         player.load();
@@ -141,7 +141,7 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
       }
 
       function debug(msg) {
-        $log.debug('[Player] ' + msg)
+        $log.debug('[Player (directive)] ' + msg)
       }
     },
     templateUrl: 'partials/directives/player.html'

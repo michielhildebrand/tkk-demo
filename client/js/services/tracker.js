@@ -11,6 +11,7 @@ function tracker($interval, $log, Eddie, Config) {
     screenId = sId;
     if (eventPublisher == null) eventPublisher = $interval(sendEvents, 5000);
     enabled = Config.tracking_enabled_default;
+    debug('Initializing with: enabled=' + enabled);
   }
 
   function pushEvent(e) {
@@ -30,7 +31,7 @@ function tracker($interval, $log, Eddie, Config) {
   }
 
   function debug(msg) {
-    $log.debug('[Tracker] ' + msg)
+    $log.debug('[Tracker (service)] ' + msg)
   }
 
   return {

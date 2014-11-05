@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', 'Eddie', 'Model', 'Tracker', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
-function playCtrl($scope, $state, $location, Eddie, Model, Tracker) {
+function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
   $scope.second = false;
   $scope.enrich = false;
   $scope.playContentHeight = 0;
@@ -21,12 +21,14 @@ function playCtrl($scope, $state, $location, Eddie, Model, Tracker) {
   );
 
   $scope.$on('$locationChangeSuccess', function(event, nextLocation, currentLocation) {
+    debug('changed location');
     $scope.enrich = false;
     var currentParams = $location.search();
     playVideo(currentParams.videoId, currentParams.idx);
   });
 
   function playVideo(videoId, chIdx) {
+    debug('Play video ' + videoId + ' on ' + chIdx);
     Model.play(videoId, chIdx);
     $scope.video = Model.getVideo();
     $scope.playContentHeight = angular.element('#play-content')[0].offsetHeight;
@@ -56,5 +58,9 @@ function playCtrl($scope, $state, $location, Eddie, Model, Tracker) {
 
   function sendToRemoteTv(a) {
     Eddie.putLou({target: 'tv', data: a});
+  }
+
+  function debug(msg) {
+    $log.debug('[Play (Ctrl)] ' + msg)
   }
 }

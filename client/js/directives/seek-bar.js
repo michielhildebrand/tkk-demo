@@ -72,7 +72,7 @@ function seekBarDirective($rootScope, $log, eventsBus, Model) {
       });
 
       function debug(msg) {
-        $log.debug('[Seek Bar] ' + msg)
+        $log.debug('[Seek Bar (directive)] ' + msg)
       }
     },
     templateUrl: 'partials/directives/seek-bar.html'

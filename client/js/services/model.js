@@ -23,24 +23,25 @@ function model($log, Tracker) {
   }
 
   function setChapter(index, startTime) {
-    data.currentChapterIndex = parseInt(index);
-    var chapter = data.currentVideo.chapters[data.currentChapterIndex];
+    var chIdx = parseInt(index);
+    data.currentChapterIndex = chIdx;
+    var ch = data.currentVideo.chapters[chIdx];
     if (startTime == null) {
-      data.currentTime = chapter.startTime;
+      data.currentTime = ch.startTime;
     } else {
       data.currentTime = startTime;
     }
-    debug('Current chapter: ' + chapter.title);
-    data.currentChapter = chapter;
+    debug('Set chapter: ' + ch.id + ' - ' + ch.title + ' - ' + ch.startTime);
+    data.currentChapter = ch;
     findAndSetFragment(data.currentTime);
   }
 
   function findAndSetFragment(startTime) {
-    var fragment = _.chain(data.currentChapter.fragments).min(function (f) {
+    var fr = _.chain(data.currentChapter.fragments).min(function (f) {
       return f.startTime - startTime;
     }).value();
-    debug('Current fragment: ' + fragment.title);
-    data.currentFragment = fragment;
+    debug('Set fragment: ' + fr.id + ' - ' + fr.title + ' - ' + fr.startTime);
+    data.currentFragment = fr;
   }
 
   function findChapter(time) {
@@ -61,7 +62,7 @@ function model($log, Tracker) {
   }
 
   function debug(msg) {
-    $log.debug('[Model] ' + msg)
+    $log.debug('[Model (service)] ' + msg)
   }
 
   return {

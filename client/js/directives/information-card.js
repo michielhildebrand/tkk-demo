@@ -84,7 +84,7 @@ function informationCardDirective($sce, $log) {
       }
 
       function debug(msg) {
-        $log.debug('[Information Card] ' + msg)
+        $log.debug('[Information Card (directive)] ' + msg)
       }
     },
     templateUrl: 'partials/directives/information-card.html'

@@ -66,7 +66,7 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, Model) {
       };
 
       function debug(msg) {
-        $log.debug('[Chapter Background] ' + msg)
+        $log.debug('[Chapter Background (directive)] ' + msg)
       }
     },
     templateUrl: 'partials/directives/chapter-background.html'

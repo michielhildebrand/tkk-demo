@@ -60,7 +60,7 @@ function chapterAboutDirective($log, entityProxy, Model) {
       };
 
       function debug(msg) {
-        $log.debug('[Chapter About] ' + msg)
+        $log.debug('[Chapter About (directive)] ' + msg)
       }
     },
     templateUrl: 'partials/directives/chapter-about.html'

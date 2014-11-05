@@ -29,7 +29,7 @@ function eddieService($log, Config) {
   }
 
   function debug(msg) {
-    $log.debug('[Eddie] ' + msg)
+    $log.debug('[Eddie (service)] ' + msg)
   }
 
   return {

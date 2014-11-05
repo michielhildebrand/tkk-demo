@@ -93,7 +93,7 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
             Tracker.init(user, screenId);
             Model.signIn(userName);
           } else {
-            $log.error('[App] Invalid user name ' + userName);
+            debug('Invalid user name ' + userName);
             $state.go('select');
           }
         }
@@ -105,6 +105,7 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
       });
 
       var syncBookmarks = function (bookmarks) {
+        debug('Load ' + bookmarks.length + ' bookmarks.');
         _.each(bookmarks, function (b) {
           Model.bookmark(b);
         });
@@ -112,12 +113,17 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
       };
 
       function syncVideos(videos) {
+        debug('Load ' + videos.length + ' videos.');
         Model.setVideos(videos);
         $rootScope.$$phase || $rootScope.$apply();
       }
 
       eventsBus.subscribe('video', syncVideos);
       eventsBus.subscribe('bookmark', syncBookmarks);
+
+      function debug(msg) {
+        $log.debug('[App] ' + msg)
+      }
     }
   ]
 );

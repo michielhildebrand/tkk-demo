@@ -33,7 +33,7 @@ function tvCtrl($scope, $log, eventsBus, Model) {
   };
 
   function debug(msg) {
-    $log.debug('[TV] ' + msg)
+    $log.debug('[TV (ctrl)] ' + msg)
   }
 
   eventsBus.subscribe('tv', playVideo);
