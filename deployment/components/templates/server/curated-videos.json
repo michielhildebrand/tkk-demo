@@ -1245,7 +1245,7 @@
             "title": "Jochen Gro&szlig;mann",
             "type": "Thing",
             "startTime": 73000,
-            "enrichments": ["http://www.rbb-online.de/politik/Flughafen-BER/BER-Aktuelles/akteure_aktuell/ber-staatsanwaltschaft-ermittelt-gegen-ex-technikchef-grossmann.html", "http://www.rbb-online.de/politik/Flughafen-BER/BER-Aktuelles/akteure_aktuell/bestechungsverdacht-am-ber.html"]
+            "enrichments": ["http://www.rbb-online.de/politik/Flughafen-BER/BER-Aktuelles/akteure_aktuell/bestechungsverdacht-am-ber.html", "http://www.rbb-online.de/politik/Flughafen-BER/BER-Aktuelles/akteure_aktuell/ber-staatsanwaltschaft-ermittelt-gegen-ex-technikchef-grossmann.html"]
           },
           {
             "id": "b540bbbe-171f-11e4-a1bc-005056a7235c",
@@ -1396,7 +1396,7 @@
             "title": "Karl-Liebknecht-Haus",
             "type": "Thing",
             "startTime": 655000,
-            "enrichments": ["http://de.wikipedia.org/wiki/Karl_Liebknecht", "http://www.die-linke.de/partei/organe/karlliebknechthaus/diegeschichtedeskarlliebknechthauses/", "http://www.die-linke.de/partei/organe/karlliebknechthaus/"]
+            "enrichments": ["http://de.wikipedia.org/wiki/Karl_Liebknecht", "http://www.die-linke.de/partei/organe/karlliebknechthaus/", "http://www.die-linke.de/partei/organe/karlliebknechthaus/diegeschichtedeskarlliebknechthauses/"]
           }
         ]
       },
@@ -1552,6 +1552,15 @@
             "title": "RBB Abendschau App",
             "type": "Thing",
             "startTime": 1440000,
+            "enrichments": []
+          },
+          {
+            "id": "812451f6-5a95-11e4-88a2-005056a7235c",
+            "locator": "",
+            "duration": "2079.956",
+            "title": "Internet",
+            "type": "Product",
+            "startTime": 1496800,
             "enrichments": []
           },
           {
