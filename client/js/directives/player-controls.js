@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.player-controls', []).directive('playerControls', ['Eddie', 'eventsBus', 'Model', 'Tracker', playerControlsDirective]);
+angular.module('app.player-controls', []).directive('playerControls', ['$log', 'Eddie', 'eventsBus', 'Model', 'Tracker', playerControlsDirective]);
 
-function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
+function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
   return {
     restrict: 'E',
     replace: false,
@@ -68,11 +68,14 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
         enrichUpdated();
       };
 
-      scope.$watch('enrich', function () {
-        enrichUpdated();
+      scope.$watch('enrich', function (newVal, oldVal) {
+        if (newVal != oldVal) {
+          enrichUpdated();
+        }
       });
 
       function enrichUpdated() {
+        debug('Enrichment screen updated: ' + scope.enrich);
         if (scope.enrich) {
           Tracker.collect({action: 'player_enrich', id: Model.getVideo().id, time: currentTime});
         }
@@ -105,6 +108,10 @@ function playerControlsDirective(Eddie, eventsBus, Model, Tracker) {
 
       function sendToRemoteTv(a) {
         Eddie.putLou({target: 'tv', data: a});
+      }
+
+      function debug(msg) {
+        $log.debug('[Player Controls (directive)] ' + msg)
       }
     },
     templateUrl: 'partials/directives/player-controls.html'

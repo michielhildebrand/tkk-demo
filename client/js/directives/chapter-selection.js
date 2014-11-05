@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-selection', []).directive('chapterSelection', ['$location', 'eventsBus', 'Eddie', 'Model',chapterSectionDirective]);
+angular.module('app.chapter-selection', []).directive('chapterSelection', ['$location', '$log', 'eventsBus', 'Eddie', 'Model',chapterSectionDirective]);
 
-function chapterSectionDirective($location, eventsBus, Eddie, Model) {
+function chapterSectionDirective($location, $log, eventsBus, Eddie, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -15,6 +15,7 @@ function chapterSectionDirective($location, eventsBus, Eddie, Model) {
       };
  
       scope.select = function (index) {
+        debug('Select chapter index: ' + index + ' of current video: ' + scope.video.id);
         Model.setChapterIndex(index);
         $location.search('idx', index);
         sendToPlayer({action: 'set-time', time: Model.getTime()});
@@ -32,6 +33,10 @@ function chapterSectionDirective($location, eventsBus, Eddie, Model) {
       }
       function sendToRemotePlayer(a) {
         Eddie.putLou({target: 'player', data: a});
+      }
+
+      function debug(msg) {
+        $log.debug('[ChapterSelection (directive)] ' + msg)
       }
     },
     templateUrl: 'partials/directives/chapter-selection.html'

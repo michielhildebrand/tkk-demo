@@ -15,6 +15,7 @@ function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
     },
     function (newVideos) {
       if (newVideos.length > 0) {
+        debug(newVideos.length + ' new videos available.');
         playVideo($state.params.videoId, $state.params.idx);
       }
     }
