@@ -7,6 +7,7 @@ function model($log, Tracker) {
     user: null,
     videos: [],
     currentVideo: null,
+    currentVideoId: null,
     currentChapter: null,
     currentChapterIndex: null,
     currentFragment: null,
@@ -17,9 +18,12 @@ function model($log, Tracker) {
   };
 
   function setVideo(id) {
-    data.currentVideo = _(data.videos).find(function (v) {
+    var v = _(data.videos).find(function (v) {
       return v.id == id;
     });
+    debug('Set video: ' + v.id + ' - ' + v.title);
+    data.currentVideo = v;
+    data.currentVideoId = v.id
   }
 
   function setChapter(index, startTime) {
@@ -61,6 +65,24 @@ function model($log, Tracker) {
     }
   }
 
+  function hasChanged(videoId, chapterIndex, startTime) {
+    var hasChanged = true;
+    if (!videoId || (data.currentVideoId == videoId)) {
+      if (!chapterIndex || (data.currentChapterIndex == chapterIndex)) {
+        if (!startTime || (data.currentTime == startTime)) {
+          hasChanged = false;
+        } else {
+          debug('Time has changed: ' + data.currentTime + ' -> ' + startTime);
+        }
+      } else {
+        debug('Chapter has changed: ' + data.currentChapterIndex + ' -> ' + chapterIndex);
+      }
+    } else {
+      debug('Video has changed: ' + data.currentVideoId + ' -> ' + videoId);
+    }
+    return hasChanged;
+  }
+
   function debug(msg) {
     $log.debug('[Model (service)] ' + msg)
   }
@@ -80,15 +102,19 @@ function model($log, Tracker) {
       return data.videos;
     },
     play: function (videoId, chapterIndex, startTime) {
-      addCurrentToHistory();
-      setVideo(videoId);
-      setChapter(chapterIndex, startTime);
-      Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
+      if (hasChanged(videoId, chapterIndex, startTime)) {
+        addCurrentToHistory();
+        setVideo(videoId);
+        setChapter(chapterIndex, startTime);
+        Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
+      }
     },
     setChapterIndex: function (chapterIndex) {
-      addCurrentToHistory();
-      setChapter(chapterIndex);
-      Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
+      if (hasChanged(null, chapterIndex, null)) {
+        addCurrentToHistory();
+        setChapter(chapterIndex);
+        Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
+      }
     },
     seek: function (time) {
       findChapter(time);
@@ -98,7 +124,7 @@ function model($log, Tracker) {
       data.user = null;
     },
     resetPlay: function () {
-      data.currentVideo = data.currentChapter = data.currentChapterIndex = data.currentTime = null;
+      data.currentVideo = data.currentVideoId = data.currentChapter = data.currentChapterIndex = data.currentTime = data.currentFragment = null;
     },
     setBeaming: function (beaming) {
       data.beaming = beaming;
