@@ -7,7 +7,8 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
     restrict: 'E',
     replace: false,
     scope: {
-      enrich: '='
+      enrich: '=',
+      chapterList: '='
     },
     link: function (scope, element, attrs) {
       scope.play = true;
@@ -64,8 +65,14 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
       };
 
       scope.toggleEnrich = function () {
+        scope.chapterList = !scope.enrich;
         scope.enrich = !scope.enrich;
         enrichUpdated();
+      };
+
+      scope.toggleChapterList = function () {
+        console.log(scope.chapterList);
+        scope.chapterList = !scope.chapterList;
       };
 
       scope.$watch('enrich', function (newVal, oldVal) {

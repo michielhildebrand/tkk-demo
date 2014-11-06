@@ -6,7 +6,8 @@ function chapterEnrichDirective(Config, Model) {
   return {
     restrict: 'E',
     scope: {
-      height: '='
+      height: '=',
+      video: '='
     },
     replace: false,
     link: function (scope, element, attrs) {

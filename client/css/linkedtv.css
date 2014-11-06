@@ -17,7 +17,7 @@ a {
 }
 
 .bar-tkk {
-  background-color: rgba(95,109,105,0.6);
+  background-color: rgba(95,109,105,0.9);
   border-bottom: 1px solid rgb(100,114,124);
   z-index: 2147483647; /* http://css-tricks.com/custom-controls-in-html5-video-full-screen/ */
 }
@@ -25,7 +25,6 @@ a {
 .bar-tkk .title,
 .bar-tkk .icon {
   color: #FFF;
- ￼color: white;
 }
 .linkedtv .bar .title {
     ￼font-size: 24px;
@@ -66,20 +65,8 @@ a {
 .col {
   padding: 0;
 }
-.col-15 {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 15%;
-  -moz-box-flex: 0;
-  -moz-flex: 0 0 15%;
-  -ms-flex: 0 0 15%;
-  flex: 0 0 15%;
-  max-width: 15%;
-}  
+
 .main {
-  height: 100%;
-}
-#play-content {
-  overflow: hidden;
   height: 100%;
 }
 
@@ -193,17 +180,14 @@ a {
 /* player */
 .player {
     background-color: #000;
-}
-.player video {
-  min-height: 100%; 
-  min-width: 100%;
-  height: auto !important;
-  width: auto !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 .player video::-webkit-media-controls {
   display:none !important;
 }
-.video-logo {
+/*.video-logo {
   position: absolute;
   top: 10px;
   margin-left: 20px;
@@ -213,6 +197,21 @@ a {
   background-size: 100% 100%;
   background-image: url(../img/AVRO-logo-wit-transp.png);
   background-repeat: no-repeat;
+}*/
+.player-controls {
+    width: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    bottom: 0px;
+    background-color: black;
+    color: white;
+}
+.player-controls .icon {
+    color: #FFF;
+}
+.player-controls .icon.selected {
+    color: rgb(65,146,183);
 }
 .seekbar {
 }
@@ -232,6 +231,17 @@ a {
 }
 
 /* chapter list */
+.chapters-overlay {
+    position: absolute;
+    height: 100%;
+    width: 200px;
+    top: 0;
+    left: 0;
+}
+.chapters {
+    height: 100%;
+    background-color: rgb(45,57,64);
+}
 .chapters .item img {
     display: none;
 }

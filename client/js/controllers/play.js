@@ -5,6 +5,7 @@ angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$loc
 function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
   $scope.second = false;
   $scope.enrich = false;
+  $scope.chapterList = false;
   $scope.playContentHeight = 0;
   $scope.beaming = Model.isBeaming();
   $scope.tracking = Tracker.enabled();
@@ -32,7 +33,7 @@ function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
     debug('Play video ' + videoId + ' on ' + chIdx);
     Model.play(videoId, chIdx);
     $scope.video = Model.getVideo();
-    $scope.playContentHeight = angular.element('#play-content')[0].offsetHeight;
+    //$scope.playContentHeight = angular.element('#play-content')[0].offsetHeight;
 
     if ($scope.beaming) {
       sendToRemoteTv({action: 'set-video', video: videoId, chapter: chIdx});
