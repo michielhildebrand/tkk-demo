@@ -5,42 +5,50 @@
   <button class="button button-icon icon ion-eye" ng-class="{selected: tracking}" ng-click="toggleTracking()"></button>
 </ion-header-bar>
 
-<ion-tabs class="tabs-icon-top avrotros-logo">
-  <ion-tab title="Watch" icon="icon ion-social-youtube-outline">
-    <ion-content class="has-header has-footer" scroll="false">
+<ion-content class="has-header has-footer" scroll="false">
+
+  <div class="chapters chapters-overlay" ng-show="chapterList" >
+    <h3>Chapters</h3>
+    <ion-scroll direction="y">
+      <chapter-selection video="video"></chapter-selection>
+    </ion-scroll>
+  </div>
+
+  <div class="watch" ng-show="isActiveMode('watch')">
       <player second="second" ng-hide="beaming"></player>
       <div class="beam-bg" ng-show="beaming">
         This video is playing on the TV
       </div>
-      <div class="chapters chapters-overlay" ng-show="chapterList" >
-        <h3>Chapters</h3>
-        <ion-scroll direction="y">
-          <chapter-selection video="video"></chapter-selection>
-        </ion-scroll>
-      </div>
-      <player-controls class="player-controls" chapter-list="chapterList"></player-controls>
-    </ion-content>
-  </ion-tab>
+  </div>
 
-  <ion-tab title="Lookup" icon="icon ion-ios7-information-outline">
-    <ion-content class="has-header has-footer">
-      <div class="chapters chapters-overlay" ng-show="chapterList" >
-        <h3>Chapters</h3>
-        <ion-scroll direction="y">
-          <chapter-selection video="video"></chapter-selection>
-        </ion-scroll>
-      </div>
-      <player-controls class="player-controls" chapter-list="chapterList"></player-controls>
-    </ion-content>
-  </ion-tab>
+  <div class="explore" ng-show="isActiveMode('lookup')">
+  </div>
 
-  <ion-tab title="Explore" icon="icon ion-ios7-plus-outline">
-    <ion-content class="has-header has-footer">
-      <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
-    </ion-content>
-  </ion-tab>
+  <div class="explore" ng-show="isActiveMode('explore')">
+    <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
+  </div>
 
-</ion-tabs>
+
+
+</ion-content>
+
+<player-controls class="player-controls" enrich="enrich" chapter-list="chapterList"></player-controls>
+  <div class="tabs tabs-icon-top bar-tkk avrotros-logo">
+    <a class="tab-item" ng-click="setActiveMode('watch')">
+      <i class="icon ion-social-youtube-outline"></i>
+      Watch
+    </a>
+    <a class="tab-item" ng-click="setActiveMode('lookup')">
+      <i class="icon ion-ios7-information-outline"></i>
+      Lookup
+    </a>
+    <a class="tab-item" ng-click="setActiveMode('explore')">
+      <i class="icon icon ion-ios7-plus-outline"></i>
+      Explore
+    </a>
+  </div>
+
+
 
 
 <!--

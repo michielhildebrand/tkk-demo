@@ -3,6 +3,7 @@
 angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
 function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
+  $scope.mode = 'watch';
   $scope.second = false;
   $scope.enrich = false;
   $scope.chapterList = false;
@@ -48,6 +49,14 @@ function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
       $scope.beaming = isBeaming;
     }
   );
+
+  $scope.isActiveMode = function(mode) {
+    return mode == $scope.mode;
+  }
+
+  $scope.setActiveMode = function(mode) {
+    $scope.mode = mode;
+  }
 
   $scope.goToMain = function () {
     Tracker.collect({action: 'player_stop', id: $scope.video.id, time: Model.getTime()});
