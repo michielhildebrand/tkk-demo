@@ -139,6 +139,9 @@ function model($log, Tracker) {
     getChapterIndex: function () {
       return data.currentChapterIndex;
     },
+    getFragment: function () {
+      return data.currentFragment;
+    },
     getTime: function () {
       return data.currentTime;
     },
