@@ -26,6 +26,17 @@ function model($log, Tracker) {
     data.currentVideoId = v.id
   }
 
+  function findChapter(time) {
+    var ch = _.chain(data.currentVideo.chapters).map(function (ch, index) {
+      return {ch: ch, idx: index};
+    }).filter(function (o) {
+      return o.ch.startTime <= time;
+    }).min(function (o) {
+      return time - o.ch.startTime;
+    }).value();
+    setChapter(ch.idx, time);
+  }
+
   function setChapter(index, startTime) {
     var chIdx = parseInt(index);
     data.currentChapterIndex = chIdx;
@@ -41,22 +52,18 @@ function model($log, Tracker) {
   }
 
   function findAndSetFragment(startTime) {
-    var fr = _.chain(data.currentChapter.fragments).min(function (f) {
-      return f.startTime - startTime;
+    var fr = _.chain(data.currentChapter.fragments).filter(function (f) {
+      return f.startTime <= startTime;
+    }).min(function (f) {
+      return startTime - f.startTime;
     }).value();
-    debug('Set fragment: ' + fr.id + ' - ' + fr.title + ' - ' + fr.startTime);
-    data.currentFragment = fr;
-  }
-
-  function findChapter(time) {
-    var ch = _.chain(data.currentVideo.chapters).map(function (ch, index) {
-      return {ch: ch, idx: index};
-    }).filter(function (o) {
-      return o.ch.startTime <= time;
-    }).min(function (o) {
-      return time - o.ch.startTime;
-    }).value();
-    setChapter(ch.idx);
+    if (fr != Infinity) {
+      debug('Set fragment: ' + fr.id + ' - ' + fr.title + ' - ' + fr.startTime);
+      data.currentFragment = fr;
+    } else {
+      debug('No fragment at this time: ' + startTime);
+      data.currentFragment = null;
+    }
   }
 
   function addCurrentToHistory() {
@@ -117,7 +124,9 @@ function model($log, Tracker) {
       }
     },
     seek: function (time) {
-      findChapter(time);
+      if (hasChanged(null, null, time)) {
+        findChapter(time);
+      }
     },
     signOut: function () {
       Tracker.collect({action: 'user_logout'});
