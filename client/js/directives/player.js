@@ -115,6 +115,7 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
 
       function publishCurrentTime() {
         var currentTime = player.currentTime;
+        currentTime *= 1000; // Milliseconds
         if (currentTime != previousCurrentTime) {
           previousCurrentTime = currentTime;
           if (scope.second) {

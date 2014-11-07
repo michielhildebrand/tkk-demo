@@ -57,10 +57,9 @@ function seekBarDirective($rootScope, $log, eventsBus, Model) {
         scope.startLapse = moment(millis).format('mm:ss');
       }
 
-      function syncCurrentTime(t) {
-        var millis = t * 1000;
-        //Model.seek(millis);
-        updateBar(millis);
+      function syncCurrentTime(milliseconds) {
+        //Model.seek(milliseconds);
+        updateBar(milliseconds);
         $rootScope.$$phase || $rootScope.$apply();
       }
 

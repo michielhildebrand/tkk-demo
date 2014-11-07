@@ -88,6 +88,7 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
 
       var currentTime = 0;
       var updateCurrentTime = function (t) {
+        //debug('Update current time: ' + t);
         currentTime = t
       };
       eventsBus.subscribe('player-time', updateCurrentTime);

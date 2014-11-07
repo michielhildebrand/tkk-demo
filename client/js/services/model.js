@@ -34,7 +34,11 @@ function model($log, Tracker) {
     }).min(function (o) {
       return time - o.ch.startTime;
     }).value();
-    setChapter(ch.idx, time);
+    if (ch != Infinity) {
+      setChapter(ch.idx, time);
+    } else {
+      debug('No chapter at this time: ' + time);
+    }
   }
 
   function setChapter(index, startTime) {
