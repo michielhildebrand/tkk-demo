@@ -3,8 +3,10 @@
 angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
 function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
+  $scope.mode = 'watch';
   $scope.second = false;
   $scope.enrich = false;
+  $scope.controls = true;
   $scope.playContentHeight = 0;
   $scope.beaming = Model.isBeaming();
   $scope.tracking = Tracker.enabled();
@@ -56,6 +58,18 @@ function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
   $scope.toggleTracking = function () {
     $scope.tracking = Tracker.toggle();
   };
+
+  $scope.setActiveMode = function(mode) {
+    $scope.mode = mode;
+  };
+
+  $scope.isActiveMode = function(mode) {
+    return mode == $scope.mode;
+  }
+
+  $scope.getActiveMode = function() {
+    return $scope.mode;
+  }
 
   function sendToRemoteTv(a) {
     Eddie.putLou({target: 'tv', data: a});

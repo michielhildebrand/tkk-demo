@@ -19,6 +19,7 @@ html, body {
 
 .linkedtv .tab-item-active .icon,
 .linkedtv .tab-item-active .tab-title,
+.linkedtv .tab-item-active,
 .linkedtv .icon.selected {
     color: rgb(65,146,183);
 }
@@ -30,7 +31,7 @@ a {
 .linkedtv .bar {
   background-color: rgba(95,109,105,0.8);
   border-bottom: 1px solid rgb(100,114,124);
-    z-index: 12;
+    z-index: 13;
   /*z-index: 2147483647; *//* http://css-tricks.com/custom-controls-in-html5-video-full-screen/ */
 }
 
@@ -175,19 +176,49 @@ a {
   height: 100%;
 }
 
+/* modes */
+.mode.has-footer {
+    bottom: 49px;
+}
+
 /* player */
-.watch {
-    height: 100%;
+.player {
+    position: absolute;
     top: 0;
     bottom: 0;
-    background-color: #000;
-}
-.player {
     width: 100%;
     height: 100%;
+    background-color: black;
+}
+.player .video-overlay {
+    position: absolute;
+    bottom: 80px; /* footer + player-controls */
+    top: 44px; /* header */
+    left: 200px; /* chapter list */
+    right: 0;
+    z-index: 12; /* ion-content z-index is 11 */
+}
+.player video {
+    min-height: 100%;
+    min-width: 100%;
+    height: auto !important;
+    width: auto !important;
 }
 .player video::-webkit-media-controls {
-  display:none !important;
+    display:none !important;
+}
+
+.player.explore,
+.player.lookup {
+    top: inherit;
+    bottom: 49px;
+    width: inherit;
+    height: inherit;
+}
+.player.explore video,
+.player.lookup video {
+    height: 150px !important;
+    min-height: 150px;
 }
 /*.video-logo {
   position: absolute;
@@ -203,8 +234,8 @@ a {
 .player-controls {
     width: 100%;
     position: absolute;
-    z-index: 12;
-    bottom: 48px;
+    z-index: 13;
+    bottom: 0;
     padding: 1px 16px;
     background-color: rgba(45,57,64,0.8);
     /*background-color: rgba(0,0,0,0.6);*/
@@ -238,10 +269,10 @@ a {
 .chapters-overlay {
     position: absolute;
     width: 200px;
-    top: 44px;
-    bottom: 80px;
+    top: 0;
+    bottom: 32px;
     left: 0;
-    z-index: 12;
+    z-index: 13;
     background-color: rgba(45,57,64,0.8);
 }
 .chapters {
@@ -257,7 +288,6 @@ a {
   background-color: rgba(45,57,64,0.6);
   color: rgb(230,229,228)
   margin: 0;
-  z-index: 1;
 }
 .chapters .item.active {
   background-color: rgba(126,139,148,0.6);
@@ -306,7 +336,7 @@ a {
     height: 34px;
     line-height: 26px;
     color: white;
-    background-color: rgb(65,146,183);
+    background-color: rgb(36,146,185);
     box-sizing: border-box;
 }
 .links .item:first-child {
@@ -316,7 +346,6 @@ a {
     background-image: url(../img/background_sections_menu.png);
     background-position: center right;
     background-repeat: no-repeat;
-    background-color: transparent;
     -webkit-filter: drop-shadow(0 -3px 3px rgba(50, 50, 50, 0.75));
 }
 .links h4 {
@@ -422,7 +451,7 @@ a {
   color: white;
   line-height: 28px;
   position: relative;
-  z-index: 1;
+  z-index: 13;
 }
 .browser .close {
   float: right;

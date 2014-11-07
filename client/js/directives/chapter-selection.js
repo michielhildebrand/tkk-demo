@@ -12,7 +12,7 @@ function chapterSectionDirective($location, $log, eventsBus, Eddie, Model) {
     link: function (scope, element, attrs) {
 
       scope.isSelected = function(index) {
-        return Model.getChapterIndex() == index;
+        return Model.getChapterIndex() === index;
       };
  
       scope.select = function (index) {

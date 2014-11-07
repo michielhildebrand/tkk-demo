@@ -1,4 +1,4 @@
-<ion-header-bar align-title="center" class="">
+<ion-header-bar align-title="center" ng-hide="!controls && isActiveMode('watch')">
   <div class="buttons">
     <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goToMain()" >Back</button>
   </div>
@@ -9,33 +9,40 @@
   </div>
 </ion-header-bar>
 
-<ion-tabs class="tabs-icon-top">
-  <ion-tab title="Watch" icon="icon ion-social-youtube-outline">
-    <ion-content class="watch" scroll="false">
-      <player second="second" ng-hide="beaming"></player>
-      <div class="beam-bg" ng-show="beaming">
-        This video is playing on the TV
-      </div>
-      <player-controls class="player-controls" chapter-list="chapterList"></player-controls>
+<player class="player" ng-class="getActiveMode()" second="second" controls="controls" ng-hide="beaming"></player>
 
-      <div class="chapters chapters-overlay" ng-show="chapterList" >
-        <ion-scroll direction="y">
-          <chapter-selection video="video" controlPlayer="true"></chapter-selection>
-        </ion-scroll>
-      </div>
-    </ion-content>
-  </ion-tab>
+<ion-content class="mode watch has-header has-footer" scroll="false" ng-show="isActiveMode('watch')">
+  <div class="beam-bg" ng-show="beaming">
+    This video is playing on the TV
+  </div>
+  <player-controls class="player-controls" chapter-list="chapterList" ng-hide="!controls && isActiveMode('watch')"></player-controls>
 
-  <ion-tab title="Lookup" icon="icon ion-ios7-information-outline">
-    <ion-content class="has-header has-footer">
+  <div class="chapters chapters-overlay" ng-show="chapterList && controls">
+    <ion-scroll direction="y">
+      <chapter-selection video="video" controlPlayer="true"></chapter-selection>
+    </ion-scroll>
+  </div>
+</ion-content>
 
-    </ion-content>
-  </ion-tab>
+<ion-content class="mode lookup has-header has-footer" ng-show="isActiveMode('lookup')">
+</ion-content>
 
-  <ion-tab title="Explore" icon="icon ion-ios7-world-outline">
-    <ion-content class="has-header has-footer">
-      <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
-    </ion-content>
-  </ion-tab>
+<ion-content class="mode explore has-header has-footer" ng-show="isActiveMode('explore')">
+  <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
+</ion-content>
 
-</ion-tabs>
+<div class="tabs tabs-icon-top bar" ng-hide="!controls && isActiveMode('watch')">
+  <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('watch')}" ng-click="setActiveMode('watch')">
+    <i class="icon ion-social-youtube-outline"></i>
+    Watch
+  </a>
+  <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('lookup')}" ng-click="setActiveMode('lookup')">
+    <i class="icon ion-ios7-information-outline"></i>
+    Lookup
+  </a>
+  <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('explore')}" ng-click="setActiveMode('explore')">
+    <i class="icon ion-ios7-world-outline"></i>
+    Explore
+  </a>
+</div>
+
