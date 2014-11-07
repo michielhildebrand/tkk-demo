@@ -127,7 +127,7 @@ function model($log, Tracker) {
         Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
       }
     },
-    seek: function (time) {
+    sync: function (time) {
       if (hasChanged(null, null, time)) {
         findChapter(time);
       }

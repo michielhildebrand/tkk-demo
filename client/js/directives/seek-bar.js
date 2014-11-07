@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.seek-bar', []).directive('seekBar', ['$rootScope', '$log', 'eventsBus', 'Model', seekBarDirective]);
+angular.module('app.seek-bar', []).directive('seekBar', ['$rootScope', '$log', 'eventsBus', 'Model', 'Config', seekBarDirective]);
 
-function seekBarDirective($rootScope, $log, eventsBus, Model) {
+function seekBarDirective($rootScope, $log, eventsBus, Model, Config) {
   return {
     restrict: 'E',
     replace: false,
@@ -58,7 +58,7 @@ function seekBarDirective($rootScope, $log, eventsBus, Model) {
       }
 
       function syncCurrentTime(milliseconds) {
-        //Model.seek(milliseconds);
+        if (Config.synchronize_model) Model.sync(milliseconds);
         updateBar(milliseconds);
         $rootScope.$$phase || $rootScope.$apply();
       }
