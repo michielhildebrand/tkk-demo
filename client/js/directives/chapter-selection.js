@@ -6,10 +6,11 @@ function chapterSectionDirective($location, $log, eventsBus, Eddie, Model) {
   return {
     restrict: 'E',
     scope: {
-      'video': '='
+      'video': '=',
     },
     replace: false,
     link: function (scope, element, attrs) {
+
       scope.isSelected = function(index) {
         return Model.getChapterIndex() == index;
       };

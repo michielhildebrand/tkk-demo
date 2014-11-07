@@ -71,7 +71,6 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
       };
 
       scope.toggleChapterList = function () {
-        console.log(scope.chapterList);
         scope.chapterList = !scope.chapterList;
       };
 
