@@ -5,7 +5,9 @@ angular.module('Config', []).constant('Config', {
   EUROPEANA_API: 'http://europeana.eu/api/v2',
   //IR_API: 'http://ir.lmcloud.vse.cz/irapi/media-server',
   IR_API: 'http://linkedtv.dev/ir',
-  CONTENT_FILTERING_API: 'http://160.40.50.224/api/content_filtering',
+  //CONTENT_FILTERING_API: 'http://160.40.50.224/api/content_filtering',
+  //CONTENT_FILTERING_API: 'http://160.40.50.224:8087/RestReasoner/adhoc_content_filtering',
+  CONTENT_FILTERING_API: 'http://linkedtv.dev/filtering',
 
   app_title_prefix: 'LinkedTV Culture',
   users: [

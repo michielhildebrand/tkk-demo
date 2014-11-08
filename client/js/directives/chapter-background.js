@@ -31,22 +31,39 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, Model) {
       function loadChapterBackground(idx) {
         if (idx < metadataSize) {
           var meta = metadata[idx].value;
-          irApi.search({query: meta}, function (r) {
-            var sources = _(r).keys();
-            _(sources).each(function(source) {
-              if (source.indexOf('$') == -1) {
-                _(r[source]).each(function(post) {
-                  // Once the personalization service is working we can send the IRApi response to it
-                  // and receive a ranking property for each post and we can re-order the posts based on it
-                  //contentFiltering.personalize(post)
+          irApi.search({query: meta}, function (irResp) {
 
-                  scope.backgrounds.push({title: post.micropost.title, url: post.mediaUrl, post: post.micropost, source: source})
-                });
-              }
-            });
+            // TODO re-enable when the ContentFiltering Service will work
+            // We'll receive a Degree information for each post that we can use to reorder them
+            //contentFiltering.personalize(irResp, function(cfResp) {
 
-            loadChapterBackground(idx + 1);
+              var sources = _(irResp).keys();
+              _(sources).each(function(source) {
+                if (source.indexOf('$') == -1) {
+                  _(irResp[source]).each(function(post, index) {
+                    var degree = 0;
+                    //if (cfResp[source][index]) degree = cfResp[source][index].Degree;
+
+                    scope.backgrounds.push({
+                      title: post.micropost.title,
+                      url: post.mediaUrl,
+                      post: post.micropost,
+                      source: source,
+                      degree: degree
+                    })
+
+                  });
+                }
+              });
+
+              loadChapterBackground(idx + 1);
+
+            //})
+
           })
+        } else {
+          //reorder backgrounds posts based on degree
+          _(scope.backgrounds).sortBy(function(b) {return -b.degree})
         }
       }
 
