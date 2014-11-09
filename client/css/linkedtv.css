@@ -467,14 +467,12 @@ a {
 }
 
 /* entity slider */
-.entity-slider {
+.entity-bar {
     width: 100%;
     border-bottom: 1px solid rgb(100,114,124);
     height: 103px;
     padding: 4px;
     box-sizing: border-box;
-}
-.entity-list {
 }
 .entity-list .entity {
     float: left;
@@ -513,4 +511,11 @@ a {
     background-color:rgba(0,0,0,0.6);
     color: white;
     overflow: hidden;
+}
+
+.entity-slider {
+
+}
+.entity-slider .slider-slide {
+    width: 100%;
 }
