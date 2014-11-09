@@ -53,7 +53,7 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, documentProxy
 
                       scope.backgrounds.push({
                         url: post.mediaUrl,
-                        title: docResp[0].title,
+                        title: post.micropost.title,
                         post: docResp[0].text,
                         source: source,
                         degree: degree
