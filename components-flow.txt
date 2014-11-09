@@ -1,0 +1,20 @@
+@startuml
+
+title Application components flow
+
+participant "Application" as app #red
+participant "Model" as model
+participant "Play screen" as play
+participant "Player component" as player
+participant "Tv screen" as tv
+
+app -> model : Loads videos
+
+model ->o play : Notified when videos are available
+play -> model : Take url parameters and set the video and chapter
+play ->> tv : Send msg set-video with video and chapter
+
+model ->o player : Notified when the video has changed\nThe player loads the video and sets the current time
+
+
+@enduml
