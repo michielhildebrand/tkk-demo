@@ -78,9 +78,9 @@ function model($log, Tracker) {
 
   function hasChanged(videoId, chapterIndex, startTime) {
     var hasChanged = true;
-    if (!videoId || (data.currentVideoId == videoId)) {
-      if (!chapterIndex || (data.currentChapterIndex == chapterIndex)) {
-        if (!startTime || (data.currentTime == startTime)) {
+    if (videoId == null || (data.currentVideoId == videoId)) {
+      if (chapterIndex == null || (data.currentChapterIndex == chapterIndex)) {
+        if (startTime == null || (data.currentTime == startTime)) {
           hasChanged = false;
         } else {
           debug('Time has changed: ' + data.currentTime + ' -> ' + startTime);
