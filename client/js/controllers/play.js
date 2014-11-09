@@ -3,7 +3,7 @@
 angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
 function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
-  $scope.mode = 'lookup';
+  $scope.mode = 'watch';
   $scope.second = false;
   $scope.enrich = false;
   $scope.controls = true;
