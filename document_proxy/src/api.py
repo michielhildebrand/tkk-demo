@@ -7,12 +7,12 @@ from enricher import fetch_article
 app = Flask(__name__)
 
 
-@app.route('/api', methods=['GET'])
+@app.route('/doc', methods=['GET'])
 def root():
-    return 'API is running'
+    return 'Document Proxy is running.'
 
 
-@app.route('/api/doc', methods=['POST'])
+@app.route('/doc', methods=['POST'])
 def document():
     doc = fetch_article(request.get_json(), "othermedia")
     return json.dumps(doc)
