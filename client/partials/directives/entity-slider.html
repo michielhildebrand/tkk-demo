@@ -1,0 +1,8 @@
+<ion-scroll class="entity-slider" direction="x">
+    <ul class="entity-list">
+        <li ng-repeat="e in entities" class="entity">
+            <img ng-src="{{e.thumb[0]}}" alt="{{e.label[0].value}}">
+            <div class="title">{{e.label[0].value}}</div>
+        </li>
+    </ul>
+</ion-scroll>

@@ -3,7 +3,7 @@
 angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
 function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
-  $scope.mode = 'watch';
+  $scope.mode = 'lookup';
   $scope.second = false;
   $scope.enrich = false;
   $scope.controls = true;
@@ -71,6 +71,10 @@ function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
     return $scope.mode;
   }
 
+  $scope.controlsHidden = function() {
+    return !$scope.controls && $scope.mode == 'watch';
+  };
+
   function sendToRemoteTv(a) {
     Eddie.putLou({target: 'tv', data: a});
   }
@@ -78,4 +82,10 @@ function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
   function debug(msg) {
     $log.debug('[Play (Ctrl)] ' + msg)
   }
+}
+
+function ContentController($scope, $ionicSideMenuDelegate) {
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
 }
