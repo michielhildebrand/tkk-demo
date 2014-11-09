@@ -55,7 +55,9 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
             return scope.paused;
           },
           function() {
-            if(!scope.paused) hideControls();
+            if(!scope.paused) {
+              hideControls();
+            }
           }
       );
 
@@ -137,14 +139,15 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
       }
 
       scope.toggleControls = function() {
-        scope.controls = !scope.controls;
+        scope.controls.hidden = !scope.controls.hidden;
       };
 
       function hideControls() {
         setTimeout(function() {
-          !scope.paused
-          scope.controls = false;
-        }, 2000);
+          if(!scope.paused) {
+            scope.controls.hidden = true;
+          }
+        }, 2500);
       }
 
       scope.$on("$destroy", function () {

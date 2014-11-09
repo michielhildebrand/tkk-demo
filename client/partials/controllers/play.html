@@ -1,6 +1,6 @@
 <ion-side-menus>
 
-  <ion-side-menu-content ng-controller="ContentController">
+  <ion-side-menu-content  ng-class="getActiveMode()" >
 
     <ion-header-bar align-title="center" ng-hide="controlsHidden()">
       <div class="buttons">
@@ -16,7 +16,7 @@
 
     <div ng-switch="mode">
       <ion-content class="mode watch has-header has-footer" scroll="false" ng-switch-when="watch">
-        <player class="player" ng-class="getActiveMode()" second="second" controls="controls" ng-hide="beaming"></player>
+        <player class="player"second="second" controls="controls" ng-hide="beaming"></player>
         <div class="beam-bg" ng-show="beaming">
           This video is playing on the TV
         </div>
