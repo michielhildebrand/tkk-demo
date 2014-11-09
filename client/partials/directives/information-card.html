@@ -117,7 +117,7 @@
   </ul>
   
   <div class="description">{{dcDescription.value}}</div>  
-  <div class="description">{{comment.value}}</div>  
+  <div class="description" ng-bind-html="comment.value"></div>
 </div>  
 
 <div class="browser" ng-if="external">

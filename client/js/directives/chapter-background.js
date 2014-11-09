@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('app.chapter-background', []).directive('chapterBackground', ['$log', 'irApi', 'contentFiltering', 'Model', chapterBackgroundDirective]);
+angular.module('app.chapter-background', []).directive('chapterBackground',
+  ['$log', 'irApi', 'contentFiltering', 'documentProxy', 'Model', chapterBackgroundDirective]);
 
-function chapterBackgroundDirective($log, irApi, contentFiltering, Model) {
+function chapterBackgroundDirective($log, irApi, contentFiltering, documentProxy, Model) {
   return {
     restrict: 'E',
     scope: {},
@@ -44,13 +45,21 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, Model) {
                     var degree = 0;
                     //if (cfResp[source][index]) degree = cfResp[source][index].Degree;
 
-                    scope.backgrounds.push({
-                      title: post.micropost.title,
-                      url: post.mediaUrl,
-                      post: post.micropost,
-                      source: source,
-                      degree: degree
-                    })
+                    var scrapingDoc = [{
+                      source: {name: source},
+                      url: post.mediaUrl
+                    }];
+                    documentProxy.scrape(scrapingDoc, function(docResp) {
+
+                      scope.backgrounds.push({
+                        url: post.mediaUrl,
+                        title: docResp[0].title,
+                        post: docResp[0].text,
+                        source: source,
+                        degree: degree
+                      })
+
+                    });
 
                   });
                 }
@@ -77,7 +86,7 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, Model) {
         var content = {
           title: [e.title], 
           url: [{value: e.source, uri: e.url}],
-          comment: [e.post.html]
+          comment: [e.post]
         };
         chapterEnrichCtrl.setContent(content);
       };
