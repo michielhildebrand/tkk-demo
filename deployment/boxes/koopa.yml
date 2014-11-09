@@ -3,17 +3,11 @@
 
   vars_files:
     - "{{prudentia_dir}}/vars/global.yml"
+    - ./common_vars.yml
 
   vars:
     - root_dir: ..
 
-    - install_dir: /opt/tkk
-    - install_dir_client: "{{install_dir}}/client"
-    - install_dir_springfield: /opt/springfield
-
-    - git_repository: https://github.com/TizianoPerrucci/tkk-demo.git
-
-    - mysql_root_password: nDN8Dtp
     - webserver: nginx
     - springfield_ip: 192.168.42.84
     - app_address: 192.168.42.84
