@@ -35,7 +35,8 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'EuropeanaApi',
   'IRApi',
   'Tracker',
-  'ContentFiltering'
+  'ContentFiltering',
+  'DocumentProxy'
 ]);
 
 linkedTvApp.config(['$stateProvider', '$urlRouterProvider',

@@ -7,6 +7,7 @@ angular.module('Config', []).constant('Config', {
   //CONTENT_FILTERING_API: 'http://160.40.50.224/api/content_filtering',
   //CONTENT_FILTERING_API: 'http://160.40.50.224:8087/RestReasoner/adhoc_content_filtering',
   CONTENT_FILTERING_API: 'http://{{app_address}}/filtering',
+  DOCUMENT_PROXY: 'http://{{app_address}}/doc',
 
   app_title_prefix: 'LinkedTV News',
   users: [
