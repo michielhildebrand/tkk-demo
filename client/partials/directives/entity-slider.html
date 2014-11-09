@@ -1,0 +1,16 @@
+<ion-scroll class="entity-bar" direction="x">
+    <ul class="entity-list">
+        <li ng-repeat="e in entities" class="entity">
+            <img ng-src="{{e.thumb[0]}}" alt="{{e.label[0].value}}">
+            <div class="title">{{e.label[0].value}}</div>
+        </li>
+    </ul>
+</ion-scroll>
+
+<ion-slide-box class="entity-slider" on-slide-changed="slideHasChanged($index)">
+    <ion-slide ng-repeat="e in entities">
+        <div class="box">
+            <information-card props="e"></information-card>
+        </div>
+    </ion-slide>
+</ion-slide-box>

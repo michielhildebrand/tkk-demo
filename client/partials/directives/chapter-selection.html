@@ -1,6 +1,7 @@
 <ion-list class="chapter-selection">
-  <ion-item ng-repeat="ch in video.chapters" class="item chapter" 
+    <div class="item item-divider">Chapters</div>
+    <ion-item ng-repeat="ch in video.chapters" class="item chapter"
       ng-click="select($index)" ng-class="{active: isSelected($index)}">
-    <video-chapter video="video" chapter="ch" light="true"></video-chapter>
-  </ion-item>
+        <video-chapter video="video" chapter="ch" light="true"></video-chapter>
+    </ion-item>
 </ion-list>

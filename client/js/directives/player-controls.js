@@ -64,6 +64,7 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
       };
 
       scope.toggleEnrich = function () {
+        scope.chapterList = !scope.enrich;
         scope.enrich = !scope.enrich;
         enrichUpdated();
       };

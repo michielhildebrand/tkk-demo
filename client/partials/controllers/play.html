@@ -1,44 +1,62 @@
-<ion-header-bar align-title="center" class="bar-tkk">
-  <div class="buttons left">
-    <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goToMain()" >Back</button>
-  </div>
-  <h1 class="title">{{video.title}}</h1>
-  <div class="buttons">
-    <button class="button button-icon icon ion-social-twitter" socialshare socialshare-provider="twitter"></button>
-    <button class="button button-icon icon ion-eye" ng-class="{selected: tracking}" ng-click="toggleTracking()"></button>
-  </div>
-</ion-header-bar>
+<ion-side-menus>
 
-<ion-content class="has-header has-footer" scroll="false">
-  <div id="play-content" class="row">
-    <div class="col col-15 col-20 chapters">
-      <h3>Current Program</h3>
-      <ion-scroll direction="y">
-        <chapter-selection video="video"></chapter-selection>
-      </ion-scroll>
-    </div>
+  <ion-side-menu-content ng-controller="ContentController">
 
-    <div class="col main">
-      <div class="player" ng-show="!enrich">
-        <player second="second" ng-hide="beaming"></player>
+    <ion-header-bar align-title="center" ng-hide="controlsHidden()">
+      <div class="buttons">
+        <button class="button button-icon icon ion-ios7-arrow-back" ng-click="goToMain()" >Back</button>
+        <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+      </div>
+      <h1 class="title">{{video.title}}</h1>
+      <div class="buttons">
+        <button class="button button-icon icon ion-social-twitter" socialshare socialshare-provider="twitter"></button>
+        <button class="button button-icon icon ion-eye" ng-class="{selected: tracking}" ng-click="toggleTracking()"></button>
+      </div>
+    </ion-header-bar>
+
+    <div ng-switch="mode">
+      <ion-content class="mode watch has-header has-footer" scroll="false" ng-switch-when="watch">
+        <player class="player" ng-class="getActiveMode()" second="second" controls="controls" ng-hide="beaming"></player>
         <div class="beam-bg" ng-show="beaming">
           This video is playing on the TV
         </div>
-      </div>
+        <player-controls class="player-controls" ng-hide="controlsHidden()"></player-controls>
+      </ion-content>
 
-      <div class="enrichPanel slide-right-left" ng-show="enrich">
-        <chapter-enrich height="playContentHeight"></chapter-enrich>
-      </div>
-    </div>
-  </div>
-</ion-content>
+      <ion-content class="mode lookup has-header has-footer" scroll="false" ng-switch-when="lookup">
+        <entity-slider></entity-slider>
+      </ion-content>
 
-<ion-footer-bar class="bar-tkk bar-player avrotros-logo">
-  <div class="row">
-    <div class="col col-15 chapters">
+      <ion-content class="mode explore has-header has-footer" scroll="false" ng-switch-when="explore">
+        <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
+      </ion-content>
     </div>
-    <div class="col">
-      <player-controls enrich="enrich"></player-controls>
+
+    <div class="tabs tabs-icon-top bar" ng-hide="controlsHidden()">
+      <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('watch')}" ng-click="setActiveMode('watch')">
+        <i class="icon ion-social-youtube"></i>
+        Watch
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('lookup')}" ng-click="setActiveMode('lookup')">
+        <i class="icon ion-ios7-information"></i>
+        Lookup
+      </a>
+      <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('explore')}" ng-click="setActiveMode('explore')">
+        <i class="icon ion-ios7-world"></i>
+        Explore
+      </a>
     </div>
-  </div>
-</ion-footer-bar>
+  </ion-side-menu-content>
+
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+    <ion-content scroll="true" direction="y" class="chapters">
+        <chapter-selection video="video" controlPlayer="true"></chapter-selection>
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>
+
+
+
+

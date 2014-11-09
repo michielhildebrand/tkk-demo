@@ -1,4 +1,12 @@
 <div class="row">
+
+  <!--div class="col col-20 chapters">
+    <h3>Chapters</h3>
+    <ion-scroll direction="y">
+      <chapter-selection video="video" controlPlayer="false"></chapter-selection>
+    </ion-scroll>
+  </div-->
+
   <div class="col col-25 links">
     <div ng-repeat="d in dimensions">
       <h3 ng-click="toggleDimension(d.id)" ng-bind="d.title"></h3>
@@ -11,10 +19,11 @@
       </ion-scroll>
     </div>
   </div>
-  <div class="col-75 content">
+
+  <div class="col col-75 content">
     <ion-scroll direction="y">
       <div class="crumbs" ng-if="crumb.length > 1">
-         <span ng-repeat="c in crumb">   
+         <span ng-repeat="c in crumb">
            <span ng-if="!$last">
              <a ng-click="setAbout(c)">{{c.value}}</a>
              <span class="divider">></span>
@@ -24,4 +33,5 @@
       <information-card props="content" navigate="setAbout"></information-card>
     </ion-scroll>
   </div>
+
 </div>
