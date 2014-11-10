@@ -33,7 +33,7 @@ server {
     proxy_pass http://ir.lmcloud.vse.cz/irapi/media-server;
   }
   location /filtering {
-    proxy_pass http://160.40.50.224:8087/RestReasoner/adhoc_content_filtering;
+    proxy_pass http://multimedia.iti.gr/api/LinkedCulture/content_filtering;
   }
   location /doc {
     proxy_pass http://127.0.0.1:5000;

@@ -4,8 +4,6 @@ angular.module('Config', []).constant('Config', {
   ENTITY_PROXY: 'http://linkedtv.project.cwi.nl/explore/entity_proxy',
   EUROPEANA_API: 'http://europeana.eu/api/v2',
   IR_API: 'http://{{app_address}}/ir',
-  //CONTENT_FILTERING_API: 'http://160.40.50.224/api/content_filtering',
-  //CONTENT_FILTERING_API: 'http://160.40.50.224:8087/RestReasoner/adhoc_content_filtering',
   CONTENT_FILTERING_API: 'http://{{app_address}}/filtering',
   DOCUMENT_PROXY: 'http://{{app_address}}/doc',
 
