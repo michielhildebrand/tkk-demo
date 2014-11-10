@@ -36,14 +36,14 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, documentProxy
 
             // TODO re-enable when the ContentFiltering Service will work
             // We'll receive a Degree information for each post that we can use to reorder them
-            //contentFiltering.personalize(irResp, function(cfResp) {
+            contentFiltering.personalize(irResp, function(cfResp) {
 
               var sources = _(irResp).keys();
               _(sources).each(function(source) {
                 if (source.indexOf('$') == -1) {
                   _(irResp[source]).each(function(post, index) {
                     var degree = 0;
-                    //if (cfResp[source][index]) degree = cfResp[source][index].Degree;
+                    if (cfResp[source][index]) degree = cfResp[source][index].Degree;
 
                     var scrapingDoc = [{
                       source: {name: source},
@@ -67,7 +67,7 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, documentProxy
 
               loadChapterBackground(idx + 1);
 
-            //})
+            })
 
           })
         } else {
@@ -84,7 +84,7 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, documentProxy
         selectedBackground = e.url;
         debug('Navigate to ' + JSON.stringify(e));
         var content = {
-          title: [e.title], 
+          title: [e.title],
           url: [{value: e.source, uri: e.url}],
           comment: [e.post]
         };
