@@ -9,16 +9,16 @@ function entityProxyResource($resource, Config) {
         method: 'GET',
         url: Config.ENTITY_PROXY + '?url=:loc&lang=:lang',
         params: {
-          loc:"@loc",
-          lang:"nl"
+          loc: "@loc",
+          lang: "nl"
         }
       },
       getList: {
         method: 'GET',
         url: Config.ENTITY_PROXY + '?urls=:urls&lang=:lang',
         params: {
-          urls:"@urls",
-          lang:"nl"
+          urls: "@urls",
+          lang: "nl"
         }
       }
     }

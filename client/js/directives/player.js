@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('app.player', []).directive('player', ['$interval', '$log', 'Eddie', 'eventsBus', 'Model', playerDirective]);
+angular.module('app.player', []).directive('player',
+  ['$interval', '$timeout', '$log', 'Eddie', 'eventsBus', 'Model', playerDirective]);
 
-function playerDirective($interval, $log, Eddie, eventsBus, Model) {
+function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     scope: {
@@ -50,15 +51,9 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
         }
       );
 
-      scope.$watch(
-          function() {
-            return scope.paused;
-          },
-          function() {
-            if(!scope.paused) {
-              hideControls();
-            }
-          }
+      scope.$watch('paused', function () {
+          hideControls();
+        }
       );
 
       if (scope.second) {
@@ -138,13 +133,13 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
         }
       }
 
-      scope.toggleControls = function() {
+      scope.toggleControls = function () {
         scope.controls.hidden = !scope.controls.hidden;
       };
 
       function hideControls() {
-        setTimeout(function() {
-          if(!scope.paused) {
+        $timeout(function () {
+          if (!scope.paused) {
             scope.controls.hidden = true;
           }
         }, 2500);

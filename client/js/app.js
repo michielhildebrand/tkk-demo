@@ -71,12 +71,12 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'TvCtrl'
       });
   }
-]).config(['$ionicTabsConfig', '$logProvider', 'Config', function($ionicTabsConfig, $logProvider, Config) {
-    // Override the Android platform default to add "tabs-striped" class to "ion-tabs" elements.
-    $ionicTabsConfig.type = '';
+]).config(['$ionicTabsConfig', '$logProvider', 'Config', function ($ionicTabsConfig, $logProvider, Config) {
+  // Override the Android platform default to add "tabs-striped" class to "ion-tabs" elements.
+  $ionicTabsConfig.type = '';
 
-    $logProvider.debugEnabled(Config.debug_enabled);
-  }
+  $logProvider.debugEnabled(Config.debug_enabled);
+}
 ]).run(['$rootScope', '$state', '$log', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
     function ($rootScope, $state, $log, Config, eventsBus, Model, Eddie, Tracker) {
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {

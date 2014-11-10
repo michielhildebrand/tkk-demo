@@ -1,20 +1,20 @@
 'use strict';
 
-angular.module('app.chapter-selection', []).directive('chapterSelection', ['$location', '$log', 'eventsBus', 'Eddie', 'Model',chapterSectionDirective]);
+angular.module('app.chapter-selection', []).directive('chapterSelection',
+  ['$location', '$log', 'eventsBus', 'Eddie', 'Model', chapterSectionDirective]);
 
 function chapterSectionDirective($location, $log, eventsBus, Eddie, Model) {
   return {
     restrict: 'E',
     scope: {
-      'video': '=',
+      'video': '='
     },
     replace: false,
     link: function (scope, element, attrs) {
-
-      scope.isSelected = function(index) {
-        return Model.getChapterIndex() === index;
+      scope.isSelected = function (index) {
+        return Model.getChapterIndex() == index;
       };
- 
+
       scope.select = function (index) {
         debug('Select chapter index: ' + index + ' of current video: ' + scope.video.id);
         Model.setChapterIndex(index);

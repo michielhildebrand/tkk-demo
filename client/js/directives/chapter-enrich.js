@@ -14,8 +14,8 @@ function chapterEnrichDirective(Config, Model) {
       scope.$watch('height', function (newHeight) {
         if (newHeight != 0) {
           var contentHeight = newHeight
-              - angular.element('.bar-header')[0].offsetHeight
-              - angular.element('.tabs')[0].offsetHeight;
+            - angular.element('.bar-header')[0].offsetHeight
+            - angular.element('.tabs')[0].offsetHeight;
           var dimensions = angular.element('.links h3');
           var dimensionsHeight = dimensions.length * 34; //TODO fix it: grab height of one dimension label
           angular.element('.links .scroll-view').height(contentHeight - dimensionsHeight);

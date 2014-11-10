@@ -6,7 +6,7 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
   $scope.mode = 'watch';
   $scope.second = false;
   $scope.enrich = false;
-  $scope.controls = {hidden:false}; // this needs to be an object for the children to change it
+  $scope.controls = {hidden: false}; // this needs to be an object for the children to change it
   $scope.playContentHeight = 0;
   $scope.beaming = Model.isBeaming();
   $scope.tracking = Tracker.enabled();
@@ -23,8 +23,8 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
     }
   );
 
-  $scope.$on('$locationChangeSuccess', function(event, nextLocation, currentLocation) {
-    debug('changed location');
+  $scope.$on('$locationChangeSuccess', function (event, nextLocation, currentLocation) {
+    debug('Changed location');
     $scope.enrich = false;
     var currentParams = $location.search();
     playVideo(currentParams.videoId, currentParams.idx);
@@ -59,23 +59,23 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
     $scope.tracking = Tracker.toggle();
   };
 
-  $scope.setActiveMode = function(mode) {
+  $scope.setActiveMode = function (mode) {
     $scope.mode = mode;
   };
 
-  $scope.isActiveMode = function(mode) {
+  $scope.isActiveMode = function (mode) {
     return mode == $scope.mode;
   };
 
-  $scope.getActiveMode = function() {
+  $scope.getActiveMode = function () {
     return $scope.mode;
   };
 
-  $scope.controlsHidden = function() {
+  $scope.controlsHidden = function () {
     return $scope.controls.hidden && $scope.mode == 'watch';
   };
 
-  $scope.toggleLeft = function() {
+  $scope.toggleLeft = function () {
     $ionicSideMenuDelegate.toggleLeft();
   };
 
