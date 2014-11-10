@@ -1,10 +1,12 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', 'Eddie', 'Model', 'Tracker', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', '$ionicSideMenuDelegate', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
-function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
+function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie, Model, Tracker) {
+  $scope.mode = 'watch';
   $scope.second = false;
   $scope.enrich = false;
+  $scope.controls = {hidden:false}; // this needs to be an object for the children to change it
   $scope.playContentHeight = 0;
   $scope.beaming = Model.isBeaming();
   $scope.tracking = Tracker.enabled();
@@ -32,7 +34,7 @@ function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
     debug('Play video ' + videoId + ' on ' + chIdx);
     Model.play(videoId, chIdx);
     $scope.video = Model.getVideo();
-    $scope.playContentHeight = angular.element('#play-content')[0].offsetHeight;
+    $scope.playContentHeight = angular.element('body')[0].offsetHeight;
 
     if ($scope.beaming) {
       sendToRemoteTv({action: 'set-video', video: videoId, chapter: chIdx});
@@ -55,6 +57,26 @@ function playCtrl($scope, $state, $location, $log, Eddie, Model, Tracker) {
 
   $scope.toggleTracking = function () {
     $scope.tracking = Tracker.toggle();
+  };
+
+  $scope.setActiveMode = function(mode) {
+    $scope.mode = mode;
+  };
+
+  $scope.isActiveMode = function(mode) {
+    return mode == $scope.mode;
+  };
+
+  $scope.getActiveMode = function() {
+    return $scope.mode;
+  };
+
+  $scope.controlsHidden = function() {
+    return $scope.controls.hidden && $scope.mode == 'watch';
+  };
+
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
   };
 
   function sendToRemoteTv(a) {

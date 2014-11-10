@@ -6,7 +6,8 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
   return {
     restrict: 'E',
     scope: {
-      second: '='
+      second: '=',
+      controls: '='
     },
     replace: false,
     link: function (scope, element, attrs) {
@@ -47,6 +48,17 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
         function (newVideo) {
           if (newVideo != null) updatePlayer(newVideo, Model.getTime());
         }
+      );
+
+      scope.$watch(
+          function() {
+            return scope.paused;
+          },
+          function() {
+            if(!scope.paused) {
+              hideControls();
+            }
+          }
       );
 
       if (scope.second) {
@@ -124,6 +136,18 @@ function playerDirective($interval, $log, Eddie, eventsBus, Model) {
             eventsBus.publish('player-time', currentTime);
           }
         }
+      }
+
+      scope.toggleControls = function() {
+        scope.controls.hidden = !scope.controls.hidden;
+      };
+
+      function hideControls() {
+        setTimeout(function() {
+          if(!scope.paused) {
+            scope.controls.hidden = true;
+          }
+        }, 2500);
       }
 
       scope.$on("$destroy", function () {
