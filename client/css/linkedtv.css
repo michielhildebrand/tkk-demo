@@ -45,8 +45,8 @@ a {
     background-color: rgba(95,109,105,0.8);
     padding: 0;
 }
-.avrotros-logo,
-.avrotros-logo .tabs {
+.culture .avrotros-logo,
+.culture .avrotros-logo .tabs {
   background-image: url('../img/logo_avrotros.png');
   background-repeat: no-repeat;
   background-position: 15px center;
@@ -244,7 +244,7 @@ a {
     height: 150px !important;
     min-height: 150px;
 }
-.video-logo {
+.culture .video-logo {
   position: absolute;
   top: 80px;
   margin-left: 40px;
