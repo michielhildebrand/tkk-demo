@@ -18,7 +18,9 @@
       <ion-content class="mode watch has-header has-footer" scroll="false" ng-switch-when="watch">
         <player class="player"second="second" controls="controls" ng-hide="beaming"></player>
         <div class="beam-bg" ng-show="beaming">
-          This video is playing on the TV
+          <div class="icon ion-ios7-monitor-outline">
+            <div class="msg">This video is playing on TV</div>
+          </div>
         </div>
       </ion-content>
 
