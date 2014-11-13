@@ -27,6 +27,7 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'app.entity-slider',
   'app.seek-bar',
   'app.chapter-enrich',
+  'app.dimension-list',
   'app.visible-on-load',
 
   'Eddie',

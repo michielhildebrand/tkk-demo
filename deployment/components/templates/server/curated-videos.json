@@ -12,8 +12,28 @@
         "startTime": 7000,
         "duration": 158000,
         "title": "Introduction",
+
+        "dimensions":[
+          {
+            "id": "europeana",
+            "title": "Artworks",
+            "items": ["European_Artwork_URL"]
+          },
+          {
+            "id": "articles",
+            "title": "Background",
+            "items": ["Article_URL"]
+          }
+        ],
+
+        "thd"
+
+
+
+
         "artworks": [
-          "museum martena"
+          "europena artwork_uri",
+          ""
         ],
         "backgrounds": [
           "museum martena"

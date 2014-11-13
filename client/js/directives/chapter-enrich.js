@@ -6,26 +6,57 @@ function chapterEnrichDirective(Config, Model) {
   return {
     restrict: 'E',
     scope: {
-      height: '=',
       video: '='
     },
     replace: false,
     link: function (scope, element, attrs) {
-      scope.$watch('height', function (newHeight) {
-        if (newHeight != 0) {
-          var contentHeight = newHeight
-            - angular.element('.bar-header')[0].offsetHeight
-            - angular.element('.tabs')[0].offsetHeight;
-          var dimensions = angular.element('.links h3');
-          var dimensionsHeight = dimensions.length * 34; //TODO fix it: grab height of one dimension label
+      function setHeight() {
+          var contentHeight = angular.element(".explore")[0].offsetHeight - 49-89; //header and footer
+        console.log(contentHeight);
+          var dimensionsHeight = scope.dimensions.length * 34; //TODO fix it: grab height of one dimension label
           angular.element('.links .scroll-view').height(contentHeight - dimensionsHeight);
-          angular.element('.chapters .scroll-view').height(contentHeight - 34);
           angular.element('.content .scroll-view').height(contentHeight);
         }
-      });
 
-      scope.dimensions = Config.dimensions;
-      scope.dimension = scope.dimensions[0].id;
+      //scope.dimensions = Config.dimensions;
+      //scope.dimension = scope.dimensions[0].id;
+
+      scope.dimensions = [
+          {
+            "id":"artworks",
+            "title":"Artworks",
+            "type":"artwork",
+            "items":[
+              {
+                "url":"url1",
+                "type":"artwork",
+                "title":[{"value":"title1"}],
+                "img":[{"value":"img1"}]
+              },
+              {
+                "url": "url2",
+                "title": {"value":"title2"},
+                "img": {"value":"img2"}
+              }
+            ]
+          },
+          {
+            "id":"background",
+            "title":"Background",
+            "items":[
+              {
+                "url":"url1",
+                "title":{"value":"title1"},
+                "img":{"value":"img1"}
+              },
+              {
+                "url": "url2",
+                "title": {"value":"title2"},
+                "img": {"value":"img2"}
+              }
+            ]
+          }
+      ];
 
       scope.$watch(
         function () {
@@ -33,7 +64,9 @@ function chapterEnrichDirective(Config, Model) {
         },
         function (newChapter) {
           if (newChapter != null) {
+            //scope.dimensions = newChapter.dimensions;
             scope.dimension = scope.dimensions[0].id;
+            setHeight();
           }
         }
       );
