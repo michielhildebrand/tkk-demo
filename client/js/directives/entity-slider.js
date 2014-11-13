@@ -8,6 +8,7 @@ function entitySliderDirective($log, entityProxy, Model) {
     scope: {},
     replace: false,
     link: function (scope, element, attrs) {
+      scope.currentEntityIndex = 0;
 
       scope.$watch(
         function () {
@@ -48,10 +49,17 @@ function entitySliderDirective($log, entityProxy, Model) {
           .value();
 
         entityProxy.getList({urls: angular.toJson(urls)}, function (res) {
-          debug('Loading ' + _(res).keys().length + ' entities.');
-          scope.entities = res;
+          scope.entities = [];
+          _(urls).each(function(url) {
+            scope.entities.push(res[url]);
+          });
+          debug('Loaded ' + scope.entities.length + ' entities.');
         });
       }
+
+      scope.selectEntity = function(entityIndex) {
+        scope.currentEntityIndex = entityIndex;
+      };
 
       function debug(msg) {
         $log.debug('[Entity Slider (directive)] ' + msg)
