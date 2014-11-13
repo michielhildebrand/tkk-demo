@@ -199,6 +199,9 @@ a {
 .mode.has-footer {
     bottom: 49px;
 }
+.mode.has-footer.has-controls {
+    bottom: 89px;
+}
 
 /* player */
 .player {
@@ -271,9 +274,6 @@ a {
 .player-controls .icon.selected {
     color: rgb(65,146,183);
 }
-.lookup .player-controls {
-    bottom: 0;
-}
 
 .seekbar {
 }
@@ -288,9 +288,22 @@ a {
   background-size: 100% 4px;
 }
 .beam-bg {
+    position: absolute;
+    top: 44px;
+    bottom: 89px;
+    width: 100%;
   color: #CCC;
-  text-align: center;
   font-size: 30px;
+}
+.beam-bg .icon {
+    position: absolute;
+    width: 100%;
+    font-size: 300px;
+    text-align: center;
+    bottom: 20px;
+}
+.beam-bg .msg {
+    font-size: 16px;
 }
 
 /* chapter list */
@@ -534,6 +547,15 @@ a {
 
 .entity-slider {
 }
-.entity-slider .slider-slide {
-    width: 100%;
+.entity-slider .information-card {
+    margin: 15px;
+    overflow: auto;
+    background-color: rgba(95,109,105,0.6);
+  border-bottom: 1px solid rgb(100,114,124);
+}
+.entity-slider .information-card . {
+    color: rgb(170,184,194);
+}
+.entity-slider .information-card .description {
+    color: rgb(170,184,194);
 }
