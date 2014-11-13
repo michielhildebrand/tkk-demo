@@ -139,7 +139,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
 
       function hideControls() {
         $timeout(function () {
-          if (!scope.paused) {
+          if (!scope.paused && scope.controls) {
             scope.controls.hidden = true;
           }
         }, 5000);
