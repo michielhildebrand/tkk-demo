@@ -211,9 +211,9 @@ a {
 }
 .player .video-overlay {
     position: absolute;
-    bottom: 80px; /* footer + player-controls */
-    top: 44px; /* header */
-    left: 0; /* chapter list */
+    bottom: 0;
+    top: 0;
+    left: 0;
     right: 0;
     z-index: 12; /* ion-content z-index is 11 */
 }
