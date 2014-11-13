@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.entity-slider', []).directive('entitySlider', ['$log', 'entityProxy', 'Model', entitySliderDirective]);
+angular.module('app.entity-slider', []).directive('entitySlider', ['$log', 'entityProxy', 'Model', '$ionicSlideBoxDelegate', entitySliderDirective]);
 
-function entitySliderDirective($log, entityProxy, Model) {
+function entitySliderDirective($log, entityProxy, Model, $ionicSlideBoxDelegate) {
   return {
     restrict: 'E',
     scope: {},
@@ -54,6 +54,7 @@ function entitySliderDirective($log, entityProxy, Model) {
             scope.entities.push(res[url]);
           });
           debug('Loaded ' + scope.entities.length + ' entities.');
+          $ionicSlideBoxDelegate.update();
         });
       }
 
