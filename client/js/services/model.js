@@ -27,13 +27,14 @@ function model($log, Tracker) {
   }
 
   function findChapter(time) {
-    var ch = _.chain(data.currentVideo.chapters).map(function (ch, index) {
-      return {ch: ch, idx: index};
-    }).filter(function (o) {
-      return o.ch.startTime <= time;
-    }).min(function (o) {
-      return time - o.ch.startTime;
-    }).value();
+    var ch = _.chain(data.currentVideo.chapters)
+      .map(function (ch, index) {
+        return {ch: ch, idx: index};
+      }).filter(function (o) {
+        return o.ch.startTime <= time;
+      }).min(function (o) {
+        return time - o.ch.startTime;
+      }).value();
     if (ch != Infinity) {
       setChapter(ch.idx, time);
     } else {
@@ -56,11 +57,12 @@ function model($log, Tracker) {
   }
 
   function findAndSetFragment(startTime) {
-    var fr = _.chain(data.currentChapter.fragments).filter(function (f) {
-      return f.startTime <= startTime;
-    }).min(function (f) {
-      return startTime - f.startTime;
-    }).value();
+    var fr = _.chain(data.currentChapter.fragments)
+      .filter(function (f) {
+        return f.startTime <= startTime;
+      }).min(function (f) {
+        return startTime - f.startTime;
+      }).value();
     if (fr != Infinity) {
       debug('Set fragment: ' + fr.id + ' - ' + fr.title + ' - ' + fr.startTime);
       data.currentFragment = fr;
