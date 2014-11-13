@@ -27,10 +27,8 @@ function entitySliderDirective($log, entityProxy, Model, $ionicSlideBoxDelegate)
         },
         function (newFragment) {
           if (newFragment != null) {
-            entityProxy.getList({urls: angular.toJson(newFragment)}, function (res) {
-              debug('Set information card content: ' + JSON.stringify(res[newFragment]));
-              scope.currentEntity = res;
-            });
+            debug('Automatically slide to entity index: ' + newFragment.index);
+            scope.currentEntityIndex = newFragment.index;
           }
         }
       );

@@ -58,13 +58,16 @@ function model($log, Tracker) {
 
   function findAndSetFragment(startTime) {
     var fr = _.chain(data.currentChapter.fragments)
-      .filter(function (f) {
+      .map(function(f, index) {
+        f.index = index;
+        return f;
+      }).filter(function (f) {
         return f.startTime <= startTime;
       }).min(function (f) {
         return startTime - f.startTime;
       }).value();
     if (fr != Infinity) {
-      debug('Set fragment: ' + fr.id + ' - ' + fr.title + ' - ' + fr.startTime);
+      debug('Set fragment: ' + fr.index + ' - ' + fr.title + ' - ' + fr.startTime);
       data.currentFragment = fr;
     } else {
       debug('No fragment at this time: ' + startTime);
