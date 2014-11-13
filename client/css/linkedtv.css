@@ -534,3 +534,15 @@ a {
 
 .entity-slider {
 }
+.entity-slider .information-card {
+    margin: 15px;
+    overflow: auto;
+    background-color: rgba(95,109,105,0.6);
+  border-bottom: 1px solid rgb(100,114,124);
+}
+.entity-slider .information-card . {
+    color: rgb(170,184,194);
+}
+.entity-slider .information-card .description {
+    color: rgb(170,184,194);
+}
