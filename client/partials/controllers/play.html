@@ -25,6 +25,7 @@
 
       <ion-content class="mode lookup has-header has-footer" scroll="false" ng-switch-when="lookup">
         <entity-slider></entity-slider>
+        <player-controls class="player-controls" ng-hide="controlsHidden()"></player-controls>
       </ion-content>
 
       <ion-content class="mode explore has-header has-footer" scroll="false" ng-switch-when="explore">
