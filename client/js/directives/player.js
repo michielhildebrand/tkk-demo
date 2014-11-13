@@ -142,7 +142,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
           if (!scope.paused) {
             scope.controls.hidden = true;
           }
-        }, 2500);
+        }, 5000);
       }
 
       scope.$on("$destroy", function () {
