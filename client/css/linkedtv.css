@@ -199,6 +199,9 @@ a {
 .mode.has-footer {
     bottom: 49px;
 }
+.mode.has-footer.has-controls {
+    bottom: 89px;
+}
 
 /* player */
 .player {
@@ -270,9 +273,6 @@ a {
 }
 .player-controls .icon.selected {
     color: rgb(65,146,183);
-}
-.lookup .player-controls {
-    bottom: 0;
 }
 
 .seekbar {
@@ -533,7 +533,4 @@ a {
 }
 
 .entity-slider {
-}
-.entity-slider .slider-slide {
-    width: 100%;
 }

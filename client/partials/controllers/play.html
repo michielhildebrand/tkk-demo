@@ -20,15 +20,13 @@
         <div class="beam-bg" ng-show="beaming">
           This video is playing on the TV
         </div>
-        <player-controls class="player-controls" ng-hide="controlsHidden()"></player-controls>
       </ion-content>
 
-      <ion-content class="mode lookup has-header has-footer" scroll="false" ng-switch-when="lookup">
+      <ion-content class="mode lookup has-header has-footer has-controls" scroll="false" ng-switch-when="lookup">
         <entity-slider></entity-slider>
-        <player-controls class="player-controls" ng-hide="controlsHidden()"></player-controls>
       </ion-content>
 
-      <ion-content class="mode explore has-header has-footer" scroll="false" ng-switch-when="explore">
+      <ion-content class="mode explore has-header has-footer has-controls" scroll="false" ng-switch-when="explore">
         <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
       </ion-content>
     </div>
@@ -47,6 +45,9 @@
         Explore
       </a>
     </div>
+
+    <player-controls class="player-controls" ng-hide="controlsHidden()"></player-controls>
+
   </ion-side-menu-content>
 
   <!-- Left menu -->
