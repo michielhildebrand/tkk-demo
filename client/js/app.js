@@ -39,7 +39,7 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'ContentFiltering',
   'DocumentProxy',
 
-  'Modeler'
+  'Modeller'
 ]);
 
 linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
