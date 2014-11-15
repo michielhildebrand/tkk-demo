@@ -559,3 +559,11 @@ a {
 .entity-slider .information-card .description {
     color: rgb(170,184,194);
 }
+
+
+/* admin */
+.admin pre {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #cccccc;
+}
