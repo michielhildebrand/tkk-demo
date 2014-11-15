@@ -77,10 +77,11 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
       console.log('scraped post ' + ++postsCount);
       if (docResp[0]) {
         ch.dimensions.backgrounds.push({
-          url: post.mediaUrl,
+          source: source,
           title: post.micropost.title,
+          url: post.mediaUrl,
           post: docResp[0].text,
-          source: source
+          thd: post.thd
         });
       }
     });
