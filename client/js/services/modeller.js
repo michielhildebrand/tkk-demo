@@ -44,7 +44,6 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
 
 
   function fetchChapterBackground(ch) {
-    console.log('Fetching backgrounds for ' + ch.title);
     var promises = [];
 
     var meta = extractBackgroundMetadata(ch);
@@ -89,48 +88,60 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
 
 
   function fetchChapterArtworks(ch) {
-    console.log('Fetching artworks for ' + ch.title);
     var promises = [];
 
     var meta = extractArtworksMetadata(ch);
+    console.log('artworks metadata ' + meta + ' for ' + ch.title);
     _(meta).each(function (m) {
-      europeanaApi.search({query: m.value}, function (r) {
-        if (r.itemsCount > 0) {
-          _(r.items).each(function (item) {
-            if (item.edmPreview && item.title && item.completeness > 0) {
-              var splittedId = item.id.split('/');
-              var artwork = {id0: splittedId[1], id1: splittedId[2], img: item.edmPreview[0], title: item.title[0]};
-              promises.push(fetchArtwork(artwork, ch))
-            }
-          });
-        }
-      })
+      promises.push(searchArtworks(m.value, ch));
     });
 
     return $q.all(promises);
   }
 
+  function searchArtworks(q, ch) {
+    var deferred = $q.defer();
+
+    europeanaApi.search({query: q}, function (r) {
+      if (r.itemsCount > 0) {
+        fetchArtworks(r.items, deferred, ch);
+      }
+    });
+
+    return deferred.promise;
+  }
+
   var artworksCount = 0;
-  function fetchArtwork(artwork, ch) {
-    return europeanaApi.get({id0: artwork.id0, id1: artwork.id1}, function (r) {
-      console.log('got artwork ' + ++artworksCount);
-      var content = {
-        title: [artwork.title],
-        thumb: [artwork.img],
-        url: [
-          {value: 'www.europeana.eu', uri: r.object.europeanaAggregation.edmLandingPage}
-        ]
-      };
-      _(r.object.proxies.reverse()).each(function (p) {
-        _(content).extend(p)
-      });
-      ch.dimensions.artworks.push(content);
+  function fetchArtworks(items, deferred, chapter) {
+    var count = items.length;
+    _(items).each(function (item, itemIdx) {
+      if (item.edmPreview && item.title && item.completeness > 0) {
+        var splittedId = item.id.split('/');
+        var artwork = {id0: splittedId[1], id1: splittedId[2], img: item.edmPreview[0], title: item.title[0]};
+        europeanaApi.get({id0: artwork.id0, id1: artwork.id1}, function (r) {
+          console.log('got artwork ' + ++artworksCount);
+          var content = {
+            title: [artwork.title],
+            thumb: [artwork.img],
+            url: [
+              {value: 'www.europeana.eu', uri: r.object.europeanaAggregation.edmLandingPage}
+            ]
+          };
+          _(r.object.proxies.reverse()).each(function (p) {
+            _(content).extend(p)
+          });
+          chapter.dimensions.artworks.push(content);
+          if (itemIdx == count - 1) {
+            console.log('last artwork ' + itemIdx + ' for ' + chapter.title + ' will resolve the resolved');
+            deferred.resolve(true);
+          }
+        })
+      }
     });
   }
 
   var entitiesCount = 0;
   function fetchChapterEntities(ch) {
-    console.log('Fetching entities for ' + ch.title);
     var promises = [];
 
     _(ch.fragments).each(function (entity) {
@@ -139,7 +150,7 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
         entityProxy.getList({urls: angular.toJson([url])}, function (res) {
           console.log('got entity ' + ++entitiesCount);
           entity = _(entity).extend(res[url]);
-        })
+        }).$promise
       )
     });
 
@@ -159,30 +170,28 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
     var promises = [];
 
     _(v.chapters).each(function (ch) {
+      console.log('Enriching chapter ' + ch.title);
       // prepares dimensions
       ch.dimensions = {
         artworks: [],
         backgrounds: []
       };
-      promises.push(fetchChapterEntities(ch));
+      //promises.push(fetchChapterEntities(ch));
       promises.push(fetchChapterArtworks(ch));
-      promises.push(fetchChapterBackground(ch));
+      //promises.push(fetchChapterBackground(ch));
     });
 
-    $timeout(function () {
-      console.log(promises);
-      $q.all(promises).then(
-        function () {
-          console.log("Video enriching done.");
-          console.log(v);
-          //console.log(JSON.stringify(v));
-          //saveJsonFile(v);
-        },
-        function (errors) {
-          console.log("We've got some errors while enriching");
-        }
-      )
-    }, 10000)
+    console.log(promises);
+    $q.all(promises).then(
+      function () {
+        console.log("Video enriching done.");
+        console.log(v);
+        //console.log(JSON.stringify(v));
+      },
+      function (errors) {
+        console.log("We've got some errors while enriching");
+      }
+    )
   }
 
   return {
@@ -195,6 +204,6 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
     }
   };
 
-  // from the console
+  // run from the console:
   // angular.element(document.body).injector().get('Modeller').enrich()
 }
