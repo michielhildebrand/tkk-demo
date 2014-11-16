@@ -21,50 +21,13 @@ function chapterEnrichDirective(Config, Model) {
       //scope.dimensions = Config.dimensions;
       //scope.dimension = scope.dimensions[0].id;
 
-      scope.dimensions = [
-          {
-            "id":"artworks",
-            "title":"Artworks",
-            "type":"artwork",
-            "items":[
-              {
-                "url":"url1",
-                "type":"artwork",
-                "title":[{"value":"title1"}],
-                "img":[{"value":"img1"}]
-              },
-              {
-                "url": "url2",
-                "title": {"value":"title2"},
-                "img": {"value":"img2"}
-              }
-            ]
-          },
-          {
-            "id":"background",
-            "title":"Background",
-            "items":[
-              {
-                "url":"url1",
-                "title":{"value":"title1"},
-                "img":{"value":"img1"}
-              },
-              {
-                "url": "url2",
-                "title": {"value":"title2"},
-                "img": {"value":"img2"}
-              }
-            ]
-          }
-      ];
-
       scope.$watch(
         function () {
           return Model.getChapter()
         },
         function (newChapter) {
           if (newChapter != null) {
-            //scope.dimensions = newChapter.dimensions;
+            scope.dimensions = tempDimensions;//newChapter.dimensions;
             scope.dimension = scope.dimensions[0].id;
             setHeight();
           }
@@ -78,47 +41,118 @@ function chapterEnrichDirective(Config, Model) {
           scope.dimension = active;
         }
       };
+
+      var tempDimensions = [
+        {
+          "id": "artworks",
+          "title": "Related works",
+          "type": "europeana",
+          "items": [
+            {
+              "title": ["No title"],
+              "thumb": ["http://europeanastatic.eu/api/image?uri=http%3A%2F%2F37.74.151.78%2Foaiserver%2Fimages%2FG0019.jpg&size=LARGE&type=IMAGE"],
+              "url": [
+                {
+                  "value": "www.europeana.eu",
+                  "uri": "http://www.europeana.eu/portal/record/2021619/G0019.html"
+                }
+              ],
+              "about": "/proxy/provider/2021619/G0019",
+              "dcCoverage": {
+                "def": ["Friesland"]
+              },
+              "dcDate": {
+                "def": ["1800", "1900"]
+              },
+              "proxyIn": ["/aggregation/provider/2021619/G0019"],
+              "proxyFor": "/item/2021619/G0019",
+              "edmType": "IMAGE",
+              "year": {
+                "eur": ["1800", "1900"]
+              },
+              "europeanaProxy": false,
+              "dcDescription": {
+                "def": ["Glazen flacon met een beschildering van vogels in rode verf."]
+              },
+              "dcIdentifier": {
+                "def": ["G0019"]
+              },
+              "dcPublisher": {
+                "def": ["Museum Martena"]
+              },
+              "dcSource": {
+                "def": ["Museum Martena"]
+              },
+              "dcTitle": {
+                "def": ["No title"]
+              },
+              "dcType": {
+                "def": ["zakflacon", "fles"]
+              },
+              "dctermsProvenance": {
+                "def": ["Museum Martena"]
+              }
+            },
+            {
+              "title": ["No title"],
+              "thumb": ["http://europeanastatic.eu/api/image?uri=http%3A%2F%2F37.74.151.78%2Foaiserver%2Fimages%2FG0020.jpg&size=LARGE&type=IMAGE"],
+              "url": [
+                {
+                  "value": "www.europeana.eu",
+                  "uri": "http://www.europeana.eu/portal/record/2021619/G0020.html"
+                }
+              ],
+              "about": "/proxy/provider/2021619/G0020",
+              "dcCoverage": {
+                "def": ["Friesland"]
+              },
+              "dcDate": {
+                "def": ["1750", "1800"]
+              },
+              "proxyIn": ["/aggregation/provider/2021619/G0020"],
+              "proxyFor": "/item/2021619/G0020",
+              "edmType": "IMAGE",
+              "year": {
+                "eur": ["1750", "1800"]
+              },
+              "europeanaProxy": false,
+              "dcDescription": {
+                "def": ["Platte fles van blauw kobaltglas."]
+              },
+              "dcIdentifier": {
+                "def": ["G0020"]
+              },
+              "dcPublisher": {
+                "def": ["Museum Martena"]
+              },
+              "dcSource": {
+                "def": ["Museum Martena"]
+              },
+              "dcTitle": {
+                "def": ["No title"]
+              },
+              "dcType": {
+                "def": ["flacon", "fles"]
+              },
+              "dctermsProvenance": {
+                "def": ["Museum Martena"]
+              }
+            }
+          ]
+        },
+        { "id":"background",
+          "title":"Background",
+          "type":"article",
+          "items":[
+
+          ]
+        }
+      ];
+
     },
     controller: function ($scope) {
       $scope.crumb = [];
       $scope.content = null;
-
-      this.extractMetadata = function (ch) {
-        return _.chain(ch.fragments)
-          .map(function (f) {
-            return {value: f.title.trim(), uri: f.locator.trim()}
-          })
-          .filter(function (m) {
-            return m.value.length > 0
-          })
-          .uniq(false, function (m) {
-            return m.value;
-          })
-          .sortBy(function (m) {
-            return m.value.toLowerCase();
-          })
-          .value();
-      };
-
-      this.extractArtworks = function (ch) {
-        if (ch.artworks != null) {
-          return _(ch.artworks).map(function (a) {
-            return {value: a}
-          });
-        } else {
-          return this.extractMetadata(ch);
-        }
-      };
-
-      this.extractBackground = function (ch) {
-        if (ch.backgrounds != null) {
-          return _(ch.backgrounds).map(function (a) {
-            return {value: a}
-          });
-        } else {
-          return this.extractMetadata(ch);
-        }
-      };
 
       this.setContent = function (content, crumb, linked) {
         $scope.content = content;
@@ -143,6 +177,7 @@ function chapterEnrichDirective(Config, Model) {
         $scope.linkedAbout = entity;
       };
     },
+
     templateUrl: 'partials/directives/chapter-enrich.html'
   }
 }

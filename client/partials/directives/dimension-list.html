@@ -1,6 +1,25 @@
 <ion-list>
-  <ion-item ng-repeat="item in items" class="item entity" ng-click="nav(item)" ng-class="{'item-dark': isSelected(item)}">
-    <h4>{{item.title}}</h4>
-    <div ng-if="item.author"></div>
-  </ion-item>
+  <div ng-repeat="item in items" ng-click="nav(item)"
+        ng-class="{'selected': isSelected(item)}" ng-switch="type">
+
+    <!-- Europeana -->
+    <ion-item class="item item-thumbnail-left artwork" ng-switch-when="europeana">
+        <img ng-src="{{item.thumb[0]}}">
+        <h2>{{item.dcTitle.def[0]}}</h2>
+        <p>{{item.dcSource.def[0]}}</p>
+    </ion-item>
+
+    <!-- Articles -->
+    <ion-item class="item item-thumbnail-left article" ng-switch-when="article">
+      <div ng-if="item.author"></div>
+    </ion-item>
+
+    <!-- Video -->
+
+    <!-- Default -->
+    <ion-item class="item" ng-switch-default>
+      <h2>{{item.title}}</h2>
+    </ion-item>
+
+  </div>
 </ion-list>
