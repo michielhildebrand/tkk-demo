@@ -6,6 +6,7 @@ angular.module('Config', []).constant('Config', {
   IR_API: 'http://linkedtv.dev/ir',
   CONTENT_FILTERING_API: 'http://linkedtv.dev/filtering',
   DOCUMENT_PROXY: 'http://linkedtv.dev/doc',
+  LINKEDTV_SPARQL: 'http://linkedtv.dev/linkedtv_sparql',
 
   app_title_prefix: 'LinkedTV Culture',
   users: [
@@ -26,6 +27,7 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
+  seed: 'seeds/culture-videos.json',
   video_ids: [
     '8a8187f2-3fc8-cb54-0140-7dccd76f0001',
     '8a8187f2-3fc8-cb54-0140-7dd151100003',

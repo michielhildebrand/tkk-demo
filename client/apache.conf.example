@@ -18,6 +18,7 @@
   ProxyPass /ir http://ir.lmcloud.vse.cz/irapi/media-server
   ProxyPass /filtering http://multimedia.iti.gr/api/LinkedCulture/content_filtering
   ProxyPass /doc http://127.0.0.1:5000
+  ProxyPass /linkedtv_sparql  http://data.linkedtv.eu/sparql
 
   # Toolkit configuration
   ProxyPass /lou http://%SPRINGFIELD_IP%:8080/lou
