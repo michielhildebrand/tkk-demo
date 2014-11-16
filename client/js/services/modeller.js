@@ -66,7 +66,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   function searchPosts(q, dimension) {
     var deferred = $q.defer();
 
-    irApi.search({query: q}, function (irResp) {
+    irApi.search({query: q, limit: 3}, function (irResp) {
       var sources = _(_(irResp).keys()).filter(function(s) {return s.indexOf('$') == -1});
       var posts = _.chain(sources)
         .map(function(s) {
@@ -229,7 +229,9 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
 
     angular.forEach(v.chapters, function (ch) {
       console.log('Enriching chapter ' + ch.title);
-      ch.dimensions = [];
+
+      //if (ch.dimensions == null) ch.dimensions = [];
+
       promises.push(fetchChapterEntities(ch));
       promises.push(fetchChapterArtworks(ch));
       promises.push(fetchChapterBackground(ch));
@@ -249,12 +251,9 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   }
 
   return {
-    enrich: function () {
+    enrich: function (v) {
       //takes the current video that the user is watching and enriches it
-      enrichVideo(Model.getVideo());
-    },
-    save: function () {
-      saveJsonFile(Model.getVideo());
+      enrichVideo(v);
     }
   };
 
