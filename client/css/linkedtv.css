@@ -546,16 +546,78 @@ a {
 }
 
 .entity-slider {
+    position: absolute;
+    bottom: 0;
+    top: 103px; /* entity slider compensation */
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
 }
-.entity-slider .information-card {
-    margin: 15px;
+
+.entity-slide {
+    height: 100%;
     overflow: auto;
+    padding: 15px 15px 0 15px;
+    box-sizing: border-box;
+}
+.entity-slide .row,
+.entity-slide .col {
+    height: 100%;
+}
+.entity-slide .box {
     background-color: rgba(95,109,105,0.6);
-  border-bottom: 1px solid rgb(100,114,124);
+    border: 1px solid rgb(100,114,124);
+    padding: 15px;
+    box-sizing: border-box;
 }
-.entity-slider .information-card . {
+.entity-slide .image-wrapper {
+    height: 75%;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+}
+.entity-slide .box.image {
+    padding: 0;
+    height: 100%;
+}
+.entity-slide .box.title {
+    height: 25%;
+    overflow: hidden;
+}
+.entity-slide .left {
+    margin-right: 15px;
+    box-sizing: border-box;
+}
+.entity-slide .image img {
+    width: 100%;
+    max-height: 100%;
+}
+.entity-slide h2 {
+    color: rgb(36,146,185);
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+.entity-slide .text {
+    height: 100%;
+    overflow: hidden;
+}
+.entity-slide .types {
+    margin: 0;
     color: rgb(170,184,194);
 }
-.entity-slider .information-card .description {
+.entity-slide .description {
     color: rgb(170,184,194);
+    font-size: 24px;
+    line-height: 32px;
+}
+.entity-slide .attributes {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 28px;
+}
+.entity-slide .attributes .value {
+    color: rgb(170,184,194);
+}
+.entity-slide .attributes .key {
+    color: rgb(36,146,185);
 }
