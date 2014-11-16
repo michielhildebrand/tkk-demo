@@ -6,6 +6,7 @@ angular.module('Config', []).constant('Config', {
   IR_API: 'http://linkedtv.dev/ir',
   CONTENT_FILTERING_API: 'http://linkedtv.dev/filtering',
   DOCUMENT_PROXY: 'http://linkedtv.dev/doc',
+  LINKEDTV_SPARQL: 'http://linkedtv.dev/linkedtv_sparql',
 
   app_title_prefix: 'LinkedTV News',
   users: [
@@ -26,6 +27,7 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
+  seed: 'seeds/news-videos.json',
   video_ids: [
     'adb65e0a-642b-432f-aa86-c296dab0375a'
   ],
