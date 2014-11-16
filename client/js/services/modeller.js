@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('Modeller', []).factory('Modeller',
-  ['$q', '$timeout', 'Model', 'europeanaApi', 'irApi', 'documentProxy', 'entityProxy', modeler]);
+  ['$q', 'Model', 'europeanaApi', 'irApi', 'documentProxy', 'entityProxy', modeler]);
 
-function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entityProxy) {
+function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
 
   function extractMetadata(ch) {
     return _.chain(ch.fragments)
@@ -46,15 +46,21 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
   function fetchChapterBackground(ch) {
     var promises = [];
 
+    var backgroundDimensions = {
+      id: 'background',
+      title: 'Background',
+      type: 'article',
+      items: []
+    };
+    ch.dimensions.push(backgroundDimensions);
+
     var meta = extractBackgroundMetadata(ch);
     _(meta).each(function (m) {
       irApi.search({query: m.value}, function (irResp) {
-        var sources = _(irResp).keys();
-        _(sources).each(function (source) {
-          var posts = irResp[source];
+        _(_(irResp).keys()).each(function (source) {
           if (source.indexOf('$') == -1) {
-            _(posts).each(function (post) {
-              promises.push(scrapePost(source, post, ch));
+            _(irResp[source]).each(function (post) {
+              promises.push(scrapePost(source, post, backgroundDimensions.items));
             });
           }
         });
@@ -65,7 +71,8 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
   }
 
   var postsCount = 0;
-  function scrapePost(source, post, ch) {
+
+  function scrapePost(source, post, dimension) {
     var scrapingDoc = [
       {
         source: {name: source},
@@ -75,7 +82,7 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
     return documentProxy.scrape(scrapingDoc, function (docResp) {
       console.log('scraped post ' + ++postsCount);
       if (docResp[0]) {
-        ch.dimensions.backgrounds.push({
+        dimension.push({
           source: source,
           title: post.micropost.title,
           url: post.mediaUrl,
@@ -90,54 +97,68 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
   function fetchChapterArtworks(ch) {
     var promises = [];
 
+    var artworksDimensions = {
+      id: 'artwork',
+      title: 'Artwork',
+      type: 'image',
+      items: []
+    };
+    ch.dimensions.push(artworksDimensions);
+
     var meta = extractArtworksMetadata(ch);
     console.log('artworks metadata ' + meta + ' for ' + ch.title);
     _(meta).each(function (m) {
-      promises.push(searchArtworks(m.value, ch));
+      promises.push(searchArtworks(m.value, artworksDimensions.items));
     });
 
     return $q.all(promises);
   }
 
-  function searchArtworks(q, ch) {
+  function searchArtworks(q, dimension) {
     var deferred = $q.defer();
 
     europeanaApi.search({query: q}, function (r) {
       if (r.itemsCount > 0) {
-        fetchArtworks(r.items, deferred, ch);
+        console.log(r.itemsCount + ' artworks for query ' + q);
+        _(r.items).each(function (item, itemIdx) {
+          prepareFetchArtwork(item, dimension, deferred, itemIdx, r.itemsCount, q)
+        });
       }
     });
 
     return deferred.promise;
   }
 
+  function prepareFetchArtwork(item, dimension, deferred, itemIdx, count, q) {
+    if (item.edmPreview && item.title && item.completeness > 0) {
+      var splittedId = item.id.split('/');
+      var artwork = {id0: splittedId[1], id1: splittedId[2], img: item.edmPreview[0], title: item.title[0]};
+      fetchArtwork(artwork).then(function (res) {
+        dimension.push(res.object);
+        if (itemIdx == count - 1) {
+          console.log('last artwork of ' + count + ' for query ' + q);
+          deferred.resolve(true);
+        }
+      })
+    }
+  }
+
   var artworksCount = 0;
-  function fetchArtworks(items, deferred, chapter) {
-    var count = items.length;
-    _(items).each(function (item, itemIdx) {
-      if (item.edmPreview && item.title && item.completeness > 0) {
-        var splittedId = item.id.split('/');
-        var artwork = {id0: splittedId[1], id1: splittedId[2], img: item.edmPreview[0], title: item.title[0]};
-        europeanaApi.get({id0: artwork.id0, id1: artwork.id1}, function (r) {
-          console.log('got artwork ' + ++artworksCount);
-          var content = {
-            title: [artwork.title],
-            thumb: [artwork.img],
-            url: [
-              {value: 'www.europeana.eu', uri: r.object.europeanaAggregation.edmLandingPage}
-            ]
-          };
-          _(r.object.proxies.reverse()).each(function (p) {
-            _(content).extend(p)
-          });
-          chapter.dimensions.artworks.push(content);
-          if (itemIdx == count - 1) {
-            console.log('last artwork ' + itemIdx + ' for ' + chapter.title + ' will resolve the resolved');
-            deferred.resolve(true);
-          }
-        })
-      }
-    });
+  function fetchArtwork(artwork) {
+    return europeanaApi.get({id0: artwork.id0, id1: artwork.id1}, function (r) {
+      console.log('got artwork ' + ++artworksCount);
+      var content = {
+        title: [artwork.title],
+        thumb: [artwork.img],
+        url: [
+          {value: 'www.europeana.eu', uri: r.object.europeanaAggregation.edmLandingPage}
+        ]
+      };
+      _(r.object.proxies.reverse()).each(function (p) {
+        _(content).extend(p)
+      });
+      return content;
+    }).$promise
   }
 
   var entitiesCount = 0;
@@ -149,7 +170,7 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
       promises.push(
         entityProxy.getList({urls: angular.toJson([url])}, function (res) {
           console.log('got entity ' + ++entitiesCount);
-          entity = _(entity).extend(res[url]);
+          entity = _(entity).extend({attributes: res[url]});
         }).$promise
       )
     });
@@ -171,14 +192,10 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
 
     _(v.chapters).each(function (ch) {
       console.log('Enriching chapter ' + ch.title);
-      // prepares dimensions
-      ch.dimensions = {
-        artworks: [],
-        backgrounds: []
-      };
-      //promises.push(fetchChapterEntities(ch));
+      ch.dimensions = [];
+      promises.push(fetchChapterEntities(ch));
       promises.push(fetchChapterArtworks(ch));
-      //promises.push(fetchChapterBackground(ch));
+      promises.push(fetchChapterBackground(ch));
     });
 
     console.log(promises);
@@ -199,7 +216,7 @@ function modeler($q, $timeout, Model, europeanaApi, irApi, documentProxy, entity
       //takes the current video that the user is watching and enriches it
       enrichVideo(Model.getVideo());
     },
-    save: function() {
+    save: function () {
       saveJsonFile(Model.getVideo());
     }
   };
