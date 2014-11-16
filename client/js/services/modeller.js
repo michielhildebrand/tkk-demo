@@ -107,7 +107,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
 
     var meta = extractArtworksMetadata(ch);
     console.log('artworks metadata ' + meta + ' for ' + ch.title);
-    _(meta).each(function (m) {
+    angular.forEach(meta, function (m) {
       promises.push(searchArtworks(m.value, artworksDimensions.items));
     });
 
@@ -120,8 +120,14 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     europeanaApi.search({query: q}, function (r) {
       if (r.itemsCount > 0) {
         console.log(r.itemsCount + ' artworks for query ' + q);
-        _(r.items).each(function (item, itemIdx) {
-          prepareFetchArtwork(item, dimension, deferred, itemIdx, r.itemsCount, q)
+        angular.forEach(r.items, function (item, itemIdx) {
+          validateFetchArtwork(item).then(function (artwork) {
+            if (artwork) dimension.push(artwork);
+            if (itemIdx == r.itemsCount - 1) {
+              console.log('last artwork of ' + r.itemsCount + ' for query ' + q);
+              deferred.resolve(true);
+            }
+          })
         });
       }
     });
@@ -129,23 +135,21 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     return deferred.promise;
   }
 
-  function prepareFetchArtwork(item, dimension, deferred, itemIdx, count, q) {
+  function validateFetchArtwork(item) {
     if (item.edmPreview && item.title && item.completeness > 0) {
       var splittedId = item.id.split('/');
       var artwork = {id0: splittedId[1], id1: splittedId[2], img: item.edmPreview[0], title: item.title[0]};
-      fetchArtwork(artwork).then(function (res) {
-        dimension.push(res.object);
-        if (itemIdx == count - 1) {
-          console.log('last artwork of ' + count + ' for query ' + q);
-          deferred.resolve(true);
-        }
-      })
+      return fetchArtwork(artwork);
+    } else {
+      var d = $q.defer();
+      d.resolve(null);
+      return d.promise;
     }
   }
 
   var artworksCount = 0;
   function fetchArtwork(artwork) {
-    return europeanaApi.get({id0: artwork.id0, id1: artwork.id1}, function (r) {
+    return europeanaApi.get({id0: artwork.id0, id1: artwork.id1}).$promise.then(function (r) {
       console.log('got artwork ' + ++artworksCount);
       var content = {
         title: [artwork.title],
@@ -158,25 +162,33 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
         _(content).extend(p)
       });
       return content;
-    }).$promise
+    })
   }
 
-  var entitiesCount = 0;
+
   function fetchChapterEntities(ch) {
     var promises = [];
 
-    _(ch.fragments).each(function (entity) {
+    angular.forEach(ch.fragments, function (entity) {
       var url = entity.locator;
       promises.push(
-        entityProxy.getList({urls: angular.toJson([url])}, function (res) {
-          console.log('got entity ' + ++entitiesCount);
-          entity = _(entity).extend({attributes: res[url]});
-        }).$promise
+        fetchEntity(url).then(function(attrs) {
+          entity.attributes = attrs;
+        })
       )
     });
 
     return $q.all(promises);
   }
+
+  var entitiesCount = 0;
+  function fetchEntity(url) {
+    return entityProxy.getList({urls: angular.toJson([url])}).$promise.then(function (res) {
+      console.log('got entity ' + ++entitiesCount);
+      return res[url];
+    })
+  }
+
 
   function saveJsonFile(v) {
     var blob = new Blob([JSON.stringify(v)], {type: "application/json"});
@@ -187,15 +199,16 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     a.click();
   }
 
+
   function enrichVideo(v) {
     var promises = [];
 
-    _(v.chapters).each(function (ch) {
+    angular.forEach(v.chapters, function (ch) {
       console.log('Enriching chapter ' + ch.title);
       ch.dimensions = [];
       promises.push(fetchChapterEntities(ch));
       promises.push(fetchChapterArtworks(ch));
-      promises.push(fetchChapterBackground(ch));
+      //promises.push(fetchChapterBackground(ch));
     });
 
     console.log(promises);
