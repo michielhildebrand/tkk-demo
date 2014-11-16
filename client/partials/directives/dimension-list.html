@@ -1,0 +1,6 @@
+<ion-list>
+  <ion-item ng-repeat="item in items" class="item entity" ng-click="nav(item)" ng-class="{'item-dark': isSelected(item)}">
+    <h4>{{item.title}}</h4>
+    <div ng-if="item.author"></div>
+  </ion-item>
+</ion-list>
