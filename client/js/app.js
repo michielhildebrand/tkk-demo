@@ -11,6 +11,8 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'EpisodesCtrl',
   'PlayCtrl',
   'TvCtrl',
+  'AdminCtrl',
+  'VideoAdminCtrl',
 
   'app.player',
   'app.player-controls',
@@ -33,6 +35,7 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'Model',
   'EventsBus',
   'EntityProxy',
+  'LinkedtvSparql',
   'EuropeanaApi',
   'IRApi',
   'Tracker',
@@ -71,6 +74,18 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
         title: ' - TV',
         templateUrl: 'partials/controllers/tv.html',
         controller: 'TvCtrl'
+      }).
+      state('admin', {
+          url: '/admin',
+          title: '- Admin',
+          templateUrl: 'partials/controllers/admin.html',
+          controller: 'AdminCtrl'
+      }).
+      state('videoAdmin', {
+        url: '/admin/:videoId',
+        title: '- Admin',
+        templateUrl: 'partials/controllers/video-admin.html',
+        controller: 'VideoAdminCtrl'
       });
   }
 ]).config(['$ionicTabsConfig', '$logProvider', 'Config', function ($ionicTabsConfig, $logProvider, Config) {
