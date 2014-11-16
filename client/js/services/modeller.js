@@ -55,40 +55,62 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     ch.dimensions.push(backgroundDimensions);
 
     var meta = extractBackgroundMetadata(ch);
-    _(meta).each(function (m) {
-      irApi.search({query: m.value}, function (irResp) {
-        _(_(irResp).keys()).each(function (source) {
-          if (source.indexOf('$') == -1) {
-            _(irResp[source]).each(function (post) {
-              promises.push(scrapePost(source, post, backgroundDimensions.items));
-            });
-          }
-        });
-      });
+    console.log('articles metadata ' + meta + ' for ' + ch.title);
+    angular.forEach(meta, function (m) {
+      promises.push(searchPosts(m.value, backgroundDimensions.items));
     });
 
     return $q.all(promises);
   }
 
-  var postsCount = 0;
+  function searchPosts(q, dimension) {
+    var deferred = $q.defer();
 
-  function scrapePost(source, post, dimension) {
+    irApi.search({query: q}, function (irResp) {
+      var sources = _(_(irResp).keys()).filter(function(s) {return s.indexOf('$') == -1});
+      var posts = _.chain(sources)
+        .map(function(s) {
+          return _(irResp[s]).map(function(p) {return {source: s, post: p}})
+        })
+        .flatten()
+        .value();
+      var count = posts.length;
+      console.log(count + ' articles for query ' + q);
+      angular.forEach(posts, function (p, postIdx) {
+        scrapePost(p.source, p.post).then(function(article) {
+          // if the promise is resolved with null we skip adding to the dimension
+          if (article) dimension.push(article);
+          if (postIdx == count - 1) {
+            console.log('last article of ' + count + ' for query ' + q);
+            deferred.resolve(true);
+          }
+        });
+      });
+    });
+
+    return deferred.promise;
+  }
+
+  var postsCount = 0;
+  function scrapePost(source, post) {
     var scrapingDoc = [
       {
         source: {name: source},
         url: post.mediaUrl
       }
     ];
-    return documentProxy.scrape(scrapingDoc, function (docResp) {
+    return documentProxy.scrape(scrapingDoc).$promise.then(function (docResp) {
       console.log('scraped post ' + ++postsCount);
       if (docResp[0]) {
-        dimension.push({
+        return ({
           source: source,
           title: post.micropost.title,
           url: post.mediaUrl,
           post: docResp[0].text,
           thd: post.thd
         });
+      } else {
+        return null;
       }
     });
   }
@@ -122,6 +144,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
         console.log(r.itemsCount + ' artworks for query ' + q);
         angular.forEach(r.items, function (item, itemIdx) {
           validateFetchArtwork(item).then(function (artwork) {
+            // if the promise is resolved with null we skip adding to the dimension
             if (artwork) dimension.push(artwork);
             if (itemIdx == r.itemsCount - 1) {
               console.log('last artwork of ' + r.itemsCount + ' for query ' + q);
@@ -141,6 +164,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       var artwork = {id0: splittedId[1], id1: splittedId[2], img: item.edmPreview[0], title: item.title[0]};
       return fetchArtwork(artwork);
     } else {
+      // if we skip one artwork we still have to return back a promise that will be resolved with null
       var d = $q.defer();
       d.resolve(null);
       return d.promise;
@@ -208,7 +232,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       ch.dimensions = [];
       promises.push(fetchChapterEntities(ch));
       promises.push(fetchChapterArtworks(ch));
-      //promises.push(fetchChapterBackground(ch));
+      promises.push(fetchChapterBackground(ch));
     });
 
     console.log(promises);
@@ -216,7 +240,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       function () {
         console.log("Video enriching done.");
         console.log(v);
-        //console.log(JSON.stringify(v));
+        saveJsonFile(v);
       },
       function (errors) {
         console.log("We've got some errors while enriching");
