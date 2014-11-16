@@ -59,11 +59,6 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, documentProxy
               loadChapterBackground(idx + 1);
             })
           })
-        } else {
-          //reorder backgrounds posts based on degree
-          _(scope.backgrounds).sortBy(function (b) {
-            return -b.degree
-          })
         }
       }
 
@@ -82,7 +77,13 @@ function chapterBackgroundDirective($log, irApi, contentFiltering, documentProxy
             post: docResp[0].text,
             source: source,
             degree: degree
-          })
+          });
+
+          // TODO: now it reorders every time an item is added, it should be done only once
+          //reorder backgrounds posts based on degree
+          scope.backgrounds = _(scope.backgrounds).sortBy(function (b) {
+            return -b.degree
+          });
         });
       }
 

@@ -621,3 +621,11 @@ a {
 .entity-slide .attributes .key {
     color: rgb(36,146,185);
 }
+
+
+/* admin */
+.admin pre {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #cccccc;
+}
