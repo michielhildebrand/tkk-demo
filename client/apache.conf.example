@@ -4,6 +4,7 @@
 
   AliasMatch /culture/(.+)$ %ABSOLUTE_PATH_TO_CLIENT_DIR%/$1
   AliasMatch /news2/(.+)$ %ABSOLUTE_PATH_TO_CLIENT_DIR%/$1
+  AliasMatch .+/video/(.*.json)$ %ABSOLUTE_PATH_TO_CLIENT_DIR%/video/$1
 
   Alias /culture/ %ABSOLUTE_PATH_TO_CLIENT_DIR%/culture.html
   Alias /news2/ %ABSOLUTE_PATH_TO_CLIENT_DIR%/news.html
