@@ -6,15 +6,10 @@ function entitySlideDirective($sce, $log) {
   return {
     restrict: 'E',
     scope: {
-      'entity': '=',
-      'navigate': '&'
+      'entity': '='
     },
     replace: false,
     link: function (scope, element, attrs) {
-      scope.external = false;
-      scope.externalUrl = "";
-
-      console.log(scope.entity);
 
       scope.title = (scope.entity.label && scope.entity.label.length>0) ? scope.entity.label[0].value : scope.entity.title;
       if(scope.entity.thumb && scope.entity.thumb.length>0) {
@@ -27,8 +22,6 @@ function entitySlideDirective($sce, $log) {
         scope.description = scope.entity.comment[0].value;
       }
       scope.attributes = scope.entity.attributes;
-
-      var navigate = scope.navigate();
 
       function debug(msg) {
         $log.debug('[Information Card (directive)] ' + msg)

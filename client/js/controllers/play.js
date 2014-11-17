@@ -3,7 +3,7 @@
 angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', '$ionicSideMenuDelegate', 'Eddie', 'Model', 'Tracker', playCtrl]);
 
 function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie, Model, Tracker) {
-  $scope.mode = 'watch';
+  $scope.mode = 'explore';
   $scope.second = false;
   $scope.enrich = false;
   $scope.controls = {hidden: false}; // this needs to be an object for the children to change it

@@ -16,7 +16,7 @@ function dimensionListDirective($log, Model) {
       var selected = null;
 
       scope.isSelected = function (m) {
-        return m.url == selected;
+        return m == selected;
       };
 
       scope.$watch('linked', function (e) {
@@ -24,9 +24,9 @@ function dimensionListDirective($log, Model) {
       });
 
       scope.nav = function (e, linked) {
-        selected = e.url;
+        selected = e;
         debug('Navigate to ' + JSON.stringify(e));
-        chapterEnrichCtrl.setContent(e, linked);
+        chapterEnrichCtrl.setContent({content:e, type:scope.type}, linked);
       };
 
       function debug(msg) {
