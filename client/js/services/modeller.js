@@ -122,7 +122,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     var artworksDimensions = {
       id: 'artwork',
       title: 'Artwork',
-      type: 'image',
+      type: 'europeana',
       items: []
     };
     ch.dimensions.push(artworksDimensions);
@@ -175,18 +175,37 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   function fetchArtwork(artwork) {
     return europeanaApi.get({id0: artwork.id0, id1: artwork.id1}).$promise.then(function (r) {
       console.log('got artwork ' + ++artworksCount);
-      var content = {
-        title: [artwork.title],
-        thumb: [artwork.img],
-        url: [
-          {value: 'www.europeana.eu', uri: r.object.europeanaAggregation.edmLandingPage}
-        ]
-      };
-      _(r.object.proxies.reverse()).each(function (p) {
-        _(content).extend(p)
-      });
-      return content;
+      return prepareArtwork(artwork, r);
     })
+  }
+
+  function prepareArtwork(e, as) {
+    var artwork = {};
+    // flatten properties of all proxies to top level
+    _(as.object.proxies.reverse()).each(function (p) {
+      _(e).extend(p)
+    });
+
+    // must have attributes
+    artwork.title = (e.dcTitle && 'def' in e.dcTitle) ? e.dcTitle.def[0] : e.title;
+    artwork.url = {label: 'www.europeana.eu', value: as.object.europeanaAggregation.edmLandingPage};
+    artwork.image = e.img || null;
+    artwork.source = e.dcSource ? e.dcSource.def[0] :
+      (e.dcPublisher ? e.dcPublisher.def[0] : "");
+    artwork.description = e.dcDescription ? e.dcDescription.def[0] : "";
+
+    // attributes dublin core
+    artwork.attributes = {};
+    _(e).forEach(function(value,key) {
+      if (!_(['dcTitle','dcSource','dcPublisher',
+          'dcDescription','dctermsProvenance','dcIdentifier']).contains(key)) {
+        if(key.substring(0,2)=='dc') {
+          var newKey = key.substring(2);
+          artwork.attributes[newKey] = value.def;
+        }
+      }
+    });
+    return artwork;
   }
 
 
@@ -276,7 +295,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       //if (ch.dimensions == null) ch.dimensions = [];
 
       promises.push(fetchChapterEntities(ch));
-      //promises.push(fetchChapterArtworks(ch));
+      promises.push(fetchChapterArtworks(ch));
       //promises.push(fetchChapterBackground(ch));
     });
 

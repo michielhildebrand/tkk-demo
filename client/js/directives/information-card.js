@@ -20,41 +20,6 @@ function informationCardDirective($sce, $log) {
         }
       });
 
-
-      scope.templateProp = function(prop) {
-
-      };
-
-      function prepareEntity(entity) {
-        scope.item = entity;
-      }
-
-      function prepareArtwork(artwork) {
-        // must have attributes
-        scope.title = (artwork.dcTitle) ? artwork.dcTitle.def[0] : artwork.title[0];
-        scope.url = artwork.url ? {label:artwork.url[0].value, value:artwork.url[0].uri} : "";
-        scope.image = (artwork.thumb && artwork.thumb.length>0) ? artwork.thumb[0] : null;
-        scope.subtitle = artwork.dcSource ? artwork.dcSource.def[0] :
-          (artwork.dcPublisher ? artwork.dcPublisher.def[0] : "");
-        scope.description = artwork.dcDescription ? artwork.dcDescription.def[0] : "";
-
-        // templates
-        scope.template = [];
-
-        // attributes dublin core
-        var as = {};
-        _(artwork).forEach(function(value,key) {
-          if (!_(['dcTitle','dcSource','dcPublisher',
-              'dcDescription','dctermsProvenance','dcIdentifier']).contains(key)) {
-            if(key.substring(0,2)=='dc') {
-              var newKey = key.substring(2);
-              as[newKey] = value.def;
-            }
-          }
-        });
-        scope.attributes = as;
-      }
-
       /*
       scope.nav = function (prop) {
         navigate(prop);

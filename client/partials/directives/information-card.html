@@ -4,8 +4,13 @@
 	<div class="entity" ng-swith-when="entity || europeana">
 		<div class="header">
 			<h2 ng-if="item.title">{{item.title}}</h2>
-			<div class="info" ng-if="item.types">
-				<span ng-repeat="type in item.types | filter : '!resource'">{{type}}<span ng-hide="$last">, </span></span>
+			<div class="info">
+				<div class="types" ng-if="item.types">
+					<span ng-repeat="type in item.types | filter : '!resource'">{{type}}<span ng-hide="$last">, </span></span>
+				</div>
+				<div class="source" ng-if="item.source">
+					{{item.source}}
+				</div>
 			</div>
 			<div class="link" ng-if="item.url">
 				<a ng-click="toggleExternalUrl(item.url.value)">Source: {{item.url.label}}</a>
