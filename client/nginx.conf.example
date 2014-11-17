@@ -28,6 +28,9 @@ server {
     alias %ABSOLUTE_PATH_TO_CLIENT_DIR%;
     index news.html;
   }
+  location ~* /video/(.*.json)$ {
+    alias %ABSOLUTE_PATH_TO_CLIENT_DIR%/video/$1;
+  }
 
   location /ir {
     proxy_pass http://ir.lmcloud.vse.cz/irapi/media-server;
