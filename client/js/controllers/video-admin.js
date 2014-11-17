@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('VideoAdminCtrl', []).controller('VideoAdminCtrl', ['$scope', '$stateParams', 'linkedtvSparql', '$log', 'Model', 'Modeller', videoAdminCtrl]);
+angular.module('VideoAdminCtrl', []).controller('VideoAdminCtrl', ['$scope', '$stateParams', '$http', 'linkedtvSparql', '$log', 'Model', 'Config', 'Modeller', videoAdminCtrl]);
 
-function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Modeller) {
+function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Model, Config, Modeller) {
   $scope.curated = true;
   $scope.max = 10;
   $scope.videoId = $stateParams.videoId;
@@ -110,7 +110,7 @@ function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Model
         /*if (startTime > chapter.endTime) {
          return chapter;
          }*/
-        
+
         if (startTime > chapter.startTime && endTime <= chapter.endTime) {
           var labelValue = e.label.value.substring(e.label.value.indexOf(':') + 1).trim();
 
@@ -163,6 +163,7 @@ function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Model
 
   linkedtvSparql.getSparqlResults({query: chapterQuery(true)}, function (res) {
     var chapters = chapterMap(res.results.bindings);
+    console.log(chapters);
 
     linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
       chapters = chapterEntityInclude(chapters, res.results.bindings);
@@ -178,14 +179,15 @@ function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Model
 
         //$scope.chapters = angular.toJson(chapters, true);
 
+            $http.get(Config.seed).success(function(videos) {
+              var targetVideo = _(videos).find(function (v) {
+                return v.id == $scope.videoId;
+              });
+              console.log(targetVideo);
+              targetVideo.chapters = chapters;
 
-        var targetVideo = _(Model.getVideos()).find(function (v) {
-          return v.id == $scope.videoId;
-        });
-        console.log(targetVideo);
-        targetVideo.chapters = chapters;
-
-        Modeller.enrich(targetVideo);
+              Modeller.enrich(targetVideo);
+            });
 
         //});
 
