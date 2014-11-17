@@ -101,27 +101,29 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     ];
     return documentProxy.scrape(scrapingDoc).$promise.then(function (docResp) {
       console.log('scraped post ' + ++postsCount);
-      if (docResp[0]) {
-        return ({
-          source: source,
-          title: post.micropost.title,
-          url: post.mediaUrl,
-          post: docResp[0].text,
-          thd: post.thd
-        });
-      } else {
-        return null;
-      }
+      return prepareArticle(post, docResp[0]);
     });
   }
 
+  function prepareArticle(e, as) {
+    console.log(e, as);
+    var article = {};
+    article.title = as.title || e.micropost.title;
+    article.url = {label:as.source.name, value:e.mediaUrl};
+    article.text = as.text || e.text;
+    article.source = as.source.name;
+    article.image = as.source.thumb;
+    article.thd = e.thd;
+    article.media = as.media;
+    return article;
+  }
 
   function fetchChapterArtworks(ch) {
     var promises = [];
 
     var artworksDimensions = {
       id: 'artwork',
-      title: 'Artwork',
+      title: 'Related works',
       type: 'europeana',
       items: []
     };
@@ -292,11 +294,10 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     angular.forEach(v.chapters, function (ch) {
       console.log('Enriching chapter ' + ch.title);
 
-      //if (ch.dimensions == null) ch.dimensions = [];
-
+      if (ch.dimensions == null) ch.dimensions = [];
       promises.push(fetchChapterEntities(ch));
       promises.push(fetchChapterArtworks(ch));
-      //promises.push(fetchChapterBackground(ch));
+      promises.push(fetchChapterBackground(ch));
     });
 
     console.log(promises);

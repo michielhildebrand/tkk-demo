@@ -167,9 +167,9 @@ function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Model
     linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
       chapters = chapterEntityInclude(chapters, res.results.bindings);
 
-      linkedtvSparql.getSparqlResults({query: enrichmentQuery('Video')}, function (res) {
-        var dimension = {id: 'video', title: 'Related videos'};
-        chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+//      linkedtvSparql.getSparqlResults({query: enrichmentQuery('Video')}, function (res) {
+//        var dimension = {id: 'video', title: 'Related videos'};
+//        chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
 //        linkedtvSparql.getSparqlResults({query:enrichmentQuery('Webpage')}, function (res) {
 //            var dimension = {id:'background',title:'Background'};
@@ -188,7 +188,7 @@ function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Model
 
         //});
 
-      });
+ //     });
 
     });
   });
