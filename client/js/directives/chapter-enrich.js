@@ -11,10 +11,8 @@ function chapterEnrichDirective(Config, Model) {
     replace: false,
     link: function (scope, element, attrs) {
       function setHeight() {
-        var contentHeight = angular.element(".explore")[0].offsetHeight - 49-89; //header and footer
-        var dimensionsHeight = scope.dimensions.length * 34; //TODO fix it: grab height of one dimension label
-        console.log(contentHeight);
-        angular.element('.links .scroll-view').height(contentHeight - dimensionsHeight);
+        var contentHeight = angular.element(".explore")[0].offsetHeight - 49-81; //header and footer
+        scope.dimensionHeight = contentHeight - (scope.dimensions.length * 34); //TODO fix it: grab height of one dimension label
         angular.element('.content .scroll-view').height(contentHeight);
       }
 

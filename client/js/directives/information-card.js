@@ -15,8 +15,9 @@ function informationCardDirective($sce, $log) {
 
       scope.$watch('content', function (newContent) {
         if (newContent != null) {
-          scope.item = newContent.item;
           scope.type = newContent.type;
+          scope.item = newContent.item;
+          console.log(scope.type);
         }
       });
 

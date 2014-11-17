@@ -7,7 +7,8 @@ function dimensionListDirective($log, Model) {
     restrict: 'E',
     scope: {
       items: '=',
-      type: '='
+      type: '=',
+      height: '='
     },
     require: '^chapterEnrich',
     replace: false,
@@ -18,9 +19,15 @@ function dimensionListDirective($log, Model) {
         return m == selected;
       };
 
-      scope.$watch('linked', function (e) {
-        if (e != null) scope.nav(e, true);
+      scope.$watch('height', function (height) {
+        console.log(height);
+        if (height != null) {
+          //TODO: fix get scroll view of this element
+          angular.element('.links .scroll-view').height(height);
+        }
       });
+
+
 
       scope.nav = function (e) {
         selected = e;

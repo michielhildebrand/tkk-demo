@@ -47,3 +47,11 @@
     font-weight: bold;
     font-size: 14px;
 }
+
+.information-card .article .text {
+    font-size: 16px;
+    line-height: 24px;
+}
+.information-card .article .media img {
+    max-width: 100%;
+}

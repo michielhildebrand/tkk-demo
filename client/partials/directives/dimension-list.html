@@ -20,7 +20,9 @@
 
     <!-- IRAPI Article -->
     <ion-item class="item item-thumbnail-left article" ng-switch-when="article">
-      <div ng-if="item.author"></div>
+      <img ng-src="{{item.image}}">
+      <h2>{{item.title}}</h2>
+      <p>{{item.source}}</p>
     </ion-item>
 
     <!-- Video -->

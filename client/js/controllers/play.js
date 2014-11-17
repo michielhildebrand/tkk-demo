@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', '$ionicSideMenuDelegate', 'Eddie', 'Model', 'Tracker', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', '$ionicSideMenuDelegate', 'Eddie', 'Model', 'Config', 'Tracker', playCtrl]);
 
-function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie, Model, Tracker) {
-  $scope.mode = 'explore';
+function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie, Model, Config, Tracker) {
+  $scope.mode = 'watch';
   $scope.second = false;
   $scope.enrich = false;
+  $scope.lookupMode = Config.lookupMode;
   $scope.controls = {hidden: false}; // this needs to be an object for the children to change it
-  $scope.playContentHeight = 0;
   $scope.beaming = Model.isBeaming();
   $scope.tracking = Tracker.enabled();
 
@@ -34,7 +34,6 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
     debug('Play video ' + videoId + ' on ' + chIdx);
     Model.play(videoId, chIdx);
     $scope.video = Model.getVideo();
-    $scope.playContentHeight = angular.element('body')[0].offsetHeight;
 
     if ($scope.beaming) {
       sendToRemoteTv({action: 'set-video', video: videoId, chapter: chIdx});

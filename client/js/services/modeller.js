@@ -101,18 +101,19 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     ];
     return documentProxy.scrape(scrapingDoc).$promise.then(function (docResp) {
       console.log('scraped post ' + ++postsCount);
-      return prepareArticle(post, docResp[0]);
+      if(docResp.length>0) {
+        return prepareArticle(post, docResp[0]);
+      }
     });
   }
 
   function prepareArticle(e, as) {
-    console.log(e, as);
     var article = {};
     article.title = as.title || e.micropost.title;
-    article.url = {label:as.source.name, value:e.mediaUrl};
+    article.url = as.source ? {label:as.source.name, value:e.mediaUrl} : {label: e.mediaUrl, value:e.mediaUrl};
     article.text = as.text || e.text;
-    article.source = as.source.name;
-    article.image = as.source.thumb;
+    article.source = as.source ? as.source.name : "";
+    article.image = as.source ? as.source.thumb : null;
     article.thd = e.thd;
     article.media = as.media;
     return article;
