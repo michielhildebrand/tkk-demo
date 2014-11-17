@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-enrich', []).directive('chapterEnrich', ['Config', 'Model', chapterEnrichDirective]);
+angular.module('app.chapter-enrich', []).directive('chapterEnrich', ['Model', chapterEnrichDirective]);
 
-function chapterEnrichDirective(Config, Model) {
+function chapterEnrichDirective(Model) {
   return {
     restrict: 'E',
     scope: {

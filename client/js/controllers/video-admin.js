@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('VideoAdminCtrl', []).controller('VideoAdminCtrl', ['$scope', '$stateParams', '$http', 'linkedtvSparql', '$log', 'Model', 'Config', 'Modeller', videoAdminCtrl]);
+angular.module('VideoAdminCtrl', []).controller('VideoAdminCtrl', ['$scope', '$stateParams', '$http', 'linkedtvSparql', '$log', 'Config', 'Modeller', videoAdminCtrl]);
 
-function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Model, Config, Modeller) {
+function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Config, Modeller) {
   $scope.curated = true;
   $scope.max = 10;
   $scope.videoId = $stateParams.videoId;
