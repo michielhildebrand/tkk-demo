@@ -23,7 +23,9 @@ function chapterEnrichDirective(Model) {
         function (newChapter) {
           if (newChapter != null) {
             scope.dimensions = newChapter.dimensions;
-            scope.dimension = scope.dimensions[0].id;
+            if(scope.dimensions.length>0) {
+              scope.dimension = scope.dimensions[0].id;
+            }
             setHeight();
           }
         }

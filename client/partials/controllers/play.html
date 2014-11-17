@@ -24,8 +24,8 @@
         </div>
       </ion-content>
 
-      <ion-content class="mode lookup has-header has-footer has-controls" scroll="false" ng-switch-when="lookup" ng-if="lookupMode">
-        <entity-slider></entity-slider>
+      <ion-content class="mode lookup has-header has-footer has-controls" scroll="false" ng-switch-when="lookup">
+        <entity-slider ng-if="lookupMode"></entity-slider>
       </ion-content>
 
       <ion-content class="mode explore has-header has-footer has-controls" scroll="false" ng-switch-when="explore">

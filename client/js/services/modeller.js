@@ -66,7 +66,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   function searchPosts(q, dimension) {
     var deferred = $q.defer();
 
-    irApi.search({query: q, limit: 3}, function (irResp) {
+    irApi.search({query: q, limit: 1}, function (irResp) {
       var sources = _(_(irResp).keys()).filter(function(s) {return s.indexOf('$') == -1});
       var posts = _.chain(sources)
         .map(function(s) {
@@ -211,8 +211,24 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     return artwork;
   }
 
+  function fetchChapterFragments(ch) {
+    var promises = [];
 
-  function fetchChapterEntities(ch) {
+    angular.forEach(ch.fragments, function (entity) {
+      var url = entity.locator;
+      promises.push(
+        fetchEntity(url).then(function(attrs) {
+          if(attrs&&attrs.label) {
+            prepareEntity(entity, attrs);
+          }
+        })
+      )
+    });
+
+    return $q.all(promises);
+  }
+
+  function fetchChapterAbout(ch) {
     var promises = [];
 
     var aboutDimension = {
@@ -228,7 +244,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       promises.push(
         fetchEntity(url).then(function(attrs) {
           if(attrs&&attrs.label) {
-            aboutDimension.items.push(prepareEntity(entity, attrs));
+            var newEntity = _(entity).clone();
+            aboutDimension.items.push(prepareEntity(newEntity, attrs));
           }
         })
       )
@@ -239,14 +256,13 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
 
   var entitiesCount = 0;
   function fetchEntity(url) {
-    return entityProxy.get({url: url}).$promise.then(function (res) {
+    return entityProxy.get({url: url, lang:'de'}).$promise.then(function (res) {
       console.log('got entity ' + ++entitiesCount);
       return res[url];
     }).catch(angular.noop);
   }
 
-  function prepareEntity(e, as) {
-    var entity = _(e).clone();
+  function prepareEntity(entity, as) {
     // must have attributes
     if(as.label && as.label.length>0) {
       entity.title = as.label[0].value;
@@ -260,8 +276,13 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     entity.attributes = {};
     _(as).forEach(function(value,key) {
       if (!_(['label','thumb', 'comment','type']).contains(key)) {
-        if( (Array.isArray(value) && value.length > 0) || value != '') {
-          entity.attributes[key] = cleanEntityDate(key, value);
+        if( Array.isArray(value) && value.length>0) {
+          value = _(value).filter(function(v) {
+            return v !== "" && v !== null;
+          });
+          if(value.length > 0) {
+            entity.attributes[key] = _(cleanEntityDate(key, value)).uniq();
+          }
         }
       }
     });
@@ -274,7 +295,14 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     if (_(dateProps).contains(propName)) {
       props = _(props).map(function(prop) {
         var i = prop.indexOf('+');
-        return prop.substring(0, i);
+        if(i>0) {
+           prop = prop.substring(0, i);
+        }
+        var i = prop.indexOf('T');
+        if(i>0) {
+          prop = prop.substring(0, i);
+        }
+        return prop
       });
     }
     return props;
@@ -298,7 +326,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       console.log('Enriching chapter ' + ch.title);
 
       if (ch.dimensions == null) ch.dimensions = [];
-      promises.push(fetchChapterEntities(ch));
+      //promises.push(fetchChapterFragments(ch));
+      promises.push(fetchChapterAbout(ch));
       promises.push(fetchChapterArtworks(ch));
       promises.push(fetchChapterBackground(ch));
     });
