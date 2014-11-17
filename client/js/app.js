@@ -76,10 +76,10 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'TvCtrl'
       }).
       state('admin', {
-          url: '/admin',
-          title: '- Admin',
-          templateUrl: 'partials/controllers/admin.html',
-          controller: 'AdminCtrl'
+        url: '/admin',
+        title: '- Admin',
+        templateUrl: 'partials/controllers/admin.html',
+        controller: 'AdminCtrl'
       }).
       state('videoAdmin', {
         url: '/admin/:videoId',
@@ -94,8 +94,8 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
 
   $logProvider.debugEnabled(Config.debug_enabled);
 }
-]).run(['$rootScope', '$state', '$log', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
-    function ($rootScope, $state, $log, Config, eventsBus, Model, Eddie, Tracker) {
+]).run(['$rootScope', '$state', '$log', '$http', '$q', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
+    function ($rootScope, $state, $log, $http, $q, Config, eventsBus, Model, Eddie, Tracker) {
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $rootScope.title = Config.app_title_prefix + toState.title;
 
@@ -130,15 +130,22 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
         });
         $rootScope.$$phase || $rootScope.$apply();
       };
-
-      function syncVideos(videos) {
-        debug('Load ' + videos.length + ' videos.');
-        Model.setVideos(videos);
-        $rootScope.$$phase || $rootScope.$apply();
-      }
-
-      eventsBus.subscribe('video', syncVideos);
       eventsBus.subscribe('bookmark', syncBookmarks);
+
+      function loadVideos(seeds) {
+        var videos = seeds.map(function (s) {
+          return $http.get('video/' + s.id + '.json')
+            .success(function (v) {return v;})
+            .catch(angular.noop);
+        });
+        $q.all(videos).then(function (videos) {
+          videos = _.chain(videos).filter(function (v) {return v}).map(function (v) {return v.data}).value();
+          debug('Load ' + videos.length + ' videos.');
+          Model.setVideos(videos);
+          $rootScope.$$phase || $rootScope.$apply();
+        })
+      }
+      $http.get(Config.seed).success(loadVideos);
 
       function debug(msg) {
         $log.debug('[App] ' + msg)
