@@ -4,7 +4,8 @@
     "title": "rbb AKTUELL vom 02.06.2014 ",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/rbb/video/1633/shots/1",
     "poster": "http://images1.noterik.com/domain/linkedtv/user/rbb/video/1633/shots/1/h/0/m/0/sec10.jpg",
-    "src": "video/1633.mp4",
+    //"src": "video/1633.mp4",
+    "src": "http://stream18.noterik.com/progressive/stream18/domain/linkedtv/user/rbb/video/1633/rawvideo/4/raw.mp4",
     "duration": 1730470
   }
 ]
