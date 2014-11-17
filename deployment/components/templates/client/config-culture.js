@@ -6,6 +6,7 @@ angular.module('Config', []).constant('Config', {
   IR_API: 'http://{{app_address}}/ir',
   CONTENT_FILTERING_API: 'http://{{app_address}}/filtering',
   DOCUMENT_PROXY: 'http://{{app_address}}/doc',
+  LINKEDTV_SPARQL: 'http://{{app_address}}/linkedtv_sparql',
 
   app_title_prefix: 'LinkedTV Culture',
   users: [
@@ -26,36 +27,7 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
-  video_ids: [
-    '8a8187f2-3fc8-cb54-0140-7dccd76f0001',
-    '8a8187f2-3fc8-cb54-0140-7dd151100003',
-    '8a8187f2-3fc8-cb54-0140-7dd247360004',
-    '8a8187f2-3fc8-cb54-0140-7dd099380002',
-    '953b4d09-e828-4623-b9ff-be3072411a98',
-    '8a8187f2-3fc8-cb54-0140-7dd2d0650005',
-    'c44643ee-823e-476c-a099-bd28bcf1e56a'
-  ],
-
-  load_curated_videos: true,
-
-  dimensions: [
-    {
-      id: 'about',
-      title: 'About'
-    },
-    {
-      id: 'background',
-      title: 'Background'
-    },
-    {
-      id: 'artworks',
-      title: 'Related works'
-    },
-    {
-      id: 'related',
-      title: 'Related chapters'
-    }
-  ],
+  seed: 'seeds/culture-videos.json',
 
   tracking_enabled_default: true,
 

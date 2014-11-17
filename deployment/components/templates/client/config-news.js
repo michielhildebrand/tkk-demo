@@ -6,6 +6,7 @@ angular.module('Config', []).constant('Config', {
   IR_API: 'http://{{app_address}}/ir',
   CONTENT_FILTERING_API: 'http://{{app_address}}/filtering',
   DOCUMENT_PROXY: 'http://{{app_address}}/doc',
+  LINKEDTV_SPARQL: 'http://{{app_address}}/linkedtv_sparql',
 
   app_title_prefix: 'LinkedTV News',
   users: [
@@ -26,26 +27,7 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
-  video_ids: [
-    'adb65e0a-642b-432f-aa86-c296dab0375a'
-  ],
-
-  load_curated_videos: false,
-
-  dimensions: [
-    {
-      id: 'other-media',
-      title: 'In other media'
-    },
-    {
-      id: 'background',
-      title: 'Background'
-    },
-    {
-      id: 'history',
-      title: 'History'
-    }
-  ],
+  seed: 'seeds/news-videos.json',
 
   tracking_enabled_default: true,
 

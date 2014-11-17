@@ -28,26 +28,6 @@ angular.module('Config', []).constant('Config', {
   ],
 
   seed: 'seeds/news-videos.json',
-  video_ids: [
-    'adb65e0a-642b-432f-aa86-c296dab0375a'
-  ],
-
-  load_curated_videos: false,
-
-  dimensions: [
-    {
-      id: 'other-media',
-      title: 'In other media'
-    },
-    {
-      id: 'background',
-      title: 'Background'
-    },
-    {
-      id: 'history',
-      title: 'History'
-    }
-  ],
 
   tracking_enabled_default: false,
 
