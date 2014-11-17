@@ -101,28 +101,31 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     ];
     return documentProxy.scrape(scrapingDoc).$promise.then(function (docResp) {
       console.log('scraped post ' + ++postsCount);
-      if (docResp[0]) {
-        return ({
-          source: source,
-          title: post.micropost.title,
-          url: post.mediaUrl,
-          post: docResp[0].text,
-          thd: post.thd
-        });
-      } else {
-        return null;
+      if(docResp.length>0) {
+        return prepareArticle(post, docResp[0]);
       }
     }).catch(angular.noop);
   }
 
+  function prepareArticle(e, as) {
+    var article = {};
+    article.title = as.title || e.micropost.title;
+    article.url = as.source ? {label:as.source.name, value:e.mediaUrl} : {label: e.mediaUrl, value:e.mediaUrl};
+    article.text = as.text || e.text;
+    article.source = as.source ? as.source.name : "";
+    article.image = as.source ? as.source.thumb : null;
+    article.thd = e.thd;
+    article.media = as.media;
+    return article;
+  }
 
   function fetchChapterArtworks(ch) {
     var promises = [];
 
     var artworksDimensions = {
       id: 'artwork',
-      title: 'Artwork',
-      type: 'image',
+      title: 'Related works',
+      type: 'europeana',
       items: []
     };
     ch.dimensions.push(artworksDimensions);
@@ -139,7 +142,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   function searchArtworks(q, dimension) {
     var deferred = $q.defer();
 
-    europeanaApi.search({query: q}, function (r) {
+    europeanaApi.search({query: q, limit:3}, function (r) {
       if (r.itemsCount > 0) {
         console.log(r.itemsCount + ' artworks for query ' + q);
         angular.forEach(r.items, function (item, itemIdx) {
@@ -175,6 +178,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   function fetchArtwork(artwork) {
     return europeanaApi.get({id0: artwork.id0, id1: artwork.id1}).$promise.then(function (r) {
       console.log('got artwork ' + ++artworksCount);
+/*<<<<<<< HEAD
       var content = {
         title: [artwork.title],
         thumb: [artwork.img],
@@ -187,17 +191,57 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       });
       return content;
     }).catch(angular.noop);
+=======*/
+      return prepareArtwork(artwork, r);
+    }).catch(angular.noop);
+  }
+
+  function prepareArtwork(e, as) {
+    var artwork = {};
+    // flatten properties of all proxies to top level
+    _(as.object.proxies.reverse()).each(function (p) {
+      _(e).extend(p)
+    });
+
+    // must have attributes
+    artwork.title = (e.dcTitle && 'def' in e.dcTitle) ? e.dcTitle.def[0] : e.title;
+    artwork.url = {label: 'www.europeana.eu', value: as.object.europeanaAggregation.edmLandingPage};
+    artwork.image = e.img || null;
+    artwork.source = e.dcSource ? e.dcSource.def[0] :
+      (e.dcPublisher ? e.dcPublisher.def[0] : "");
+    artwork.description = e.dcDescription ? e.dcDescription.def[0] : "";
+
+    // attributes dublin core
+    artwork.attributes = {};
+    _(e).forEach(function(value,key) {
+      if (!_(['dcTitle','dcSource','dcPublisher',
+          'dcDescription','dctermsProvenance','dcIdentifier']).contains(key)) {
+        if(key.substring(0,2)=='dc') {
+          var newKey = key.substring(2);
+          artwork.attributes[newKey] = value.def;
+        }
+      }
+    });
+    return artwork;
   }
 
 
   function fetchChapterEntities(ch) {
     var promises = [];
 
+    var aboutDimension = {
+      id: 'about',
+      title: 'About',
+      type: 'entity',
+      items: []
+    };
+    ch.dimensions.push(aboutDimension);
+
     angular.forEach(ch.fragments, function (entity) {
       var url = entity.locator;
       promises.push(
         fetchEntity(url).then(function(attrs) {
-          entity.attributes = attrs;
+          aboutDimension.items.push(prepareEntity(entity, attrs));
         })
       )
     });
@@ -211,6 +255,41 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       console.log('got entity ' + ++entitiesCount);
       return res[url];
     }).catch(angular.noop);
+  }
+
+  function prepareEntity(e, as) {
+    var entity = _(e).clone();
+    // must have attributes
+    if(as.label && as.label.length>0) {
+      entity.title = as.label[0].value;
+    }
+    entity.image = (as.thumb && as.thumb.length>0) ? as.thumb[0] : null;
+    entity.description = (as.comment && as.comment.length>0) ? as.comment[0].value : "";
+    entity.types = (as.type && as.type.length>0) ? as.type : [];
+    entity.url = {label:'Wikipedia', value:entity.locator};
+
+    // the remaining are attributes
+    entity.attributes = {};
+    _(as).forEach(function(value,key) {
+      if (!_(['label','thumb', 'comment','type']).contains(key)) {
+        if( (Array.isArray(value) && value.length > 0) || value != '') {
+          entity.attributes[key] = cleanEntityDate(key, value);
+        }
+      }
+    });
+    return entity;
+  }
+
+  function cleanEntityDate(propName, props) {
+    //TODO: we need are more generic solution to detect date
+    var dateProps = ['birthDate', 'deathDate', 'activeSince'];
+    if (_(dateProps).contains(propName)) {
+      props = _(props).map(function(prop) {
+        var i = prop.indexOf('+');
+        return prop.substring(0, i);
+      });
+    }
+    return props;
   }
 
 
@@ -230,8 +309,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     angular.forEach(v.chapters, function (ch) {
       console.log('Enriching chapter ' + ch.title);
 
-      //if (ch.dimensions == null) ch.dimensions = [];
-
+      if (ch.dimensions == null) ch.dimensions = [];
       promises.push(fetchChapterEntities(ch));
       promises.push(fetchChapterArtworks(ch));
       promises.push(fetchChapterBackground(ch));

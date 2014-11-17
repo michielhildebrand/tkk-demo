@@ -1,28 +1,24 @@
 <div class="row">
 
-  <!--div class="col col-20 chapters">
-    <h3>Chapters</h3>
-    <ion-scroll direction="y">
-      <chapter-selection video="video" controlPlayer="false"></chapter-selection>
-    </ion-scroll>
-  </div-->
-
   <div class="col col-25 links">
     <div ng-repeat="d in dimensions">
       <h3 ng-click="toggleDimension(d.id)" ng-bind="d.title"></h3>
-      <ion-scroll direction="y" ng-show="dimension==d.id" ng-switch="d.id">
-        <chapter-about ng-switch-when="about" linked="linkedAbout"></chapter-about>
-        <chapter-background ng-switch-when="background"></chapter-background>
-        <chapter-artworks ng-switch-when="artworks"></chapter-artworks>
-        <chapter-related ng-switch-when="related"></chapter-related>
-        <chapter-history ng-switch-when="history"></chapter-history>
+      <ion-scroll direction="y" ng-show="dimension==d.id">
+        <dimension-list items="d.items" type="d.type" height="dimensionHeight"></dimension-list>
       </ion-scroll>
     </div>
   </div>
 
   <div class="col col-75 content">
     <ion-scroll direction="y">
-      <div class="crumbs" ng-if="crumb.length > 1">
+      <information-card content="content"></information-card>
+    </ion-scroll>
+  </div>
+
+</div>
+
+<!--
+    <div class="crumbs" ng-if="crumb.length > 1">
          <span ng-repeat="c in crumb">
            <span ng-if="!$last">
              <a ng-click="setAbout(c)">{{c.value}}</a>
@@ -30,8 +26,4 @@
            </span>
          </span>
       </div>
-      <information-card props="content" navigate="setAbout"></information-card>
-    </ion-scroll>
-  </div>
-
-</div>
+      -->

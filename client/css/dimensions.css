@@ -1,49 +1,57 @@
-/* generic */
-.dimensions li {
-    margin: 0;
-    list-style: none;
-    border-bottom: 1px solid white;
-    background-color: rgb(126,139,148);
-    overflow: hidden;
-    cursor: pointer;
+.information-card {
+    padding: 24px 36px
 }
-.dimensions li a {
-    color: white;
-    text-decoration: none;
+.information-card .header {
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(141,155,175);
+    overflow: auto;
 }
-
-/* entities in about */
-.dimensions .about li {
-    line-height: 18px;
-    padding: 10px;
-}
-.dimensions .about .title {
-    font-size: 14px;
-}
-
-/* artworks */
-.dimensions .artworks li {
-    height: 135px;
-    line-height: 18px;
-    padding: 10px;
-}
-.dimensions .artworks .thumb {
+.information-card h2 {
+    margin: 0 0 2px;
+    font-size: 19px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: black;
+    line-height: 23px;
     float: left;
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    margin-right: 10px;
 }
-.dimensions .artworks .thumb img {
+.information-card .info {
+    font-size: 12px;
+    color: rgb(141,155,175);
+    font-weight: bold;
+    float: left;
+    clear: left;
+}
+.information-card .link {
+    float: right;
+}
+
+.information-card .entity .image {
+    padding-right: 15px;
+}
+
+.information-card .entity .image img {
     width: 100%;
-    border: 1px solid white;
 }
-.dimensions .artworks .desc {
-    color: white;
+
+.information-card .entity .description {
+    font-size: 16px;
+    line-height: 24px;
 }
-.dimensions .artworks .title {
+
+.information-card .entity .attributes {
+    font-size: 16px;
+    line-height: 30px;
+}
+.information-card .entity .attributes .key {
+    font-weight: bold;
     font-size: 14px;
-    line-height: 18px;
-    max-height: 36px;
-    overflow: hidden;
+}
+
+.information-card .article .text {
+    font-size: 16px;
+    line-height: 24px;
+}
+.information-card .article .media img {
+    max-width: 100%;
 }

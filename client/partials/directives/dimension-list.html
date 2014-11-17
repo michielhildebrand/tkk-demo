@@ -1,0 +1,36 @@
+<ion-list>
+  <div ng-repeat="item in items" ng-click="nav(item)" class="item-wrapper"
+        ng-class="{'selected': isSelected(item)}" ng-switch="type">
+
+      <!-- Entity -->
+      <ion-item class="item item-thumbnail-left about" ng-switch-when="entity">
+          <img ng-src="{{item.image}}">
+          <h2>{{item.title}}</h2>
+          <p>
+              <span ng-repeat="type in item.types | filter : '!resource'">{{type}}<span ng-hide="$last">, </span></span>
+          </p>
+      </ion-item>
+
+    <!-- Europeana Artwork -->
+    <ion-item class="item item-thumbnail-left artwork" ng-switch-when="europeana">
+        <img ng-src="{{item.image}}">
+        <h2>{{item.title}}</h2>
+        <p>{{item.source}}</p>
+    </ion-item>
+
+    <!-- IRAPI Article -->
+    <ion-item class="item item-thumbnail-left article" ng-switch-when="article">
+      <img ng-src="{{item.image}}">
+      <h2>{{item.title}}</h2>
+      <p>{{item.source}}</p>
+    </ion-item>
+
+    <!-- Video -->
+
+    <!-- Default -->
+    <ion-item class="item" ng-switch-default>
+      <h2>{{item.title}}</h2>
+    </ion-item>
+
+  </div>
+</ion-list>

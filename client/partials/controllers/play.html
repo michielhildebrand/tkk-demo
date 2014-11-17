@@ -24,7 +24,7 @@
         </div>
       </ion-content>
 
-      <ion-content class="mode lookup has-header has-footer has-controls" scroll="false" ng-switch-when="lookup">
+      <ion-content class="mode lookup has-header has-footer has-controls" scroll="false" ng-switch-when="lookup" ng-if="lookupMode">
         <entity-slider></entity-slider>
       </ion-content>
 
@@ -38,7 +38,7 @@
         <i class="icon ion-social-youtube"></i>
         Watch
       </a>
-      <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('lookup')}" ng-click="setActiveMode('lookup')">
+      <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('lookup')}" ng-click="setActiveMode('lookup')" ng-if="lookupMode">
         <i class="icon ion-ios7-information"></i>
         Lookup
       </a>

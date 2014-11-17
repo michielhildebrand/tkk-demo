@@ -1,0 +1,40 @@
+<div class="entity-slide">
+	<div class="row">
+		<div class="col col-33 left">
+			<div class="image-wrapper">
+				<div class="box image">
+					<img visible-on-load ng-src="{{image}}" title="{{title}}" alt="{{title}}"/>
+				</div>
+			</div>
+			<div class="box title">
+				<h2>{{title}}</h2>
+			</div>
+
+		</div>
+		<div class="col text box">
+			<!--div class="types" ng-if="types">
+				<span ng-repeat="type in types">
+					{{type}}
+				</span>
+			</div-->
+			<p class="description" ng-if="description" ng-bind-html="description"></p>
+			<ul class="attributes" ng-if="attributes">
+				<li ng-repeat="(key, value) in attributes">
+					<span class="key">{{key}}: </span>
+					<span class="value" ng-repeat="item in value">
+						<a ng-click="nav(item.uri)" ng-if="item.uri">
+							{{item.value}}
+						</a>
+						<span ng-if="item.value && !item.uri">
+							{{item.value}}
+						</span>
+						<span ng-if="!item.value">
+							{{item}}
+						</span>
+					</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+

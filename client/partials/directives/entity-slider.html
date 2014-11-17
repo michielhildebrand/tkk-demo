@@ -9,8 +9,6 @@
 
 <ion-slide-box class="entity-slider" active-slide="currentEntityIndex" show-pager="false">
   <ion-slide ng-repeat="e in entities">
-    <div class="box">
-      <information-card props="e"></information-card>
-    </div>
+    <entity-slide entity="e"></entity-slide>
   </ion-slide>
 </ion-slide-box>

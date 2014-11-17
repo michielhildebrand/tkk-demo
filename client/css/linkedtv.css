@@ -350,24 +350,20 @@ a {
 /* links */
 .links {
     -webkit-filter: drop-shadow(-7px 0 6px rgba(0, 0, 0, 0.75));
-    background-color: rgb(126,139,148);
+    background-color: rgb(126, 139, 148);
+}
+.links .list {
+    border-top: 1px solid rgb(126,139,148);
+}
+.links .item-wrapper:first-child .item {
+    border-color: rgb(126,139,148);
 }
 .links .item {
     background-color: rgb(126,139,148);
-    border-color: white;
 }
-.links .item-dark {
-    background-color: rgb(170,184,194);
+.links .selected .item {
+    background-color: rgb(170, 184, 194);
 }
-/*
-.explore .col {
-    background-color: rgb(45,57,64);
-    color: rgb(230,229,228);
-    height: 100%;
-    overflow: auto;
-}
-*/
-.chapters h3,
 .links h3 {
     margin: 0;
     padding: 4px 11px;
@@ -379,23 +375,22 @@ a {
     color: white;
     background-color: rgb(36,146,185);
     box-sizing: border-box;
-}
-.links .item:first-child {
-  border-color: rgb(126,139,148);
-}
-.links h3 {
     background-image: url(../img/background_sections_menu.png);
     background-position: center right;
     background-repeat: no-repeat;
     -webkit-filter: drop-shadow(0 -3px 3px rgba(50, 50, 50, 0.75));
 }
-.links h4 {
+.links h2 {
   /*color: rgb(45,57,64);*/
     color: white;
   font-size: 15px;
 }
 .links img {
   border: 1px solid white;
+}
+.links p {
+    color: rgb(45,57,64);
+    line-height: 18px;
 }
 
 /* content */
@@ -406,97 +401,12 @@ a {
 .content .scroll-view {
   height: 600px;
 }
-  
-/* information card */
-.crumbs {
-  padding: 4px 15px;
-  background-color: #EEE;
-}
+
 .information-card {
     padding: 24px 36px
 }
-.information-card h4 {
-  margin: 0 0 2px;
-  font-size: 19px;
-    font-weight: bold;
-  text-transform: uppercase;
-  color: black;
-  line-height: 23px;
-}
-.information-card .header {
-  margin-bottom: 10px;
-  border-bottom: 1px solid rgb(141,155,175);
-  overflow: auto;
-} 
-.information-card h4 {
-    float: left;
-}
-.information-card .info {
-  font-size: 12px;
-  color: rgb(141,155,175);
-  font-weight: bold;
-  float: left;
-  clear: left;
-}
-.information-card .link {
-  float: right;
-}
-.information-card .image {
-  max-width: 40%;
-  margin: 0 15px 15px 0;
-  float: left;
-}
-.information-card .image img {
-  width: 100%;
-}
-.information-card .properties {
-  float: left;
-  font-size: 16px;
-}
-.information-card .properties li {
-  padding-bottom: 10px;
-}
-.information-card .properties label {
-  color: #999;
-  display: block;
-  font-size: 12px;
-}
-.information-card a {
-  color: rgb(65,146,183);
-}  
-.information-card .description {
-  clear: both;
-  font-size: 16px;
-  line-height: 24px;
-}
-/* browser */
-.browser {
-  height: 100%;
-}
-.browser iframe {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  padding-top: 30px;
-  border: none;
-  overflow: auto;
-}
-.browser header {
-  background-color: rgb(65,146,183);
-  margin: 0;
-  padding: 2px 8px;
-  font-size: 12px;
-  font-weight: bold;
-  color: white;
-  line-height: 28px;
-  position: relative;
-  z-index: 13;
-}
-.browser .close {
-  float: right;
-}
+
+
 
 /* entity slider */
 .entity-bar {
@@ -517,23 +427,23 @@ a {
     font-weight: bold;
     box-sizing: border-box;
 }
-.entity.active {
+.entity-list .entity.active {
     border: 4px solid rgb(36,146,185);
     margin-top: -2px;
     height: 89px;
     width: 119px;
     overflow: hidden;
 }
-.entity.active .title {
+.entity-list .entity.active .title {
     height: 27px;
     width: 111px;
     overflow: hidden;
 }
-.entity img {
+.entity-list .entity img {
     height: 91px;
     width: 123px;
 }
-.entity .title {
+.entity-list .entity .title {
     position: absolute;
     bottom: 0;
     height: 35px;
@@ -546,18 +456,80 @@ a {
 }
 
 .entity-slider {
+    position: absolute;
+    bottom: 0;
+    top: 103px; /* entity slider compensation */
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
 }
-.entity-slider .information-card {
-    margin: 15px;
+
+.entity-slide {
+    height: 100%;
     overflow: auto;
+    padding: 15px 15px 0 15px;
+    box-sizing: border-box;
+}
+.entity-slide .row,
+.entity-slide .col {
+    height: 100%;
+}
+.entity-slide .box {
     background-color: rgba(95,109,105,0.6);
-  border-bottom: 1px solid rgb(100,114,124);
+    border: 1px solid rgb(100,114,124);
+    padding: 15px;
+    box-sizing: border-box;
 }
-.entity-slider .information-card . {
+.entity-slide .image-wrapper {
+    height: 75%;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+}
+.entity-slide .box.image {
+    padding: 0;
+    height: 100%;
+}
+.entity-slide .box.title {
+    height: 25%;
+    overflow: hidden;
+}
+.entity-slide .left {
+    margin-right: 15px;
+    box-sizing: border-box;
+}
+.entity-slide .image img {
+    width: 100%;
+    max-height: 100%;
+}
+.entity-slide h2 {
+    color: rgb(36,146,185);
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+.entity-slide .text {
+    height: 100%;
+    overflow: hidden;
+}
+.entity-slide .types {
+    margin: 0;
     color: rgb(170,184,194);
 }
-.entity-slider .information-card .description {
+.entity-slide .description {
     color: rgb(170,184,194);
+    font-size: 24px;
+    line-height: 32px;
+}
+.entity-slide .attributes {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 28px;
+}
+.entity-slide .attributes .value {
+    color: rgb(170,184,194);
+}
+.entity-slide .attributes .key {
+    color: rgb(36,146,185);
 }
 
 
