@@ -178,20 +178,6 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   function fetchArtwork(artwork) {
     return europeanaApi.get({id0: artwork.id0, id1: artwork.id1}).$promise.then(function (r) {
       console.log('got artwork ' + ++artworksCount);
-/*<<<<<<< HEAD
-      var content = {
-        title: [artwork.title],
-        thumb: [artwork.img],
-        url: [
-          {value: 'www.europeana.eu', uri: r.object.europeanaAggregation.edmLandingPage}
-        ]
-      };
-      _(r.object.proxies.reverse()).each(function (p) {
-        _(content).extend(p)
-      });
-      return content;
-    }).catch(angular.noop);
-=======*/
       return prepareArtwork(artwork, r);
     }).catch(angular.noop);
   }
@@ -241,7 +227,9 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       var url = entity.locator;
       promises.push(
         fetchEntity(url).then(function(attrs) {
-          aboutDimension.items.push(prepareEntity(entity, attrs));
+          if(attrs&&attrs.label) {
+            aboutDimension.items.push(prepareEntity(entity, attrs));
+          }
         })
       )
     });
@@ -251,7 +239,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
 
   var entitiesCount = 0;
   function fetchEntity(url) {
-    return entityProxy.getList({urls: angular.toJson([url])}).$promise.then(function (res) {
+    return entityProxy.get({url: url}).$promise.then(function (res) {
       console.log('got entity ' + ++entitiesCount);
       return res[url];
     }).catch(angular.noop);
