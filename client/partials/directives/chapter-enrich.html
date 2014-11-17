@@ -11,7 +11,14 @@
 
   <div class="col col-75 content">
     <ion-scroll direction="y">
-      <div class="crumbs" ng-if="crumb.length > 1">
+      <information-card content="content"></information-card>
+    </ion-scroll>
+  </div>
+
+</div>
+
+<!--
+    <div class="crumbs" ng-if="crumb.length > 1">
          <span ng-repeat="c in crumb">
            <span ng-if="!$last">
              <a ng-click="setAbout(c)">{{c.value}}</a>
@@ -19,8 +26,4 @@
            </span>
          </span>
       </div>
-      <information-card content="content" navigate="setAbout"></information-card>
-    </ion-scroll>
-  </div>
-
-</div>
+      -->

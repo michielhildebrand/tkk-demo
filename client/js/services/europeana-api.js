@@ -7,10 +7,11 @@ function europeanaApiResource($resource, Config) {
     {
       search: {
         method: 'GET',
-        url: Config.EUROPEANA_API + '/search.json?query=:query&wskey=:wskey',
+        url: Config.EUROPEANA_API + '/search.json?query=:query&wskey=:wskey&rows=:limit',
         params: {
           query: '@query',
-          wskey: 'hb8sGDBPe'
+          wskey: 'hb8sGDBPe',
+          limit: '@limit'
         }
       },
       get: {

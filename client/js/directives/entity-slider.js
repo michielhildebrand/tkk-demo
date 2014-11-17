@@ -12,9 +12,10 @@ function entitySliderDirective($log, entityProxy, Model, $ionicSlideBoxDelegate)
 
       scope.$watch(
         function () {
-          return Model.getChapter()
+          return Model.getChapter();
         },
         function (newChapter) {
+          console.log(newChapter);
           if (newChapter != null && newChapter.fragments != null) {
             setEntityContent(newChapter.fragments);
           }
@@ -34,28 +35,7 @@ function entitySliderDirective($log, entityProxy, Model, $ionicSlideBoxDelegate)
       );
 
       function setEntityContent(entities) {
-        /*var urls = _.chain(entities)
-          .filter(function (e) {
-            return e.locator;
-          })
-          .sortBy(function (e) {
-            return e.startTime;
-          })
-          .map(function (e) {
-            return e.locator;
-          })
-          .value();
-
-        entityProxy.getList({urls: angular.toJson(urls)}, function (res) {
-          scope.entities = [];
-          _(urls).each(function(url) {
-            scope.entities.push(res[url]);
-          });
-          debug('Loaded ' + scope.entities.length + ' entities.');
-          $ionicSlideBoxDelegate.update();
-        });*/
-
-        scope.entities = tempEntities;
+        scope.entities = entities;
         debug('Loaded ' + scope.entities.length + ' entities.');
         $ionicSlideBoxDelegate.update();
       }

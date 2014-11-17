@@ -139,7 +139,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   function searchArtworks(q, dimension) {
     var deferred = $q.defer();
 
-    europeanaApi.search({query: q}, function (r) {
+    europeanaApi.search({query: q, limit:3}, function (r) {
       if (r.itemsCount > 0) {
         console.log(r.itemsCount + ' artworks for query ' + q);
         angular.forEach(r.items, function (item, itemIdx) {
@@ -193,11 +193,19 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
   function fetchChapterEntities(ch) {
     var promises = [];
 
+    var aboutDimension = {
+      id: 'about',
+      title: 'About',
+      type: 'entity',
+      items: []
+    };
+    ch.dimensions.push(aboutDimension);
+
     angular.forEach(ch.fragments, function (entity) {
       var url = entity.locator;
       promises.push(
         fetchEntity(url).then(function(attrs) {
-          entity.attributes = attrs;
+          aboutDimension.items.push(prepareEntity(entity, attrs));
         })
       )
     });
@@ -211,6 +219,41 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       console.log('got entity ' + ++entitiesCount);
       return res[url];
     })
+  }
+
+  function prepareEntity(e, as) {
+    var entity = _(e).clone();
+    // must have attributes
+    if(as.label && as.label.length>0) {
+      entity.title = as.label[0].value;
+    }
+    entity.image = (as.thumb && as.thumb.length>0) ? as.thumb[0] : null;
+    entity.description = (as.comment && as.comment.length>0) ? as.comment[0].value : "";
+    entity.types = (as.type && as.type.length>0) ? as.type : [];
+    entity.url = {label:'Wikipedia', value:entity.locator};
+
+    // the remaining are attributes
+    entity.attributes = {};
+    _(as).forEach(function(value,key) {
+      if (!_(['label','thumb', 'comment','type']).contains(key)) {
+        if( (Array.isArray(value) && value.length > 0) || value != '') {
+          entity.attributes[key] = cleanEntityDate(key, value);
+        }
+      }
+    });
+    return entity;
+  }
+
+  function cleanEntityDate(propName, props) {
+    //TODO: we need are more generic solution to detect date
+    var dateProps = ['birthDate', 'deathDate', 'activeSince'];
+    if (_(dateProps).contains(propName)) {
+      props = _(props).map(function(prop) {
+        var i = prop.indexOf('+');
+        return prop.substring(0, i);
+      });
+    }
+    return props;
   }
 
 
@@ -233,8 +276,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       //if (ch.dimensions == null) ch.dimensions = [];
 
       promises.push(fetchChapterEntities(ch));
-      promises.push(fetchChapterArtworks(ch));
-      promises.push(fetchChapterBackground(ch));
+      //promises.push(fetchChapterArtworks(ch));
+      //promises.push(fetchChapterBackground(ch));
     });
 
     console.log(promises);

@@ -112,7 +112,6 @@ function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Model
          }*/
 
         var labelValue = e.label.value.substring(e.label.value.indexOf(':') + 1).trim();
-        console.log(labelValue);
 
         if (startTime > chapter.startTime && endTime <= chapter.endTime) {
           chapter.fragments.push({

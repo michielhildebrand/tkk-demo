@@ -7,8 +7,7 @@ function dimensionListDirective($log, Model) {
     restrict: 'E',
     scope: {
       items: '=',
-      type: '=',
-      linked: '='
+      type: '='
     },
     require: '^chapterEnrich',
     replace: false,
@@ -23,10 +22,10 @@ function dimensionListDirective($log, Model) {
         if (e != null) scope.nav(e, true);
       });
 
-      scope.nav = function (e, linked) {
+      scope.nav = function (e) {
         selected = e;
-        debug('Navigate to ' + JSON.stringify(e));
-        chapterEnrichCtrl.setContent({content:e, type:scope.type}, linked);
+        debug('Navigate to ' + JSON.stringify(e.title));
+        chapterEnrichCtrl.setContent({item:e, type:scope.type});
       };
 
       function debug(msg) {

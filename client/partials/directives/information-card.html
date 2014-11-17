@@ -3,22 +3,22 @@
 	<!-- Entity -->
 	<div class="entity" ng-swith-when="entity || europeana">
 		<div class="header">
-			<h2 ng-if="title">{{title}}</h2>
-			<div class="info" ng-if="subtitle">
-				{{subtitle}}
+			<h2 ng-if="item.title">{{item.title}}</h2>
+			<div class="info" ng-if="item.types">
+				<span ng-repeat="type in item.types | filter : '!resource'">{{type}}<span ng-hide="$last">, </span></span>
 			</div>
-			<div class="link" ng-if="url">
-				<a ng-click="toggleExternalUrl(url.value)">Source: {{url.label}}</a>
+			<div class="link" ng-if="item.url">
+				<a ng-click="toggleExternalUrl(item.url.value)">Source: {{item.url.label}}</a>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col col-33 image">
-				<img visible-on-load ng-src="{{image}}" title="{{title}}" alt="{{title}}"/>
+				<img visible-on-load ng-src="{{item.image}}" title="{{item.title}}" alt="{{item.title}}"/>
 			</div>
 			<div class="col text">
-				<p class="description" ng-if="description" ng-bind-html="description"></p>
-				<ul class="attributes" ng-if="attributes">
+				<p class="description" ng-if="item.description" ng-bind-html="item.description"></p>
+				<ul class="attributes" ng-if="item.attributes">
 
 					<!-- templates -->
 					<li ng-if="template.birthDate">
@@ -34,7 +34,7 @@
 						</span>
 					</li>
 
-					<li ng-repeat="(key, values) in attributes">
+					<li ng-repeat="(key, values) in item.attributes | rawAttribute">
 						<span class="key">{{key}}: </span>
 						<span class="value" ng-repeat="v in values">
 							<a ng-click="nav(v.uri)" ng-if="v.hasOwnProperty('uri')">{{v.value}}</a>
