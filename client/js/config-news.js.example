@@ -33,6 +33,8 @@ angular.module('Config', []).constant('Config', {
 
   synchronize_model: true,
 
+  lookupMode: true,
+
   springfield_ip: window.location.hostname,
   springfield_port: window.location.port,
   springfield_app: 'news',
