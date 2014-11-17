@@ -111,10 +111,9 @@ function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Model
          return chapter;
          }*/
 
-        var labelValue = e.label.value.substring(e.label.value.indexOf(':') + 1).trim();
-        console.log(labelValue);
-
         if (startTime > chapter.startTime && endTime <= chapter.endTime) {
+          var labelValue = e.label.value.substring(e.label.value.indexOf(':') + 1).trim();
+
           chapter.fragments.push({
             title: labelValue,
             "locator": e.entity.value,
@@ -172,6 +171,7 @@ function videoAdminCtrl($scope, $stateParams, linkedtvSparql, $log, Model, Model
         var dimension = {id: 'video', title: 'Related videos'};
         chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
+        // TODO background enrichment commented out for now
 //        linkedtvSparql.getSparqlResults({query:enrichmentQuery('Webpage')}, function (res) {
 //            var dimension = {id:'background',title:'Background'};
 //            chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);

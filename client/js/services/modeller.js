@@ -112,7 +112,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       } else {
         return null;
       }
-    });
+    }).catch(angular.noop);
   }
 
 
@@ -186,7 +186,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
         _(content).extend(p)
       });
       return content;
-    })
+    }).catch(angular.noop);
   }
 
 
@@ -210,7 +210,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     return entityProxy.getList({urls: angular.toJson([url])}).$promise.then(function (res) {
       console.log('got entity ' + ++entitiesCount);
       return res[url];
-    })
+    }).catch(angular.noop);
   }
 
 
