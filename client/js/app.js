@@ -43,6 +43,7 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'Tracker',
   'ContentFiltering',
   'DocumentProxy',
+  'EditorTool',
 
   'Modeller'
 ]);

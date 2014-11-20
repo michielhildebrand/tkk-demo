@@ -14,7 +14,7 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
         PREFIX nsa: <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#> \
         PREFIX oa: <http://www.w3.org/ns/oa#> \
         PREFIX prov: <http://www.w3.org/ns/prov#> \
-        SELECT DISTINCT ?chapter ?start ?end ?label \
+        SELECT DISTINCT ?chapter ?start ?end ?label ?poster \
         WHERE { \
             ?mediafragment ma:isFragmentOf <http://data.linkedtv.eu/media/' + $scope.videoId + '> . \
             ?annotation oa:hasTarget ?mediafragment . \
@@ -22,9 +22,10 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
             ?chapter a linkedtv:Chapter . \
             ?mediafragment nsa:temporalStart ?start . \
             ?mediafragment nsa:temporalEnd ?end . \
-            ?chapter rdfs:label ?label . ';
+            ?chapter rdfs:label ?label . \
+            OPTIONAL {?chapter linkedtv:hasPoster ?poster }';
     if (curated) {
-      query += '?annotation prov:wasAttributedTo <http://data.linkedtv.eu/organization/SV/EditorTool> . ';
+      query += '?annotation prov:wasAttributedTo <http://data.linkedtv.eu/organization/SV/EditorToolv2> . ';
     }
     query += '} ORDER BY ?start';
     return query;
@@ -62,14 +63,13 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
         PREFIX oa: <http://www.w3.org/ns/oa#> \
         PREFIX dc: <http://purl.org/dc/elements/1.1/> \
         PREFIX linkedtv: <http://data.linkedtv.eu/ontologies/core#> \
-        SELECT ?url ?type ?source ?start ?end\
+        SELECT ?url ?type ?start ?end\
         WHERE { \
             ?mediafragment a ma:MediaFragment . \
             ?mediafragment ma:isFragmentOf <http://data.linkedtv.eu/media/' + $scope.videoId + '> . \
             ?annotation oa:hasTarget ?mediafragment . \
             ?annotation oa:hasBody ?item . \
             ?item ma:locator ?url . \
-            ?item dc:source ?source . \
             ?mediafragment nsa:temporalStart ?start . \
             ?mediafragment nsa:temporalEnd ?end .';
     if (curated) {
@@ -138,6 +138,7 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
       chapter.dimensions.push({
         id: dimension.id,
         title: dimension.title,
+        type: dimension.type,
         items: items
       });
       var i = 0;
@@ -151,11 +152,11 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
         /*else if (startTime > chapter.endTime) {
          return chapter;
          }*/
-        else if (startTime > chapter.startTime && endTime <= chapter.endTime) {
+        else if (startTime+2000 >= chapter.startTime && endTime-2000 <= chapter.endTime) {
           i++;
           items.push({
-            "url": e.url.value,
-            "source": e.source.value
+            "url": e.url.value
+            //"source": e.source.value
           })
         }
       });
@@ -165,36 +166,37 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
 
   linkedtvSparql.getSparqlResults({query: chapterQuery(true)}, function (res) {
     var chapters = chapterMap(res.results.bindings);
-    console.log(chapters);
+    console.log('Chapters: ', chapters);
 
     linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
       chapters = chapterEntityInclude(chapters, res.results.bindings);
 
-//      linkedtvSparql.getSparqlResults({query: enrichmentQuery('Video')}, function (res) {
-//        var dimension = {id: 'video', title: 'Related videos'};
-//        chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+      linkedtvSparql.getSparqlResults({query:enrichmentQuery('Background', true)}, function (res) {
+        var dimension = {id:'background',title:'Background',type:'article'};
+        console.log('Background articles: ', res.results.bindings);
+        chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
-        // TODO background enrichment commented out for now
-//        linkedtvSparql.getSparqlResults({query:enrichmentQuery('Webpage')}, function (res) {
-//            var dimension = {id:'background',title:'Background'};
-//            chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+          linkedtvSparql.getSparqlResults({query:enrichmentQuery('RelatedArtWork', true)}, function (res) {
+            console.log('Arrworks: ', res.results.bindings);
+            var dimension = {id: 'artwork', title: 'Related Works', type: 'europeana'};
+            chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
-        //$scope.chapters = angular.toJson(chapters, true);
+            /*linkedtvSparql.getSparqlResults({query: enrichmentQuery('Video')}, function (res) {
+              console.log('Videos: ', res.results.bindings);
+              var dimension = {id: 'video', title: 'Related videos', type:'video'};
+              chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+            */
+              $http.get(Config.seed).success(function (videos) {
+                var targetVideo = _(videos).find(function (v) {
+                  return v.id == $scope.videoId;
+                });
+                targetVideo.chapters = chapters;
 
-            $http.get(Config.seed).success(function(videos) {
-              var targetVideo = _(videos).find(function (v) {
-                return v.id == $scope.videoId;
+                Modeller.prepareTKK(targetVideo);
               });
-              console.log(targetVideo);
-              targetVideo.chapters = chapters;
-
-              Modeller.enrich(targetVideo);
-            });
-
-        //});
-
- //     });
-
+            //});
+          });
+       });
     });
   });
 

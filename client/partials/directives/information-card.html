@@ -11,7 +11,9 @@
 			</div>
 		</div>
 		<div class="link" ng-if="item.url">
-			<a ng-click="toggleExternalUrl(item.url.value)">Source: {{item.url.label}}</a>
+			<a ng-click="toggleExternalUrl(item.url)" ng-if="type=='entity'">Wikipedia</a>
+			<a ng-click="toggleExternalUrl(item.url)" ng-if="type=='europeana'">Europeana</a>
+			<a ng-click="toggleExternalUrl(item.url)" ng-if="type=='article'">Original article</a>
 		</div>
 	</div>
 
@@ -61,7 +63,7 @@
 				<source ng-src="{{item.media.url}}">
 			</video>
 		</div>
-		<div class="text" ng-bind-html="item.text">
+		<div class="text" ng-bind-html="item.html">
 		</div>
 	</div>
 

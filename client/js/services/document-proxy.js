@@ -6,8 +6,10 @@ function documentProxyResource($resource, Config) {
   return $resource(Config.DOCUMENT_PROXY, { },
     {
       scrape: {
-        method: 'POST',
-        isArray: true
+        url: Config.DOCUMENT_PROXY + '?url=:url',
+        params: {
+          url: "@url"
+        }
       }
     }
   );

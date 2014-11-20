@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('Modeller', []).factory('Modeller',
-  ['$q', 'Model', 'europeanaApi', 'irApi', 'documentProxy', 'entityProxy', modeler]);
+  ['$q', 'Model', 'europeanaApi', 'irApi', 'documentProxy', 'entityProxy', 'editorTool', modeler]);
 
-function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
+function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, editorTool) {
 
   function extractMetadata(ch) {
     return _.chain(ch.fragments)
@@ -228,32 +228,6 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     return $q.all(promises);
   }
 
-  function fetchChapterAbout(ch) {
-    var promises = [];
-
-    var aboutDimension = {
-      id: 'about',
-      title: 'About',
-      type: 'entity',
-      items: []
-    };
-    ch.dimensions.push(aboutDimension);
-
-    angular.forEach(ch.fragments, function (entity) {
-      var url = entity.locator;
-      promises.push(
-        fetchEntity(url).then(function(attrs) {
-          if(attrs&&attrs.label) {
-            var newEntity = _(entity).clone();
-            aboutDimension.items.push(prepareEntity(newEntity, attrs));
-          }
-        })
-      )
-    });
-
-    return $q.all(promises);
-  }
-
   var entitiesCount = 0;
   function fetchEntity(url) {
     return entityProxy.get({url: url, lang:'de'}).$promise.then(function (res) {
@@ -326,10 +300,11 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
       console.log('Enriching chapter ' + ch.title);
 
       if (ch.dimensions == null) ch.dimensions = [];
+
       //promises.push(fetchChapterFragments(ch));
       promises.push(fetchChapterAbout(ch));
-      promises.push(fetchChapterArtworks(ch));
-      promises.push(fetchChapterBackground(ch));
+      //promises.push(fetchChapterArtworks(ch));
+      //promises.push(fetchChapterBackground(ch));
     });
 
     console.log(promises);
@@ -345,10 +320,141 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy) {
     )
   }
 
+  function prepareTKKVideo(v) {
+    var promises = [];
+
+    editorTool.get({id: v.id}, function(curatedData) {
+      console.log('curated data ', curatedData);
+
+      angular.forEach(v.chapters, function (ch, i) {
+
+        var aboutDimension = {
+          id: 'about',
+          title: 'About',
+          type: 'entity',
+          items: []
+        };
+        ch.dimensions.unshift(aboutDimension);
+
+        var curatedChapter = curatedData.chapters[i];
+        console.log('curated chapter', curatedChapter);
+        if(curatedChapter.dimensions.maintopic && curatedChapter.dimensions.maintopic.annotations.length>0) {
+          var artwork = prepareArtObject(curatedChapter.dimensions.maintopic.annotations[0]);
+          console.log('artwork', artwork);
+          aboutDimension.items.push(artwork);
+        }
+
+        promises.push(prepareAbout(ch, aboutDimension.items));
+
+        var background = _(ch.dimensions).find(function(d) {
+          return d.id == "background";
+        });
+        if(background) {
+          promises.push(prepareDocuments(background.items));
+        }
+        //promises.push(fetchChapterArtworks(ch));
+        //promises.push(fetchChapterBackground(ch));
+      });
+
+      $q.all(promises).then(
+        function () {
+          console.log("Video enriching done.");
+          console.log(v);
+          saveJsonFile(v);
+        },
+        function (errors) {
+          console.log("We've got some errors while enriching");
+        }
+      )
+
+    });
+  }
+
+  function prepareDocuments(items) {
+    var promises = [];
+
+    angular.forEach(items, function (item) {
+      promises.push(
+        fetchDocument(item).then(function(attrs) {
+          if(attrs) {
+            prepareDocument(item, attrs);
+          }
+        })
+      )
+    });
+
+    return $q.all(promises);
+  }
+
+  var documentCount = 0;
+  function fetchDocument(item) {
+    var source = new URL(item.url).hostname;
+    return documentProxy.scrape({url:item.url}).$promise.then(function (res) {
+      console.log('got document ' + ++documentCount);
+      return res;
+    }).catch(angular.noop);
+  }
+
+  function prepareDocument(item, as) {
+    var source = new URL(item.url).hostname;
+
+    console.log(item, as);
+    item.title = as.title;
+    item.url = item.url;
+    item.html = as.text;
+    item.author = as.author;
+    item.summary = as.summary;
+    item.source = source;
+    //article.thd = e.thd;
+    item.media = as.media;
+    return item;
+  }
+
+
+  function prepareAbout(ch, items) {
+    var promises = [];
+
+    angular.forEach(ch.fragments, function (entity) {
+      var url = entity.locator;
+      promises.push(
+        fetchEntity(url).then(function(attrs) {
+          if(attrs&&attrs.label) {
+            var newEntity = _(entity).clone();
+            items.push(prepareEntity(newEntity, attrs));
+          }
+        })
+      )
+    });
+
+    return $q.all(promises);
+  }
+
+  function prepareArtObject(as) {
+    var artwork = {};
+    artwork.title = as.label;
+    artwork.image = as.poster;
+    artwork.attributes = {};
+    _(as.template.properties).each(function(o) {
+      if(o.key!=="label" && o.value) {
+        if(o.value.uri) {
+          artwork.attributes[o.key] = [{uri: o.value.uri, value: o.value.label}];
+        } else {
+          artwork.attributes[o.key] = [o.value]
+        }
+
+      }
+    });
+    return artwork;
+  }
+
+
   return {
     enrich: function (v) {
       //takes the current video that the user is watching and enriches it
       enrichVideo(v);
+    },
+    prepareTKK: function(v) {
+      prepareTKKVideo(v);
     }
   };
 
