@@ -4,7 +4,7 @@
     <div ng-repeat="d in dimensions">
       <h3 ng-click="toggleDimension(d.id)" ng-bind="d.title"></h3>
       <ion-scroll direction="y" ng-show="dimension==d.id">
-        <dimension-list items="d.items" type="d.type" height="dimensionHeight"></dimension-list>
+        <dimension-list items="d.items" type="d.type" height="dimensionHeight" active="dimension==d.id"></dimension-list>
       </ion-scroll>
     </div>
   </div>
