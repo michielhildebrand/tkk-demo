@@ -192,7 +192,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     // must have attributes
     artwork.title = (e.dcTitle && 'def' in e.dcTitle) ? e.dcTitle.def[0] : e.title;
     artwork.url = {label: 'www.europeana.eu', value: as.object.europeanaAggregation.edmLandingPage};
-    artwork.image = e.img || null;
+    artwork.image = as.object.europeanaAggregation.edmPreview || null;
     artwork.source = e.dcSource ? e.dcSource.def[0] :
       (e.dcPublisher ? e.dcPublisher.def[0] : "");
     artwork.description = e.dcDescription ? e.dcDescription.def[0] : "";
@@ -208,6 +208,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
         }
       }
     });
+    console.log(artwork);
     return artwork;
   }
 
@@ -338,13 +339,14 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
         var curatedChapter = curatedData.chapters[i];
         console.log('curated chapter', curatedChapter);
-        if(curatedChapter.dimensions.maintopic && curatedChapter.dimensions.maintopic.annotations.length>0) {
-          var artwork = prepareArtObject(curatedChapter.dimensions.maintopic.annotations[0]);
-          console.log('artwork', artwork);
-          aboutDimension.items.push(artwork);
-        }
+        if(curatedChapter.dimensions.maintopic) {
+          _(curatedChapter.dimensions.maintopic.annotations).each(function(card) {
+            var entity = prepareCard(card);
+            console.log('artwork', entity);
+            aboutDimension.items.push(entity);
+          })
 
-        promises.push(prepareAbout(ch, aboutDimension.items));
+        }
 
         var background = _(ch.dimensions).find(function(d) {
           return d.id == "background";
@@ -352,8 +354,13 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
         if(background) {
           promises.push(prepareDocuments(background.items));
         }
-        //promises.push(fetchChapterArtworks(ch));
-        //promises.push(fetchChapterBackground(ch));
+
+        var artworks = _(ch.dimensions).find(function(d) {
+          return d.id == "artwork";
+        });
+        if(artworks) {
+          promises.push(prepareArtworks(artworks.items));
+        }
       });
 
       $q.all(promises).then(
@@ -410,6 +417,69 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     return item;
   }
 
+  function prepareArtworks(items) {
+    var promises = [];
+
+    angular.forEach(items, function (item) {
+      console.log('artwork ', item.url);
+      var pathname = new URL(item.url).pathname;
+      console.log(pathname);
+      if( pathname && pathname.substr(0,15) == '/portal/record/' ) {
+        var splittedId = pathname.split('/');
+        console.log(splittedId);
+        var id0 = splittedId[3];
+        var id1 = splittedId[4].split('.')[0];
+        var artwork = {id0: id0, id1: id1};
+        promises.push(
+          fetchEuropeana(artwork).then(function (attrs) {
+            if(attrs) {
+              prepareEuropeana(item, attrs);
+            }
+          })
+        )
+      }
+    });
+
+    return $q.all(promises);
+  }
+
+  function fetchEuropeana(artwork) {
+    return europeanaApi.get({id0: artwork.id0, id1: artwork.id1}).$promise.then(function (r) {
+      console.log('got artwork ' + ++artworksCount);
+      return r;
+    }).catch(angular.noop);
+  }
+
+  function prepareEuropeana(artwork, as) {
+    var e = {};
+    // flatten properties of all proxies to top level
+    _(as.object.proxies.reverse()).each(function (p) {
+      _(e).extend(p)
+    });
+
+    // must have attributes
+    artwork.title = (e.dcTitle && 'def' in e.dcTitle) ? e.dcTitle.def[0] : e.title;
+    artwork.url = {label: 'www.europeana.eu', value: as.object.europeanaAggregation.edmLandingPage};
+    artwork.image = as.object.europeanaAggregation.edmPreview || null;
+    artwork.source = e.dcSource ? e.dcSource.def[0] :
+      (e.dcPublisher ? e.dcPublisher.def[0] : "");
+    artwork.description = e.dcDescription ? e.dcDescription.def[0] : "";
+
+    // attributes dublin core
+    artwork.attributes = {};
+    _(e).forEach(function(value,key) {
+      if (!_(['dcTitle','dcSource','dcPublisher',
+          'dcDescription','dctermsProvenance','dcIdentifier']).contains(key)) {
+        if(key.substring(0,2)=='dc') {
+          var newKey = key.substring(2);
+          artwork.attributes[newKey] = value.def;
+        }
+      }
+    });
+    console.log(artwork);
+    return artwork;
+  }
+
 
   function prepareAbout(ch, items) {
     var promises = [];
@@ -429,22 +499,26 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     return $q.all(promises);
   }
 
-  function prepareArtObject(as) {
-    var artwork = {};
-    artwork.title = as.label;
-    artwork.image = as.poster;
-    artwork.attributes = {};
+  function prepareCard(as) {
+    var entity = {};
+    entity.title = as.label;
+    entity.image = as.poster || as.thumb;
+    entity.description = as.comment;
+    if(as.type) {
+      entity.types = as.type;
+    }
+    entity.attributes = {};
     _(as.template.properties).each(function(o) {
-      if(o.key!=="label" && o.value) {
+      if(o.value && !_(['label','thumb', 'comment','type']).contains(o.key)) {
         if(o.value.uri) {
-          artwork.attributes[o.key] = [{uri: o.value.uri, value: o.value.label}];
+          entity.attributes[o.key] = [{uri: o.value.uri, value: o.value.label}];
         } else {
-          artwork.attributes[o.key] = [o.value]
+          entity.attributes[o.key] = [o.value]
         }
 
       }
     });
-    return artwork;
+    return entity;
   }
 
 

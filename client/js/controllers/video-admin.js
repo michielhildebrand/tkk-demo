@@ -168,16 +168,16 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
     var chapters = chapterMap(res.results.bindings);
     console.log('Chapters: ', chapters);
 
-    linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
+    /*linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
       chapters = chapterEntityInclude(chapters, res.results.bindings);
-
+    */
       linkedtvSparql.getSparqlResults({query:enrichmentQuery('Background', true)}, function (res) {
         var dimension = {id:'background',title:'Background',type:'article'};
         console.log('Background articles: ', res.results.bindings);
         chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
           linkedtvSparql.getSparqlResults({query:enrichmentQuery('RelatedArtWork', true)}, function (res) {
-            console.log('Arrworks: ', res.results.bindings);
+            console.log('Artworks: ', res.results.bindings);
             var dimension = {id: 'artwork', title: 'Related Works', type: 'europeana'};
             chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
@@ -197,7 +197,7 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
             //});
           });
        });
-    });
+    //});
   });
 
   function debug(msg) {
