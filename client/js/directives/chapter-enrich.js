@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.chapter-enrich', []).directive('chapterEnrich', ['Config', 'Model', chapterEnrichDirective]);
+angular.module('app.chapter-enrich', []).directive('chapterEnrich', ['Model', chapterEnrichDirective]);
 
-function chapterEnrichDirective(Config, Model) {
+function chapterEnrichDirective(Model) {
   return {
     restrict: 'E',
     scope: {
@@ -23,7 +23,9 @@ function chapterEnrichDirective(Config, Model) {
         function (newChapter) {
           if (newChapter != null) {
             scope.dimensions = newChapter.dimensions;
-            scope.dimension = scope.dimensions[0].id;
+            if(scope.dimensions.length>0) {
+              scope.dimension = scope.dimensions[0].id;
+            }
             setHeight();
           }
         }

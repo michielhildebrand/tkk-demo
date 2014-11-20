@@ -26,16 +26,16 @@
 				<ul class="attributes" ng-if="item.attributes">
 
 					<!-- templates -->
-					<li ng-if="template.birthDate">
+					<li ng-if="item.attributes.birthDate">
 						<span class="key">Birth:</span>
-						<span class="value">{{template.birthDate[0] | date : 'd MMMM y'}}
-							<a ng-click="nav(template.birthPlace[0].uri)">{{template.birthPlace[0].value}}</a>
+						<span class="value">{{item.attributes.birthDate[0] | date : 'd MMMM y'}}
+							<a ng-click="nav(item.attributes.birthPlace[0].uri)">{{item.attributes.birthPlace[0].value}}</a>
 						</span>
 					</li>
-					<li ng-if="template.deathDate">
+					<li ng-if="item.attributes.deathDate">
 						<span class="key">Death:</span>
-						<span class="value">{{template.deathDate[0] | date : 'd MMMM y'}}
-							<a ng-click="nav(template.deathPlace[0].uri)">{{template.deathPlace[0].value}}</a>
+						<span class="value">{{item.attributes.deathDate[0] | date : 'd MMMM y'}}
+							<a ng-click="nav(item.attributes.deathPlace[0].uri)">{{item.attributes.deathPlace[0].value}}</a>
 						</span>
 					</li>
 

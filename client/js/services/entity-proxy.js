@@ -7,10 +7,10 @@ function entityProxyResource($resource, Config) {
     {
       get: {
         method: 'GET',
-        url: Config.ENTITY_PROXY + '?url=:loc&lang=:lang',
+        url: Config.ENTITY_PROXY + '?url=:url&lang=:lang',
         params: {
-          loc: "@loc",
-          lang: "nl"
+          url: "@url",
+          lang: "@lang"
         }
       },
       getList: {
@@ -18,7 +18,7 @@ function entityProxyResource($resource, Config) {
         url: Config.ENTITY_PROXY + '?urls=:urls&lang=:lang',
         params: {
           urls: "@urls",
-          lang: "nl"
+          lang: "@lang"
         }
       }
     }

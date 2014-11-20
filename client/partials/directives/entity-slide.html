@@ -3,35 +3,40 @@
 		<div class="col col-33 left">
 			<div class="image-wrapper">
 				<div class="box image">
-					<img visible-on-load ng-src="{{image}}" title="{{title}}" alt="{{title}}"/>
+					<img visible-on-load ng-src="{{entity.image}}" title="{{entity.title}}" alt="{{entity.title}}"/>
 				</div>
 			</div>
 			<div class="box title">
-				<h2>{{title}}</h2>
+				<h2 ng-bind-html="entity.title"></h2>
 			</div>
 
 		</div>
 		<div class="col text box">
-			<!--div class="types" ng-if="types">
-				<span ng-repeat="type in types">
-					{{type}}
-				</span>
-			</div-->
-			<p class="description" ng-if="description" ng-bind-html="description"></p>
-			<ul class="attributes" ng-if="attributes">
-				<li ng-repeat="(key, value) in attributes">
+			<p class="description" ng-if="entity.description" ng-bind-html="entity.description"></p>
+
+			<ul class="attributes" ng-if="entity.attributes">
+
+				<!-- templates -->
+				<li ng-if="entity.attributes.birthDate">
+					<span class="key">Birth:</span>
+						<span class="value">{{entity.attributes.birthDate[0] | date : 'd MMMM y'}}
+							<a ng-click="nav(entity.attributes.birthPlace[0].uri)">{{entity.attributes.birthPlace[0].value}}</a>
+						</span>
+				</li>
+				<li ng-if="entity.attributes.deathDate">
+					<span class="key">Death:</span>
+						<span class="value">{{entity.attributes.deathDate[0] | date : 'd MMMM y'}}
+							<a ng-click="nav(entity.attributes.deathPlace[0].uri)">{{entity.attributes.deathPlace[0].value}}</a>
+						</span>
+				</li>
+
+				<li ng-repeat="(key, values) in entity.attributes | rawAttribute">
 					<span class="key">{{key}}: </span>
-					<span class="value" ng-repeat="item in value">
-						<a ng-click="nav(item.uri)" ng-if="item.uri">
-							{{item.value}}
-						</a>
-						<span ng-if="item.value && !item.uri">
-							{{item.value}}
+						<span class="value" ng-repeat="v in values">
+							<span ng-if="v.hasOwnProperty('value')">{{v.value}}</span>
+							<span ng-if="!v.hasOwnProperty('value')">{{v}}</span>
+							<span ng-hide="$last">, </span>
 						</span>
-						<span ng-if="!item.value">
-							{{item}}
-						</span>
-					</span>
 				</li>
 			</ul>
 		</div>

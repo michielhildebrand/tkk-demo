@@ -17,7 +17,6 @@ function informationCardDirective($sce, $log) {
         if (newContent != null) {
           scope.type = newContent.type;
           scope.item = newContent.item;
-          console.log(scope.type);
         }
       });
 
@@ -41,8 +40,8 @@ informationCard.filter('rawAttribute', function() {
 
   return function( items ) {
     var filtered = {};
-    return _(items).forEach(function(value, key) {
-      if(!_(templateProps).contains(key)) {
+    _(items).forEach(function(value, key) {
+      if(! _.contains(templateProps, key) ) {
         filtered[key] = value;
       };
     });
