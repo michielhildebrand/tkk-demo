@@ -1,5 +1,3 @@
 <h4 ng-if="!light" ng-bind-html="chapter.title"></h4>
 <img class="item-image" ng-src="{{getShot()}}" alt="{{chapter.title}}">
-<button ng-click="bookmark($event)" class="bookmark button button-icon icon ion-bookmark"
-        ng-class="{'selected': bookmarkStatus}">
-</button>
+<bookmark video="video" chapter="chapter"></bookmark>

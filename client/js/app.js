@@ -25,6 +25,7 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'app.chapter-related',
   'app.chapter-history',
   'app.bookmarks',
+  'app.bookmark',
   'app.information-card',
   'app.entity-slider',
   'app.entity-slide',
