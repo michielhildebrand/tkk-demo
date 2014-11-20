@@ -68,14 +68,16 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Model
             ?mediafragment ma:isFragmentOf <http://data.linkedtv.eu/media/' + $scope.videoId + '> . \
             ?annotation oa:hasTarget ?mediafragment . \
             ?annotation oa:hasBody ?item . \
-            ?annotation oa:motivatedBy oa:linking . \
-            ?item dc:type linkedtv:' + type + ' . \
             ?item ma:locator ?url . \
             ?item dc:source ?source . \
             ?mediafragment nsa:temporalStart ?start . \
             ?mediafragment nsa:temporalEnd ?end .';
     if (curated) {
-      query += '?annotation prov:wasAttributedTo <http://data.linkedtv.eu/organization/SV/EditorTool> . ';
+      query += '?annotation prov:wasAttributedTo <http://data.linkedtv.eu/organization/SV/EditorToolv2> . ';
+      query += '?annotation oa:motivatedBy ?motivation . FILTER (?motivation = linkedtv:'+type+') .';
+    } else {
+      query += '?annotation oa:motivatedBy oa:linking . ';
+      query += '?item dc:type linkedtv:' + type + '.';
     }
     query += '} ORDER BY ?start';
 
