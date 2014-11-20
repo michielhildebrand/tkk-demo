@@ -52,7 +52,9 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
       );
 
       scope.$watch('paused', function () {
-          hideControls();
+          if (!Model.isBeaming()) {
+            hideControls();
+          }
         }
       );
 
