@@ -51,7 +51,7 @@ def fetch_article(url):
   try:
     a.nlp();
   except Exception:
-    exc traceback.format_exc()
+    exc = traceback.format_exc()
     print "NLP error: " + exc
 
   if a.summary:
