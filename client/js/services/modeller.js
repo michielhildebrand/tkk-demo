@@ -459,7 +459,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
     // must have attributes
     artwork.title = (e.dcTitle && 'def' in e.dcTitle) ? e.dcTitle.def[0] : e.title;
-    artwork.url = {label: 'www.europeana.eu', value: as.object.europeanaAggregation.edmLandingPage};
+    artwork.url = as.object.europeanaAggregation.edmLandingPage;
     artwork.image = as.object.europeanaAggregation.edmPreview || null;
     artwork.source = e.dcSource ? e.dcSource.def[0] :
       (e.dcPublisher ? e.dcPublisher.def[0] : "");
@@ -472,7 +472,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
           'dcDescription','dctermsProvenance','dcIdentifier']).contains(key)) {
         if(key.substring(0,2)=='dc') {
           var newKey = key.substring(2);
-          artwork.attributes[newKey] = value.def;
+          artwork.attributes[newKey] = _(value.def).uniq();
         }
       }
     });
