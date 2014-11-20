@@ -6,16 +6,11 @@ from lxml.html import clean
 from newspaper import Article
 
 
-def fetch_article(data, dimension):
-    n = len(data)
-    new_data = []
+def fetch_article(url):
 
-    # loop through each article
-    for article in data:
         url = article["url"]
 
-        print str(n) + " " + url
-        n -= 1
+        print url
 
         a = Article(url=url, keep_article_html=True)
         a.download()
@@ -60,4 +55,4 @@ def fetch_article(data, dimension):
             if a.summary:
                 article_data["summary"] = a.summary
 
-    return new_data
+            return article_data
