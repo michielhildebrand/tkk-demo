@@ -14,6 +14,7 @@ function informationCardDirective($sce, $log) {
     link: function (scope, element, attrs) {
 
       scope.$watch('content', function (newContent) {
+        scope.external = null;
         if (newContent != null) {
           scope.type = newContent.type;
           scope.item = newContent.item;
@@ -31,6 +32,15 @@ function informationCardDirective($sce, $log) {
 
       function debug(msg) {
         $log.debug('[Information Card (directive)] ' + msg)
+      }
+
+      scope.toggleExternalUrl = function(url) {
+        console.log('show: ', url);
+        if(url) {
+          scope.external = $sce.trustAsResourceUrl(url);
+        } else {
+          scope.external = null;
+        }
       }
     },
 

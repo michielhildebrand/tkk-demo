@@ -1,4 +1,4 @@
-<div class="information-card">
+<div class="information-card" ng-hide="external">
 
 	<div class="header">
 		<h2 ng-if="item.title">{{item.title}}</h2>
@@ -82,8 +82,8 @@
 </div>
 
 <div class="browser" ng-if="external">
-  <header ng-click="toggleExternalUrl()">{{externalUrl}}
+  <header ng-click="toggleExternalUrl()">{{external}}
     <button ng-click="toggleExternalUrl()" class="close button button-small button-icon icon light ion-ios7-close-outline"></button>
   </header>
-  <iframe ng-src="{{externalUrl}}"></iframe>
+  <iframe ng-src="{{external}}"></iframe>
 </div>

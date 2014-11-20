@@ -17,11 +17,12 @@ function dimensionListDirective($log, Model) {
       var selected = null;
 
       scope.$watch('active', function() {
-        console.log(scope.active);
-        if(scope.items.length>0) {
-          scope.nav(scope.items[0]);
-        } else {
-          scope.nav();
+        if(scope.active) {
+          if (scope.items.length > 0) {
+            scope.nav(scope.items[0]);
+          } else {
+            scope.nav();
+          }
         }
       });
 
