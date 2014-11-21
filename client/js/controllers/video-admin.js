@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('VideoAdminCtrl', []).controller('VideoAdminCtrl', ['$scope', '$stateParams', '$http', 'linkedtvSparql', '$log', 'Config', 'Modeller', videoAdminCtrl]);
+angular.module('VideoAdminCtrl', []).controller('VideoAdminCtrl', ['$scope', '$stateParams', '$http', '$q', 'linkedtvSparql', '$log', 'Config', 'Modeller', videoAdminCtrl]);
 
-function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Config, Modeller) {
+function videoAdminCtrl($scope, $stateParams, $http, $q, linkedtvSparql, $log, Config, Modeller) {
   $scope.curated = true;
   $scope.max = 10;
   $scope.videoId = $stateParams.videoId;
@@ -192,7 +192,10 @@ function videoAdminCtrl($scope, $stateParams, $http, linkedtvSparql, $log, Confi
                 });
                 targetVideo.chapters = chapters;
 
-                Modeller.prepareTKK(targetVideo);
+                var promises = Modeller.prepareTKK(targetVideo);
+                /*$q.all(promises).then(
+                  $scope.chapters = angular.toJson(targetVideo, true)
+                );*/
               });
             //});
           });

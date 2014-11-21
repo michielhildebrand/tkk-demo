@@ -372,7 +372,9 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
         function (errors) {
           console.log("We've got some errors while enriching");
         }
-      )
+      );
+
+      return ($q.all(promises));
 
     });
   }
@@ -424,7 +426,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
       console.log('artwork ', item.url);
       var pathname = new URL(item.url).pathname;
       console.log(pathname);
-      if( pathname && pathname.substr(0,15) == '/portal/record/' ) {
+      if( pathname && /portal\/record/.test(pathname) ) {
         var splittedId = pathname.split('/');
         console.log(splittedId);
         var id0 = splittedId[3];
@@ -469,7 +471,9 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     artwork.attributes = {};
     _(e).forEach(function(value,key) {
       if (!_(['dcTitle','dcSource','dcPublisher',
-          'dcDescription','dctermsProvenance','dcIdentifier']).contains(key)) {
+          'dcDescription','dctermsProvenance','dcIdentifier','dcLanguage']).contains(key) &&
+          !/dcterms/.test(key)
+      ) {
         if(key.substring(0,2)=='dc') {
           var newKey = key.substring(2);
           artwork.attributes[newKey] = _(value.def).uniq();
