@@ -52,6 +52,16 @@
     font-size: 16px;
     line-height: 24px;
 }
+.information-card .article .media {
+    width:100%;
+    max-height: 400px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
 .information-card .article .media img {
-    max-width: 100%;
+    width: 100%;
+}
+
+.information-card .article .text img {
+    display: none;
 }
