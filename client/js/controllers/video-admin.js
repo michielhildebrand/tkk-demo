@@ -164,9 +164,19 @@ function videoAdminCtrl($scope, $stateParams, $http, $q, linkedtvSparql, $log, C
     });
   }
 
+  function saveJsonFile(v) {
+    var blob = new Blob([JSON.stringify(v)], {type: "application/json"});
+    var url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.download = v.id + ".json";
+    a.href = url;
+    a.click();
+  }
+
   linkedtvSparql.getSparqlResults({query: chapterQuery(true)}, function (res) {
     var chapters = chapterMap(res.results.bindings);
     console.log('Chapters: ', chapters);
+    //saveJsonFile(chapters);
 
     /*linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
       chapters = chapterEntityInclude(chapters, res.results.bindings);
@@ -180,6 +190,11 @@ function videoAdminCtrl($scope, $stateParams, $http, $q, linkedtvSparql, $log, C
             console.log('Artworks: ', res.results.bindings);
             var dimension = {id: 'artwork', title: 'Related Works', type: 'europeana'};
             chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+
+            linkedtvSparql.getSparqlResults({query: enrichmentQuery('RelatedChapter', true)}, function (res) {
+              console.log('Related chapters: ', res.results.bindings);
+              var dimension = {id: 'chapter', title: 'Related Chapters', type:'chapter'};
+              chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
             /*linkedtvSparql.getSparqlResults({query: enrichmentQuery('Video')}, function (res) {
               console.log('Videos: ', res.results.bindings);
@@ -197,7 +212,7 @@ function videoAdminCtrl($scope, $stateParams, $http, $q, linkedtvSparql, $log, C
                   $scope.chapters = angular.toJson(targetVideo, true)
                 );*/
               });
-            //});
+            });
           });
        });
     //});

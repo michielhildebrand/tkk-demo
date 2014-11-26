@@ -363,6 +363,13 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
         if(artworks) {
           promises.push(prepareArtworks(artworks.items));
         }
+
+        var relatedChapters = _(ch.dimensions).find(function(d) {
+          return d.id == "chapter";
+        });
+        if(artworks) {
+          promises.push(relatedChapters.items);
+        }
       });
 
       $q.all(promises).then(
