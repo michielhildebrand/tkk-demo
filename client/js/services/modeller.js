@@ -244,7 +244,9 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     }
     entity.image = (as.thumb && as.thumb.length>0) ? as.thumb[0] : null;
     entity.description = (as.comment && as.comment.length>0) ? as.comment[0].value : "";
-    entity.types = (as.type && as.type.length>0) ? as.type : [];
+    if(as.type) {
+      entity.types = Array.isArray(as.type) ? as.type : [as.type];
+    }
     entity.url = {label:'Wikipedia', value:entity.locator};
 
     // the remaining are attributes
@@ -458,6 +460,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     _(as.object.proxies.reverse()).each(function (p) {
       _(e).extend(p)
     });
+  console.log(e);
 
     // must have attributes
     artwork.title = (e.dcTitle && 'def' in e.dcTitle) ? e.dcTitle.def[0] : e.title;
@@ -465,7 +468,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     artwork.image = as.object.europeanaAggregation.edmPreview || null;
     artwork.source = e.dcSource ? e.dcSource.def[0] :
       (e.dcPublisher ? e.dcPublisher.def[0] : "");
-    artwork.description = e.dcDescription ? e.dcDescription.def[0] : "";
+    artwork.description = (e.dcDescription && e.dcDescription.def) ? e.dcDescription.def[0]
+      : ( (e.dcDescription && e.dcDescription.nl) ? e.dcDescription.nl[0] : "" );
 
     // attributes dublin core
     artwork.attributes = {};
