@@ -7,22 +7,18 @@ import org.springfield.lou.application.types.protocol.Serializer;
 import org.springfield.lou.screen.Screen;
 import org.springfield.lou.user.User;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class NewsApplication extends Html5Application {
 
-    private User user;
-    private VideoManager videoManager;
+    private User userBookmarks;
+
     private static final int MAX_CAPACITY = 100;
     private UserEvents userEvents;
 
-
     public NewsApplication(String id) {
         super(id);
-
-        user = new User("User");
-        videoManager = new VideoManager();
+        userBookmarks = new User("UserBookmarks");
         userEvents = new UserEvents(MAX_CAPACITY);
     }
 
@@ -34,16 +30,11 @@ public class NewsApplication extends Html5Application {
     public void onNewScreen(Screen s) {
         loadContent(s, "ngproxy");
 
-        List<String> videoIds = Arrays.asList(s.getParameter("videos").split(","));
-        boolean loadCurated = Boolean.valueOf(s.getParameter("curated"));
-
         // TODO what's the difference between this put and putMsg below?
         //this.componentmanager.getComponent("video").put("app", "setVideo("+ choosenEpisode.getStreamUri() + ")");
         //this.componentmanager.getComponent("video").put("app", "setPoster("+ choosenEpisode.getStillsUri() +"/h/0/m/0/sec1.jpg)");
 
-        sendMsg(s, "video", videoManager.getVideos(videoIds, loadCurated));
-
-        sendMsg(s, "bookmark", user.getBookmarks());
+        sendMsg(s, "bookmark", userBookmarks.getBookmarks());
     }
 
     @Override
@@ -62,8 +53,8 @@ public class NewsApplication extends Html5Application {
                 propagate = false;
                 List<String> bookmarks = (List<String>) msg.getData();
                 //the client sends all the bookmarks every time, that is to avoid inconsistencies
-                user.getBookmarks().clear();
-                user.getBookmarks().addAll(bookmarks);
+                userBookmarks.getBookmarks().clear();
+                userBookmarks.getBookmarks().addAll(bookmarks);
             } else if (msg.getTarget().equals("tracker")) {
                 propagate = false;
                 userEvents.put(msg);

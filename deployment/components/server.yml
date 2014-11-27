@@ -11,9 +11,3 @@
   - name: Server | Deploy using Lou
     command: chdir=~/ mv smt_newsapp.war {{install_dir_springfield}}/lou/uploaddir
     tags: server
-
-  - name: Server | Copy curated json
-    copy: src={{root_dir}}/components/templates/server/curated-videos.json dest={{install_dir}}/curated-videos.json
-    tags:
-      - server
-      - curated

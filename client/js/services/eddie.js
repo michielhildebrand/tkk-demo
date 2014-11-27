@@ -15,8 +15,7 @@ function eddieService($log, Config) {
       lou_ip: Config.springfield_ip,
       lou_port: Config.springfield_port,
       app: Config.springfield_app,
-      fullapp: Config.springfield_fullapp.replace('{}', id),
-      appparams: 'videos= , &curated=true'
+      fullapp: Config.springfield_fullapp.replace('{}', id)
     });
     eddie.init();
     screenId = eddie.getScreenId().substring(eddie.getScreenId().lastIndexOf("/") + 1);
