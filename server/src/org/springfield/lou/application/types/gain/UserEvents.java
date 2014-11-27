@@ -60,34 +60,37 @@ public class UserEvents {
     private void signal(Message msg) {
         JsonElement element = deserializer.toJsonTree(msg.getData(), eventsType);
         List<Event> events = deserializer.fromJson(element, eventsType);
-        for (Event event : events) {
-            System.out.println("Track event = " + event);
-            String a = event.getAction();
-            if (a.equals("user_login")) {
-                tracker.user_login(event.getUser(), event.getScreen());
-            } else if (a.equals("user_logout")) {
-                tracker.user_logout(event.getUser(), event.getScreen());
-            } else if (a.equals("user_bookmark")) {
-                tracker.user_bookmark(event.getUser(), event.getId(), event.getScreen());
-            } else if (a.equals("player_play")) {
-                tracker.player_play(event.getScreen(), event.getId(), event.getTime().toString());
-            } else if (a.equals("player_pause")) {
-                tracker.player_pause(event.getScreen(), event.getId(), event.getTime().toString());
-            } else if (a.equals("player_stop")) {
-                tracker.player_stop(event.getScreen(), event.getId(), event.getTime().toString());
-            } else if (a.equals("player_enrich")) {
-                List<GAINObjectEntity> entities = getGainEntities(event.getId(), event.getTime());
-                if (entities.size() > 0) {
-                    tracker.updateEntities(entities);
+        try {
+            for (Event event : events) {
+                System.out.println("Track event = " + event);
+                String a = event.getAction();
+                String user = "/domain/linkedtv/user/" + event.getUser();
+                if (a.equals("user_login")) {
+                    tracker.user_login(user, event.getScreen());
+                } else if (a.equals("user_logout")) {
+                    tracker.user_logout(user, event.getScreen());
+                } else if (a.equals("user_bookmark")) {
+                    updateWithGainEntities(event.getId(), event.getTime());
+                    tracker.user_bookmark(user, event.getId(), event.getScreen());
+                } else if (a.equals("player_play")) {
+                    updateWithGainEntities(event.getId(), event.getTime());
+                    tracker.player_play(event.getScreen(), event.getId(), event.getTime().toString());
+                } else if (a.equals("player_pause")) {
+                    tracker.player_pause(event.getScreen(), event.getId(), event.getTime().toString());
+                } else if (a.equals("player_stop")) {
+                    tracker.player_stop(event.getScreen(), event.getId(), event.getTime().toString());
+                } else if (a.equals("player_enrich")) {
+                    updateWithGainEntities(event.getId(), event.getTime());
                     tracker.sendKeepAliveRequest(event.getTime().toString());
-                    entities.clear();
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    private List<GAINObjectEntity> getGainEntities(String videoId, Integer selectedTime) {
-        System.out.println("UserEvents.getGainEntities  - " + videoId + ", " + selectedTime);
+    private void updateWithGainEntities(String videoId, Integer selectedTime) {
+        System.out.println("UserEvents.updateWithGainEntities  - " + videoId + ", " + selectedTime);
 
         Video video = new Video(new Episode(videoId));
         Chapter selectedChapter = findChapter(video, selectedTime);
@@ -103,7 +106,7 @@ public class UserEvents {
             System.out.println("Chapter NOT found!");
         }
 
-        return entityList;
+        tracker.updateEntities(entityList);
     }
 
     private Chapter findChapter(Video v, Integer time) {

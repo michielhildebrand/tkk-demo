@@ -25,7 +25,7 @@ function tracker($interval, $log, Eddie, Config) {
     var eventsToSend = events;
     events = [];
     if (eventsToSend.length > 0) {
-      debug('Send events', eventsToSend);
+      debug('Send events: ' + JSON.stringify(eventsToSend));
       Eddie.putLou({target: 'tracker', data: eventsToSend});
     }
   }
