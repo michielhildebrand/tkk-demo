@@ -91,13 +91,17 @@ function videoAdminCtrl($scope, $stateParams, $http, $q, linkedtvSparql, $log, C
       var startTime = e.start.value * 1000,
         endTime = e.end.value * 1000;
 
-      return {
+      var chapter = {
         "id": id,
         "startTime": startTime,
         "endTime": endTime,
         "duration": endTime - startTime,
         "title": e.label.value
       };
+      if(e.poster) {
+        chapter.image = e.poster.value;
+      }
+      return chapter;
     });
   }
 
