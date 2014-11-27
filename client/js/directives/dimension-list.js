@@ -39,7 +39,9 @@ function dimensionListDirective($log, Model) {
 
       scope.nav = function (e) {
         selected = e;
-        debug('Navigate to ' + JSON.stringify(e.title));
+        if(e) {
+          debug('Navigate to ' + JSON.stringify(e.title));
+        }
         chapterEnrichCtrl.setContent({item:e, type:scope.type});
       };
 
