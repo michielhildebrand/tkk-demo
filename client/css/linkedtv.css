@@ -322,9 +322,13 @@ a {
 .chapters {
     /*background-color: rgb(45,57,64);*/
 }
-.chapters .item img {
-    display: none;
+.culture .chapters .item img {
+    display: block;
 }
+.chapters .item img {
+  display: none;
+}
+
 .chapters .item {
   border-width: 0 0 1px;
   border-style: solid;
