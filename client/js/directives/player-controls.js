@@ -6,9 +6,7 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
   return {
     restrict: 'E',
     replace: false,
-    scope: {
-      enrich: '='
-    },
+    scope: {},
     link: function (scope, element, attrs) {
       scope.play = true;
       scope.mute = false;
@@ -62,29 +60,6 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
           sendToLocalPlayer({action: 'play', time: currentTime});
         }
       };
-
-      scope.toggleEnrich = function () {
-        scope.enrich = !scope.enrich;
-        enrichUpdated();
-      };
-
-      scope.$watch('enrich', function (newVal, oldVal) {
-        if (newVal != oldVal) {
-          enrichUpdated();
-        }
-      });
-
-      function enrichUpdated() {
-        debug('Enrichment screen updated: ' + scope.enrich);
-        if (scope.enrich) {
-          Tracker.collect({action: 'player_enrich', id: Model.getVideo().id, time: currentTime});
-        }
-        if (!scope.beaming) {
-          if ((scope.enrich && scope.play) || (!scope.enrich && !scope.play)) {
-            scope.togglePlay();
-          }
-        }
-      }
 
       var currentTime = 0;
       var updateCurrentTime = function (t) {

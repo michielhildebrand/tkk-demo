@@ -14,7 +14,7 @@ function videoChapterDirective(Eddie, Model, Tracker) {
     link: function (scope, element, attrs) {
 
       scope.getShot = function () {
-        if(scope.chapter.image) {
+        if (scope.chapter.image) {
           return scope.chapter.image;
         }
         else if (scope.video && scope.video.shots) {

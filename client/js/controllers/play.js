@@ -60,6 +60,16 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
 
   $scope.setActiveMode = function (mode) {
     $scope.mode = mode;
+    if (!$scope.beaming) {
+      if (mode === 'watch') {
+        Tracker.collect({action: 'player_play', id: Model.getVideo().id, time: Model.getTime()});
+      } else {
+        Tracker.collect({action: 'player_pause', id: Model.getVideo().id, time: Model.getTime()});
+      }
+    }
+    if (mode === 'explore' || mode === 'lookup') {
+      Tracker.collect({action: 'player_enrich', id: Model.getVideo().id, time: Model.getTime()});
+    }
   };
 
   $scope.isActiveMode = function (mode) {
