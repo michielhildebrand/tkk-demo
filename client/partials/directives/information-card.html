@@ -67,7 +67,9 @@
 		</div>
 	</div>
 
-
+	<div class="article" ng-if="type=='chapter'">
+		<div ng-click="play(item.videoId, item.id)">{{item.videoId}}</div>
+	</div>
 	<!-- metadata
   <ul ng-if="metadata">
     <li ng-repeat="d in metadata"><a ng-click="nav(d)">{{d.value}}</a></li>

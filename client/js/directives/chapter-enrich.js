@@ -22,6 +22,13 @@ function chapterEnrichDirective(Model) {
         },
         function (newChapter) {
           if (newChapter != null) {
+
+            // hack to get video data for related chapters
+            var related = _(newChapter.dimensions).find(function(d) {return d.type=="chapter"});
+            if(related) {
+              setRelatedChapterVideos(related.items);
+            }
+
             scope.dimensions = newChapter.dimensions;
             if(scope.dimensions.length>0) {
               if(scope.dimension==null) {
@@ -32,6 +39,16 @@ function chapterEnrichDirective(Model) {
           }
         }
       );
+
+      function setRelatedChapterVideos(items) {
+        var videos = Model.getVideos();
+        _(items).each(function (item) {
+          item.video = _(videos).find(function (v) {
+            return v.id == item.videoId;
+          });
+          console.log(item, item.videoId, item.video);
+        })
+      }
 
       scope.toggleDimension = function (active) {
         if (scope.dimension == active) {

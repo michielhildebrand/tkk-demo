@@ -546,19 +546,16 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
       var query = chapterQuery(episodeId,start-30,end+30,false);
       //console.log(query);
       promises.push(linkedtvSparql.getSparqlResults({query: query}, function (res) {
-        //console.log(chapter, episodeId, start-30, end+30, res.results.bindings);
+        chapter.videoId = episodeId;
         if(res.results.bindings.length>0) {
           var relatedChapter = res.results.bindings[0];
           var url = relatedChapter.chapter.value;
-          var id = url.substr(url.lastIndexOf('/') + 1);
-          chapter.videoId = episodeId;
-          chapter.id = id;
+          var chapterId = url.substr(url.lastIndexOf('/') + 1);
+          chapter.id = chapterId;
           chapter.startTime = relatedChapter.start.value*1000;
           chapter.endTime = relatedChapter.end.value*1000;
           chapter.duration = chapter.endTime - chapter.startTime;
           chapter.title = relatedChapter.label.value;
-          console.log('related ',chapter);
-          return chapter;
         }
       }))
     });

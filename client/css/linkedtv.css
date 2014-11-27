@@ -141,6 +141,9 @@ a {
 .episode .bookmark.selected {
   display: block;
 }
+.chapter .desc {
+  display :none;
+}
 /* episodes */
 .episode {
   padding: 20px;
@@ -391,6 +394,12 @@ a {
 .links p {
     color: rgb(45,57,64);
     line-height: 18px;
+}
+.links .item.chapter .desc {
+  display: block;
+}
+.links .item.chapter .bookmark {
+  display: none;
 }
 
 /* content */

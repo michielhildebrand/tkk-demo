@@ -37,8 +37,6 @@ function dimensionListDirective($log, Model) {
         }
       });
 
-
-
       scope.nav = function (e) {
         selected = e;
         debug('Navigate to ' + JSON.stringify(e.title));

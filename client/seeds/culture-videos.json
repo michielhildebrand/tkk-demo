@@ -62,5 +62,12 @@
     "poster": "",
     "src": "http://openimages.eu/files/23/624974.23172.WEEKNUMMER741-HRE00016E93_757480_840000.mp4",
     "duration": 82000
+  },
+  {
+    "id": "2e1d24d1-4a13-400c-adcd-6f385307613e",
+    "title": "Militair Luchtvaartmuseum (Soesterberg);",
+    "src": "http://stream17.noterik.com/progressive/stream17/domain/linkedtv/user/avro/video/143/rawvideo/4/raw.mp4",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/143/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/143/shots/1/h/0/m/0/sec10.jpg"
   }
 ]
