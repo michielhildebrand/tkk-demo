@@ -518,8 +518,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     entity.title = as.label;
     entity.image = as.poster || as.thumb;
     entity.description = as.comment;
-    if(as.type) {
-      entity.types = as.type;
+     if(as.type) {
+      entity.types = Array.isArray(as.type) ? as.type : [as.type];
     }
     entity.attributes = {};
     _(as.template.properties).each(function(o) {
