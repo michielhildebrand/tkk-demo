@@ -2,9 +2,9 @@
 
 var informationCard = angular.module('app.information-card', []);
 
-informationCard.directive('informationCard', ['$sce', '$filter', '$log', informationCardDirective]);
+informationCard.directive('informationCard', ['$sce', '$filter','$state','Model','$log', informationCardDirective]);
 
-function informationCardDirective($sce, $log) {
+function informationCardDirective($sce, $filter, $state, Model, $log) {
   return {
     restrict: 'E',
     scope: {
@@ -41,7 +41,14 @@ function informationCardDirective($sce, $log) {
         } else {
           scope.external = null;
         }
-      }
+      };
+
+      scope.play = function (videoId, chapterId) {
+        console.log('play ', videoId, chapterId);
+        var id = 1;
+        $state.go('play', {user: Model.getUser(), videoId: videoId, idx: id});
+      };
+
     },
 
     templateUrl: 'partials/directives/information-card.html'

@@ -387,6 +387,70 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     });
   }
 
+  function prepareRBBVideo(v) {
+    var promises = [];
+
+    editorTool.get({id: v.id}, function(curatedData) {
+      //console.log('curated data ', curatedData);
+
+      angular.forEach(v.chapters, function (ch, i) {
+        ch.fragments = [];
+
+        var curatedChapter = curatedData.chapters[i];
+        console.log('curated chapter', curatedChapter);
+        if(curatedChapter.dimensions.maintopic) {
+          _(curatedChapter.dimensions.maintopic.annotations).each(function(card) {
+            var entity = prepareCard(card);
+            console.log('entity', entity);
+            ch.fragments.push(entity);
+          })
+        }
+
+        var background = _(ch.dimensions).find(function(d) {
+          return d.id == "background";
+        });
+        if(background) {
+          promises.push(prepareDocuments(background.items));
+        }
+
+        var othermedia = _(ch.dimensions).find(function(d) {
+          return d.id == "othermedia";
+        });
+        if(othermedia) {
+          promises.push(prepareDocuments(othermedia.items));
+        }
+
+        var current = _(ch.dimensions).find(function(d) {
+          return d.id == "current";
+        });
+        if(current) {
+          promises.push(prepareDocuments(current.items));
+        }
+
+        var relatedChapters = _(ch.dimensions).find(function(d) {
+          return d.id == "chapter";
+        });
+        if(relatedChapters) {
+          promises.push(prepareRelatedChapters(relatedChapters.items));
+        }
+      });
+
+      $q.all(promises).then(
+        function () {
+          console.log("Video enriching done.");
+          console.log(v);
+          saveJsonFile(v);
+        },
+        function (errors) {
+          console.log("We've got some errors while enriching");
+        }
+      );
+
+      return ($q.all(promises));
+
+    });
+  }
+
   function prepareDocuments(items) {
     var promises = [];
 
@@ -484,9 +548,11 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
           'dcDescription','dctermsProvenance','dcIdentifier','dcLanguage']).contains(key) &&
           !/dcterms/.test(key)
       ) {
-        if(key.substring(0,2)=='dc') {
-          var newKey = key.substring(2);
-          artwork.attributes[newKey] = _(value.def).uniq();
+        if(key.substring(0,2)=='dc' && value) {
+          if(value.def) {
+            var newKey = key.substring(2);
+            artwork.attributes[newKey] = _(value.def).uniq();
+          }
         }
       }
     });
@@ -518,12 +584,12 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     entity.title = as.label;
     entity.image = as.poster || as.thumb;
     entity.description = as.comment;
-    if(as.type) {
-      entity.types = as.type;
+     if(as.type) {
+      entity.types = Array.isArray(as.type) ? as.type : [as.type];
     }
     entity.attributes = {};
     _(as.template.properties).each(function(o) {
-      if(o.value && !_(['label','thumb', 'comment','type']).contains(o.key)) {
+      if(o.value && !_(['label','thumb', 'comment','type','poster']).contains(o.key)) {
         if(o.value.uri) {
           entity.attributes[o.key] = [{uri: o.value.uri, value: o.value.label}];
         } else {
@@ -546,19 +612,16 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
       var query = chapterQuery(episodeId,start-30,end+30,false);
       //console.log(query);
       promises.push(linkedtvSparql.getSparqlResults({query: query}, function (res) {
-        //console.log(chapter, episodeId, start-30, end+30, res.results.bindings);
+        chapter.videoId = episodeId;
         if(res.results.bindings.length>0) {
           var relatedChapter = res.results.bindings[0];
           var url = relatedChapter.chapter.value;
-          var id = url.substr(url.lastIndexOf('/') + 1);
-          chapter.videoId = episodeId;
-          chapter.id = id;
+          var chapterId = url.substr(url.lastIndexOf('/') + 1);
+          chapter.id = chapterId;
           chapter.startTime = relatedChapter.start.value*1000;
           chapter.endTime = relatedChapter.end.value*1000;
           chapter.duration = chapter.endTime - chapter.startTime;
           chapter.title = relatedChapter.label.value;
-          console.log('related ',chapter);
-          return chapter;
         }
       }))
     });
@@ -599,6 +662,9 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     },
     prepareTKK: function(v) {
       prepareTKKVideo(v);
+    },
+    prepareRBB: function(v) {
+      prepareRBBVideo(v);
     }
   };
 

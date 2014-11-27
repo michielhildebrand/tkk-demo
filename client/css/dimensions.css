@@ -54,12 +54,11 @@
 }
 .information-card .article .media {
     width:100%;
-    max-height: 400px;
     overflow: hidden;
     margin-bottom: 15px;
 }
 .information-card .article .media img {
-    width: 100%;
+    max-height: 500px;
 }
 
 .information-card .article .text img {
