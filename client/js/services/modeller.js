@@ -387,6 +387,70 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     });
   }
 
+  function prepareRBBVideo(v) {
+    var promises = [];
+
+    editorTool.get({id: v.id}, function(curatedData) {
+      //console.log('curated data ', curatedData);
+
+      angular.forEach(v.chapters, function (ch, i) {
+        ch.fragments = [];
+
+        var curatedChapter = curatedData.chapters[i];
+        console.log('curated chapter', curatedChapter);
+        if(curatedChapter.dimensions.maintopic) {
+          _(curatedChapter.dimensions.maintopic.annotations).each(function(card) {
+            var entity = prepareCard(card);
+            console.log('entity', entity);
+            ch.fragments.push(entity);
+          })
+        }
+
+        var background = _(ch.dimensions).find(function(d) {
+          return d.id == "background";
+        });
+        if(background) {
+          promises.push(prepareDocuments(background.items));
+        }
+
+        var othermedia = _(ch.dimensions).find(function(d) {
+          return d.id == "othermedia";
+        });
+        if(othermedia) {
+          promises.push(prepareDocuments(othermedia.items));
+        }
+
+        var current = _(ch.dimensions).find(function(d) {
+          return d.id == "current";
+        });
+        if(current) {
+          promises.push(prepareDocuments(current.items));
+        }
+
+        var relatedChapters = _(ch.dimensions).find(function(d) {
+          return d.id == "chapter";
+        });
+        if(relatedChapters) {
+          promises.push(prepareRelatedChapters(relatedChapters.items));
+        }
+      });
+
+      $q.all(promises).then(
+        function () {
+          console.log("Video enriching done.");
+          console.log(v);
+          saveJsonFile(v);
+        },
+        function (errors) {
+          console.log("We've got some errors while enriching");
+        }
+      );
+
+      return ($q.all(promises));
+
+    });
+  }
+
   function prepareDocuments(items) {
     var promises = [];
 
@@ -598,6 +662,9 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     },
     prepareTKK: function(v) {
       prepareTKKVideo(v);
+    },
+    prepareRBB: function(v) {
+      prepareRBBVideo(v);
     }
   };
 

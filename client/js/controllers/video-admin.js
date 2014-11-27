@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('VideoAdminCtrl', []).controller('VideoAdminCtrl', ['$scope', '$stateParams', '$http', '$q', 'linkedtvSparql', '$log', 'Config', 'Modeller', videoAdminCtrl]);
+angular.module('VideoAdminCtrl', []).controller('VideoAdminCtrl', ['$scope', '$stateParams', '$http', '$location', '$q', 'linkedtvSparql', '$log', 'Config', 'Modeller', videoAdminCtrl]);
 
-function videoAdminCtrl($scope, $stateParams, $http, $q, linkedtvSparql, $log, Config, Modeller) {
+function videoAdminCtrl($scope, $stateParams, $http, $location, $q, linkedtvSparql, $log, Config, Modeller) {
   $scope.curated = true;
   $scope.max = 10;
   $scope.videoId = $stateParams.videoId;
+  $scope.app = $location.search().app || 'culture';
 
   function chapterQuery(curated) {
     var query = '\
@@ -177,50 +178,99 @@ function videoAdminCtrl($scope, $stateParams, $http, $q, linkedtvSparql, $log, C
     a.click();
   }
 
-  linkedtvSparql.getSparqlResults({query: chapterQuery(true)}, function (res) {
-    var chapters = chapterMap(res.results.bindings);
-    console.log('Chapters: ', chapters);
-    //saveJsonFile(chapters);
+  if($scope.app=='culture') {
+    linkedtvSparql.getSparqlResults({query: chapterQuery(true)}, function (res) {
+      var chapters = chapterMap(res.results.bindings);
+      console.log('Chapters: ', chapters);
+      //saveJsonFile(chapters);
 
-    /*linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
-      chapters = chapterEntityInclude(chapters, res.results.bindings);
-    */
-      linkedtvSparql.getSparqlResults({query:enrichmentQuery('Background', true)}, function (res) {
-        var dimension = {id:'background',title:'Background',type:'article'};
+      /*linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
+       chapters = chapterEntityInclude(chapters, res.results.bindings);
+       */
+      linkedtvSparql.getSparqlResults({query: enrichmentQuery('Background', true)}, function (res) {
+        var dimension = {id: 'background', title: 'Background', type: 'article'};
         console.log('Background articles: ', res.results.bindings);
         chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
-          linkedtvSparql.getSparqlResults({query:enrichmentQuery('RelatedArtWork', true)}, function (res) {
-            console.log('Artworks: ', res.results.bindings);
-            var dimension = {id: 'artwork', title: 'Related Works', type: 'europeana'};
+        linkedtvSparql.getSparqlResults({query: enrichmentQuery('RelatedArtWork', true)}, function (res) {
+          console.log('Artworks: ', res.results.bindings);
+          var dimension = {id: 'artwork', title: 'Related Works', type: 'europeana'};
+          chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+
+          linkedtvSparql.getSparqlResults({query: enrichmentQuery('RelatedChapter', true)}, function (res) {
+            console.log('Related chapters: ', res.results.bindings);
+            var dimension = {id: 'chapter', title: 'Related Chapters', type: 'chapter'};
             chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
 
-            linkedtvSparql.getSparqlResults({query: enrichmentQuery('RelatedChapter', true)}, function (res) {
-              console.log('Related chapters: ', res.results.bindings);
-              var dimension = {id: 'chapter', title: 'Related Chapters', type:'chapter'};
-              chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
-
             /*linkedtvSparql.getSparqlResults({query: enrichmentQuery('Video')}, function (res) {
-              console.log('Videos: ', res.results.bindings);
-              var dimension = {id: 'video', title: 'Related videos', type:'video'};
-              chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
-            */
-              $http.get(Config.seed).success(function (videos) {
-                var targetVideo = _(videos).find(function (v) {
-                  return v.id == $scope.videoId;
-                });
-                targetVideo.chapters = chapters;
-
-                var promises = Modeller.prepareTKK(targetVideo);
-                /*$q.all(promises).then(
-                  $scope.chapters = angular.toJson(targetVideo, true)
-                );*/
+             console.log('Videos: ', res.results.bindings);
+             var dimension = {id: 'video', title: 'Related videos', type:'video'};
+             chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+             */
+            $http.get(Config.seed).success(function (videos) {
+              var targetVideo = _(videos).find(function (v) {
+                return v.id == $scope.videoId;
               });
+              targetVideo.chapters = chapters;
+
+              var promises = Modeller.prepareTKK(targetVideo);
+              /*$q.all(promises).then(
+               $scope.chapters = angular.toJson(targetVideo, true)
+               );*/
             });
           });
-       });
-    //});
-  });
+        });
+      });
+      //});
+    });
+  }
+  else if($scope.app=='news') {
+    linkedtvSparql.getSparqlResults({query: chapterQuery(true)}, function (res) {
+      var chapters = chapterMap(res.results.bindings);
+      console.log('Chapters: ', chapters);
+      //saveJsonFile(chapters);
+
+      /*linkedtvSparql.getSparqlResults({query: entityQuery()}, function (res) {
+       chapters = chapterEntityInclude(chapters, res.results.bindings);
+       */
+      linkedtvSparql.getSparqlResults({query: enrichmentQuery('Background', true)}, function (res) {
+        var dimension = {id: 'background', title: 'Hintergrund', type: 'article'};
+        console.log('Background: ', res.results.bindings);
+        chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+
+        linkedtvSparql.getSparqlResults({query: enrichmentQuery('OtherMedia', true)}, function (res) {
+          console.log('OtherMedia: ', res.results.bindings);
+          var dimension = {id: 'othermedia', title: 'Anderes Media', type: 'article'};
+          chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+
+          linkedtvSparql.getSparqlResults({query: enrichmentQuery('RelatedChapter', true)}, function (res) {
+            console.log('Related chapters: ', res.results.bindings);
+            var dimension = {id: 'chapter', title: 'Related Chapters', type: 'chapter'};
+            chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+
+            linkedtvSparql.getSparqlResults({query: enrichmentQuery('CurrentEvents')}, function (res) {
+             console.log('Aktuell: ', res.results.bindings);
+             var dimension = {id: 'current', title: 'Aktuell', type:'article'};
+             chapters = chapterEnrichmentInclude(chapters, dimension, res.results.bindings);
+
+            $http.get(Config.seed).success(function (videos) {
+              var targetVideo = _(videos).find(function (v) {
+                return v.id == $scope.videoId;
+              });
+              targetVideo.chapters = chapters;
+
+              var promises = Modeller.prepareRBB(targetVideo);
+              /*$q.all(promises).then(
+               $scope.chapters = angular.toJson(targetVideo, true)
+               );*/
+            });
+          });
+        });
+      });
+      });
+    });
+  }
+
 
   function debug(msg) {
     $log.debug('[Video Admin (ctrl)] ' + msg)
