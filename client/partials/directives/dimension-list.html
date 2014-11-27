@@ -24,6 +24,10 @@
       <p>{{item.source}}</p>
     </ion-item>
 
+    <!-- Chapter -->
+    <ion-item class="item item-thumbnail-left chapter" ng-switch-when="chapter">
+      <video-chapter video="item.videoId" chapter="item" light="true"></video-chapter>
+    </ion-item>
     <!-- Video -->
 
     <!-- Default -->

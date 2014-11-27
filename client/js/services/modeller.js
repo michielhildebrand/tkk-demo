@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('Modeller', []).factory('Modeller',
-  ['$q', 'Model', 'europeanaApi', 'irApi', 'documentProxy', 'entityProxy', 'editorTool', modeler]);
+  ['$q', 'Model', 'europeanaApi', 'irApi', 'documentProxy', 'entityProxy', 'editorTool', 'linkedtvSparql', modeler]);
 
-function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, editorTool) {
+function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, editorTool, linkedtvSparql) {
 
   function extractMetadata(ch) {
     return _.chain(ch.fragments)
@@ -327,7 +327,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     var promises = [];
 
     editorTool.get({id: v.id}, function(curatedData) {
-      console.log('curated data ', curatedData);
+      //console.log('curated data ', curatedData);
 
       angular.forEach(v.chapters, function (ch, i) {
 
@@ -347,7 +347,6 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
             console.log('artwork', entity);
             aboutDimension.items.push(entity);
           })
-
         }
 
         var background = _(ch.dimensions).find(function(d) {
@@ -367,8 +366,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
         var relatedChapters = _(ch.dimensions).find(function(d) {
           return d.id == "chapter";
         });
-        if(artworks) {
-          promises.push(relatedChapters.items);
+        if(relatedChapters) {
+          promises.push(prepareRelatedChapters(relatedChapters.items));
         }
       });
 
@@ -418,7 +417,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
     console.log(item, as);
     item.title = as.title;
-    item.url = item.url;
+    //item.url = item.url;
     item.html = as.text;
     item.author = as.author;
     item.summary = as.summary;
@@ -535,6 +534,62 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     });
     return entity;
   }
+
+  function prepareRelatedChapters(chapters) {
+    var promises = [];
+    _(chapters).forEach(function(chapter) {
+      var splittedId = chapter.url.split('#');
+      var episodeId = splittedId[0];
+      var times = splittedId[1].substr(2).split(',');
+      var start = parseInt(times[0]);
+      var end = parseInt(times[1]);
+      var query = chapterQuery(episodeId,start-30,end+30,false);
+      //console.log(query);
+      promises.push(linkedtvSparql.getSparqlResults({query: query}, function (res) {
+        //console.log(chapter, episodeId, start-30, end+30, res.results.bindings);
+        if(res.results.bindings.length>0) {
+          var relatedChapter = res.results.bindings[0];
+          var url = relatedChapter.chapter.value;
+          var id = url.substr(url.lastIndexOf('/') + 1);
+          chapter.videoId = episodeId;
+          chapter.id = id;
+          chapter.startTime = relatedChapter.start.value*1000;
+          chapter.endTime = relatedChapter.end.value*1000;
+          chapter.duration = chapter.endTime - chapter.startTime;
+          chapter.title = relatedChapter.label.value;
+          console.log('related ',chapter);
+          return chapter;
+        }
+      }))
+    });
+    return promises;
+  }
+
+  function chapterQuery(episodeId, start, end, curated) {
+    var query = '\
+        PREFIX linkedtv: <http://data.linkedtv.eu/ontologies/core#> \
+        PREFIX ma: <http://www.w3.org/ns/ma-ont#> \
+        PREFIX nsa: <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#> \
+        PREFIX oa: <http://www.w3.org/ns/oa#> \
+        PREFIX prov: <http://www.w3.org/ns/prov#> \
+        SELECT DISTINCT ?chapter ?start ?end ?label ?poster \
+        WHERE { \
+            ?mediafragment ma:isFragmentOf <http://data.linkedtv.eu/media/' + episodeId + '> . \
+            ?annotation oa:hasTarget ?mediafragment . \
+            ?annotation oa:hasBody ?chapter . \
+            ?chapter a linkedtv:Chapter . \
+            ?mediafragment nsa:temporalStart ?start . FILTER (?start > '+ start +') \
+            ?mediafragment nsa:temporalEnd ?end . FILTER (?end < '+ end +') \
+            ?chapter rdfs:label ?label . \
+            OPTIONAL {?chapter linkedtv:hasPoster ?poster }';
+    if (curated) {
+      query += '?annotation prov:wasAttributedTo <http://data.linkedtv.eu/organization/SV/EditorToolv2> . ';
+    }
+    query += '} ORDER BY ?start';
+    return query;
+  }
+
+
 
 
   return {
