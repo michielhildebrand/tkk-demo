@@ -484,9 +484,11 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
           'dcDescription','dctermsProvenance','dcIdentifier','dcLanguage']).contains(key) &&
           !/dcterms/.test(key)
       ) {
-        if(key.substring(0,2)=='dc') {
-          var newKey = key.substring(2);
-          artwork.attributes[newKey] = _(value.def).uniq();
+        if(key.substring(0,2)=='dc' && value) {
+          if(value.def) {
+            var newKey = key.substring(2);
+            artwork.attributes[newKey] = _(value.def).uniq();
+          }
         }
       }
     });
@@ -523,7 +525,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     }
     entity.attributes = {};
     _(as.template.properties).each(function(o) {
-      if(o.value && !_(['label','thumb', 'comment','type']).contains(o.key)) {
+      if(o.value && !_(['label','thumb', 'comment','type','poster']).contains(o.key)) {
         if(o.value.uri) {
           entity.attributes[o.key] = [{uri: o.value.uri, value: o.value.label}];
         } else {
