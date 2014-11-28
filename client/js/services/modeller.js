@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('Modeller', []).factory('Modeller',
-  ['$q', 'Model', 'europeanaApi', 'irApi', 'documentProxy', 'entityProxy', 'editorTool', 'linkedtvSparql', modeler]);
+  ['$q', 'europeanaApi', 'irApi', 'documentProxy', 'entityProxy', 'editorTool', 'linkedtvSparql', modeler]);
 
-function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, editorTool, linkedtvSparql) {
+function modeler($q, europeanaApi, irApi, documentProxy, entityProxy, editorTool, linkedtvSparql) {
 
   function extractMetadata(ch) {
     return _.chain(ch.fragments)
@@ -67,17 +67,21 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     var deferred = $q.defer();
 
     irApi.search({query: q, limit: 1}, function (irResp) {
-      var sources = _(_(irResp).keys()).filter(function(s) {return s.indexOf('$') == -1});
+      var sources = _(_(irResp).keys()).filter(function (s) {
+        return s.indexOf('$') == -1
+      });
       var posts = _.chain(sources)
-        .map(function(s) {
-          return _(irResp[s]).map(function(p) {return {source: s, post: p}})
+        .map(function (s) {
+          return _(irResp[s]).map(function (p) {
+            return {source: s, post: p}
+          })
         })
         .flatten()
         .value();
       var count = posts.length;
       console.log(count + ' articles for query ' + q);
       angular.forEach(posts, function (p, postIdx) {
-        scrapePost(p.source, p.post).then(function(article) {
+        scrapePost(p.source, p.post).then(function (article) {
           // if the promise is resolved with null we skip adding to the dimension
           if (article) dimension.push(article);
           if (postIdx == count - 1) {
@@ -101,7 +105,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     ];
     return documentProxy.scrape(scrapingDoc).$promise.then(function (docResp) {
       console.log('scraped post ' + ++postsCount);
-      if(docResp.length>0) {
+      if (docResp.length > 0) {
         return prepareArticle(post, docResp[0]);
       }
     }).catch(angular.noop);
@@ -110,7 +114,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
   function prepareArticle(e, as) {
     var article = {};
     article.title = as.title || e.micropost.title;
-    article.url = as.source ? {label:as.source.name, value:e.mediaUrl} : {label: e.mediaUrl, value:e.mediaUrl};
+    article.url = as.source ? {label: as.source.name, value: e.mediaUrl} : {label: e.mediaUrl, value: e.mediaUrl};
     article.text = as.text || e.text;
     article.source = as.source ? as.source.name : "";
     article.image = as.source ? as.source.thumb : null;
@@ -142,7 +146,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
   function searchArtworks(q, dimension) {
     var deferred = $q.defer();
 
-    europeanaApi.search({query: q, limit:3}, function (r) {
+    europeanaApi.search({query: q, limit: 3}, function (r) {
       if (r.itemsCount > 0) {
         console.log(r.itemsCount + ' artworks for query ' + q);
         angular.forEach(r.items, function (item, itemIdx) {
@@ -199,10 +203,10 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
     // attributes dublin core
     artwork.attributes = {};
-    _(e).forEach(function(value,key) {
-      if (!_(['dcTitle','dcSource','dcPublisher',
-          'dcDescription','dctermsProvenance','dcIdentifier']).contains(key)) {
-        if(key.substring(0,2)=='dc') {
+    _(e).forEach(function (value, key) {
+      if (!_(['dcTitle', 'dcSource', 'dcPublisher',
+        'dcDescription', 'dctermsProvenance', 'dcIdentifier']).contains(key)) {
+        if (key.substring(0, 2) == 'dc') {
           var newKey = key.substring(2);
           artwork.attributes[newKey] = value.def;
         }
@@ -218,8 +222,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     angular.forEach(ch.fragments, function (entity) {
       var url = entity.locator;
       promises.push(
-        fetchEntity(url).then(function(attrs) {
-          if(attrs&&attrs.label) {
+        fetchEntity(url).then(function (attrs) {
+          if (attrs && attrs.label) {
             prepareEntity(entity, attrs);
           }
         })
@@ -231,7 +235,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
   var entitiesCount = 0;
   function fetchEntity(url) {
-    return entityProxy.get({url: url, lang:'de'}).$promise.then(function (res) {
+    return entityProxy.get({url: url, lang: 'de'}).$promise.then(function (res) {
       console.log('got entity ' + ++entitiesCount);
       return res[url];
     }).catch(angular.noop);
@@ -239,25 +243,25 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
   function prepareEntity(entity, as) {
     // must have attributes
-    if(as.label && as.label.length>0) {
+    if (as.label && as.label.length > 0) {
       entity.title = as.label[0].value;
     }
-    entity.image = (as.thumb && as.thumb.length>0) ? as.thumb[0] : null;
-    entity.description = (as.comment && as.comment.length>0) ? as.comment[0].value : "";
-    if(as.type) {
+    entity.image = (as.thumb && as.thumb.length > 0) ? as.thumb[0] : null;
+    entity.description = (as.comment && as.comment.length > 0) ? as.comment[0].value : "";
+    if (as.type) {
       entity.types = Array.isArray(as.type) ? as.type : [as.type];
     }
-    entity.url = {label:'Wikipedia', value:entity.locator};
+    entity.url = {label: 'Wikipedia', value: entity.locator};
 
     // the remaining are attributes
     entity.attributes = {};
-    _(as).forEach(function(value,key) {
-      if (!_(['label','thumb', 'comment','type']).contains(key)) {
-        if( Array.isArray(value) && value.length>0) {
-          value = _(value).filter(function(v) {
+    _(as).forEach(function (value, key) {
+      if (!_(['label', 'thumb', 'comment', 'type']).contains(key)) {
+        if (Array.isArray(value) && value.length > 0) {
+          value = _(value).filter(function (v) {
             return v !== "" && v !== null;
           });
-          if(value.length > 0) {
+          if (value.length > 0) {
             entity.attributes[key] = _(cleanEntityDate(key, value)).uniq();
           }
         }
@@ -270,13 +274,13 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     //TODO: we need are more generic solution to detect date
     var dateProps = ['birthDate', 'deathDate', 'activeSince'];
     if (_(dateProps).contains(propName)) {
-      props = _(props).map(function(prop) {
+      props = _(props).map(function (prop) {
         var i = prop.indexOf('+');
-        if(i>0) {
-           prop = prop.substring(0, i);
+        if (i > 0) {
+          prop = prop.substring(0, i);
         }
-        var i = prop.indexOf('T');
-        if(i>0) {
+        i = prop.indexOf('T');
+        if (i > 0) {
           prop = prop.substring(0, i);
         }
         return prop
@@ -323,10 +327,11 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     )
   }
 
+
   function prepareTKKVideo(v) {
     var promises = [];
 
-    editorTool.get({id: v.id}, function(curatedData) {
+    editorTool.get({id: v.id}, function (curatedData) {
       //console.log('curated data ', curatedData);
 
       angular.forEach(v.chapters, function (ch, i) {
@@ -341,32 +346,32 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
         var curatedChapter = curatedData.chapters[i];
         console.log('curated chapter', curatedChapter);
-        if(curatedChapter.dimensions.maintopic) {
-          _(curatedChapter.dimensions.maintopic.annotations).each(function(card) {
+        if (curatedChapter.dimensions.maintopic) {
+          _(curatedChapter.dimensions.maintopic.annotations).each(function (card) {
             var entity = prepareCard(card);
             console.log('artwork', entity);
             aboutDimension.items.push(entity);
           })
         }
 
-        var background = _(ch.dimensions).find(function(d) {
+        var background = _(ch.dimensions).find(function (d) {
           return d.id == "background";
         });
-        if(background) {
+        if (background) {
           promises.push(prepareDocuments(background.items));
         }
 
-        var artworks = _(ch.dimensions).find(function(d) {
+        var artworks = _(ch.dimensions).find(function (d) {
           return d.id == "artwork";
         });
-        if(artworks) {
+        if (artworks) {
           promises.push(prepareArtworks(artworks.items));
         }
 
-        var relatedChapters = _(ch.dimensions).find(function(d) {
+        var relatedChapters = _(ch.dimensions).find(function (d) {
           return d.id == "chapter";
         });
-        if(relatedChapters) {
+        if (relatedChapters) {
           promises.push(prepareRelatedChapters(relatedChapters.items));
         }
       });
@@ -387,10 +392,11 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     });
   }
 
+
   function prepareRBBVideo(v) {
     var promises = [];
 
-    editorTool.get({id: v.id}, function(curatedData) {
+    editorTool.get({id: v.id}, function (curatedData) {
       //console.log('curated data ', curatedData);
 
       angular.forEach(v.chapters, function (ch, i) {
@@ -398,39 +404,39 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
         var curatedChapter = curatedData.chapters[i];
         console.log('curated chapter', curatedChapter);
-        if(curatedChapter.dimensions.maintopic) {
-          _(curatedChapter.dimensions.maintopic.annotations).each(function(card) {
+        if (curatedChapter.dimensions.maintopic) {
+          _(curatedChapter.dimensions.maintopic.annotations).each(function (card) {
             var entity = prepareCard(card);
             console.log('entity', entity);
             ch.fragments.push(entity);
           })
         }
 
-        var background = _(ch.dimensions).find(function(d) {
+        var background = _(ch.dimensions).find(function (d) {
           return d.id == "background";
         });
-        if(background) {
+        if (background) {
           promises.push(prepareDocuments(background.items));
         }
 
-        var othermedia = _(ch.dimensions).find(function(d) {
+        var othermedia = _(ch.dimensions).find(function (d) {
           return d.id == "othermedia";
         });
-        if(othermedia) {
+        if (othermedia) {
           promises.push(prepareDocuments(othermedia.items));
         }
 
-        var current = _(ch.dimensions).find(function(d) {
+        var current = _(ch.dimensions).find(function (d) {
           return d.id == "current";
         });
-        if(current) {
+        if (current) {
           promises.push(prepareDocuments(current.items));
         }
 
-        var relatedChapters = _(ch.dimensions).find(function(d) {
+        var relatedChapters = _(ch.dimensions).find(function (d) {
           return d.id == "chapter";
         });
-        if(relatedChapters) {
+        if (relatedChapters) {
           promises.push(prepareRelatedChapters(relatedChapters.items));
         }
       });
@@ -456,8 +462,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
     angular.forEach(items, function (item) {
       promises.push(
-        fetchDocument(item).then(function(attrs) {
-          if(attrs) {
+        fetchDocument(item).then(function (attrs) {
+          if (attrs) {
             prepareDocument(item, attrs);
           }
         })
@@ -470,7 +476,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
   var documentCount = 0;
   function fetchDocument(item) {
     var source = new URL(item.url).hostname;
-    return documentProxy.scrape({url:item.url}).$promise.then(function (res) {
+    return documentProxy.scrape({url: item.url}).$promise.then(function (res) {
       console.log('got document ' + ++documentCount);
       return res;
     }).catch(angular.noop);
@@ -498,7 +504,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
       console.log('artwork ', item.url);
       var pathname = new URL(item.url).pathname;
       console.log(pathname);
-      if( pathname && /portal\/record/.test(pathname) ) {
+      if (pathname && /portal\/record/.test(pathname)) {
         var splittedId = pathname.split('/');
         console.log(splittedId);
         var id0 = splittedId[3];
@@ -506,7 +512,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
         var artwork = {id0: id0, id1: id1};
         promises.push(
           fetchEuropeana(artwork).then(function (attrs) {
-            if(attrs) {
+            if (attrs) {
               prepareEuropeana(item, attrs);
             }
           })
@@ -530,7 +536,7 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     _(as.object.proxies.reverse()).each(function (p) {
       _(e).extend(p)
     });
-  console.log(e);
+    console.log(e);
 
     // must have attributes
     artwork.title = (e.dcTitle && 'def' in e.dcTitle) ? e.dcTitle.def[0] : e.title;
@@ -543,13 +549,12 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
     // attributes dublin core
     artwork.attributes = {};
-    _(e).forEach(function(value,key) {
-      if (!_(['dcTitle','dcSource','dcPublisher',
-          'dcDescription','dctermsProvenance','dcIdentifier','dcLanguage']).contains(key) &&
-          !/dcterms/.test(key)
-      ) {
-        if(key.substring(0,2)=='dc' && value) {
-          if(value.def) {
+    _(e).forEach(function (value, key) {
+      if (!_(['dcTitle', 'dcSource', 'dcPublisher',
+        'dcDescription', 'dctermsProvenance', 'dcIdentifier', 'dcLanguage']).contains(key) && !/dcterms/.test(key)
+        ) {
+        if (key.substring(0, 2) == 'dc' && value) {
+          if (value.def) {
             var newKey = key.substring(2);
             artwork.attributes[newKey] = _(value.def).uniq();
           }
@@ -567,8 +572,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     angular.forEach(ch.fragments, function (entity) {
       var url = entity.locator;
       promises.push(
-        fetchEntity(url).then(function(attrs) {
-          if(attrs&&attrs.label) {
+        fetchEntity(url).then(function (attrs) {
+          if (attrs && attrs.label) {
             var newEntity = _(entity).clone();
             items.push(prepareEntity(newEntity, attrs));
           }
@@ -584,18 +589,19 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     entity.title = as.label;
     entity.image = as.poster || as.thumb;
     entity.description = as.comment;
-     if(as.type) {
+    if (as.type) {
       entity.types = Array.isArray(as.type) ? as.type : [as.type];
     }
     entity.attributes = {};
-    _(as.template.properties).each(function(o) {
-      if(o.value && !_(['label','thumb', 'comment','type','poster']).contains(o.key)) {
-        if(o.value.uri) {
-          entity.attributes[o.key] = [{uri: o.value.uri, value: o.value.label}];
+    _(as.template.properties).each(function (o) {
+      if (o.value && !_(['label', 'thumb', 'comment', 'type', 'poster']).contains(o.key)) {
+        if (o.value.uri) {
+          entity.attributes[o.key] = [
+            {uri: o.value.uri, value: o.value.label}
+          ];
         } else {
           entity.attributes[o.key] = [o.value]
         }
-
       }
     });
     return entity;
@@ -603,23 +609,22 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
 
   function prepareRelatedChapters(chapters) {
     var promises = [];
-    _(chapters).forEach(function(chapter) {
+    _(chapters).forEach(function (chapter) {
       var splittedId = chapter.url.split('#');
       var episodeId = splittedId[0];
       var times = splittedId[1].substr(2).split(',');
       var start = parseInt(times[0]);
       var end = parseInt(times[1]);
-      var query = chapterQuery(episodeId,start-30,end+30,false);
+      var query = chapterQuery(episodeId, start - 30, end + 30, false);
       //console.log(query);
       promises.push(linkedtvSparql.getSparqlResults({query: query}, function (res) {
         chapter.videoId = episodeId;
-        if(res.results.bindings.length>0) {
+        if (res.results.bindings.length > 0) {
           var relatedChapter = res.results.bindings[0];
           var url = relatedChapter.chapter.value;
-          var chapterId = url.substr(url.lastIndexOf('/') + 1);
-          chapter.id = chapterId;
-          chapter.startTime = relatedChapter.start.value*1000;
-          chapter.endTime = relatedChapter.end.value*1000;
+          chapter.id = url.substr(url.lastIndexOf('/') + 1);
+          chapter.startTime = relatedChapter.start.value * 1000;
+          chapter.endTime = relatedChapter.end.value * 1000;
           chapter.duration = chapter.endTime - chapter.startTime;
           chapter.title = relatedChapter.label.value;
         }
@@ -641,8 +646,8 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
             ?annotation oa:hasTarget ?mediafragment . \
             ?annotation oa:hasBody ?chapter . \
             ?chapter a linkedtv:Chapter . \
-            ?mediafragment nsa:temporalStart ?start . FILTER (?start > '+ start +') \
-            ?mediafragment nsa:temporalEnd ?end . FILTER (?end < '+ end +') \
+            ?mediafragment nsa:temporalStart ?start . FILTER (?start > ' + start + ') \
+            ?mediafragment nsa:temporalEnd ?end . FILTER (?end < ' + end + ') \
             ?chapter rdfs:label ?label . \
             OPTIONAL {?chapter linkedtv:hasPoster ?poster }';
     if (curated) {
@@ -652,22 +657,16 @@ function modeler($q, Model, europeanaApi, irApi, documentProxy, entityProxy, edi
     return query;
   }
 
-
-
-
   return {
     enrich: function (v) {
-      //takes the current video that the user is watching and enriches it
       enrichVideo(v);
     },
-    prepareTKK: function(v) {
+    prepareTKK: function (v) {
       prepareTKKVideo(v);
     },
-    prepareRBB: function(v) {
+    prepareRBB: function (v) {
       prepareRBBVideo(v);
     }
   };
 
-  // run from the console:
-  // angular.element(document.body).injector().get('Modeller').enrich()
 }

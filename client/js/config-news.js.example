@@ -13,7 +13,7 @@ angular.module('Config', []).constant('Config', {
     {
       name: 'Ralph',
       avatar: 'img/anonym.jpg',
-      id: 'ralph'
+      id: 'rbb1'
     },
     {
       name: 'Peter',
@@ -35,10 +35,10 @@ angular.module('Config', []).constant('Config', {
 
   lookupMode: true,
 
-  springfield_ip: window.location.hostname,
-  springfield_port: window.location.port,
-  springfield_app: 'news',
-  springfield_fullapp: '/domain/linkedtv/user/{}/html5application/news',
+  springfield_ip: "a1.noterik.com",
+  springfield_port: 80,
+  springfield_app: "linkedtvhbbtvels",
+  springfield_fullapp: '/domain/linkedtv/user/{}/html5application/linkedtvhbbtvels',
 
   debug_enabled: false
 });

@@ -24,6 +24,13 @@ function tvCtrl($scope, $log, eventsBus, Model) {
           Model.resetPlay();
           eventsBus.publish('player', {action: 'dispose'});
           break;
+        case 'play':
+        case 'pause':
+        case 'mute':
+        case 'unmute':
+        case 'volume':
+          eventsBus.publish('player', msg);
+          break;
         default:
           debug('Unknown action: ' + a);
       }
