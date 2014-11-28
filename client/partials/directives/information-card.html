@@ -2,6 +2,7 @@
 
 	<div class="header">
 		<h2 ng-if="item.title">{{item.title}}</h2>
+		<h2 ng-if="item.chapter.title">{{item.chapter.title}}</h2>
 		<div class="info">
 			<div class="types" ng-if="item.types">
 				<span ng-repeat="t in item.types | filter : '!resource'">{{t}}<span ng-hide="$last">, </span></span>
@@ -67,8 +68,17 @@
 		</div>
 	</div>
 
-	<div class="article" ng-if="type=='chapter'">
-		<div ng-click="play(item.videoId, item.id)">{{item.videoId}}</div>
+	<div class="chapter" ng-if="type=='chapter'">
+		<div class="image">
+			<img class="item-image" ng-src="{{getShot()}}" alt="{{item.chapter.title}}"
+				ng-click="play(item.video.id, item.chapter.id)">
+		</div>
+		<div class="text">
+			Chapter in episode: <span ng-bind-html="item.video.title"></span>
+			<div>
+				<button ng-click="play(item.video.id, item.chapter.id)">Play</button>
+			</div>	
+		</div>
 	</div>
 	<!-- metadata
   <ul ng-if="metadata">

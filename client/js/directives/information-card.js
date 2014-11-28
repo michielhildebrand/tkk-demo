@@ -43,6 +43,23 @@ function informationCardDirective($sce, $filter, $state, Model, $log) {
         }
       };
 
+      /* these video specific things should not be here */
+      scope.getShot = function () {
+        if (scope.item.chapter.image) {
+          return scope.item.chapter.image;
+        }
+        else if (scope.item.video && scope.item.video.shots) {
+          var d = new Date(scope.item.chapter.startTime);
+          d.setSeconds(d.getSeconds() + 2); // +2 because the shots are a bit of
+          var h = d.getHours() - 1;
+          var m = d.getMinutes();
+          var s = d.getSeconds();
+          return scope.item.video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
+        } else {
+          return "";
+        }
+      };
+      
       scope.play = function (videoId, chapterId) {
         console.log('play ', videoId, chapterId);
         var id = 1;
