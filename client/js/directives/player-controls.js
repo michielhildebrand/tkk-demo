@@ -46,7 +46,7 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
       scope.toggleFullscreen = function () {
         if (!scope.beaming) {
           scope.fullscreen = !scope.fullscreen;
-          sendToPlayer({action: 'fullscreen', value: scope.fullscreen});
+          sendToLocalPlayer({action: 'fullscreen', value: scope.fullscreen});
         }
       };
 
@@ -58,6 +58,7 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
         } else {
           sendToRemoteTv({action: 'stop-beaming'});
           sendToLocalPlayer({action: 'play', time: currentTime});
+          scope.play = true;
         }
       };
 
@@ -72,14 +73,12 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
         if (!scope.beaming) {
           sendToLocalPlayer(a);
         } else {
-          sendToRemotePlayer(a);
+          sendToRemoteTv(a);
         }
       }
+
       function sendToLocalPlayer(a) {
         eventsBus.publish('player', a);
-      }
-      function sendToRemotePlayer(a) {
-        Eddie.putLou({target: 'player', data: a});
       }
 
       function sendToRemoteTv(a) {
