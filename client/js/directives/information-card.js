@@ -59,11 +59,10 @@ function informationCardDirective($sce, $filter, $state, Model, $log) {
           return "";
         }
       };
-      
-      scope.play = function (videoId, chapterId) {
-        console.log('play ', videoId, chapterId);
+
+      scope.playUrl = function (videoId, chapterId) {  
         var id = 1;
-        $state.go('play', {user: Model.getUser(), videoId: videoId, idx: id});
+        return $state.href('play', {user: Model.getUser(), videoId: videoId, idx: id});
       };
 
     },

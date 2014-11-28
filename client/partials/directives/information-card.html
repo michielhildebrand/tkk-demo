@@ -70,14 +70,12 @@
 
 	<div class="chapter" ng-if="type=='chapter'">
 		<div class="image">
-			<img class="item-image" ng-src="{{getShot()}}" alt="{{item.chapter.title}}"
-				ng-click="play(item.video.id, item.chapter.id)">
+			<a href="{{playUrl(item.video.id, item.chapter.id)}}">
+				<img class="item-image" ng-src="{{getShot()}}" alt="{{item.chapter.title}}">
+			</a>
 		</div>
-		<div class="text">
+		<div class="text" ng-if="item.video">
 			Chapter in episode: <span ng-bind-html="item.video.title"></span>
-			<div>
-				<button ng-click="play(item.video.id, item.chapter.id)">Play</button>
-			</div>	
 		</div>
 	</div>
 	<!-- metadata
