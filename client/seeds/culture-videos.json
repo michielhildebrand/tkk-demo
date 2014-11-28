@@ -16,6 +16,14 @@
     "duration": 2699560
   },
   {
+    "id": "c44643ee-823e-476c-a099-bd28bcf1e56a",
+    "title": "Porceleyne Fles - 29 October 2011",
+    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1",
+    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1/h/0/m/0/sec10.jpg",
+    "src": "video/150.mp4",
+    "duration": 2713790
+  },
+  {
     "id": "8a8187f2-3fc8-cb54-0140-7dd151100003",
     "title": "Hermitage Amsterdam - 8 December 2010",
     "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/102/shots/1",
@@ -46,22 +54,6 @@
     "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/187/shots/1/h/0/m/0/sec10.jpg",
     "src": "video/187.mp4",
     "duration": 2727280
-  },
-  {
-    "id": "c44643ee-823e-476c-a099-bd28bcf1e56a",
-    "title": "Porceleyne Fles - 29 October 2011",
-    "shots": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1",
-    "poster": "http://images1.noterik.com/domain/linkedtv/user/avro/video/150/shots/1/h/0/m/0/sec10.jpg",
-    "src": "video/150.mp4",
-    "duration": 2713790
-  },
-  {
-    "id": "23173",
-    "title": "First test with videophone",
-    "shots": "",
-    "poster": "",
-    "src": "http://openimages.eu/files/23/624974.23172.WEEKNUMMER741-HRE00016E93_757480_840000.mp4",
-    "duration": 82000
   },
   {
     "id": "2e1d24d1-4a13-400c-adcd-6f385307613e",

@@ -80,12 +80,12 @@ def dimensionData(k,d,seed_videos):
         return dimension
 
 def dimensionItem(item, dimensionType, seed_videos):
-    # if dimensionType == 'article':
-    #      return lvdocument.documentData(item["url"])
-    # elif dimensionType == 'entity':
-    #     return lvcard.cardData(item)
-    # elif dimensionType == 'europeana':
-    #     return lvartwork.artworkData(item["url"])
-    if dimensionType == 'chapter':
+    if dimensionType == 'article':
+         return lvdocument.documentData(item["url"])
+    elif dimensionType == 'entity':
+        return lvcard.cardData(item)
+    elif dimensionType == 'europeana':
+        return lvartwork.artworkData(item["url"])
+    elif dimensionType == 'chapter':
         return lvrelatedchapter.chapterData(item, seed_videos)
 
