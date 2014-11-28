@@ -1,0 +1,305 @@
+[
+  {
+    "dimensions": [
+      {
+        "items": [
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/0/sec35.jpg",
+            "video": {
+              "id": "8a8187f2-3fc8-cb54-0140-7dccd76f0001",
+              "title": "Tussen Kunst - 640"
+            }
+          }
+        ],
+        "type": "chapter",
+        "id": "tve_3",
+        "title": "Related Chapter"
+      },
+      {
+        "items": [],
+        "type": "entity",
+        "id": "maintopic",
+        "title": "Art Object"
+      },
+      {
+        "items": [],
+        "type": "article",
+        "id": "tve_1",
+        "title": "Background"
+      },
+      {
+        "items": [],
+        "type": "europeana",
+        "id": "tve_2",
+        "title": "Related Art Work"
+      }
+    ],
+    "title": "Introduction",
+    "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/0/sec7.jpg",
+    "startTime": 7000,
+    "duration": 144000,
+    "endTime": 151000,
+    "id": "8d72c568-90ee-4675-8a06-0586e8893ad5"
+  },
+  {
+    "dimensions": [
+      {
+        "items": [],
+        "type": "chapter",
+        "id": "tve_3",
+        "title": "Related Chapter"
+      },
+      {
+        "items": [],
+        "type": "entity",
+        "id": "maintopic",
+        "title": "About"
+      },
+      {
+        "items": [],
+        "type": "article",
+        "id": "tve_1",
+        "title": "Background"
+      },
+      {
+        "items": [],
+        "type": "europeana",
+        "id": "tve_2",
+        "title": "Related Art Work"
+      }
+    ],
+    "title": "Horse painting",
+    "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/4/sec44.jpg",
+    "startTime": 284000,
+    "duration": 180000,
+    "endTime": 464000,
+    "id": "f67df673-4327-4cde-9ac0-93a56a30d10c"
+  },
+  {
+    "dimensions": [
+      {
+        "items": [],
+        "type": "chapter",
+        "id": "tve_3",
+        "title": "Related Chapter"
+      },
+      {
+        "items": [],
+        "type": "entity",
+        "id": "maintopic",
+        "title": "About"
+      },
+      {
+        "items": [],
+        "type": "article",
+        "id": "tve_1",
+        "title": "Background"
+      },
+      {
+        "items": [],
+        "type": "europeana",
+        "id": "tve_2",
+        "title": "Related Art Work"
+      }
+    ],
+    "title": "Bronze horse statue",
+    "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/7/sec46.jpg",
+    "startTime": 466000,
+    "duration": 213000,
+    "endTime": 679000,
+    "id": "725268bd-d5f3-4f89-99ef-32c35e2cf029"
+  },
+  {
+    "dimensions": [
+      {
+        "items": [],
+        "type": "chapter",
+        "id": "tve_3",
+        "title": "Related Chapter"
+      },
+      {
+        "items": [],
+        "type": "entity",
+        "id": "maintopic",
+        "title": "About"
+      },
+      {
+        "items": [],
+        "type": "article",
+        "id": "tve_1",
+        "title": "Background"
+      },
+      {
+        "items": [],
+        "type": "europeana",
+        "id": "tve_2",
+        "title": "Related Art Work"
+      }
+    ],
+    "title": "Eisenloeffel clock",
+    "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/16/sec27.jpg",
+    "startTime": 987000,
+    "duration": 226000,
+    "endTime": 1213000,
+    "id": "chapter_7"
+  },
+  {
+    "dimensions": [
+      {
+        "items": [],
+        "type": "chapter",
+        "id": "tve_3",
+        "title": "Related Chapter"
+      },
+      {
+        "items": [],
+        "type": "entity",
+        "id": "maintopic",
+        "title": "About"
+      },
+      {
+        "items": [],
+        "type": "article",
+        "id": "tve_1",
+        "title": "Background"
+      },
+      {
+        "items": [],
+        "type": "europeana",
+        "id": "tve_2",
+        "title": "Related Art Work"
+      }
+    ],
+    "title": "Jan Blom painting",
+    "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/25/sec23.jpg",
+    "startTime": 1523000,
+    "duration": 280000,
+    "endTime": 1803000,
+    "id": "chapter_9"
+  },
+  {
+    "dimensions": [
+      {
+        "items": [
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/188/shots/1/h/0/m/9/sec8.jpg",
+            "video": {
+              "id": "384b82ab-d50b-4f35-892b-8b91d99e774e",
+              "title": "Compilation of clips from last season (not aired previously);"
+            }
+          },
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/186/shots/1/h/0/m/35/sec28.jpg",
+            "video": {
+              "id": "6e8bb4bf-4989-41e3-a92e-a008abd8ce91",
+              "title": "Stedelijk Museum (Alkmaar);"
+            }
+          },
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/196/shots/1/h/0/m/17/sec32.jpg",
+            "video": {
+              "id": "da34cf6d-3ffc-4cb3-a233-0b0f97dcf1a6",
+              "title": "Museum Bronbeek (Arnhem);"
+            }
+          },
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/30/sec2.jpg",
+            "video": {
+              "id": "8a8187f2-3fc8-cb54-0140-7dccd76f0001",
+              "title": "Tussen Kunst - 640"
+            }
+          },
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/167/shots/1/h/0/m/0/sec37.jpg",
+            "video": {
+              "id": "d0b1ed63-1234-4989-a707-99ad161f7d1d",
+              "title": "Compilation of clips from 25 years of Tussen Kunst & Kitsch (part 1 of 2);"
+            }
+          },
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/182/shots/1/h/0/m/44/sec40.jpg",
+            "video": {
+              "id": "344214a8-a2bc-4214-aeb2-b5d570be8d97",
+              "title": "Spoorwegmuseum (Utrecht);"
+            }
+          },
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/164/shots/1/h/0/m/44/sec52.jpg",
+            "video": {
+              "id": "4203342f-0720-44f2-82b6-828ee9c048b8",
+              "title": "Compilation of clips"
+            }
+          },
+          {
+            "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/147/shots/1/h/0/m/10/sec10.jpg",
+            "video": {
+              "id": "b7844f7f-cfea-4c82-b9fa-74c34fe3ea3c",
+              "title": "Science Center NEMO (Amsterdam);"
+            }
+          }
+        ],
+        "type": "chapter",
+        "id": "tve_3",
+        "title": "Related Chapter"
+      },
+      {
+        "items": [],
+        "type": "entity",
+        "id": "maintopic",
+        "title": "Art Object"
+      },
+      {
+        "items": [],
+        "type": "article",
+        "id": "tve_1",
+        "title": "Background"
+      },
+      {
+        "items": [],
+        "type": "europeana",
+        "id": "tve_2",
+        "title": "Related Art Work"
+      }
+    ],
+    "title": "Silver tea jar",
+    "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/35/sec57.jpg",
+    "startTime": 2157000,
+    "duration": 237000,
+    "endTime": 2394000,
+    "id": "chapter_11"
+  },
+  {
+    "dimensions": [
+      {
+        "items": [],
+        "type": "chapter",
+        "id": "tve_3",
+        "title": "Related Chapter"
+      },
+      {
+        "items": [],
+        "type": "entity",
+        "id": "maintopic",
+        "title": "About"
+      },
+      {
+        "items": [],
+        "type": "article",
+        "id": "tve_1",
+        "title": "Background"
+      },
+      {
+        "items": [],
+        "type": "europeana",
+        "id": "tve_2",
+        "title": "Related Art Work"
+      }
+    ],
+    "title": "19th century broche",
+    "image": "http://images1.noterik.com/domain/linkedtv/user/avro/video/100/shots/1/h/0/m/43/sec57.jpg",
+    "startTime": 2637000,
+    "duration": 269000,
+    "endTime": 2906000,
+    "id": "chapter_13"
+  }
+]
