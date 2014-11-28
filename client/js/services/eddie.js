@@ -3,10 +3,8 @@
 angular.module('Eddie', []).factory('Eddie', ['$log', '$window', '$timeout', 'Config', 'eventsBus', eddieService]);
 
 function eddieService($log, $window, $timeout, Config, eventsBus) {
-  var initialized = false;
-  var userId;
-  var screenId;
-  var eddie;
+  var initialized = false, userId, screenId, eddie;
+  var replacementRetry = 0;
 
   function initializeEddie(id) {
     debug('Initializing - user: ' + id + ', springfield: ' + Config.springfield_ip);
@@ -32,7 +30,12 @@ function eddieService($log, $window, $timeout, Config, eventsBus) {
       comps['notification'] = new MyNotification();
     } else {
       debug('Notification component not present yet, keep checking ...');
-      $timeout(replaceToolkitComponents, 1000);
+      ++replacementRetry;
+      if (replacementRetry < 5) {
+        $timeout(replaceToolkitComponents, 1000);
+      } else {
+        debug('Stops checking for the replacement.')
+      }
     }
   }
 
