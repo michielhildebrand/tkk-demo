@@ -1,5 +1,0 @@
-<ion-list ng-repeat="v in relatedVideos">
-  <ion-item ng-repeat="ch in v.chapters" class="item-thumbnail-left related" ng-click="nav(v, ch, $index)" ng-class="{'item-dark': isSelected(v, ch)}">
-    <video-chapter video="v" chapter="ch"></video-chapter>
-  </ion-item>
-</ion-list>
