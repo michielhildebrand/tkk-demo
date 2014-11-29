@@ -18,7 +18,7 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
     function (newVideos) {
       if (newVideos.length > 0) {
         debug(newVideos.length + ' new videos available.');
-        playVideo($state.params.videoId, $state.params.idx);
+        playVideo($state.params.videoId, $state.params.chId);
       }
     }
   );
@@ -27,16 +27,16 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
     debug('Changed location');
     $scope.enrich = false;
     var currentParams = $location.search();
-    playVideo(currentParams.videoId, currentParams.idx);
+    playVideo(currentParams.videoId, currentParams.chId);
   });
 
-  function playVideo(videoId, chIdx) {
-    debug('Play video ' + videoId + ' on ' + chIdx);
-    Model.play(videoId, chIdx);
+  function playVideo(videoId, chId) {
+    debug('Play video ' + videoId + ' and chapter ' + chId);
+    Model.play(videoId, chId);
     $scope.video = Model.getVideo();
 
     if ($scope.beaming) {
-      sendToRemoteTv({action: 'set-video', video: videoId, chapter: chIdx});
+      sendToRemoteTv({action: 'set-video', video: videoId, chapter: chId});
     }
   }
 

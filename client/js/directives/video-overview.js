@@ -16,8 +16,8 @@ function videoOverviewDirective($state, Model) {
       $(element.children()[0]).width(scrollViewWidth);
       $(element.children()[0].children[0]).width(scrollWidth);
    
-      scope.play = function (index) {
-        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, idx: index});
+      scope.play = function (chId) {
+        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, chId: chId});
       };
     },
     templateUrl: 'partials/directives/video-overview.html'

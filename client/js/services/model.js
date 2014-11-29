@@ -7,9 +7,7 @@ function model($log, Tracker) {
     user: null,
     videos: [],
     currentVideo: null,
-    currentVideoId: null,
     currentChapter: null,
-    currentChapterIndex: null,
     currentFragment: null,
     currentTime: null,
     beaming: false,
@@ -23,7 +21,6 @@ function model($log, Tracker) {
     });
     debug('Set video: ' + v.id + ' - ' + v.title);
     data.currentVideo = v;
-    data.currentVideoId = v.id
   }
 
   function findChapter(time) {
@@ -42,10 +39,10 @@ function model($log, Tracker) {
     }
   }
 
-  function setChapter(index, startTime) {
-    var chIdx = parseInt(index);
-    data.currentChapterIndex = chIdx;
-    var ch = data.currentVideo.chapters[chIdx];
+  function setChapter(chId, startTime) {
+    var ch = _(data.currentVideo.chapters).find(function (ch) {
+      return ch.id == chId;
+    });
     if (startTime == null) {
       data.currentTime = ch.startTime;
     } else {
@@ -77,24 +74,24 @@ function model($log, Tracker) {
 
   function addCurrentToHistory() {
     if (data.currentVideo != null && data.currentChapter != null) {
-      data.history.push({video: data.currentVideo, chapter: data.currentChapter, index: data.currentChapterIndex});
+      data.history.push({video: data.currentVideo, chapter: data.currentChapter});
     }
   }
 
-  function hasChanged(videoId, chapterIndex, startTime) {
+  function hasChanged(videoId, chapterId, startTime) {
     var hasChanged = true;
-    if (videoId == null || (data.currentVideoId == videoId)) {
-      if (chapterIndex == null || (data.currentChapterIndex == chapterIndex)) {
-        if (startTime == null || (data.currentTime == startTime)) {
+    if (videoId == null || (data.currentVideo != null && data.currentVideo.id == videoId)) {
+      if (chapterId == null || (data.currentChapter != null && data.currentChapter.id == chapterId)) {
+        if (startTime == null || (data.currentTime != null && data.currentTime == startTime)) {
           hasChanged = false;
         } else {
           debug('Time has changed: ' + data.currentTime + ' -> ' + startTime);
         }
       } else {
-        debug('Chapter has changed: ' + data.currentChapterIndex + ' -> ' + chapterIndex);
+        debug('Chapter has changed: ' + (data.currentChapter ? data.currentChapter.id : 'none') + ' -> ' + chapterId);
       }
     } else {
-      debug('Video has changed: ' + data.currentVideoId + ' -> ' + videoId);
+      debug('Video has changed: ' + (data.currentVideo ? data.currentVideo.id : 'none') + ' -> ' + videoId);
     }
     return hasChanged;
   }
@@ -117,18 +114,20 @@ function model($log, Tracker) {
     getVideos: function () {
       return data.videos;
     },
-    play: function (videoId, chapterIndex, startTime) {
-      if (hasChanged(videoId, chapterIndex, startTime)) {
+    play: function (videoId, chapterId, startTime) {
+      if (hasChanged(videoId, chapterId, startTime)) {
         addCurrentToHistory();
         setVideo(videoId);
-        setChapter(chapterIndex, startTime);
+        setChapter(chapterId, startTime);
         Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
+      } else {
+        debug('Wanted to play but nothing has changed');
       }
     },
-    setChapterIndex: function (chapterIndex) {
-      if (hasChanged(null, chapterIndex, null)) {
+    setChapterId: function (chId) {
+      if (hasChanged(null, chId, null)) {
         addCurrentToHistory();
-        setChapter(chapterIndex);
+        setChapter(chId);
         Tracker.collect({action: 'player_play', id: data.currentVideo.id, time: data.currentTime});
       }
     },
@@ -142,7 +141,7 @@ function model($log, Tracker) {
       data.user = null;
     },
     resetPlay: function () {
-      data.currentVideo = data.currentVideoId = data.currentChapter = data.currentChapterIndex = data.currentTime = data.currentFragment = null;
+      data.currentVideo = data.currentChapter = data.currentFragment = data.currentTime = null;
     },
     setBeaming: function (beaming) {
       data.beaming = beaming;
@@ -153,9 +152,6 @@ function model($log, Tracker) {
     },
     getChapter: function () {
       return data.currentChapter;
-    },
-    getChapterIndex: function () {
-      return data.currentChapterIndex;
     },
     getFragment: function () {
       return data.currentFragment;

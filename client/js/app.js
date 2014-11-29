@@ -62,7 +62,7 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'EpisodesCtrl'
       }).
       state('play', {
-        url: '/play/:user?videoId&idx',
+        url: '/play/:user?videoId&chId',
         title: ' - Play',
         templateUrl: 'partials/controllers/play.html',
         controller: 'PlayCtrl',

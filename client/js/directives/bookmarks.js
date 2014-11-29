@@ -29,22 +29,19 @@ function bookmarksDirective($state, Model) {
           var video = _(Model.getVideos()).find(function(v) {
             return v.id == videoId;
           });
-          var index = 0;
           var chapter = _(video.chapters).find(function(ch, c) {
-            index = c;
             return ch.id == chapterId;
           });
 
           return {
             video : video,
             chapter: chapter,
-            index: index
           };
         }
       }
 
       scope.play = function (bookmark) {
-        $state.go('play', {user: Model.getUser(), videoId: bookmark.video.id, idx: bookmark.index});
+        $state.go('play', {user: Model.getUser(), videoId: bookmark.video.id, chId: bookmark.chapter.id});
       };
     },
     templateUrl: 'partials/directives/bookmarks.html'
