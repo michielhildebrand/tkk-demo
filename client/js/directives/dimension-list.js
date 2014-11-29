@@ -76,7 +76,7 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
         } else {
           $rootScope.personalizing = true;
           debug('personalizing');
-          contentFiltering.personalize({"source":items}, 
+          contentFiltering.personalize({"action":"content_filtering"}, {"source":items}, 
             function (cfResp) {
               $rootScope.personalizing = false;
               if(cfResp.results) {
