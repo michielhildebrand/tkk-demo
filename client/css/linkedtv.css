@@ -144,6 +144,12 @@ a {
 .chapter .desc {
   display :none;
 }
+.chapter button.star {
+  position: absolute;
+  top: 50px;
+  margin-left: 110px;
+  color: rgb(65,146,183);
+}
 /* episodes */
 .episode {
   padding: 20px;

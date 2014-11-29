@@ -80,10 +80,12 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
             function (cfResp) {
               $rootScope.personalizing = false;
               if(cfResp.results) {
+                var personalized = {};
                 debug('Personalization response, posts: ' + cfResp.results.length);
                 _(cfResp.results).each(function(r) {
-                  scope.personalized[r.micropostURL] = r.Degree;
+                  personalized[r.micropostURL] = r.Degree;
                 })
+                scope.personalized = personalized;
               } 
             },
             function() {
