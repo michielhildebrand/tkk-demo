@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.dimension-list', []).directive('dimensionList', ['$log', 'Model', dimensionListDirective]);
+angular.module('app.dimension-list', []).directive('dimensionList', ['$log', 'Model', 'contentFiltering', dimensionListDirective]);
 
-function dimensionListDirective($log, Model) {
+function dimensionListDirective($log, Model, contentFiltering) {
   return {
     restrict: 'E',
     scope: {
@@ -15,6 +15,20 @@ function dimensionListDirective($log, Model) {
     replace: false,
     link: function (scope, element, attrs, chapterEnrichCtrl) {
       var selected = null;
+      scope.personalized = {}
+
+      scope.$watch(
+        function() {
+          return scope.items
+        },
+        function(newItems) {
+          scope.personalized = {};
+          console.log('p', newItems, scope.type);
+          if(scope.type=='article') {
+            personalize(newItems)
+          }
+        }
+      );
 
       scope.$watch('active', function() {
         if(scope.active) {
@@ -44,6 +58,19 @@ function dimensionListDirective($log, Model) {
         }
         chapterEnrichCtrl.setContent({item:e, type:scope.type});
       };
+
+      function personalize(items) {
+        console.log('personalizing');
+        contentFiltering.personalize({"source":items}, function (cfResp) {
+          console.log(cfResp);
+          if(cfResp.results) {
+            debug('Personalization response, posts: ' + cfResp.results.length);
+            _(cfResp.results).each(function(r) {
+              scope.personalized[r.micropostURL] = r.Degree;
+            })
+          } 
+        })
+      }
 
       function debug(msg) {
         $log.debug('[Chapter (directive)] ' + msg)

@@ -371,6 +371,12 @@ a {
 .links .selected .item {
     background-color: rgb(170, 184, 194);
 }
+.links .item button.star {
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  color: rgb(65,146,183);
+}
 .links h3 {
     margin: 0;
     padding: 4px 11px;

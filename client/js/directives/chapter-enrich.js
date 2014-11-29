@@ -22,7 +22,6 @@ function chapterEnrichDirective(Model) {
         },
         function (newChapter) {
           if (newChapter != null) {
-
             scope.dimensions = newChapter.dimensions;
             if(scope.dimensions.length>0) {
               if(scope.dimension==null) {
@@ -41,6 +40,7 @@ function chapterEnrichDirective(Model) {
           scope.dimension = active;
         }
       };
+
     },
 
     controller: function ($scope) {
