@@ -13,7 +13,7 @@
   <Directory %ABSOLUTE_PATH_TO_CLIENT_DIR%>
     Order allow,deny
     Allow from all
-    Require all granted
+    Require all granted #delete this on OS X
   </Directory>
 
   ProxyPass /ir http://ir.lmcloud.vse.cz/irapi/media-server
@@ -36,7 +36,7 @@
   <Directory %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/>
     Order allow,deny
     Allow from all
-    Require all granted
+    Require all granted #delete this on OS X
   </Directory>
   Alias /eddie/js %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/
   Alias /libs %ABSOLUTE_PATH_TO_CLIENT_DIR%/js/toolkit/
