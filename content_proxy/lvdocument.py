@@ -2,11 +2,14 @@ import json, urllib, urllib2
 from urlparse import urlparse
 
 documentproxy = "http://pip.ia.cwi.nl/doc"
+irapi_thd = "http://ir.lmcloud.vse.cz/irapi/media-server/thd"
 
 def documentData(url):
     data = fetchDocumentData(url)
 
     if "text" in data:
+        thd = fetchTHD(url)
+
         source = urlparse(url).hostname
 
         document = {
@@ -21,6 +24,8 @@ def documentData(url):
             document["media"] = data["media"]
         if "author" in data:
             document["author"] = data["author"]
+        if thd:
+            document["thd"] = thd
 
         return document
 
@@ -34,4 +39,15 @@ def fetchDocumentData(url):
     results = json.load(response)
     return results 
 
-#documentData("http://www.groningermuseum.nl/tentoonstelling/gronings-zilver-uit-de-collectie-hofman-westerhof")
+def fetchTHD(url):
+    print("thd: "+url)
+    params = {
+        "url":url
+    }
+    request = urllib2.Request(irapi_thd + '?' + urllib.urlencode(params))
+    response = urllib2.urlopen(request)
+    results = json.load(response)
+    if "thd" in results:
+        return results["thd"]
+
+print(documentData("http://www.groningermuseum.nl/tentoonstelling/gronings-zilver-uit-de-collectie-hofman-westerhof"))
