@@ -61,8 +61,7 @@ function informationCardDirective($sce, $filter, $state, Model, $log) {
       };
 
       scope.playUrl = function (videoId, chapterId) {  
-        var id = 1;
-        return $state.href('play', {user: Model.getUser(), videoId: videoId, idx: id});
+        return $state.href('play', {user: Model.getUser(), videoId: videoId, chId:chapterId});
       };
 
     },
