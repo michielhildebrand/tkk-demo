@@ -1,6 +1,6 @@
 <ion-scroll direction="x">
   <div ng-repeat="ch in video.chapters">
-    <div class="chapter" ng-click="play($index)">
+    <div class="chapter" ng-click="play(ch.id)">
         <video-chapter video="video" chapter="ch"></video-chapter>
     </div>
   </div>

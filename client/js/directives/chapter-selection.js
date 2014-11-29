@@ -11,14 +11,14 @@ function chapterSectionDirective($location, $log, eventsBus, Eddie, Model) {
     },
     replace: false,
     link: function (scope, element, attrs) {
-      scope.isSelected = function (index) {
-        return Model.getChapterIndex() == index;
+      scope.isSelected = function (chId) {
+        return Model.getChapter().id == chId;
       };
 
-      scope.select = function (index) {
-        debug('Select chapter index: ' + index + ' of current video: ' + scope.video.id);
-        Model.setChapterIndex(index);
-        $location.search('idx', index);
+      scope.select = function (chId) {
+        debug('Select chapter: ' + chId + ' of current video: ' + scope.video.id);
+        Model.setChapterId(chId);
+        $location.search('chId', chId);
         sendToPlayer({action: 'set-time', time: Model.getTime()});
       };
 

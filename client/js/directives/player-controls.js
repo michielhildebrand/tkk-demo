@@ -54,7 +54,7 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
         scope.beaming = Model.setBeaming(!scope.beaming);
         if (scope.beaming) {
           sendToLocalPlayer({action: 'pause'});
-          sendToRemoteTv({action: 'set-video', video: Model.getVideo().id, chapter: Model.getChapterIndex(), time: currentTime});
+          sendToRemoteTv({action: 'set-video', video: Model.getVideo().id, chapter: Model.getChapter().id, time: currentTime});
         } else {
           sendToRemoteTv({action: 'stop-beaming'});
           sendToLocalPlayer({action: 'play', time: currentTime});

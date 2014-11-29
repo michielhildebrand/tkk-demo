@@ -18,7 +18,7 @@ function episodesCtrl($scope, $state, Model, Eddie) {
   );
 
   $scope.playFirstChapter = function (videoId) {
-    $state.go('play', {user: Model.getUser(), videoId: videoId, idx: 0});
+    $state.go('play', {user: Model.getUser(), videoId: videoId, chId: 0});
   };
 
   $scope.signOut = function () {
