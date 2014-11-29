@@ -63,4 +63,4 @@ def chapterQuery(videoId, attribution):
 
     return query
 
-fetchChapters('adb65e0a-642b-432f-aa86-c296dab0375a')
+#fetchChapters('adb65e0a-642b-432f-aa86-c296dab0375a')

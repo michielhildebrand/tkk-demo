@@ -85,4 +85,4 @@ def europeanaValue(v):
             return v["nl"]
 
 
-artworkData("http://www.europeana.eu/portal/record/2021608/dispatcher_aspx_action_search_database_ChoiceCollect_search_priref_10581.html")
+#artworkData("http://www.europeana.eu/portal/record/2021608/dispatcher_aspx_action_search_database_ChoiceCollect_search_priref_10581.html")

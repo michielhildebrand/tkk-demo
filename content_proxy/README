@@ -1,1 +1,6 @@
-./enrich_video.py -s ../client/seeds/culture-videos.json -o json/
+RBB
+./enrich_video.py -s ../client/seeds/culture-videos.json -p rbb -o json/
+
+SV Culture
+./enrich_video.py -s ../client/seeds/culture-videos.json -p sv -o json/
+

@@ -4,7 +4,7 @@ def chapterData(item, videos):
     url = item["url"]
     urlParts = parseChapterUrl(url)
 
-    if len(urlParts) == 3:
+    if urlParts:
         videoId = urlParts[0]
         start = float(urlParts[1]) * 1000
         end = float(urlParts[2]) * 1000
@@ -38,10 +38,11 @@ def chapterData(item, videos):
                 return relatedchapter
 
 def parseChapterUrl(url):
-    videoId = url[ 0: url.find('#') ]
-    start = url[ url.find('=')+1 : url.find(',') ]
-    end = url[ url.find(',')+1 : ]
-    return [videoId,start,end]
+    if '#t=' in url:
+        videoId = url[ 0: url.find('#') ]
+        start = url[ url.find('=')+1 : url.find(',') ]
+        end = url[ url.find(',')+1 : ]
+        return [videoId,start,end]
 
 def videoData(id, videos):
     for v in videos:
@@ -58,4 +59,4 @@ def videoChapter(chapters, start, end):
              return c
 
 
-parseChapterUrl("384b82ab-d50b-4f35-892b-8b91d99e774e#t=548.48,1147.04")
+#parseChapterUrl("384b82ab-d50b-4f35-892b-8b91d99e774e#t=548.48,1147.04")

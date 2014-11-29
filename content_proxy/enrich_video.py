@@ -11,12 +11,14 @@ def main():
     parser = argparse.ArgumentParser(description='Fetch LinkedTV videos')
     parser.add_argument('-v', '--video', help='Video identifier',required=False)
     parser.add_argument('-s', '--seed', help='Seed video list',required=True)
+    parser.add_argument('-p', '--publisher', help='Publisher (rbb,sv)',required=True)
     parser.add_argument('-o', '--output', help='Output file',required=True)
     args = parser.parse_args()
     
     seed = args.seed
     video = args.video
     output = args.output
+    publisher = args.publisher
 
     seed_data = open(seed)
     seed_videos = json.load(seed_data)
@@ -36,7 +38,7 @@ def main():
         for v in seed_videos:
             videoId = v["id"]
             print('\nvideo '+videoId)
-            chapters = getChapterDimensions(videoId, seed_videos)
+            chapters = getChapterDimensions(videoId, seed_videos, publisher)
             if chapters:
                 v["chapters"] = chapters
 
@@ -56,10 +58,10 @@ def getChapters(videoId):
     return chapters
 
 
-def getChapterDimensions(videoId, seed_videos):
+def getChapterDimensions(videoId, seed_videos, publisher):
     if videoId in curated_videos:
         curated = curated_videos[videoId]
-        chapters = [editor_tool_data.chapterDimensionData(c, seed_videos) for c in curated["chapters"] ]
+        chapters = [editor_tool_data.chapterDimensionData(c, seed_videos, publisher) for c in curated["chapters"] ]
         sorted(chapters, key=lambda c: c["startTime"]) 
         return chapters
     # TODO fetch automatic enrichments

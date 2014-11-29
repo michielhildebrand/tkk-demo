@@ -50,4 +50,4 @@ def fetchTHD(url):
     if "thd" in results:
         return results["thd"]
 
-print(documentData("http://www.groningermuseum.nl/tentoonstelling/gronings-zilver-uit-de-collectie-hofman-westerhof"))
+#print(documentData("http://www.groningermuseum.nl/tentoonstelling/gronings-zilver-uit-de-collectie-hofman-westerhof"))
