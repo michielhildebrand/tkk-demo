@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.dimension-list', []).directive('dimensionList', ['$log', '$rootScope', 'Model', 'contentFiltering', dimensionListDirective]);
+angular.module('app.dimension-list', []).directive('dimensionList', ['$log', '$rootScope', 'Model', 'Tracker', 'contentFiltering', dimensionListDirective]);
 
-function dimensionListDirective($log, $rootScope, Model, contentFiltering) {
+function dimensionListDirective($log, $rootScope, Model, Tracker, contentFiltering) {
   return {
     restrict: 'E',
     scope: {
@@ -19,12 +19,22 @@ function dimensionListDirective($log, $rootScope, Model, contentFiltering) {
 
       scope.$watch(
         function() {
-          return scope.items
+          return Tracker.enabled();
+        },
+        function(tracking) {
+          if(tracking && scope.type=='article' && scope.items) {
+            personalize(scope.items)
+          }
+        }
+      )
+
+      scope.$watch(
+        function() {
+          return scope.items;
         },
         function(newItems) {
           scope.personalized = {};
-          console.log('p', newItems, scope.type);
-          if(scope.type=='article') {
+          if(scope.type=='article' && Tracker.enabled()) {
             personalize(newItems)
           }
         }
@@ -61,22 +71,26 @@ function dimensionListDirective($log, $rootScope, Model, contentFiltering) {
 
       function personalize(items) {
         if($rootScope.personalizing) {
-          console.log('waiting ')
+          debug('waiting for personalizer to finish');
           setTimeout(function() {personalize(items)}, 1000);
         } else {
           $rootScope.personalizing = true;
-          console.log('personalizing');
+          debug('personalizing');
           //saveJsonFile({"source":items});
-          contentFiltering.personalize({"source":items}, function (cfResp) {
-            $rootScope.personalizing = false;
-            console.log(cfResp);
-            if(cfResp.results) {
-              debug('Personalization response, posts: ' + cfResp.results.length);
-              _(cfResp.results).each(function(r) {
-                scope.personalized[r.micropostURL] = r.Degree;
-              })
-            } 
-          })
+          contentFiltering.personalize({"source":items}, 
+            function (cfResp) {
+              $rootScope.personalizing = false;
+              if(cfResp.results) {
+                debug('Personalization response, posts: ' + cfResp.results.length);
+                _(cfResp.results).each(function(r) {
+                  scope.personalized[r.micropostURL] = r.Degree;
+                })
+              } 
+            },
+            function() {
+              $rootScope.personalizing = false;
+            }
+          )
         }
       }
 
@@ -90,7 +104,7 @@ function dimensionListDirective($log, $rootScope, Model, contentFiltering) {
       }
 
       function debug(msg) {
-        $log.debug('[Chapter (directive)] ' + msg)
+        $log.debug('[Dimension (directive)] ' + msg)
       }
     },
     templateUrl: 'partials/directives/dimension-list.html'
