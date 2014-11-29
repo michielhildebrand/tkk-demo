@@ -51,8 +51,8 @@ def fetchCuratedData(id):
     return results 
 
 def chapterData(v):
-    if "annotationURI" in v:
-        id = v["annotationURI"].split('/')[-1]
+    if "bodyURI" in v:
+        id = v["bodyURI"].split('/')[-1]
     else:
         id = v["guid"]
 
@@ -68,8 +68,8 @@ def chapterData(v):
     return chapter
 
 def chapterDimensionData(v, seed_videos, publisher):
-    if "annotationURI" in v:
-        id = v["annotationURI"].split('/')[-1]
+    if "bodyURI" in v:
+        id = v["bodyURI"].split('/')[-1]
     else:
         id = v["guid"]
 
