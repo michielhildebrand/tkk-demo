@@ -30,11 +30,16 @@ a {
 
 .linkedtv .bar {
   background-color: rgba(95,109,105,0.6);
-  border-bottom: 1px solid rgb(100,114,124);
-    z-index: 13;
+  z-index: 13;
   /*z-index: 2147483647; *//* http://css-tricks.com/custom-controls-in-html5-video-full-screen/ */
 }
-
+.linkedtv .bar-header {
+  border-bottom: 1px solid rgb(100,114,124);
+}
+.linkedtv .tabs,
+.linkedtv .bar-footer {
+  border-top: 1px solid rgb(100,114,124);
+}
 .linkedtv-logo {
   background-image: url('../img/linkedtv_logo.png');
   background-repeat: no-repeat;
@@ -45,9 +50,16 @@ a {
     background-color: rgba(95,109,105,0.8);
     padding: 0;
 }
-.culture .avrotros-logo,
-.culture .avrotros-logo .tabs {
+.culture .logo,
+.culture .logo .tabs {
   background-image: url('../img/logo_avrotros.png');
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  background-size: 105px 34px;
+}
+.news .logo,
+.news .logo .tabs {
+  background-image: url('../img/rbb.png');
   background-repeat: no-repeat;
   background-position: 15px center;
   background-size: 105px 34px;
