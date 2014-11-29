@@ -14,6 +14,7 @@ def documentData(url):
 
         document = {
             "url": url,
+            "micropostUrl": url, #we keep this for personalization
             "title": data["title"],
             "html":data["text"],
             "source":source
@@ -24,8 +25,8 @@ def documentData(url):
             document["media"] = data["media"]
         if "author" in data:
             document["author"] = data["author"]
-        if thd:
-            document["thd"] = thd
+        if "annotation" in thd:
+            document["annotation"] = thd["annotation"]
 
         return document
 
@@ -47,7 +48,6 @@ def fetchTHD(url):
     request = urllib2.Request(irapi_thd + '?' + urllib.urlencode(params))
     response = urllib2.urlopen(request)
     results = json.load(response)
-    if "thd" in results:
-        return results["thd"]
+    return results
 
 #print(documentData("http://www.groningermuseum.nl/tentoonstelling/gronings-zilver-uit-de-collectie-hofman-westerhof"))
