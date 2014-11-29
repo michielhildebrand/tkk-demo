@@ -38,5 +38,5 @@ angular.module('Config', []).constant('Config', {
   springfield_app: 'news',
   springfield_fullapp: '/domain/linkedtv/user/{}/html5application/news',
 
-  debug_enabled: false
+  debug_enabled: true
 });
