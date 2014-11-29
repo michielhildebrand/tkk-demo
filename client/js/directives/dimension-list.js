@@ -76,7 +76,6 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
         } else {
           $rootScope.personalizing = true;
           debug('personalizing');
-          //saveJsonFile({"source":items});
           contentFiltering.personalize({"source":items}, 
             function (cfResp) {
               $rootScope.personalizing = false;
@@ -92,15 +91,6 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
             }
           )
         }
-      }
-
-      function saveJsonFile(items) {
-        var blob = new Blob([JSON.stringify(items)], {type: "application/json"});
-        var url = window.URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        a.download = "items.json";
-        a.href = url;
-        a.click();
       }
 
       function debug(msg) {
