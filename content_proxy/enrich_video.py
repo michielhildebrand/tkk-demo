@@ -31,7 +31,7 @@ def main():
     # now get the dimension data for the chapters
     print('\n\n====PASS 2: fetch chapter dimension data===\n')
     if video:
-        chapters = getChapterDimensions(video, seed_videos)
+        chapters = getChapterDimensions(video, seed_videos, publisher)
         with open(output, 'w') as out:
                 json.dump(chapters, out, indent=2, separators=(',', ': '))
     else:

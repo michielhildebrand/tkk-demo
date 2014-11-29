@@ -15,7 +15,7 @@ dimensionConfig["sv"] = [
     {"id":"tve_2",
      "title":"Related Works"
     },
-    {"id":"tvne_3",
+    {"id":"tve_3",
      "title":"Related Chapters"
     }
 ]

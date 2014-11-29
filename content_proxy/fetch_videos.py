@@ -23,11 +23,10 @@ def main():
     }
 
     videos = fetchVideos(params)
-
     cleanVideos = [videoData(v) for v in videos["mediaResources"]["mediaResources"] ]
 
-    # with open(output, 'w') as out:
-    #     json.dump(cleanVideos, out, indent=2, separators=(',', ': '))
+    with open(output, 'w') as out:
+         json.dump(cleanVideos, out, indent=2, separators=(',', ': '))
 
 def fetchVideos(params):
     request = urllib2.Request(url + '?' + urllib.urlencode(params))
@@ -42,7 +41,7 @@ def videoData(v):
         videoId = v["locator"].split("/")[-2]
         print(videoId)
         src = v["locator"]+"rawvideo/4/raw.mp4"
-        shots = shotsURL+videoId+'shots/1'
+        shots = shotsURL+videoId+'/shots/1'
         video = {
             "id":v["id"],
             "title":v['titleName'],
