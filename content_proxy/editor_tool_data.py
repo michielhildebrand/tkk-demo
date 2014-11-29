@@ -1,6 +1,6 @@
 import json, urllib, urllib2
 from copy import deepcopy
-import lvdocument, lvcard, lvartwork, lvrelatedchapter
+import lvdocument, lvcard, lvartwork, lvrelatedchapter, lvfragment
 
 editor_tool_url="http://editortoolv2.linkedtv.eu/load_curated_et"
 
@@ -99,7 +99,7 @@ def chapterDimensionData(v, seed_videos, publisher):
         "dimensions": dimensions
     }
     if(publisher=="rbb"):
-        chapter["fragments"] = dimensions[0]["items"]
+        chapter["fragments"] = lvfragment.fragmentData(dimensions[0]["items"],chapter["startTime"],chapter["duration"])
 
     return chapter
 
@@ -115,8 +115,8 @@ def dimensionData(dimensionType,data,seed_videos):
     return items
 
 def dimensionItem(item, dimensionType, seed_videos):
-    if dimensionType == 'article':
-         return lvdocument.documentData(item["url"])
+    #if dimensionType == 'article':
+    #     return lvdocument.documentData(item["url"])
     if dimensionType == 'entity':
         return lvcard.cardData(item)
     elif dimensionType == 'europeana':
