@@ -13,7 +13,7 @@ angular.module('Config', []).constant('Config', {
     {
       name: 'Ralph',
       avatar: 'img/anonym.jpg',
-      id: 'rbb1'
+      id: 'ralph'
     },
     {
       name: 'Peter',
@@ -23,7 +23,7 @@ angular.module('Config', []).constant('Config', {
     {
       name: 'Nina',
       avatar: 'img/anonym.jpg',
-      id: 'nina'
+      id: 'rbb1'
     }
   ],
 
