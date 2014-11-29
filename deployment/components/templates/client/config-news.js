@@ -12,17 +12,17 @@ angular.module('Config', []).constant('Config', {
   users: [
     {
       name: 'Ralph',
-      avatar: 'img/anonym.jpg',
+      avatar: 'img/Ralph.png',
       id: 'ralph'
     },
     {
       name: 'Peter',
-      avatar: 'img/anonym.jpg',
+      avatar: 'img/Peter.png',
       id: 'peter'
     },
     {
       name: 'Nina',
-      avatar: 'img/anonym.jpg',
+      avatar: 'img/Nina.png',
       id: 'rbb1'
     }
   ],
@@ -41,4 +41,5 @@ angular.module('Config', []).constant('Config', {
   springfield_fullapp: '/domain/linkedtv/user/{}/html5application/linkedtvhbbtvels',
 
   debug_enabled: false
+
 });
