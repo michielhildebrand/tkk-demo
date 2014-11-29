@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.dimension-list', []).directive('dimensionList', ['$log', 'Model', 'contentFiltering', dimensionListDirective]);
+angular.module('app.dimension-list', []).directive('dimensionList', ['$log', '$rootScope', 'Model', 'contentFiltering', dimensionListDirective]);
 
-function dimensionListDirective($log, Model, contentFiltering) {
+function dimensionListDirective($log, $rootScope, Model, contentFiltering) {
   return {
     restrict: 'E',
     scope: {
@@ -60,16 +60,33 @@ function dimensionListDirective($log, Model, contentFiltering) {
       };
 
       function personalize(items) {
-        console.log('personalizing');
-        contentFiltering.personalize({"source":items}, function (cfResp) {
-          console.log(cfResp);
-          if(cfResp.results) {
-            debug('Personalization response, posts: ' + cfResp.results.length);
-            _(cfResp.results).each(function(r) {
-              scope.personalized[r.micropostURL] = r.Degree;
-            })
-          } 
-        })
+        if($rootScope.personalizing) {
+          console.log('waiting ')
+          setTimeout(function() {personalize(items)}, 1000);
+        } else {
+          $rootScope.personalizing = true;
+          console.log('personalizing');
+          //saveJsonFile({"source":items});
+          contentFiltering.personalize({"source":items}, function (cfResp) {
+            $rootScope.personalizing = false;
+            console.log(cfResp);
+            if(cfResp.results) {
+              debug('Personalization response, posts: ' + cfResp.results.length);
+              _(cfResp.results).each(function(r) {
+                scope.personalized[r.micropostURL] = r.Degree;
+              })
+            } 
+          })
+        }
+      }
+
+      function saveJsonFile(items) {
+        var blob = new Blob([JSON.stringify(items)], {type: "application/json"});
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.download = "items.json";
+        a.href = url;
+        a.click();
       }
 
       function debug(msg) {
