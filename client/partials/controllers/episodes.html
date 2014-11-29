@@ -9,7 +9,7 @@
   <ion-tab title="Popular" icon="icon ion-ios7-star">
     <ion-content class="has-header has-footer" scroll="false">
       <div class="episode" ng-repeat="v in latestVideos">
-        <h3><a href="" ng-click="playFirstChapter(v.id)">{{v.title}}</a></h3>
+        <h3><a href="" ng-click="playFirstChapter(v)">{{v.title}}</a></h3>
         <video-overview video="v"></video-overview>
       </div>
     </ion-content>
@@ -19,7 +19,7 @@
     <ion-content class="has-header has-footer">
       <div class="episode" ng-repeat="v in videos">
         <h3>
-          <a href="" ng-click="playFirstChapter(v.id)">{{v.title}}</a>
+          <a href="" ng-click="playFirstChapter(v)">{{v.title}}</a>
           <a class="icon ion-arrow-down-b" ng-click="showOverview = !showOverview"></a>
         </h3>
         <video-overview video="v" ng-show="showOverview"></video-overview>
