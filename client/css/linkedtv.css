@@ -443,13 +443,11 @@ a {
 .entity-list .entity.active {
     border: 4px solid rgb(36,146,185);
     margin-top: -2px;
-    height: 89px;
-    width: 119px;
+    height: 99px;
+    width: 131px;
     overflow: hidden;
 }
 .entity-list .entity.active .title {
-    height: 27px;
-    width: 111px;
     overflow: hidden;
 }
 .entity-list .entity img {
