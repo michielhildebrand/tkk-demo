@@ -1,6 +1,8 @@
 <ion-scroll class="entity-bar" direction="x">
   <ul class="entity-list">
-    <li ng-repeat="e in entities" class="entity" ng-click="selectEntity($index)">
+    <li ng-repeat="e in entities" class="entity"
+    	ng-click="selectEntity($index)"
+    	ng-class='{active:$index==currentEntityIndex}'>
       <img ng-src="{{e.image}}" alt="{{e.title}}">
       <div class="title" ng-bind-html="e.title"></div>
     </li>
