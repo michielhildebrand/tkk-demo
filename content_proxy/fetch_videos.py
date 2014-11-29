@@ -5,8 +5,7 @@ import json, urllib, urllib2
 import base64
 
 url="http://api.linkedtv.eu/mediaresource"
-username = 'admin'
-password = 'linkedtv'
+auth = "YWRtaW46bGlua2VkdHY="
 shotsURL = 'http://images1.noterik.com/domain/linkedtv/user/avro/video/'
 
 def main():
@@ -31,9 +30,8 @@ def main():
     #     json.dump(cleanVideos, out, indent=2, separators=(',', ': '))
 
 def fetchVideos(params):
-    base64string = base64.encodestring('%s:%s' % (username, password))[:-1]
     request = urllib2.Request(url + '?' + urllib.urlencode(params))
-    request.add_header("Authorization", "Basic %s" % base64string)
+    request.add_header("Authorization", "Basic %s" % auth)
     request.add_header("Accept", "application/json")
     response = urllib2.urlopen(request)
     results = json.load(response)
