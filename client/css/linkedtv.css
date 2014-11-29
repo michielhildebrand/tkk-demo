@@ -300,13 +300,22 @@ a {
 }
 .range {
   padding: 0;
-  margin: 0;
+  margin: 0 50px;
 }
 .range input[type="range"] {
   padding: 0;
   margin: 0;
     height: 28px;
   background-size: 100% 4px;
+}
+.seekbar .time {
+  padding-top: 3px;
+}
+.seekbar .time.start {
+  float: left;
+}
+.seekbar .time.end {
+  float: right;
 }
 .beam-bg {
     position: absolute;

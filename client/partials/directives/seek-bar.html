@@ -1,12 +1,10 @@
-<!--
-<div class="time pull-left text-left">
-  {{startLapse}}
-</div>
-<div class="time pull-right text-right">
-  -{{endLapse}}
-</div>
--->
 <div class="seekbar">
+  <div class="time start text-left">
+    {{startLapse}}
+  </div>
+  <div class="time end text-right">
+  -{{endLapse}}
+  </div>
   <div class="range range-positive">
     <input type="range" name="time" min="0" max="{{duration}}" value="{{current}}">
   </div>
