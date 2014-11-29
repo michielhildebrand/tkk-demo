@@ -12,9 +12,10 @@ function videoOverviewDirective($state, $log, $rootScope, Model, contentFilterin
     link: function (scope, element, attrs) {
       scope.personalized = {};
 
-      var chapterWidth = 178;
+      // TODO: get chapter width dynamically
+      var chapterWidth = 153;
       var scrollViewWidth = element.parent().width();
-      var scrollWidth = scope.video.chapters.length * 178;
+      var scrollWidth = scope.video.chapters.length * chapterWidth;
       $(element.children()[0]).width(scrollViewWidth);
       $(element.children()[0].children[0]).width(scrollWidth);
 

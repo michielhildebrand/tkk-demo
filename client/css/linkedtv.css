@@ -181,15 +181,13 @@ a {
 .bookmarks .chapter,
 .episode .chapter {
   float: left;
-  padding: 0 50px 25px 0;
+  padding: 0 25px 25px 0;
 }
 .bookmarks .chapter img,
 .episode .chapter img {
     width: 128px;
     height: 72px;
     border: 1px solid #888;
-    border-radius: 3px;
-    box-shadow: 3px 3px 8px 0px rgba(26,26,26,0.7);
     overflow: hidden;
 }
 .episode .chapter h4 {
@@ -361,14 +359,14 @@ a {
   border-style: solid;
   border-color: rgb(126,139,148);
   background-color: rgba(45,57,64,0.6);
-  color: rgb(230,229,228)
+  color: rgb(230,229,228);
   margin: 0;
 }
 .chapters .item.active {
   background-color: rgba(126,139,148,0.6);
 }
 .chapters .bookmark {
-  top: 5px;
+  top: 20px;
   right: 25px;
 }  
 .chapters .chapter h4 {
@@ -377,8 +375,8 @@ a {
   color: #FFF;
 }
 .chapters img {
-    width: 65%;
-    border: 1px solid white;
+    width: 50%;
+    border: 1px solid #888;
 }
 
 /* links */
