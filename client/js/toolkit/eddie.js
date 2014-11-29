@@ -281,46 +281,46 @@ var Eddie = function(options){
 	};
 	
 	function setCSS(filename) {
-	  var fileref=document.createElement("link");
-	  fileref.setAttribute("rel", "stylesheet");
-	  fileref.setAttribute("type", "text/css");
-	  fileref.setAttribute("href", filename);
-	  document.getElementsByTagName("head")[0].appendChild(fileref);
+//	  var fileref=document.createElement("link");
+//	  fileref.setAttribute("rel", "stylesheet");
+//	  fileref.setAttribute("type", "text/css");
+//	  fileref.setAttribute("href", filename);
+//	  document.getElementsByTagName("head")[0].appendChild(fileref);
 	}
 
 	function setStyle(content){
-		try{
-			var css = content;
-			var stylename = content.substring(0, content.indexOf(","));
-			// if(stylename.indexOf("_")!==-1) stylename = stylename.substring(stylename.indexOf("_"));
-			// console.log("**************"+content);
-			// console.log('stylename: ' + stylename);
-			var head = document.getElementsByTagName('head')[0],
-			    style = document.getElementsByTagName('style'),
-			    sstyle = $("style#"+stylename);
-			    content = content.substring(content.indexOf(",")+1)
-			if(sstyle.length==0){
-				sstyle = document.createElement("style");
-				sstyle.type = 'text/css';
-				sstyle.setAttribute("id", stylename);
-				if (style.styleSheet){
-				  sstyle.styleSheet.cssText = content;
-				} else {
-				  sstyle.appendChild(document.createTextNode(content));
-				}
-				head.appendChild(sstyle);
-			}
-			else{
-				sstyle.html(content);
-			}
-		}catch(err){
-			var trace = printStackTrace();
-		    console.error("eddie.js: "+err.message + "\n\n" + trace.join('\n\n'));
-		}
+//		try{
+//			var css = content;
+//			var stylename = content.substring(0, content.indexOf(","));
+//			// if(stylename.indexOf("_")!==-1) stylename = stylename.substring(stylename.indexOf("_"));
+//			// console.log("**************"+content);
+//			// console.log('stylename: ' + stylename);
+//			var head = document.getElementsByTagName('head')[0],
+//			    style = document.getElementsByTagName('style'),
+//			    sstyle = $("style#"+stylename);
+//			    content = content.substring(content.indexOf(",")+1)
+//			if(sstyle.length==0){
+//				sstyle = document.createElement("style");
+//				sstyle.type = 'text/css';
+//				sstyle.setAttribute("id", stylename);
+//				if (style.styleSheet){
+//				  sstyle.styleSheet.cssText = content;
+//				} else {
+//				  sstyle.appendChild(document.createTextNode(content));
+//				}
+//				head.appendChild(sstyle);
+//			}
+//			else{
+//				sstyle.html(content);
+//			}
+//		}catch(err){
+//			var trace = printStackTrace();
+//		    console.error("eddie.js: "+err.message + "\n\n" + trace.join('\n\n'));
+//		}
 	}
 
 	function removeStyle(style){
-		$('style#'+style).remove();
+//		$('style#'+style).remove();
 	}
 	
 	function setScript(targetid, scriptbody) {
