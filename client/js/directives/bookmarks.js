@@ -35,13 +35,13 @@ function bookmarksDirective($state, Model) {
 
           return {
             video : video,
-            chapter: chapter,
+            chapter: chapter
           };
         }
       }
 
       scope.play = function (bookmark) {
-        $state.go('play', {user: Model.getUser(), videoId: bookmark.video.id, chId: bookmark.chapter.id});
+        $state.go('play', {user: Model.getUser(), videoId: bookmark.video.id, chId: bookmark.chapter.id, mode: 'watch'});
       };
     },
     templateUrl: 'partials/directives/bookmarks.html'

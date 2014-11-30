@@ -20,44 +20,48 @@ function videoOverviewDirective($state, $log, $rootScope, Model, contentFilterin
       $(element.children()[0].children[0]).width(scrollWidth);
 
       scope.$watch(
-        function() {
+        function () {
           return scope.video.chapters
         },
-        function(chapters) {
+        function (chapters) {
           scope.personalized = {};
-          if(chapters) {
+          if (chapters) {
             personalize(chapters);
           }
         }
       );
 
       scope.play = function (chId) {
-        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, chId: chId});
+        $state.go('play', {user: Model.getUser(), videoId: scope.video.id, chId: chId, mode: 'watch'});
       };
 
       function personalize(chapters) {
-        var chapterIDs = _(chapters).map(function(c) {return c.id});
-        if($rootScope.personalizing) {
-          setTimeout(function() {personalize(chapters)}, 1000);
+        var chapterIDs = _(chapters).map(function (c) {
+          return c.id
+        });
+        if ($rootScope.personalizing) {
+          setTimeout(function () {
+            personalize(chapters)
+          }, 1000);
         } else {
           $rootScope.personalizing = true;
-          debug('personalizing '+scope.video.id);
-          contentFiltering.personalize({"action":"seed_content_filtering"}, {"chapters":chapterIDs}, 
+          debug('personalizing ' + scope.video.id);
+          contentFiltering.personalize({"action": "seed_content_filtering"}, {"chapters": chapterIDs},
             function (cfResp) {
               $rootScope.personalizing = false;
-              if(cfResp.results) {
+              if (cfResp.results) {
                 var personalized = {};
                 debug('Personalization response, chapters: ' + cfResp.results.length);
-                _(cfResp.results).each(function(r) {
-                  if(r.Degree>0) {
+                _(cfResp.results).each(function (r) {
+                  if (r.Degree > 0) {
                     personalized[r.chapter] = r.Degree;
                   }
-                })
+                });
                 scope.personalized = personalized;
-              } 
+              }
             },
-            function() {
-              debug('Personalization failed')
+            function () {
+              debug('Personalization failed');
               $rootScope.personalizing = false;
             }
           )

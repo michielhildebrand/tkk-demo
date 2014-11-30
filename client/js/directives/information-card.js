@@ -2,9 +2,9 @@
 
 var informationCard = angular.module('app.information-card', []);
 
-informationCard.directive('informationCard', ['$sce', '$filter','$state','Model','$log', informationCardDirective]);
+informationCard.directive('informationCard', ['$sce', '$state', 'Model', '$log', informationCardDirective]);
 
-function informationCardDirective($sce, $filter, $state, Model, $log) {
+function informationCardDirective($sce, $state, Model, $log) {
   return {
     restrict: 'E',
     scope: {
@@ -24,19 +24,9 @@ function informationCardDirective($sce, $filter, $state, Model, $log) {
         }
       });
 
-      /*
-      scope.nav = function (prop) {
-        navigate(prop);
-      };
-      */
-
-      function debug(msg) {
-        $log.debug('[Information Card (directive)] ' + msg)
-      }
-
-      scope.toggleExternalUrl = function(url) {
+      scope.toggleExternalUrl = function (url) {
         console.log('show: ', url);
-        if(url) {
+        if (url) {
           scope.external = $sce.trustAsResourceUrl(url);
         } else {
           scope.external = null;
@@ -60,25 +50,27 @@ function informationCardDirective($sce, $filter, $state, Model, $log) {
         }
       };
 
-      scope.playUrl = function (videoId, chapterId) {  
-        return $state.href('play', {user: Model.getUser(), videoId: videoId, chId:chapterId});
+      scope.playUrl = function (videoId, chapterId) {
+        return $state.href('play', {user: Model.getUser(), videoId: videoId, chId: chapterId, mode: 'watch'});
       };
 
+      function debug(msg) {
+        $log.debug('[Information Card (directive)] ' + msg)
+      }
     },
-
     templateUrl: 'partials/directives/information-card.html'
   }
 }
 
-informationCard.filter('rawAttribute', function() {
-  var templateProps = ['birthDate','birthPlace','deathDate','deathPlace'];
+informationCard.filter('rawAttribute', function () {
+  var templateProps = ['birthDate', 'birthPlace', 'deathDate', 'deathPlace'];
 
-  return function( items ) {
+  return function (items) {
     var filtered = {};
-    _(items).forEach(function(value, key) {
-      if(! _.contains(templateProps, key) ) {
+    _(items).forEach(function (value, key) {
+      if (!_.contains(templateProps, key)) {
         filtered[key] = value;
-      };
+      }
     });
     return filtered;
   };

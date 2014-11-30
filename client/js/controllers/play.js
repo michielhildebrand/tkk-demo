@@ -3,7 +3,8 @@
 angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', '$ionicSideMenuDelegate', 'Eddie', 'Model', 'Config', 'Tracker', playCtrl]);
 
 function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie, Model, Config, Tracker) {
-  $scope.mode = 'watch';
+  $scope.mode = $state.params.mode;
+
   $scope.second = false;
   $scope.enrich = false;
   $scope.lookupMode = Config.lookupMode;
