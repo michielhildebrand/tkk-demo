@@ -69,7 +69,7 @@ function videoOverviewDirective($state, $log, $rootScope, Model, contentFilterin
       }
 
       function debug(msg) {
-        $log.debug('[Dimension (directive)] ' + msg)
+        $log.debug('[Video Overview (directive)] ' + msg)
       }
 
     },

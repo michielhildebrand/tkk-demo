@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.video-chapter', []).directive('videoChapter', ['Eddie', 'Model', 'Tracker', videoChapterDirective]);
+angular.module('app.video-chapter', []).directive('videoChapter', ['$log', videoChapterDirective]);
 
-function videoChapterDirective(Eddie, Model, Tracker) {
+function videoChapterDirective($log) {
   return {
     restrict: 'E',
     scope: {
@@ -33,6 +33,9 @@ function videoChapterDirective(Eddie, Model, Tracker) {
         return moment.utc(parseInt(scope.chapter.duration)).format("m:ss");
       };
 
+      function debug(msg) {
+        $log.debug('[Video Chapter (directive)] ' + msg)
+      }
     },
     templateUrl: 'partials/directives/video-chapter.html'
   }
