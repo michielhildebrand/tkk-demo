@@ -5,13 +5,14 @@ from collections import OrderedDict
 europeana_api = "http://europeana.eu/api/v2"
 wskey = "hb8sGDBPe"
 
-def artworkData(url):
+def artworkData(item):
+    url = item["url"]
     print("europeana record: "+url)
     ids = europeanaId(url)
     if ids:
         data = getEuropeana(ids)
         if data and "object" in data:
-            return europeanaItem(data)
+            return europeanaItem(item, data)
 
 
 def getEuropeana(ids):
@@ -33,7 +34,7 @@ def europeanaId(url):
             id1 = splitted[4].split('.')[0]
             return [id0,id1]
 
-def europeanaItem(data):
+def europeanaItem(seed, data):
     aggregation = data["object"]["europeanaAggregation"]
     proxy = {}
     for p in reversed(data["object"]["proxies"]):
@@ -48,6 +49,8 @@ def europeanaItem(data):
     if "edmPreview" in aggregation:
         item["image"] = aggregation["edmPreview"]
 
+    #if "label" in seed:
+    #    item["title"] = seed["label"]
     if europeanaKeyValue("dcTitle",proxy):
         item["title"] = europeanaKeyValue("dcTitle", proxy)[0]
 

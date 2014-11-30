@@ -4,18 +4,22 @@ from urlparse import urlparse
 documentproxy = "http://pip.ia.cwi.nl/doc"
 irapi_thd = "http://ir.lmcloud.vse.cz/irapi/media-server/thd"
 
-def documentData(url):
+def documentData(item):
+    url = item["url"]
     data = fetchDocumentData(url)
 
     if "text" in data:
         thd = fetchTHD(url)
 
         source = urlparse(url).hostname
+        title = item.get('label', data['title'])
+        image = item.get('poster', favicon(source))
 
         document = {
             "url": url,
             "micropostUrl": url, #we keep this for personalization
-            "title": data["title"],
+            "title": title,
+            "image": image,
             "html":data["text"],
             "source":source
         }
@@ -59,5 +63,9 @@ def fetchTHD(url):
     else:
         results = json.load(response)
         return results
+
+def favicon(hostname):
+    return "http://www.google.com/s2/favicons?"+urllib.urlencode({"domain":hostname})
+
 
 #print(documentData("http://www.groningermuseum.nl/tentoonstelling/gronings-zilver-uit-de-collectie-hofman-westerhof"))

@@ -116,11 +116,11 @@ def dimensionData(dimensionType,data,seed_videos):
 
 def dimensionItem(item, dimensionType, seed_videos):
     if dimensionType == 'article':
-         return lvdocument.documentData(item["url"])
+         return lvdocument.documentData(item)
     elif dimensionType == 'entity':
         return lvcard.cardData(item)
     elif dimensionType == 'europeana':
-        return lvartwork.artworkData(item["url"])
+        return lvartwork.artworkData(item)
     elif dimensionType == 'chapter':
         return lvrelatedchapter.chapterData(item, seed_videos)
 
