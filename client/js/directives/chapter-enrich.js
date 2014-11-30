@@ -41,6 +41,9 @@ function chapterEnrichDirective(Model) {
         }
       };
 
+      window.onresize = function() {
+        setHeight();
+      }
     },
 
     controller: function ($scope) {
