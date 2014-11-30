@@ -21,11 +21,19 @@ def cardData(item):
                     value = o["value"]
                     if not(key in ['label','thumb','comment','type','poster']):
                         if "uri" in value:
+                            wikiUrl = dbpediaToWikipedia(value["uri"]);
                             card["attributes"][key] = [{
-                                "uri": value["uri"],
+                                "uri": wikiUrl,
                                 "value": value["label"]
                             }]
                         else:
                             card["attributes"][key] = [value]
 
         return card
+
+def dbpediaToWikipedia(dbpediaUri):
+    if 'dbpedia.org' in dbpediaUri:
+        return dbpediaUri.replace('dbpedia.org/resource', 'wikipedia.org/wiki')
+    else:
+        return dbpediaUri
+
