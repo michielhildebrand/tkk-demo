@@ -16,9 +16,13 @@ function bookmarkDirective(Eddie, Model, Tracker) {
           return Model.getBookmarks();
         },
         function () {
-            scope.bookmarkStatus = isBookmarked();
+          updateStatus();
         }
       );
+
+      scope.$watch('[video, chapter]', function (newValue, oldValue) {
+        if (newValue[0] != null && newValue[1] != null) updateStatus();
+      }, true);
 
       scope.bookmark = function (e) {
         var id = compositeId();
@@ -27,20 +31,22 @@ function bookmarkDirective(Eddie, Model, Tracker) {
           currentBookmarks = Model.unbookmark(id);
         } else {
           currentBookmarks = Model.bookmark(id);
-          Tracker.collect({action: 'user_bookmark', id: Model.getVideo().id, time: Model.getTime()});
+          Tracker.collect({action: 'user_bookmark', id: scope.video.id, time: Model.getTime()});
         }
         sendToBookmark(currentBookmarks);
         e.stopPropagation();
       };
+
+      function updateStatus() {
+        scope.bookmarkStatus = isBookmarked();
+      }
 
       function isBookmarked() {
         return _.contains(Model.getBookmarks(), compositeId());
       }
 
       function compositeId() {
-        var videoId = Model.getVideo().id;
-        var chapterId = Model.getChapter().id;
-        return videoId + '_' + chapterId;
+        return scope.video.id + '_' + scope.chapter.id;
       }
 
       function sendToBookmark(b) {
