@@ -1,4 +1,5 @@
 import json, urllib, urllib2
+import math
 
 sparql_endpoint = "http://data.linkedtv.eu/sparql"
 editor_tool_attribution = "<http://data.linkedtv.eu/organization/SV/EditorToolv2>"
@@ -24,6 +25,7 @@ def chapterData(data):
     id = url.split('/')[-1]
     print('chapter '+id)
     startTime = float(data["start"]["value"]) * 1000
+    if math.isnan(startTime): startTime = 0.0
     endTime = float(data["end"]["value"]) * 1000
 
     chapter = {
