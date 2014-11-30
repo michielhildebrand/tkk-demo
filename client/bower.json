@@ -9,7 +9,8 @@
     "angular-resource": "=1.2.23",
     "angular-ui-router": "=0.2.10",
     "ionic": "=1.0.0-beta.11",
-    "angularjs-socialshare": "=0.1.1"
+    "angularjs-socialshare": "=0.1.1",
+    "angular-youtube-mb": "~0.1.6"
   },
   "resolutions": {
     "angular": "=1.2.23"

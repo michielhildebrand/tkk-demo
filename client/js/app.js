@@ -4,6 +4,7 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'ui.router',
   'ionic',
   '720kb.socialshare',
+  'youtube-embed',
 
   'Config',
 

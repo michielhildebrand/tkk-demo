@@ -57,7 +57,7 @@
 	</div>
 
 	<!-- Article -->
-	<div class="article" ng-if="type=='article'">
+	<div class="article" ng-if="type=='article' && item.type!='youtube'">
 		<div class="media" ng-if="item.media" ng-switch="item.media.type">
 			<img ng-switch-when="image" ng-src="{{item.media.url}}">
 			<video ng-switch-when="video">
@@ -78,16 +78,12 @@
 			Chapter in episode: <span ng-bind-html="item.video.title"></span>
 		</div>
 	</div>
-	<!-- metadata
-  <ul ng-if="metadata">
-    <li ng-repeat="d in metadata"><a ng-click="nav(d)">{{d.value}}</a></li>
-  </ul>
--->
-  <!-- related chapter
-  <ul ng-if="playChapter.uri">
-    <a href="{{playChapter.uri}}">Play it!</a>
-  </ul>
-  -->
+
+	<div class="youtube" ng-if="item.type=='youtube'">
+		<div class="media">
+			<youtube-video video-url="item.url"></youtube-video>
+		</div>
+	</div>	
 
 </div>
 
