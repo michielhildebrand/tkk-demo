@@ -1,6 +1,6 @@
 import json, urllib, urllib2
 from copy import deepcopy
-import lvdocument, lvcard, lvartwork, lvrelatedchapter, lvfragment
+import lvdocument, lvcard, lvartwork, lvrelatedchapter, lvfragment, lvyoutube
 
 editor_tool_url="http://editortoolv2.linkedtv.eu/load_curated_et"
 
@@ -115,7 +115,9 @@ def dimensionData(dimensionType,data,seed_videos):
     return items
 
 def dimensionItem(item, dimensionType, seed_videos):
-    if dimensionType == 'article':
+    if "url" in item and "www.youtube.com" in item["url"]:
+        return lvyoutube.videoData(item)
+    elif dimensionType == 'article':
          return lvdocument.documentData(item)
     elif dimensionType == 'entity':
         return lvcard.cardData(item)
