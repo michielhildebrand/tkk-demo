@@ -36,9 +36,14 @@ def fetchDocumentData(url):
         "url":url
     }
     request = urllib2.Request(documentproxy + '?' + urllib.urlencode(params))
-    response = urllib2.urlopen(request)
-    results = json.load(response)
-    return results 
+    try:
+        response = urllib2.urlopen(request)
+    except Exception:
+        print 'url error'
+        return {}
+    else:
+        results = json.load(response)
+        return results
 
 def fetchTHD(url):
     print("thd: "+url)
@@ -46,8 +51,13 @@ def fetchTHD(url):
         "url":url
     }
     request = urllib2.Request(irapi_thd + '?' + urllib.urlencode(params))
-    response = urllib2.urlopen(request)
-    results = json.load(response)
-    return results
+    try:
+        response = urllib2.urlopen(request)
+    except Exception:
+        print 'url error'
+        return {}
+    else:
+        results = json.load(response)
+        return results
 
 #print(documentData("http://www.groningermuseum.nl/tentoonstelling/gronings-zilver-uit-de-collectie-hofman-westerhof"))
