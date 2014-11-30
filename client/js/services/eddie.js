@@ -41,7 +41,6 @@ function eddieService($log, $window, $timeout, Config, eventsBus) {
 
   var MyNotification = function() {
     self.putMsg = function(msg) {
-      //console.log('Notification Message', msg);
       var target = msg.target[0].id;
       if (target == 'vidtimesignal') {
         var time = msg.content.split(':')[0] * 1000; //in milliseconds
