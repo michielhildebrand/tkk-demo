@@ -27,6 +27,7 @@ var linkedTvApp = angular.module('linkedTvApp', [
   'app.seek-bar',
   'app.chapter-enrich',
   'app.dimension-list',
+  'app.tv-signal-notifier',
   'app.visible-on-load',
 
   'Eddie',
