@@ -22,6 +22,7 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
           return Tracker.enabled();
         },
         function(tracking) {
+          scope.personalized = {}
           if(tracking && scope.type=='article' && scope.items) {
             personalize(scope.items)
           }

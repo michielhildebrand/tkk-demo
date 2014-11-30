@@ -45,7 +45,7 @@
 					<li ng-repeat="(key, values) in item.attributes | rawAttribute">
 						<span class="key">{{key}}: </span>
 						<span class="value" ng-repeat="v in values">
-							<a ng-click="nav(v.uri)" ng-if="v.hasOwnProperty('uri')">{{v.value}}</a>
+							<a href="" ng-click="toggleExternalUrl(v.uri)" ng-if="v.hasOwnProperty('uri')">{{v.value}}</a>
 							<span ng-if="v.hasOwnProperty('value') && !v.hasOwnProperty('uri')">{{v.value}}</span>
 							<span ng-if="!v.hasOwnProperty('value')">{{v}}</span>
 							<span ng-hide="$last">, </span>
