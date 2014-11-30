@@ -179,12 +179,10 @@ a {
 .episode h3 a {
   color: white;
 }
-.bookmarks .chapter,
 .episode .chapter {
   float: left;
   padding: 0 25px 25px 0;
 }
-.bookmarks .chapter img,
 .episode .chapter img {
     width: 128px;
     height: 72px;
@@ -199,11 +197,6 @@ a {
 }
 .episode .bookmark {
   top: -2px;
-}
-
-/* bookmarks */
-.bookmarks {
- padding: 15px; 
 }
 
 /* play view */
