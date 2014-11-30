@@ -14,6 +14,7 @@ function bookmarksDirective($state, Model) {
         },
         function (newBookmarks) {
           if (newBookmarks.length > 0) {
+            console.log(newBookmarks);
             scope.bookmarks = _(newBookmarks).map(function(b) {return findChapter(b)});
             scope.bookmarksByVideo = _(scope.bookmarks).groupBy(function(b) {return b.video.id})
           }
@@ -22,9 +23,10 @@ function bookmarksDirective($state, Model) {
 
       function findChapter(compositeId) {
         if (Model.getVideos().length > 0) {
-          var comp = compositeId.split('_');
-          var videoId = comp[0];
-          var chapterId = comp[1];
+          var split = compositeId.indexOf('_'); // we can not split as chapters might contain '_'
+          var videoId = compositeId.substr(0,split);
+          var chapterId = compositeId.substr(split+1);
+          console.log(videoId, chapterId);
 
           var video = _(Model.getVideos()).find(function(v) {
             return v.id == videoId;
