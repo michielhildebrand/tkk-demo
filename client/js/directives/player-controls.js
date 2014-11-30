@@ -15,6 +15,13 @@ function playerControlsDirective($log, Eddie, eventsBus, Model, Tracker) {
       scope.fullscreen = false;
       scope.beaming = Model.isBeaming();
 
+      scope.video = function () {
+        return Model.getVideo()
+      };
+      scope.chapter = function () {
+        return Model.getChapter()
+      };
+
       scope.togglePlay = function () {
         scope.play = !scope.play;
         if (scope.play) {

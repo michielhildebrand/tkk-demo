@@ -25,23 +25,21 @@ function model($log, Tracker) {
 
   function findChapter(time) {
     var ch = _.chain(data.currentVideo.chapters)
-      .map(function (ch, index) {
-        return {ch: ch, idx: index};
-      }).filter(function (o) {
-        return o.ch.startTime <= time;
-      }).min(function (o) {
-        return time - o.ch.startTime;
+      .filter(function (ch) {
+        return ch.startTime <= time;
+      }).min(function (ch) {
+        return time - ch.startTime;
       }).value();
     if (ch != Infinity) {
-      setChapter(ch.idx, time);
+      setChapter(ch.id, time);
     } else {
       debug('No chapter at this time: ' + time);
     }
   }
 
   function setChapter(chId, startTime) {
-    var ch = _(data.currentVideo.chapters).find(function (ch) {
-      return ch.id == chId;
+    var ch = _(data.currentVideo.chapters).find(function (c) {
+      return c.id == chId;
     });
     if (startTime == null) {
       data.currentTime = ch.startTime;

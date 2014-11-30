@@ -30,13 +30,8 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
           }
 
           $(player).on('loadedmetadata', function (metadata) {
-            /*
-             var actualRatio = metadata.target.videoWidth / metadata.target.videoHeight;
-             var targetRatio = 1.777777; //$(player).width()/$(player).height();
-             var adjustmentRatio =  targetRatio/actualRatio;
-             $(player).css("transform", "scaleX(" + adjustmentRatio + ")");
-             */
-            player.currentTime = time / 1000; //Seconds
+            video.duration = metadata.target.duration * 1000; //In milliseconds
+            player.currentTime = time / 1000; //In seconds
             startTimePublisher();
           });
         }
@@ -71,7 +66,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
         if (a) {
           switch (a) {
             case 'play':
-              if (msg.time) player.currentTime = msg.time / 1000; //Seconds
+              if (msg.time) player.currentTime = msg.time / 1000; //In seconds
               player.play();
               startTimePublisher();
               scope.paused = false;
@@ -124,7 +119,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
 
       function publishCurrentTime() {
         var currentTime = player.currentTime;
-        currentTime *= 1000; // Milliseconds
+        currentTime *= 1000; //In milliseconds
         if (currentTime != previousCurrentTime) {
           previousCurrentTime = currentTime;
           if (scope.second) {

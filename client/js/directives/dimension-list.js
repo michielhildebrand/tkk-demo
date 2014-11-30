@@ -15,7 +15,7 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
     replace: false,
     link: function (scope, element, attrs, chapterEnrichCtrl) {
       var selected = null;
-      scope.personalized = {}
+      scope.personalized = {};
 
       scope.$watch(
         function() {
@@ -27,7 +27,7 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
             personalize(scope.items)
           }
         }
-      )
+      );
 
       scope.$watch(
         function() {
@@ -85,7 +85,7 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
                 debug('Personalization response, posts: ' + cfResp.results.length);
                 _(cfResp.results).each(function(r) {
                   personalized[r.micropostURL] = r.Degree;
-                })
+                });
                 scope.personalized = personalized;
               } 
             },
