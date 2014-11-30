@@ -20,7 +20,7 @@ function eddieService($log, $window, $timeout, Config, eventsBus) {
     screenId = eddie.getScreenId().substring(eddie.getScreenId().lastIndexOf("/") + 1);
     initialized = true;
 
-    $timeout(replaceToolkitComponents, 1000);
+    if (Config.synchronize_model) $timeout(replaceToolkitComponents, 1000);
   }
 
   function replaceToolkitComponents() {
