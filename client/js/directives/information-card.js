@@ -25,7 +25,6 @@ function informationCardDirective($sce, $state, Model, $log) {
       });
 
       scope.toggleExternalUrl = function (url) {
-        console.log('show: ', url);
         if (url) {
           scope.external = $sce.trustAsResourceUrl(url);
         } else {
