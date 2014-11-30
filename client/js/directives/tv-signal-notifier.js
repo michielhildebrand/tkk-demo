@@ -17,6 +17,7 @@ function tvSignalNotifierDirective($state, $log, $timeout, Model, eventsBus) {
         if (videos != null) {
           var v = videos[0];
           var ch = v.chapters[0];
+          scope.video = v;
           scope.exploreLink = $state.href('play', {user: Model.getUser(), videoId: v.id, chId: ch.id, mode: 'lookup'});
         }
       });

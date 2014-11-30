@@ -1,3 +1,10 @@
-<div ng-if="tvIsPlaying">
-  <a href="{{exploreLink}}">Tv is playing!</a>
-</div>
+<ion-tab title="Playing on TV" icon="icon ion-ios7-monitor" ng-if="tvIsPlaying">
+    <ion-content class="has-header has-footer" scroll="false">
+      <div class="episode">
+        <h3><a href="{{exploreLink}}">{{video.title}}</a></h3>
+        <a href="{{exploreLink}}">
+        	<img class="item-image" ng-src="{{video.poster}}" alt="{{video.title}}">
+        </a>
+      </div>
+    </ion-content>
+</ion-tab>

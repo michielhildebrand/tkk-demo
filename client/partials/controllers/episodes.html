@@ -3,10 +3,11 @@
   <div class="buttons">
     <button class="button button-icon icon ion-log-out" ng-click="signOut()">{{user}}</button>
   </div>
-  <tv-signal-notifier videos="videos"></tv-signal-notifier>
 </ion-header-bar>
 
 <ion-tabs class="tabs-icon-top logo">
+  <tv-signal-notifier videos="videos"></tv-signal-notifier>
+  
   <ion-tab title="Popular" icon="icon ion-ios7-star">
     <ion-content class="has-header has-footer" scroll="false">
       <div class="episode" ng-repeat="v in latestVideos">
