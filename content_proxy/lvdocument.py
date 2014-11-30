@@ -1,5 +1,6 @@
 import json, urllib, urllib2
 from urlparse import urlparse
+import re
 
 documentproxy = "http://pip.ia.cwi.nl/doc"
 irapi_thd = "http://ir.lmcloud.vse.cz/irapi/media-server/thd"
@@ -15,12 +16,15 @@ def documentData(item):
         title = item.get('label', data['title'])
         image = item.get('poster', favicon(source))
 
+        #hack to get xhtml out
+        html = re.sub('<xhtml.*>|&lt;xhtml.*&gt;','', data["text"])
+
         document = {
             "url": url,
             "micropostUrl": url, #we keep this for personalization
             "title": title,
             "image": image,
-            "html":data["text"],
+            "html":html,
             "source":source
         }
         if "summary"  in data:
