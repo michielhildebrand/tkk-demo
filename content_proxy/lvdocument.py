@@ -17,7 +17,7 @@ def documentData(item):
         image = item.get('poster', favicon(source))
 
         #hack to get xhtml out
-        html = re.sub('<xhtml.*>|&lt;xhtml.*&gt;','', data["text"])
+        html = re.sub('<xhtml.*>|&lt;xhtml.*&gt;|&lt;/xhtml.*&gt;','', data["text"])
 
         document = {
             "url": url,
