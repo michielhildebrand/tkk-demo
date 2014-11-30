@@ -29,6 +29,7 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
     $scope.enrich = false;
     var currentParams = $location.search();
     playVideo(currentParams.videoId, currentParams.chId);
+    $scope.mode = currentParams.mode;
   });
 
   function playVideo(videoId, chId) {
