@@ -20,9 +20,9 @@ function bookmarkDirective(Eddie, Model, Tracker) {
         }
       );
 
-      scope.$watch('[video, chapter]', function (newValue, oldValue) {
-        if (newValue[0] != null && newValue[1] != null) updateStatus();
-      }, true);
+//      scope.$watch('[video, chapter]', function (newValue, oldValue) {
+//        if (newValue[0] != null && newValue[1] != null) updateStatus();
+//      }, true);
 
       scope.bookmark = function (e) {
         var id = compositeId();
