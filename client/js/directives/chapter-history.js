@@ -28,7 +28,7 @@ function chapterHistoryDirective($state, Model) {
           metadata: chapterEnrichCtrl.extractMetadata(ch),
           playChapter: [{
             value: ch.title,
-            uri: $state.href('play', {user: Model.getUser(), videoId: v.id, idx: chapterIdx}).substring(1)
+            uri: $state.href('play', {user: Model.getUser(), videoId: v.id, chId: ch.id, mode: 'watch'}).substring(1)
           }]
         };
         chapterEnrichCtrl.setContent(content);
