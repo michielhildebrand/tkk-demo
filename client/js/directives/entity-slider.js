@@ -29,6 +29,7 @@ function entitySliderDirective($log, entityProxy, Model, $ionicSlideBoxDelegate)
           if (newFragment != null) {
             debug('Automatically slide to entity index: ' + newFragment.index);
             scope.currentEntityIndex = newFragment.index;
+            $ionicSlideBoxDelegate.update();
           }
         }
       );
