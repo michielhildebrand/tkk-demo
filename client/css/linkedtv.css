@@ -157,9 +157,9 @@ a {
 .chapter .desc {
   display :none;
 }
-.chapter button.star {
+.chapter .star {
   position: absolute;
-  top: 50px;
+  top: 45px;
   margin-left: 110px;
   color: rgb(65,146,183);
 }
@@ -390,7 +390,7 @@ a {
 .links .selected .item {
     background-color: rgb(170, 184, 194);
 }
-.links .item button.star {
+.links .item .star {
   position: absolute;
   right: 20px;
   top: 40px;

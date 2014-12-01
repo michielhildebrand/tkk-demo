@@ -2,9 +2,9 @@
   <div ng-repeat="ch in video.chapters">
     <div class="chapter" ng-click="play(ch.id)">
         <video-chapter video="video" chapter="ch"></video-chapter>
-        <button class="star button-small button button-icon icon ion-star"
-        	ng-if="personalized[ch.id]>0" ng-style="{'opacity':personalized[ch.id]}">
-      	</button>
+        <i class="star icon ion-star"
+        	ng-if="ch.degree" ng-style="{'font-size':35*ch.degree}">
+      	</i>
     </div>
   </div>
 </ion-scroll>

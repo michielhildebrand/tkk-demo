@@ -23,9 +23,9 @@
       <img ng-src="{{item.image}}" ng-if="item.image">
       <h2>{{item.title}}</h2>
       <p>{{item.source}}</p> 
-      <button class="star button-small button button-icon icon ion-star"
-        ng-if="item.degree" ng-style="{'opacity':item.degree}">
-      </button>
+      <i class="star icon ion-star"
+          ng-if="item.degree" ng-style="{'font-size':35*item.degree}">
+        </i>
     </ion-item>
 
     <!-- Chapter -->
