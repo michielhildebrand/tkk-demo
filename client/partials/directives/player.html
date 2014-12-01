@@ -1,5 +1,6 @@
 <div class="video-overlay" ng-click="toggleControls()"></div>
-<video id="player" poster="img/linkedtv_big.jpg">
+
+<video id="player" poster="img/linkedtv_big.jpg" controls="true"  preload="auto" onplaying="this.controls=false">
     <source id="source" type='video/mp4'>
     Your browser does not support the video tag.
   </video>

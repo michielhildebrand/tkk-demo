@@ -244,9 +244,9 @@ a {
     height: 100%;
     position: absolute;
 }
-.player video::-webkit-media-controls {
+/*.player video::-webkit-media-controls {
     display:none !important;
-}
+}*/
 
 .player.explore,
 .player.lookup {
