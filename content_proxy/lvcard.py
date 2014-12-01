@@ -22,9 +22,10 @@ def cardData(item):
                     if not(key in ['label','thumb','comment','type','poster']):
                         if "uri" in value:
                             wikiUrl = dbpediaToWikipedia(value["uri"]);
+                            label = value.get("label", wikiUrl)
                             card["attributes"][key] = [{
                                 "uri": wikiUrl,
-                                "value": value["label"]
+                                "value": label
                             }]
                         else:
                             card["attributes"][key] = [value]

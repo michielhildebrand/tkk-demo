@@ -6,13 +6,14 @@ europeana_api = "http://europeana.eu/api/v2"
 wskey = "hb8sGDBPe"
 
 def artworkData(item):
-    url = item["url"]
-    print("europeana record: "+url)
-    ids = europeanaId(url)
-    if ids:
-        data = getEuropeana(ids)
-        if data and "object" in data:
-            return europeanaItem(item, data)
+    if "url" in item:
+        url = item["url"]
+        print("europeana record: "+url)
+        ids = europeanaId(url)
+        if ids:
+            data = getEuropeana(ids)
+            if data and "object" in data:
+                return europeanaItem(item, data)
 
 
 def getEuropeana(ids):

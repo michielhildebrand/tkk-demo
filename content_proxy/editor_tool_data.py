@@ -4,42 +4,44 @@ import lvdocument, lvcard, lvartwork, lvrelatedchapter, lvfragment, lvyoutube
 
 editor_tool_url="http://editortoolv2.linkedtv.eu/load_curated_et"
 
+userConfig = {
+    "sv":"rite",
+    "rbb":"nina"
+}
+
 dimensionConfig = {}
 dimensionConfig["sv"] = [
     {"id":"maintopic",
-     "title":"About"
+     "title":"About",
+     "type":"entity"
     },
     {"id":"tve_1",
-     "title":"Background"
+     "title":"Background",
+     "type":"article"
     },
     {"id":"tve_2",
-     "title":"Related Works"
+     "title":"Related Works",
+     "type":"europeana"
     },
     {"id":"tve_3",
-     "title":"Related Chapters"
+     "title":"Related Chapters",
+     "type":"chapter"
     }
 ]
 dimensionConfig["rbb"] = [
     {"id":"maintopic",
-     "title":"Mehr zu"
+     "title":"Mehr zu",
+     "type":"entity"
     },
-    {"id":"tve_2",
-     "title":"Aktuell"
+    {"id":"tvne_1",
+     "title":"Aktuell",
+     "type":"article"
     },
     {"id":"tvne_2",
-     "title":"Hintergrund"
+     "title":"Hintergrund",
+     "type":"article"
     }
 ]
-
-dimensionTypes = {
-    "ArtObject":"entity",
-    "Background":"article",
-    "RelatedChapter":"chapter",
-    "RelatedArtWork":"europeana",
-    "InDepth":"entity",
-    "History":"article",
-    "CurrentEvents":"article"
-}
 
 def fetchCuratedData(id):
     params = {
@@ -73,20 +75,21 @@ def chapterDimensionData(v, seed_videos, publisher):
     else:
         id = v["guid"]
 
+    user = userConfig[publisher]
+    
     dimensions = []
     for d in dimensionConfig[publisher]:
         if d["id"] in v["dimensions"]:
+            itemType = d["type"]
             data = v["dimensions"][d["id"]]
-            if "linkedtvDimension" in data and data["linkedtvDimension"] in dimensionTypes:
-                type = dimensionTypes[data["linkedtvDimension"]]
-                items = dimensionData(type,data,seed_videos)
+            items = dimensionData(itemType,data,seed_videos,user)
 
-                dimensions.append({
-                    "id":d["id"],
-                    "title":d["title"],
-                    "type":type,
-                    "items":items
-                })
+            dimensions.append({
+                "id":d["id"],
+                "title":d["title"],
+                "type":itemType,
+                "items":items
+            })
 
     print('chapter '+id)
     chapter = {
@@ -104,25 +107,26 @@ def chapterDimensionData(v, seed_videos, publisher):
     return chapter
 
 
-def dimensionData(dimensionType,data,seed_videos):
+def dimensionData(itemType,data,seed_videos, user):
     items = []
     if "annotations" in data:
         for item in data["annotations"]:
-            itemData = dimensionItem(item, dimensionType, seed_videos)
-            print(itemData)
+            itemData = dimensionItem(item, itemType, seed_videos, user)
+            #print(itemData)
             if itemData:
                 items.append(itemData)
     return items
 
-def dimensionItem(item, dimensionType, seed_videos):
+def dimensionItem(item, itemType, seed_videos, user):
+    #print(item)
     if "url" in item and "www.youtube.com" in item["url"]:
         return lvyoutube.videoData(item)
-    elif dimensionType == 'article':
-         return lvdocument.documentData(item)
-    elif dimensionType == 'entity':
+    elif itemType == 'article':
+         return lvdocument.documentData(item, user)
+    elif itemType == 'entity':
         return lvcard.cardData(item)
-    elif dimensionType == 'europeana':
+    elif itemType == 'europeana':
         return lvartwork.artworkData(item)
-    elif dimensionType == 'chapter':
+    elif itemType == 'chapter':
         return lvrelatedchapter.chapterData(item, seed_videos)
 

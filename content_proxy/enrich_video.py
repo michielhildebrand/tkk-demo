@@ -2,7 +2,7 @@
 
 import argparse
 import json, urllib, urllib2
-import editor_tool_data
+import editor_tool_data #, automatic_data
 import linkedtv_platform
 
 curated_videos = {}
@@ -38,7 +38,7 @@ def main():
         for v in seed_videos:
             videoId = v["id"]
             print('\nvideo '+videoId)
-            chapters = getChapterDimensions(videoId, seed_videos, publisher)
+            chapters = getChapterDimensions(v, seed_videos, publisher)
             if chapters:
                 v["chapters"] = chapters
 
@@ -58,12 +58,15 @@ def getChapters(videoId):
     return chapters
 
 
-def getChapterDimensions(videoId, seed_videos, publisher):
+def getChapterDimensions(video, seed_videos, publisher):
+    videoId = video["id"]
     if videoId in curated_videos:
         curated = curated_videos[videoId]
         chapters = [editor_tool_data.chapterDimensionData(c, seed_videos, publisher) for c in curated["chapters"] ]
         sorted(chapters, key=lambda c: c["startTime"]) 
         return chapters
+    # else:
+    #     chapters = [automatic_data.chapterDimensionData(c, videoId, seed_videos, publisher) for c in video["chapters"] ]
     # TODO fetch automatic enrichments
 
 
