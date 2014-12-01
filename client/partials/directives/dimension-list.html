@@ -24,7 +24,7 @@
       <h2>{{item.title}}</h2>
       <p>{{item.source}}</p> 
       <button class="star button-small button button-icon icon ion-star"
-        ng-if="personalized[item.url]">
+        ng-if="item.degree" ng-style="{'opacity':item.degree}">
       </button>
     </ion-item>
 
