@@ -17,6 +17,7 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
       var selected = null;
       scope.personalized = {};
 
+      /*
       scope.$watch(
         function() {
           return Tracker.enabled();
@@ -27,8 +28,9 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
             personalize(scope.items)
           }
         }
-      );
+      );*/
 
+      /*
       scope.$watch(
         function() {
           return scope.items;
@@ -40,7 +42,8 @@ function dimensionListDirective($log, $rootScope, Model, Tracker, contentFilteri
           }
         }
       );
-
+      */
+      
       scope.$watch('active', function() {
         if(scope.active) {
           if (scope.items.length > 0) {

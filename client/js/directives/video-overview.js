@@ -19,6 +19,7 @@ function videoOverviewDirective($state, $log, $rootScope, Model, contentFilterin
       $(element.children()[0]).width(scrollViewWidth);
       $(element.children()[0].children[0]).width(scrollWidth);
 
+      /*
       scope.$watch(
         function () {
           return scope.video.chapters
@@ -30,7 +31,8 @@ function videoOverviewDirective($state, $log, $rootScope, Model, contentFilterin
           }
         }
       );
-
+      */
+      
       scope.play = function (chId) {
         $state.go('play', {user: Model.getUser(), videoId: scope.video.id, chId: chId, mode: 'watch'});
       };
