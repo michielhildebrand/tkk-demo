@@ -4,6 +4,7 @@ import argparse
 import json, urllib, urllib2
 import editor_tool_data #, automatic_data
 import linkedtv_platform
+import personalization
 
 curated_videos = {}
 
@@ -42,9 +43,10 @@ def main():
             if chapters:
                 v["chapters"] = chapters
 
-            fileName = output + '/' + videoId+'.json'
-            with open(fileName, 'w') as out:
+            filename = output + '/' + videoId+'.json'
+            with open(filename, 'w') as out:
                 json.dump(v, out, indent=2, separators=(',', ': '))
+            print('written '+filename)
 
 
 def getChapters(videoId):
@@ -63,6 +65,11 @@ def getChapterDimensions(video, seed_videos, publisher):
     if videoId in curated_videos:
         curated = curated_videos[videoId]
         chapters = [editor_tool_data.chapterDimensionData(c, seed_videos, publisher) for c in curated["chapters"] ]
+
+        if publisher in editor_tool_data.userConfig:
+            user = editor_tool_data.userConfig[publisher]
+            personalization.add_chapters_degree(chapters, user)
+
         sorted(chapters, key=lambda c: c["startTime"]) 
         return chapters
     # else:
