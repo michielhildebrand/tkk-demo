@@ -5,6 +5,9 @@ html, body {
     font-size: 12px;
     background-color: rgb(45,57,64);
 }
+.tv {
+  background-color: black;
+}
 .linkedtv h1,
 .linkedtv h2,
 .linkedtv h3,
@@ -244,6 +247,17 @@ a {
     height: 100%;
     position: absolute;
 }
+
+.tv video {
+  position: fixed; 
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+}
+
 /*.player video::-webkit-media-controls {
     display:none !important;
 }*/
