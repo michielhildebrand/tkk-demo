@@ -24,8 +24,8 @@ function adminCtrl($scope, $http, $window, Config, $log) {
   	})
   }
 
-	$scope.addVideo = function() {
-		var id = $scope.newVideo;
+	$scope.addVideo = function(o) {
+		var id = o.id;
 		console.log(id);
   	$http.get(proxy+'/'+id+'/add').success(function(data) {
   		$scope.data.videos.push(data);

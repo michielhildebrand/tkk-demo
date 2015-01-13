@@ -24,9 +24,9 @@
         show-delete="data.showDelete"
         show-reorder="data.showReorder">
         <ion-item class="item-input item-button-right">
-            <input type=text ng-model="newVideo" placeHolder="Video identifier">
+            <input type=text ng-model="video.id" placeHolder="Video identifier">
             <button class="button"
-                ng-click="addVideo()">
+                ng-click="addVideo(video)">
                 Add
             </button>
         </ion-item>
