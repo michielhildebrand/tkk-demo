@@ -27,7 +27,7 @@ def list_full_videos(key):
 @app.route('/<key>/add/<videoId>', methods=['GET'])
 def add_video(key,videoId):
     r.lpush(key, videoId)
-    return json.dumps(r.lrange(key,0,-1))
+    return json.dumps(fetchVideoData(videoId))
 
 @app.route('/<key>/remove/<videoId>', methods=['GET'])
 def remove_video(key, videoId):
