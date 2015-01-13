@@ -135,7 +135,7 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
 
       function loadVideos(seeds) {
         var videos = seeds.map(function (s) {
-          return $http.get('video/' + s.id + '.json')
+          return $http.get('video/' + s.id + '.json', {cache:false})
             .success(function (v) {return v;})
             .catch(angular.noop);
         });
@@ -146,7 +146,7 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
           $rootScope.$$phase || $rootScope.$apply();
         })
       }
-      $http.get(Config.seed).success(loadVideos);
+      $http.get(Config.seed, {cache:false}).success(loadVideos);
 
       function debug(msg) {
         $log.debug('[App] ' + msg)
