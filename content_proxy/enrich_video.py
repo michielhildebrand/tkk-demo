@@ -7,7 +7,10 @@ curated_videos = {}
 
 def update_seed(seed, output, publisher):
     seed_data = open(seed)
-    seed_videos = json.load(seed_data)
+    videos = json.load(seed_data)
+    update_seed_videos(videos)
+
+def update_seed_videos(seed_videos, output, publisher):
     # first get all chapter, as we need them later for related videos
     print('\n===PASS 1: fetch chapters for seed videos===\n')
     for v in seed_videos:

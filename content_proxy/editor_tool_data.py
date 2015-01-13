@@ -2,7 +2,7 @@ import json, urllib, urllib2
 from copy import deepcopy
 import lvdocument, lvcard, lvartwork, lvrelatedchapter, lvfragment, lvyoutube
 
-editor_tool_url="http://editortoolv2.linkedtv.eu/load_curated_et"
+editor_tool_url="http://editortoolv2.linkedtv.eu/load_curated"
 
 userConfig = {
     "sv":"rite",

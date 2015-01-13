@@ -6,6 +6,8 @@ fi
 
 source ./doc-env/bin/activate
 
+redis-server
+
 TMP_DEPS=/tmp/temp_deps_${RANDOM}
 pip freeze -l > ${TMP_DEPS}
 if ! cmp ./requirements.txt ${TMP_DEPS} > /dev/null 2>&1

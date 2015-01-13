@@ -2,7 +2,7 @@ import json
 import traceback
 import urllib2
 
-from lxml.html import clean
+#from lxml.html import clean
 from newspaper import Article
 
 
