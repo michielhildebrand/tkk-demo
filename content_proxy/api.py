@@ -12,7 +12,7 @@ def document():
     return json.dumps(doc)
 
 @app.route('/news/update', methods=['GET'])
-def update():
+def update_news():
     seed = '../client/seeds/news-videos.json'
     #video = 'adb65e0a-642b-432f-aa86-c296dab0375a'
     output_dir = '../client/video'
@@ -22,7 +22,7 @@ def update():
     return 'seed is updated'
 
 @app.route('/culture/update', methods=['GET'])
-def update():
+def update_culture():
     seed = '../client/seeds/culture-videos.json'
     output_dir = '../client/video'
     publisher = 'tkk'
