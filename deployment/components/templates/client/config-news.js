@@ -27,11 +27,11 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
-  seed: 'seeds/news-videos.json',
+  seed: '/doc/rbb/videos/full',
 
   tracking_enabled_default: true,
 
-  synchronize_model: true,
+  synchronize_model: false,
 
   lookupMode: true,
 
