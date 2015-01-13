@@ -25,7 +25,7 @@ def update_news():
 def update_culture():
     seed = '../client/seeds/culture-videos.json'
     output_dir = '../client/video'
-    publisher = 'tkk'
+    publisher = 'sv'
 
     update_seed(seed, output_dir, publisher)
     return 'seed is updated'
