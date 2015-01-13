@@ -4,7 +4,6 @@ import base64
 
 url="http://api.linkedtv.eu/mediaresource"
 auth = "YWRtaW46bGlua2VkdHY="
-shotsURL = 'http://images1.noterik.com/domain/linkedtv/user/avro/video/'
 
 def fetchVideoData(id):
     print id
@@ -34,12 +33,23 @@ def videoData(v):
         videoId = v["locator"].split("/")[-2]
         print(videoId)
         src = v["locator"]+"rawvideo/2/raw.mp4"
-        shots = shotsURL+videoId+'/shots/1'
+        shots = get_thumbnail_locator(v)
+
         video = {
             "id":v["id"],
             "title":v['titleName'],
             "shots":shots,
-            "src":src,
-            "poster":shots+'/h/0/m/0/sec10.jpg'
+            "src":src
         }
+        if shots:
+            video["shots"] = shots
+            video["poster"] = shots+'h/0/m/0/sec10.jpg'
+
         return video
+
+
+def get_thumbnail_locator(data):
+    if "mediaResourceRelationSet" in data:
+        for o in data["mediaResourceRelationSet"]:
+            if o["relationType"] == "thumbnail-locator":
+                return o["relationTarget"]
