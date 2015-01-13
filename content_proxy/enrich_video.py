@@ -8,34 +8,45 @@ curated_videos = {}
 def update_seed(seed, output, publisher):
     seed_data = open(seed)
     videos = json.load(seed_data)
-    update_seed_videos(videos)
+    update_seed_videos(videos, output, publisher)
+
+def update_seed_video(video, seed_videos, output, publisher):
+    # first get all chapter, as we need them later for related videos
+    print('\n===PASS 1: fetch chapters for seed videos===\n')
+    setAllChapters(seed_videos)   
+    # now get the dimension data for the chapters
+    print('\n\n====PASS 2: fetch chapter dimension data===\n')
+    setDimensions(video, seed_videos, publisher)
+    saveVideo(video, output)
 
 def update_seed_videos(seed_videos, output, publisher):
     # first get all chapter, as we need them later for related videos
     print('\n===PASS 1: fetch chapters for seed videos===\n')
-    for v in seed_videos:
-        print('\nvideo '+v["id"])
-        v["chapters"] = getChapters(v["id"])
-
+    setAllChapters(seed_videos)
     # now get the dimension data for the chapters
     print('\n\n====PASS 2: fetch chapter dimension data===\n')
-    # if video:
-    #     chapters = getChapterDimensions(video, seed_videos, publisher)
-    #     with open(output, 'w') as out:
-    #             json.dump(chapters, out, indent=2, separators=(',', ': '))
-    # else:
-    for v in seed_videos:
-        videoId = v["id"]
-        print('\nvideo '+videoId)
-        chapters = getChapterDimensions(v, seed_videos, publisher)
-        if chapters:
-            v["chapters"] = chapters
+    for video in seed_videos:
+        setDimensions(video, seed_videos, publisher)
+        saveVideo(video, output)
 
-        filename = output + '/' + videoId+'.json'
-        with open(filename, 'w') as out:
-            json.dump(v, out, indent=2, separators=(',', ': '))
-        print('written '+filename)
+def setAllChapters(videos):
+    for v in videos:
+        print('\nvideo '+v["id"])
+        v["chapters"] = getChapters(v["id"])
+ 
+def setDimensions(video, seed_videos, publisher):
+    videoId = video["id"]
+    print('\nvideo '+videoId)
+    chapters = getChapterDimensions(video, seed_videos, publisher)
+    if chapters:
+        video["chapters"] = chapters
 
+def saveVideo(video, output_dir):
+    videoId = video["id"]
+    filename = output_dir + '/' + videoId+'.json'
+    with open(filename, 'w') as out:
+        json.dump(video, out, indent=2, separators=(',', ': '))
+    print('written '+filename)
 
 def getChapters(videoId):
     curated = editor_tool_data.fetchCuratedData(videoId)
@@ -58,7 +69,6 @@ def getChapterDimensions(video, seed_videos, publisher):
             user = editor_tool_data.userConfig[publisher]
             personalization.add_chapters_degree(chapters, user)
 
-        sorted(chapters, key=lambda c: c["startTime"]) 
         return chapters
     # else:
     #     chapters = [automatic_data.chapterDimensionData(c, videoId, seed_videos, publisher) for c in video["chapters"] ]

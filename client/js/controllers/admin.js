@@ -1,21 +1,25 @@
 'use strict';
 
-angular.module('AdminCtrl', []).controller('AdminCtrl', ['$scope', '$http', 'Config', '$log', adminCtrl]);
+angular.module('AdminCtrl', []).controller('AdminCtrl', ['$scope', '$http', '$window', 'Config', '$log', adminCtrl]);
 
-function adminCtrl($scope, $http, Config, $log) {
+function adminCtrl($scope, $http, $window, Config, $log) {
+  var proxy = Config.DOCUMENT_PROXY + '/' + Config.db;
+  
+  $scope.importing = false;
+
   $scope.data = {
   	showDelete: false,
   	showReorder: false,
   	videos: []
   }
 
-  $http.get(Config.seed).success(function(data) {
+  $http.get(proxy+'/videos').success(function(data) {
     $scope.data.videos = data;
   });
 
   $scope.removeVideo = function(index, id) {
   	$scope.data.videos.splice(index,1)
-  	$http.get(Config.DOCUMENT_PROXY+'/rbb/remove/'+id).success(function(data) {
+  	$http.get(proxy+'/' + id + '/remove').success(function(data) {
   		debug('removed '+id)
   	})
   }
@@ -23,15 +27,50 @@ function adminCtrl($scope, $http, Config, $log) {
 	$scope.addVideo = function() {
 		var id = $scope.newVideo;
 		console.log(id);
-  	$http.get(Config.DOCUMENT_PROXY+'/rbb/add/'+id).success(function(data) {
+  	$http.get(proxy+'/'+id+'/add').success(function(data) {
   		$scope.data.videos.push(data);
   	})
   }  
 
-  $scope.reorderVideo = function(id, from, to) {
-
+  $scope.reorderVideo = function(video, from, to) {
+    $scope.data.videos.splice(from, 1);
+    $scope.data.videos.splice(to, 0, video);
   }
 
+  $scope.importAll = function() {
+    if(!$scope.importing) {
+      $scope.importing = true;
+      $http.get(proxy+'/update').success(function(data) {
+        $scope.data.videos = data;
+        $scope.importing = false;
+      })
+    }
+  }
+
+  $scope.import = function(index, id) {
+    if(!$scope.importing) {
+      $scope.importing = index;
+      $http.get(proxy+'/'+id+'/update').success(function(data) {
+        $scope.data.videos[index] = data;
+        $scope.importing = false;
+      })
+    }
+  }
+
+  $scope.openVideoData = function(id) {
+    $window.location.href = 'video/'+id+'.json';
+  }
+
+  $scope.isImporting = function(index) {
+    if($scope.importing==true) {
+      return true;
+    } else if ($scope.importing===index) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
 
 
   function debug(msg) {

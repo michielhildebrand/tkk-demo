@@ -1,11 +1,18 @@
 <ion-header-bar align-title="center">
     <div class="buttons">
-        <button class="button button-icon icon ion-ios7-minus-outline" 
+        <button class="button button-icon icon ion-ios7-minus-outline"
+            ng-disabled="importing"
             ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
     </div>
     <h1 class="title">Admin</h1>
     <div class="buttons">
-        <button class="button activated" \
+        <button class="button"
+            ng-disabled="importing"
+            ng-click="importAll()">
+            Update all
+        </button>
+        <button class="button"
+            ng-disabled="importing"
             ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
             Reorder
         </button>
@@ -16,24 +23,38 @@
     <ion-list 
         show-delete="data.showDelete"
         show-reorder="data.showReorder">
-        <ion-item ng-repeat="video in data.videos"
-                  class="item-thumbnail-left" ng-click="">
+        <ion-item class="item-input item-button-right">
+            <input type=text ng-model="newVideo" placeHolder="Video identifier">
+            <button class="button"
+                ng-click="addVideo()">
+                Add
+            </button>
+        </ion-item>
+        <ion-item
+                ng-repeat="video in data.videos"
+                ng-click="openVideoData(video.id)"
+                class="item-remove-animate item-thumbnail-left" ng-click="">
             <img ng-src="{{video.poster}}">
-            <a href="#/admin/{{video.id}}">
-                <h2>{{video.title}}</h2>
-            </a>
+            <h2>{{video.title}}</h2>
             <p>{{video.id}}</p>
+            <span class="badge badge-positive" ng-if="video.modified && !isImporting($index)">
+                {{video.modified}}
+            </span>
+            <span class="badge badge-assertive" ng-if="!video.modified && !isImporting($index)">
+                not imported
+            </span>
+            <span class="badge badge-energized" ng-if="isImporting($index)">
+                importing
+            </span>
+            <ion-option-button class="button-positive"
+                       ng-click="import($index, video.id)">
+                Import
+            </ion-option-button>
             <ion-delete-button class="ion-minus-circled"
                        ng-click="removeVideo($index,video.id)">
             <ion-reorder-button class="ion-navicon"
-                        on-reorder="reorderVideo(video.id, $fromIndex, $toIndex)">
+                        on-reorder="reorderVideo(video, $fromIndex, $toIndex)">
     </ion-reorder-button>
         </ion-item>
     </ion-list>
 </ion-content>
-
-<ion-footer-bar>
-    <input type=text ng-model="newVideo">
-    <button class="button button-icon ion-plus-round"
-        ng-click="addVideo()">Add</button>
-</ion-footer-bar>

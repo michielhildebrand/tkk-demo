@@ -6,7 +6,7 @@ fi
 
 source ./doc-env/bin/activate
 
-redis-server
+redis-server redis.conf
 
 TMP_DEPS=/tmp/temp_deps_${RANDOM}
 pip freeze -l > ${TMP_DEPS}
