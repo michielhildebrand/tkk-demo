@@ -1,6 +1,3 @@
-#!/usr/bin/python
-
-import argparse
 import json, urllib, urllib2
 import editor_tool_data #, automatic_data
 import linkedtv_platform
@@ -8,19 +5,7 @@ import personalization
 
 curated_videos = {}
 
-def main():
-    parser = argparse.ArgumentParser(description='Fetch LinkedTV videos')
-    parser.add_argument('-v', '--video', help='Video identifier',required=False)
-    parser.add_argument('-s', '--seed', help='Seed video list',required=True)
-    parser.add_argument('-p', '--publisher', help='Publisher (rbb,sv)',required=True)
-    parser.add_argument('-o', '--output', help='Output file',required=True)
-    args = parser.parse_args()
-    
-    seed = args.seed
-    video = args.video
-    output = args.output
-    publisher = args.publisher
-
+def update_seed(seed, output, publisher):
     seed_data = open(seed)
     seed_videos = json.load(seed_data)
     # first get all chapter, as we need them later for related videos
@@ -31,22 +16,22 @@ def main():
 
     # now get the dimension data for the chapters
     print('\n\n====PASS 2: fetch chapter dimension data===\n')
-    if video:
-        chapters = getChapterDimensions(video, seed_videos, publisher)
-        with open(output, 'w') as out:
-                json.dump(chapters, out, indent=2, separators=(',', ': '))
-    else:
-        for v in seed_videos:
-            videoId = v["id"]
-            print('\nvideo '+videoId)
-            chapters = getChapterDimensions(v, seed_videos, publisher)
-            if chapters:
-                v["chapters"] = chapters
+    # if video:
+    #     chapters = getChapterDimensions(video, seed_videos, publisher)
+    #     with open(output, 'w') as out:
+    #             json.dump(chapters, out, indent=2, separators=(',', ': '))
+    # else:
+    for v in seed_videos:
+        videoId = v["id"]
+        print('\nvideo '+videoId)
+        chapters = getChapterDimensions(v, seed_videos, publisher)
+        if chapters:
+            v["chapters"] = chapters
 
-            filename = output + '/' + videoId+'.json'
-            with open(filename, 'w') as out:
-                json.dump(v, out, indent=2, separators=(',', ': '))
-            print('written '+filename)
+        filename = output + '/' + videoId+'.json'
+        with open(filename, 'w') as out:
+            json.dump(v, out, indent=2, separators=(',', ': '))
+        print('written '+filename)
 
 
 def getChapters(videoId):
@@ -75,6 +60,3 @@ def getChapterDimensions(video, seed_videos, publisher):
     # else:
     #     chapters = [automatic_data.chapterDimensionData(c, videoId, seed_videos, publisher) for c in video["chapters"] ]
     # TODO fetch automatic enrichments
-
-
-main()
