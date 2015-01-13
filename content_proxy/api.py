@@ -50,7 +50,9 @@ def seed_list(key):
     seed = []
     videos = r.lrange(key,0,-1)
     for videoId in videos:
-        seed.append(fetchVideoData(videoId))
+        data = fetchVideoData(videoId)
+        if data:
+            seed.append(data)
     return seed
 
 if __name__ == '__main__':
