@@ -1,6 +1,7 @@
 import json, urllib, urllib2
 from urlparse import urlparse
 import re
+from enricher import fetch_article
 
 documentproxy = "http://pip.ia.cwi.nl/doc"
 irapi_thd = "http://ir.lmcloud.vse.cz/irapi/media-server/thd"
@@ -47,19 +48,22 @@ def documentData(item, user):
             return document
 
 def fetchDocumentData(url):
-    print("document proxy: "+url)
-    params = {
-        "url":url
-    }
-    request = urllib2.Request(documentproxy + '?' + urllib.urlencode(params))
-    try:
-        response = urllib2.urlopen(request)
-    except Exception:
-        print 'url error'
-        return {}
-    else:
-        results = json.load(response)
-        return results
+    return fetch_article(url)
+
+# def fetchDocumentData(url):
+#     print("document proxy: "+url)
+#     params = {
+#         "url":url
+#     }
+#     request = urllib2.Request(documentproxy + '?' + urllib.urlencode(params))
+#     try:
+#         response = urllib2.urlopen(request)
+#     except Exception:
+#         print 'url error'
+#         return {}
+#     else:
+#         results = json.load(response)
+#         return results
 
 def fetchTHD(url):
     print("thd: "+url)
