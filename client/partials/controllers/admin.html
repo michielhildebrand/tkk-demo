@@ -1,16 +1,39 @@
 <ion-header-bar align-title="center">
+    <div class="buttons">
+        <button class="button button-icon icon ion-ios7-minus-outline" 
+            ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+    </div>
     <h1 class="title">Admin</h1>
+    <div class="buttons">
+        <button class="button activated" \
+            ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+            Reorder
+        </button>
+    </div>
 </ion-header-bar>
 
 <ion-content>
-    <ion-list>
-        <ion-item ng-repeat="video in videos"
+    <ion-list 
+        show-delete="data.showDelete"
+        show-reorder="data.showReorder">
+        <ion-item ng-repeat="video in data.videos"
                   class="item-thumbnail-left" ng-click="">
             <img ng-src="{{video.poster}}">
             <a href="#/admin/{{video.id}}">
                 <h2>{{video.title}}</h2>
             </a>
             <p>{{video.id}}</p>
+            <ion-delete-button class="ion-minus-circled"
+                       ng-click="removeVideo($index,video.id)">
+            <ion-reorder-button class="ion-navicon"
+                        on-reorder="reorderVideo(video.id, $fromIndex, $toIndex)">
+    </ion-reorder-button>
         </ion-item>
     </ion-list>
 </ion-content>
+
+<ion-footer-bar>
+    <input type=text ng-model="newVideo">
+    <button class="button button-icon ion-plus-round"
+        ng-click="addVideo()">Add</button>
+</ion-footer-bar>
