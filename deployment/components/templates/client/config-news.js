@@ -27,7 +27,8 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
-  seed: '/doc/rbb/videos/full',
+  db: 'rbb',
+  seed: '/doc/rbb/videos',
 
   tracking_enabled_default: true,
 

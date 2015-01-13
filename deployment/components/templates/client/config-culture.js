@@ -27,7 +27,8 @@ angular.module('Config', []).constant('Config', {
     }
   ],
 
-  seed: 'seeds/culture-videos.json',
+  db: 'sv',
+  seed: '/doc/sv/videos',
 
   tracking_enabled_default: true,
 
