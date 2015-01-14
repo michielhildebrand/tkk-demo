@@ -31,9 +31,9 @@ def video_data(videoId):
 
 @app.route('/<key>/<videoId>/add', methods=['GET'])
 def add_video(key,videoId):
-    r.lpush(key, videoId)
     data = fetchVideoData(videoId)
     if data is not None:
+        r.lpush(key, videoId)
         r.hmset(videoId, data)
         return json.dumps(data)
     else:
