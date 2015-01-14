@@ -48,13 +48,13 @@ def fetch_article(url):
       "type": "image"
     }
 
-  try:
-    a.nlp();
-  except Exception:
-    exc = traceback.format_exc()
-    print "NLP error: " + exc
+  # try:
+  #   a.nlp();
+  # except Exception:
+  #   exc = traceback.format_exc()
+  #   print "NLP error: " + exc
 
-  if a.summary:
-    article_data["summary"] = a.summary
+  # if a.summary:
+  #   article_data["summary"] = a.summary
 
   return article_data
