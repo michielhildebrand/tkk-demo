@@ -36,7 +36,7 @@ def add_video(key,videoId):
     if data is not None:
         r.hmset(videoId, data)
         return json.dumps(data)
-    else
+    else:
         abort(404)
 
 @app.route('/<key>/<videoId>/remove', methods=['GET'])
