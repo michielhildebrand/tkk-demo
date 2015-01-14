@@ -65,9 +65,9 @@ def getChapterDimensions(video, seed_videos, publisher):
         curated = curated_videos[videoId]
         chapters = [editor_tool_data.chapterDimensionData(c, seed_videos, publisher) for c in curated["chapters"] ]
 
-        if publisher=="rbb" and publisher in editor_tool_data.userConfig:
-            user = editor_tool_data.userConfig[publisher]
-            personalization.add_chapters_degree(chapters, user)
+        # if publisher=="rbb" and publisher in editor_tool_data.userConfig:
+        #     user = editor_tool_data.userConfig[publisher]
+        #     personalization.add_chapters_degree(chapters, user)
 
         return chapters
     # else:

@@ -30,11 +30,11 @@ def documentData(item, user):
                 "source":source
             }
 
-            thd = fetchTHD(url)
-            if "annotation" in thd:
-                degree = personalize({"url":url,"micropostUrl":url,"title":title,"annotation":thd["annotation"]}, 'rita')
-                if degree:
-                    document["degree"] = degree
+            # thd = fetchTHD(url)
+            # if "annotation" in thd:
+            #     degree = personalize({"url":url,"micropostUrl":url,"title":title,"annotation":thd["annotation"]}, 'rita')
+            #     if degree:
+            #         document["degree"] = degree
 
             if "summary"  in data:
                 document["summary"] = data["summary"]
