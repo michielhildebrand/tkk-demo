@@ -27,9 +27,13 @@ function adminCtrl($scope, $http, $window, Config, $log) {
 	$scope.addVideo = function(o) {
 		var id = o.id;
 		console.log(id);
-  	$http.get(proxy+'/'+id+'/add').success(function(data) {
+  	$http.get(proxy+'/'+id+'/add')
+    .success(function(data) {
   		$scope.data.videos.push(data);
   	})
+    .error(function(data) {
+      window.alert(id+" not known");
+    });
   }  
 
   $scope.reorderVideo = function(video, from, to) {

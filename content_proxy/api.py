@@ -2,7 +2,7 @@ import json
 import redis
 import time
 
-from flask import Flask, request
+from flask import Flask, request, abort
 from enrich_video import update_seed_videos, update_seed_video
 from enricher import fetch_article
 from fetch_videos import fetchVideoData
@@ -33,9 +33,11 @@ def video_data(videoId):
 def add_video(key,videoId):
     r.lpush(key, videoId)
     data = fetchVideoData(videoId)
-    if data:
+    if data is not None:
         r.hmset(videoId, data)
         return json.dumps(data)
+    else
+        abort(404)
 
 @app.route('/<key>/<videoId>/remove', methods=['GET'])
 def remove_video(key, videoId):
