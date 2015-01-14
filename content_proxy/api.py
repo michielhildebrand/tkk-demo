@@ -33,8 +33,9 @@ def video_data(videoId):
 def add_video(key,videoId):
     r.lpush(key, videoId)
     data = fetchVideoData(videoId)
-    r.hmset(videoId, data)
-    return json.dumps(data)
+    if data:
+        r.hmset(videoId, data)
+        return json.dumps(data)
 
 @app.route('/<key>/<videoId>/remove', methods=['GET'])
 def remove_video(key, videoId):
