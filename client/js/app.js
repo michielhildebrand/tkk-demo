@@ -95,8 +95,15 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
 
   $logProvider.debugEnabled(Config.debug_enabled);
 }
-]).run(['$rootScope', '$state', '$log', '$http', '$q', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
-    function ($rootScope, $state, $log, $http, $q, Config, eventsBus, Model, Eddie, Tracker) {
+]).run(['$rootScope', '$state', '$log', '$http', '$q', '$templateCache', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
+    function ($rootScope, $state, $log, $http, $q, $templateCache, Config, eventsBus, Model, Eddie, Tracker) {
+
+      // disable caching 
+      // TODO should be only in "dev" mode
+      $rootScope.$on('$viewContentLoaded', function() {
+        $templateCache.removeAll();
+      });
+
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $rootScope.title = Config.app_title_prefix + toState.title;
 
