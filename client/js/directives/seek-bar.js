@@ -8,8 +8,9 @@ function seekBarDirective($rootScope, $log, eventsBus, Model, Config) {
     replace: false,
     scope: {},
     link: function (scope, element, attrs) {
-      scope.duration = '0';
-      scope.current = '0';
+      var currentTime = 0;
+      scope.duration = 0;
+      scope.current = 0;
 
       scope.startLapse = '00:00';
       scope.endLapse = '00:00';
@@ -22,28 +23,24 @@ function seekBarDirective($rootScope, $log, eventsBus, Model, Config) {
         function (newDuration) {
           if (newDuration != null) {
             scope.duration = newDuration;
-          }
-        }
-      );
-      scope.$watch(
-        function () {
-          return Model.getChapter();
-        },
-        function (newChapter) {
-          if (newChapter != null) {
-            updateBar(newChapter.startTime);
+            updateBar(currentTime);
           }
         }
       );
 
       function updateBar(millis) {
-        scope.current = millis;
-        scope.endLapse = moment(scope.duration - millis).format('mm:ss');
-        scope.startLapse = moment(millis).format('mm:ss');
+        if(scope.duration) {
+          scope.endLapse = moment(scope.duration - millis).format('mm:ss');
+          scope.startLapse = moment(millis).format('mm:ss');
+          scope.current = millis;
+        }
       }
 
       function syncCurrentTime(milliseconds) {
-        if (Config.synchronize_model) Model.sync(milliseconds);
+        currentTime = milliseconds;
+        if (Config.synchronize_model) {
+          Model.sync(milliseconds);
+        }
         updateBar(milliseconds);
         $rootScope.$$phase || $rootScope.$apply();
       }

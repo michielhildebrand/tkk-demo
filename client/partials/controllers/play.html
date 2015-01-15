@@ -16,7 +16,7 @@
 
     <div ng-switch="mode">
       <ion-content class="mode watch has-header has-footer" scroll="false" ng-switch-when="watch">
-        <player class="player" second="second" controls="controls" ng-hide="beaming"></player>
+        <player class="player" second="second" ng-hide="beaming"></player>
         <div class="beam-bg" ng-show="beaming">
           <div class="icon ion-ios7-monitor-outline">
             <div class="msg">This video is playing on TV</div>
@@ -33,6 +33,8 @@
       </ion-content>
     </div>
 
+    <player-controls  class="player-controls"  controls="controls"></player-controls>
+
     <div class="tabs tabs-icon-top bar logo" ng-hide="controlsHidden()">
       <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('watch')}" ng-click="setActiveMode('watch')">
         <i class="icon ion-social-youtube"></i>
@@ -48,8 +50,6 @@
       </a>
     </div>
 
-    <player-controls class="player-controls" ng-hide="controlsHidden()"></player-controls>
-
   </ion-side-menu-content>
 
   <!-- Left menu -->
@@ -60,7 +60,5 @@
   </ion-side-menu>
 
 </ion-side-menus>
-
-
 
 
