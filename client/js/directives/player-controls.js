@@ -7,7 +7,8 @@ function playerControlsDirective($log, $timeout, Eddie, eventsBus, Model, Tracke
     restrict: 'E',
     replace: false,
     scope: {
-      controls: '='
+      controls: '=',
+      mode: '='
     },
     link: function (scope, element, attrs) {
       scope.loading = false;

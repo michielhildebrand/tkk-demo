@@ -31,9 +31,8 @@
       <ion-content class="mode explore has-header has-footer has-controls" scroll="false" ng-switch-when="explore">
         <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
       </ion-content>
+      <player-controls  class="player-controls"  controls="controls" mode="mode"></player-controls>
     </div>
-
-    <player-controls  class="player-controls"  controls="controls"></player-controls>
 
     <div class="tabs tabs-icon-top bar logo" ng-hide="controlsHidden()">
       <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('watch')}" ng-click="setActiveMode('watch')">
