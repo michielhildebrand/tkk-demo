@@ -93,14 +93,22 @@ a {
     background-color: rgb(45,57,64);
 }
 
+/* modes */
+.linkedtv .mode.has-footer {
+    bottom: 49px;
+}
+.linkedtv .mode.has-footer.has-controls {
+    bottom: 89px;
+}
 /* watch mode header and footer are overlays */
-.linkedtv .watch .has-header.has-footer {
+.linkedtv .watch .mode.has-footer.has-controls {
     top: 0;
     bottom: 0;
 }
+
 .linkedtv .watch .bar,
 .linkedtv .watch .tabs {
-    background-color: rgba(95, 109, 105, 0.9);
+    background-color: rgba(95, 109, 105, 0.85);
 }
 
 /* user select */
@@ -209,14 +217,6 @@ a {
 .scroll-content .scroll .col,
 .scroll-content .scroll .enrichPanel {
   height: 100%;
-}
-
-/* modes */
-.mode.has-footer {
-    bottom: 49px;
-}
-.mode.has-footer.has-controls {
-    bottom: 89px;
 }
 
 /* player */

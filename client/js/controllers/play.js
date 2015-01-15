@@ -75,10 +75,6 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
     }
   };
 
-  $scope.isActiveMode = function (mode) {
-    return mode == $scope.mode;
-  };
-
   $scope.getActiveMode = function () {
     return $scope.mode;
   };

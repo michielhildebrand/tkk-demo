@@ -14,36 +14,38 @@
       </div>
     </ion-header-bar>
 
-    <div ng-switch="mode">
-      <ion-content class="mode watch has-header has-footer" scroll="false" ng-switch-when="watch">
-        <player class="player" second="second" ng-hide="beaming"></player>
-        <div class="beam-bg" ng-show="beaming">
-          <div class="icon ion-ios7-monitor-outline">
-            <div class="msg">This video is playing on TV</div>
+    <ion-content class="mode has-header has-footer has-controls" scroll="false">
+        <div class="watch" ng-show="mode=='watch'">
+          <player class="player" second="second" ng-hide="beaming"></player>
+          <div class="beam-bg" ng-show="beaming">
+            <div class="icon ion-ios7-monitor-outline">
+              <div class="msg">This video is playing on TV</div>
+            </div>
           </div>
         </div>
-      </ion-content>
+      
+        <div class="lookup" ng-show="mode=='lookup'">
+          <entity-slider ng-if="lookupMode"></entity-slider>
+        </div>
 
-      <ion-content class="mode lookup has-header has-footer has-controls" scroll="false" ng-switch-when="lookup">
-        <entity-slider ng-if="lookupMode"></entity-slider>
-      </ion-content>
+        <div class="explore" ng-show="mode=='explore'">
+            <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
+        </div>
+      </div>
+    </ion-content>
 
-      <ion-content class="mode explore has-header has-footer has-controls" scroll="false" ng-switch-when="explore">
-        <chapter-enrich height="playContentHeight" video="video"></chapter-enrich>
-      </ion-content>
-      <player-controls  class="player-controls"  controls="controls" mode="mode"></player-controls>
-    </div>
+    <player-controls  class="player-controls"  controls="controls" mode="mode"></player-controls>
 
     <div class="tabs tabs-icon-top bar logo" ng-hide="controlsHidden()">
-      <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('watch')}" ng-click="setActiveMode('watch')">
+      <a class="tab-item" ng-class="{'tab-item-active':mode=='watch'}" ng-click="setActiveMode('watch')">
         <i class="icon ion-social-youtube"></i>
         Watch
       </a>
-      <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('lookup')}" ng-click="setActiveMode('lookup')" ng-if="lookupMode">
+      <a class="tab-item" ng-class="{'tab-item-active':mode=='lookup'}" ng-click="setActiveMode('lookup')" ng-if="lookupMode">
         <i class="icon ion-ios7-information"></i>
         Lookup
       </a>
-      <a class="tab-item" ng-class="{'tab-item-active':isActiveMode('explore')}" ng-click="setActiveMode('explore')">
+      <a class="tab-item" ng-class="{'tab-item-active':mode=='explore'}" ng-click="setActiveMode('explore')">
         <i class="icon ion-ios7-world"></i>
         Explore
       </a>
