@@ -36,7 +36,8 @@ function seekBarDirective($rootScope, $log, eventsBus, Model, Config) {
         }
       }
 
-      function syncCurrentTime(milliseconds) {
+      function syncCurrentTime(msg) {
+        var milliseconds = (msg == "loading") ? 0 : msg;
         currentTime = milliseconds;
         if (Config.synchronize_model) {
           Model.sync(milliseconds);
