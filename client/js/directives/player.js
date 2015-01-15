@@ -12,7 +12,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
     replace: false,
     link: function (scope, element, attrs) {
       scope.paused = true;
-      var previousCurrentTime = 0;
+      var previousCurrentTime = null;
       var player = document.getElementsByTagName("video")[0];
 
       scope.$watch(
@@ -26,7 +26,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
 
       // player events
       $(player).on('canplay', function() {
-        
+                
       });
 
       // update the duration based on the video metadata
@@ -39,18 +39,19 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
         stopTimePublisher();
         scope.paused = true;
         debug('Video changed with video: ' + video.id + ', and time: ' + time);
-        player.poster = video.poster;
+        //player.poster = video.poster;
+        player.poster = shotUrl(video, time);
         player.src = video.src;
-
+        player.currentTime = time / 1000; //In seconds
+        startTimePublisher();
+        
         if(scope.second) {
           player.load();
           if(!scope.paused) {
             player.play();
           }
         }
-
-        player.currentTime = time / 1000; //In seconds
-        startTimePublisher();
+        
       }
 
       if (scope.second) {
@@ -131,7 +132,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
         else {
           var currentTime = player.currentTime;
           currentTime *= 1000; //In milliseconds
-          if (currentTime != previousCurrentTime) {
+          if (currentTime !== previousCurrentTime) {
             previousCurrentTime = currentTime;
             if (scope.second) {
               Eddie.putLou({target: 'player-time', data: currentTime});
@@ -157,6 +158,15 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
         player.pause();
         delete($(player));
         $(element[0]).empty();
+      }
+
+      function shotUrl(video, time) {
+        var d = new Date(time);
+          d.setSeconds(d.getSeconds());
+          var h = d.getHours() - 1;
+          var m = d.getMinutes();
+          var s = d.getSeconds();
+          return video.shots + "/h/" + h + "/m/" + m + "/sec" + s + ".jpg";
       }
 
       function debug(msg) {
