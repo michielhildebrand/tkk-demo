@@ -97,11 +97,12 @@ linkedTvApp.config(['$stateProvider', '$urlRouterProvider',
 }
 ]).run(['$rootScope', '$state', '$log', '$http', '$q', '$templateCache', 'Config', 'eventsBus', 'Model', 'Eddie', 'Tracker',
     function ($rootScope, $state, $log, $http, $q, $templateCache, Config, eventsBus, Model, Eddie, Tracker) {
-
-      // disable caching 
+      // disable template caching 
       // TODO should be only in "dev" mode
-      $rootScope.$on('$viewContentLoaded', function() {
-        $templateCache.removeAll();
+      $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        if (typeof(current) !== 'undefined'){
+            $templateCache.remove(current.templateUrl);
+        }
       });
 
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
