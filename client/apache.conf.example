@@ -20,6 +20,7 @@
   ProxyPass /filtering http://multimedia.iti.gr/api/LinkedCulture
   ProxyPass /doc http://127.0.0.1:5000
   ProxyPass /linkedtv_sparql  http://data.linkedtv.eu/sparql
+  ProxyPass /gain http://dev.wa.vse.cz/gain
 
   # Toolkit configuration
   ProxyPass /lou http://%SPRINGFIELD_IP%:8080/lou

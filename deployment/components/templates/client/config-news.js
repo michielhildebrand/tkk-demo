@@ -7,7 +7,8 @@ angular.module('Config', []).constant('Config', {
   CONTENT_FILTERING_API: 'http://{{app_address}}/filtering',
   DOCUMENT_PROXY: 'http://{{app_address}}/doc',
   LINKEDTV_SPARQL: 'http://{{app_address}}/linkedtv_sparql',
-
+  GAIN_API: '/gain',
+  
   app_title_prefix: 'LinkedTV News',
   users: [
     {
