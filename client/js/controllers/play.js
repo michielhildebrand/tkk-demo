@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', '$ionicSideMenuDelegate', 'Eddie', 'Model', 'Config', 'Tracker', playCtrl]);
+angular.module('PlayCtrl', []).controller('PlayCtrl', ['$scope', '$state', '$location', '$log', 
+    '$ionicSideMenuDelegate', '$ionicSlideBoxDelegate', 
+    'Eddie', 'Model', 'Config', 'Tracker', playCtrl]);
 
-function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie, Model, Config, Tracker) {
+function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, Eddie, Model, Config, Tracker) {
   $scope.mode = $state.params.mode;
 
   $scope.second = false;
@@ -72,6 +74,11 @@ function playCtrl($scope, $state, $location, $log, $ionicSideMenuDelegate, Eddie
     }
     if (mode === 'explore' || mode === 'lookup') {
       Tracker.collect({action: 'player_enrich', id: Model.getVideo().id, time: Model.getTime()});
+    }
+
+    // hack. this should be in entity-slider.js
+    if (mode === 'lookup') {
+      $ionicSlideBoxDelegate.update();
     }
   };
 
