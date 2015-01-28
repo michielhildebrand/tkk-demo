@@ -11,9 +11,11 @@ def cardData(item):
             card["image"] = item["poster"]
         if "comment" in item:
             card["description"] = item["comment"]
-        if "type" in "item":
+        if "type" in item:
             card["types"] = [ item["type"] ]
-        
+        if "uri" in item:
+            card["uri"] = item["uri"]
+            
         if "template" in item:
             for o in item["template"]["properties"]:
                 key = o["key"]

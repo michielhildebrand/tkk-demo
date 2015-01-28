@@ -44,6 +44,9 @@ server {
   location /linkedtv_sparql {
     proxy_pass http://data.linkedtv.eu/sparql;
   }
+  location /gain {
+    proxy_pass http://dev.wa.vse.cz/gain;
+  }
 
   # for toolkit js
   location /libs/ {

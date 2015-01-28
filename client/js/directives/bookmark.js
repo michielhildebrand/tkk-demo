@@ -31,7 +31,8 @@ function bookmarkDirective(Eddie, Model, Tracker) {
           currentBookmarks = Model.unbookmark(id);
         } else {
           currentBookmarks = Model.bookmark(id);
-          Tracker.collect({action: 'user_bookmark', id: scope.video.id, time: Model.getTime()});
+          //Tracker.collect({action: 'user_bookmark', id: scope.video.id, time: Model.getTime()});
+          Tracker.bookmark(scope.video.id, scope.chapter);
         }
         sendToBookmark(currentBookmarks);
         e.stopPropagation();

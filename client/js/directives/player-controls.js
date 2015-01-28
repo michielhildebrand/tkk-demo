@@ -32,10 +32,12 @@ function playerControlsDirective($log, $timeout, Eddie, eventsBus, Model, Tracke
         scope.play = !scope.play;
         if (scope.play) {
           sendToPlayer({action: 'play'});
-          Tracker.collect({action: 'player_play', id: Model.getVideo().id, time: currentTime});
+          //Tracker.collect({action: 'player_play', id: Model.getVideo().id, time: currentTime});
+          Tracker.video('play', Model.getVideo().id, currentTime);
         } else {
           sendToPlayer({action: 'pause'});
-          Tracker.collect({action: 'player_pause', id: Model.getVideo().id, time: currentTime});
+          //Tracker.collect({action: 'player_pause', id: Model.getVideo().id, time: currentTime});
+          Tracker.video('pause', Model.getVideo().id, currentTime);
         }
       };
 
