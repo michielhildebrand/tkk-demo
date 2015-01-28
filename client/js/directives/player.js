@@ -12,6 +12,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
     replace: false,
     link: function (scope, element, attrs) {
       scope.paused = true;
+      var video = null;
       var previousCurrentTime = null;
       var player = document.getElementsByTagName("video")[0];
 
@@ -20,36 +21,34 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
           return Model.getVideo();
         },
         function (newVideo) {
+          video = newVideo;
           if (newVideo != null) updatePlayer(newVideo, Model.getTime());
         }
       );
 
-      // player events
-      $(player).on('canplay', function() {
-                
-      });
-
       // update the duration based on the video metadata
       $(player).on('loadedmetadata', function (metadata) {
-        var video = Model.getVideo();
-        video.duration = metadata.target.duration * 1000; //In milliseconds      
+        if(video) {
+          video.duration = metadata.target.duration * 1000; //In milliseconds  
+        }
       });
 
       function updatePlayer(video, time) {
         stopTimePublisher();
         scope.paused = true;
-        debug('Video changed with video: ' + video.id + ', and time: ' + time);
-        //player.poster = video.poster;
-        player.poster = shotUrl(video, time);
-        player.src = video.src;
-        player.currentTime = time / 1000; //In seconds
-        startTimePublisher();
         
+        debug('Video changed with video: ' + video.id + ', and time: ' + time);
+        player.poster = video.poster;
+
+        // This does not work on iOS
+        player.src = video.src;
+        player.load();
+
+        seek(time);
+
+        // on a TV we play straightaway.
         if(scope.second) {
-          player.load();
-          if(!scope.paused) {
-            player.play();
-          }
+          player.play();
         }
         
       }
@@ -69,9 +68,6 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
             case 'play':
               if (msg.time) {
                 player.currentTime = msg.time / 1000; //In seconds
-              }
-              if (player.readyState==0) {
-                player.load();
               }
               player.play();
               startTimePublisher();
@@ -99,7 +95,8 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
               }
               break;
             case 'set-time':
-              player.currentTime = msg.time / 1000; //Seconds
+              seek(msg.time);
+              //player.currentTime = msg.time / 1000; //Seconds
               break;
             case 'dispose':
               player.pause();
@@ -125,11 +122,31 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
         }
       }
 
-      function publishCurrentTime() {
-        if (player.readyState<4) {
-          eventsBus.publish('player-time', "loading");
+      function seek(time, posterBlock) {
+        if(!posterBlock) {
+          player.poster = shotUrl(video, time);
         }
-        else {
+        //console.log(player.seekable.end(0), time/1000);
+        if(video.duration && time > video.duration) {
+          debug('skip seek to end'+time+' > duration '+duration);
+        }
+        if(player.seekable.length>0 && time/1000 <= player.seekable.end(0)) {
+          player.currentTime = time/1000;
+          publishCurrentTime();
+        } else {
+          eventsBus.publish('player-time', "loading");
+          setTimeout(function() { seek(time, true) }, 1000);
+        }
+      }
+
+      function publishCurrentTime() {
+        // if (player.readyState<4) {
+        //   eventsBus.publish('player-time', "loading");
+        // }
+        //if (!player.currentTime) {
+       	//	eventsBus.publish('player-time', "loading");
+        //}
+        //else {
           var currentTime = player.currentTime;
           currentTime *= 1000; //In milliseconds
           if (currentTime !== previousCurrentTime) {
@@ -140,7 +157,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
               eventsBus.publish('player-time', currentTime);
             }
           }
-        }
+        //}
       }
 
 
@@ -153,8 +170,7 @@ function playerDirective($interval, $timeout, $log, Eddie, eventsBus, Model) {
       });
 
       function destroyPlayer() {
-        source.src = '';
-        delete($(source));
+        player.src = '';
         player.pause();
         delete($(player));
         $(element[0]).empty();

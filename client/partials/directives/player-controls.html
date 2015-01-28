@@ -11,10 +11,10 @@
     <div class="col col-10">
       <button class="button button-small button-icon icon"
         ng-class="{'ion-ios7-play': !play, 'ion-ios7-pause': play}" 
-        ng-click="togglePlay()" ></button>
+        ng-click="togglePlay()" ng-disabled="loading"></button>
       <button class="button button-small button-icon icon"
         ng-class="{'ion-ios7-volume-low': mute, 'ion-ios7-volume-high': !mute}" 
-        ng-click="toggleMute()" ></button>
+        ng-click="toggleMute()"></button>
     </div>
     <div class="col col-80">
         <seek-bar></seek-bar>
