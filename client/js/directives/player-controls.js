@@ -82,24 +82,27 @@ function playerControlsDirective($log, $timeout, Eddie, eventsBus, Model, Tracke
         window.clearTimeout(controlsInterval);
         if(scope.controls.hidden) {
           scope.controls.hidden = false;
-        } else {
+        } 
+        else if(!scope.loading) {
           scope.togglePlay();
         }
         hideControls();
       };
       
       function hideControls() {
-        if(scope.loading) {
-          controlsInterval = setTimeout(function() { 
-            hideControls()
-          }, 500);
-        }
-        else if(scope.play) {
-          controlsInterval = setTimeout(function() { 
-            if(scope.play) {
-              scope.controls.hidden = true;
-            } 
-          }, 3000);
+        if(scope.play) {
+          if(scope.loading) {
+            controlsInterval = setTimeout(function() { 
+              hideControls()
+            }, 500);
+          }
+          else {
+            controlsInterval = setTimeout(function() { 
+              if(scope.play) {
+                scope.controls.hidden = true;
+              } 
+            }, 3000);
+          }
         }
       }
 
