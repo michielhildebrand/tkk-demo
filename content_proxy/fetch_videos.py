@@ -32,7 +32,7 @@ def videoData(v):
     if "locator" in v and v["locator"] is not None:
         videoId = v["locator"].split("/")[-2]
         print(videoId)
-        src = v["locator"]+"rawvideo/2/raw.mp4"
+        src = v["locator"]+"rawvideo/3/raw.mp4"
         shots = get_thumbnail_locator(v)
 
         video = {
