@@ -5,7 +5,7 @@ import lvdocument, lvcard, lvartwork, lvrelatedchapter, lvfragment, lvyoutube
 editor_tool_url="http://editortoolv2.linkedtv.eu/load_curated"
 
 userConfig = {
-    "sv":"rite",
+    "sv":"rita",
     "rbb":"nina"
 }
 
@@ -70,8 +70,8 @@ def chapterData(v):
     return chapter
 
 def chapterDimensionData(v, seed_videos, publisher):
-    if "bodyURI" in v:
-        id = v["bodyURI"].split('/')[-1]
+    if "mediaFragmentId" in v:
+        id = v["mediaFragmentId"]
     else:
         id = v["guid"]
 
