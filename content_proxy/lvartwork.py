@@ -83,7 +83,7 @@ def europeanaKeyValue(key, source):
 
 def europeanaValue(v):
     if v:
-        isinstance(v, str):
+        if isinstance(v, str):
             return v
         if "def" in v:
             return  v["def"]
