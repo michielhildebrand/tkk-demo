@@ -12,19 +12,19 @@ def update_seed(seed, output, publisher):
 
 def update_seed_video(video, seed_videos, output, publisher):
     # first get all chapter, as we need them later for related videos
-    print('\n===PASS 1: fetch chapters for seed videos===\n')
-    setAllChapters(seed_videos)   
+    #print('\n===PASS 1: fetch chapters for seed videos===\n')
+    #setAllChapters(seed_videos)   
     # now get the dimension data for the chapters
-    print('\n\n====PASS 2: fetch chapter dimension data===\n')
+    #print('\n\n====PASS 2: fetch chapter dimension data===\n')
     setDimensions(video, seed_videos, publisher)
     saveVideo(video, output)
 
 def update_seed_videos(seed_videos, output, publisher):
     # first get all chapter, as we need them later for related videos
-    print('\n===PASS 1: fetch chapters for seed videos===\n')
-    setAllChapters(seed_videos)
+    #print('\n===PASS 1: fetch chapters for seed videos===\n')
+    #setAllChapters(seed_videos)
     # now get the dimension data for the chapters
-    print('\n\n====PASS 2: fetch chapter dimension data===\n')
+    #print('\n\n====PASS 2: fetch chapter dimension data===\n')
     for video in seed_videos:
         setDimensions(video, seed_videos, publisher)
         saveVideo(video, output)

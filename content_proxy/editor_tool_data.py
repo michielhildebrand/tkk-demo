@@ -128,6 +128,6 @@ def dimensionItem(item, itemType, seed_videos, user):
     elif itemType == 'europeana':
         return lvartwork.artworkData(item)
     elif itemType == 'chapter':
-        return lvrelatedchapter.chapterData(item, seed_videos)
+        return lvrelatedchapter.chapterData(item)
         #return lvrelatedchapter.chapterData(item, seed_videos)
 
