@@ -82,10 +82,8 @@ def europeanaKeyValue(key, source):
         return europeanaValue(source[key])
 
 def europeanaValue(v):
-    if v:
-        if isinstance(v, basestring):
-            return v
-        elif "def" in v:
+    if v and isinstance(v, dict):
+        if "def" in v:
             return  v["def"]
         elif "nl" in v:
             return v["nl"]
