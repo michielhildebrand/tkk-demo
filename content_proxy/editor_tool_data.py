@@ -16,15 +16,15 @@ dimensionConfig["sv"] = [
      "type":"entity"
     },
     {"id":"tve_1",
-     "title":"Background",
+     "title":"Achtergrond",
      "type":"article"
     },
     {"id":"tve_2",
-     "title":"Related Works",
+     "title":"Gerelateerde kunstwerken",
      "type":"europeana"
     },
     {"id":"tve_3",
-     "title":"Related Chapters",
+     "title":"Gerelateerde afleveringen",
      "type":"chapter"
     }
 ]
@@ -53,8 +53,8 @@ def fetchCuratedData(id):
     return results 
 
 def chapterData(v):
-    if "bodyURI" in v:
-        id = v["bodyURI"].split('/')[-1]
+    if "mediaFragmentId" in v:
+        id = v["mediaFragmentId"]
     else:
         id = v["guid"]
 
@@ -129,4 +129,5 @@ def dimensionItem(item, itemType, seed_videos, user):
         return lvartwork.artworkData(item)
     elif itemType == 'chapter':
         return lvrelatedchapter.chapterData(item, seed_videos)
+        #return lvrelatedchapter.chapterData(item, seed_videos)
 
