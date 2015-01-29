@@ -6,7 +6,7 @@ def chapterData(item):
 
     if ids:
         videoId = ids[0]
-        chapterid = ids[1]
+        chapterId = ids[1]
         print('related chapter '+chapterId)
 
     relatedchapter = {
