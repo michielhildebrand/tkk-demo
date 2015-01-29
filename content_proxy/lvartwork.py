@@ -85,7 +85,7 @@ def europeanaValue(v):
     if v:
         if isinstance(v, str):
             return v
-        if "def" in v:
+        elif "def" in v:
             return  v["def"]
         elif "nl" in v:
             return v["nl"]
