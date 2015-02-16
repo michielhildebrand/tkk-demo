@@ -29,7 +29,7 @@ angular.module('Config', []).constant('Config', {
   ],
 
   db: 'rbb',
-  seed: '/doc/rbb/videos',
+  seed: '/seeds/news-videos.json',
 
   tracking_enabled_default: true,
 
